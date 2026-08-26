@@ -6,18 +6,88 @@ Wskazówki dla agentów AI (Claude Code i pokrewnych) pracujących w tym repozyt
 
 ## Czym jest ten projekt
 
-[przewodnikai.pl](https://przewodnikai.pl) - otwarta baza wiedzy o AI po polsku, zbudowana na **Astro 7 + Starlight**, hostowana na **Cloudflare Workers** (static assets, konfiguracja w `wrangler.jsonc`). Model pracy: "żywe wiki" - treść w Markdownie, zmiany przez pull requesty, publikacja automatyczna.
+[przewodnikai.pl](https://przewodnikai.pl) - otwarta baza wiedzy o AI po polsku, zbudowana na **Astro 7 + Starlight**, hostowana na **Cloudflare Workers** (static assets, konfiguracja w `wrangler.jsonc`).
 
-**To repozytorium treści, nie aplikacji.** ~57 artykułów w `src/content/docs/` (52 lekcje kursu plus strony w Zasobach), dwa własne komponenty (`Footer.astro`, `Video.astro`), zero logiki biznesowej i zero testów jednostkowych. Większość zadań to edycja Markdowna.
+**To repozytorium treści, nie aplikacji.** 57 artykułów w `src/content/docs/`, kilka własnych komponentów, zero logiki biznesowej. Większość zadań to edycja Markdowna.
+
+### Dwa repozytoria - przeczytaj to przed pierwszym commitem
+
+Od 2026-08-26 projekt ma dwa repozytoria i **jednokierunkowy** sync między nimi:
+
+| Gdzie | Rola | Adres |
+| --- | --- | --- |
+| **Gitea** (lokalna) | źródło prawdy - kod, cała treść, także wycięta | `http://localhost:3000/lukasz/przewodnikai_pl.git` |
+| **GitHub** | lustro publiczne - tylko treść dopuszczona do publikacji | `lukaszpodgorski-pl/przewodnikai_pl` |
+
+Katalog roboczy ma `origin` ustawiony na **Giteę**. Tu commitujesz i tu pushujesz.
+GitHub dostaje treść wyłącznie przez `npm run publish` - **nigdy nie edytuj go
+ręcznie**, następna publikacja nadpisze zmiany. Cloudflare buduje z GitHuba.
+
+### Przegląd redakcyjny - stan na dziś
+
+Serwis jest w trakcie przeglądu artykuł po artykule. Powód: duża część treści
+powstała z dużym udziałem AI i właściciel nie publikuje jej pod swoim nazwiskiem
+przed sprawdzeniem. **Wszystkie 57 artykułów jest wyciętych z produkcji.**
+Publicznie stoi 19 stron: strona główna, dziewięć stron zbiorczych (osiem sekcji
+plus ścieżki), `zasoby/kontakt`, `zasoby/o-mnie` i siedem stron newslettera.
+
+Steruje tym pole `status` we frontmatterze (`src/content.config.ts`):
+
+| Wartość | Znaczenie |
+| --- | --- |
+| `szkic` | nieprzejrzany, **wycięty** z produkcji. Domyślna - nowy plik nie wyjdzie przez zapomnienie |
+| `zastane` | nieprzejrzany, ale publikowany. Dziś tylko strony infrastrukturalne |
+| `gotowe` | przejrzany przez właściciela, publikowany |
+
+Artykuł wraca na produkcję przez zmianę statusu na `gotowe` i `npm run publish`.
+**Nie przywracaj artykułów hurtem** ani "tymczasowo" - to była odrzucona ścieżka.
+Postęp: `npm run status`.
 
 ## Komendy
 
 ```powershell
 npm install
-npm run dev        # localhost:4321
-npm run build      # build produkcyjny do ./dist/ - to jest nasz "test suite"
-npm run preview    # podgląd builda
+npm run dev          # podgląd roboczy: localhost:4321, WSZYSTKO łącznie ze szkicami
+npm run build        # build produkcyjny do ./dist/ - to jest nasz "test suite"
+npm run preview      # podgląd builda
+npm run status       # postęp przeglądu redakcyjnego, sekcja po sekcji
+npm run publish      # przygotuj publikację i zweryfikuj (bez wysyłki)
+npm run preview:prod # podgląd DOKŁADNIE tego, co zobaczy świat
+npm run verify:geo   # 24 asercje na zbudowanym dist/
+npm run test:publish # testy transformacji publikacyjnych
 ```
+
+### Dwa tryby podglądu - nie myl ich
+
+**`npm run dev`** → `http://localhost:4321` - Twoje środowisko przeglądu.
+Widzisz **całą** treść, także artykuły wycięte z produkcji. Tu czytasz,
+poprawiasz i decydujesz, czy tekst nadaje się do publikacji.
+
+**`npm run preview:prod`** → podgląd wersji publicznej. Uruchamia `npm run publish`,
+czyli buduje zawartość `.publish/` i serwuje ją lokalnie. Zobaczysz efekt cięcia:
+odnośniki do wyciętych stron zamienione na zwykły tekst, karty z dopiskiem
+"w przygotowaniu", zapowiedzi sekcji, przekierowania. **Uruchom to przed każdą
+publikacją** - to ostatni moment, żeby zobaczyć, czy zdania po odlinkowaniu
+nadal mają sens.
+
+Oba tryby można trzymać otwarte naraz i przełączać się między kartami. Podgląd
+produkcyjny zajmie wtedy **pierwszy wolny port** (zwykle `4323`, bo `4321`
+trzyma dev) - adres wypisuje przy starcie, nie zgaduj go.
+
+W katalogu głównym leżą dwa skróty dla Windows - klikasz dwukrotnie zamiast
+wpisywać komendy: **`podglad-roboczy.cmd`** i **`podglad-produkcyjny.cmd`**.
+Oba otwierają przeglądarkę na właściwym adresie, a produkcyjny zatrzymuje się
+z czytelnym komunikatem, jeśli publikacja nie przejdzie weryfikacji.
+
+### Publikacja
+
+```powershell
+npm run publish              # przygotowanie + build + verify:geo, bez wysyłki
+node scripts/publish.mjs --push   # to samo plus commit i push na GitHub
+```
+
+Skrypt przerywa, jeśli katalog roboczy nie jest czysty, jeśli publiczna wersja
+się nie buduje albo nie przechodzi `verify:geo`. Zepsuta wersja nie wychodzi.
 
 Weryfikacja przed commitem (te same kroki co CI, uruchamiane lokalnie):
 
@@ -26,7 +96,7 @@ npm run build
 npx --yes markdownlint-cli2 "src/content/**/*.md" "*.md"
 ```
 
-Nie ma frameworka testowego. `npm run build` jest jedynym pełnym sprawdzeniem - wykrywa złamane linki wewnętrzne, błędy frontmattera (schemat Zod) i błędy MDX.
+`npm run build` jest pełnym sprawdzeniem treści - wykrywa złamane linki wewnętrzne, błędy frontmattera (schemat Zod) i błędy MDX. Transformacje publikacyjne mają własne testy (`npm run test:publish`, 11 przypadków).
 
 Serwer deweloperski uruchamiaj w tle: `astro dev --background`; zarządzanie: `astro dev stop`, `astro dev status`, `astro dev logs`.
 
@@ -38,7 +108,15 @@ Serwer deweloperski uruchamiaj w tle: `astro dev --background`; zarządzanie: `a
 | `links.yml` | PR + cotygodniowy cron | lychee - linki zewnętrzne i wewnętrzne |
 | `media.yml` | zmiany w `src/assets/**`, `public/media/**` | obraz ≤ 1 MB, wideo ≤ 5 MB, **GIF-y odrzucane** |
 
-Każdy PR wymaga akceptacji code ownera (`.github/CODEOWNERS`).
+Workflow biegną w publicznym repozytorium, czyli **po** publikacji. Właściwą
+bramką jest `npm run publish`: build i `verify:geo` liczą się na zawartości
+`.publish/` przed wysyłką, więc zepsuta wersja nie opuszcza komputera. CI na
+GitHubie jest siatką bezpieczeństwa, nie pierwszą linią.
+
+Pull requesty od osób z zewnątrz nie są ścieżką wnoszenia zmian - lustro zostałoby
+nadpisane przy następnej publikacji. Traktuj taki PR jak zgłoszenie: przenieś
+zmianę do źródła prawdy, PR zamknij z podziękowaniem i odnośnikiem do
+opublikowanej wersji.
 
 ## Architektura
 
@@ -89,9 +167,23 @@ Build celowo nie dotyka sieci - działa zawsze na ostatniej zacommitowanej kopii
 
 `starlight-llms-txt` generuje `llms.txt`. `public/robots.txt` świadomie wpuszcza wszystkie crawlery AI (GPTBot, ClaudeBot, PerplexityBot itd.).
 
-**Wdrożenie następuje przy merge'u do `main`.** Cloudflare Workers Builds ma ustawioną gałąź produkcyjną `main`, a buildy gałęzi nieprodukcyjnych są wyłączone - push gałęzi roboczej nie wdraża niczego na żywą domenę. Konfiguracja siedzi w panelu Cloudflare, więc nie da się jej wyczytać z repo; `wrangler.jsonc` opisuje tylko route'y.
+**Wdrożenie następuje przy pushu do `main` w publicznym repozytorium**, czyli
+w praktyce przy `npm run publish -- --push`. Cloudflare Workers Builds ma
+ustawioną gałąź produkcyjną `main`. Konfiguracja siedzi w panelu Cloudflare,
+więc nie da się jej wyczytać z repo; `wrangler.jsonc` opisuje tylko route'y.
 
-Dzięki temu bramka PR działa tak, jak powinna: `verify-geo.yml` odpala się na `pull_request`, czyli **przed** wdrożeniem. Gdyby ktoś kiedyś włączył buildy gałęzi nieprodukcyjnych, ta kolejność się odwróci i weryfikacja zacznie biegać po fakcie.
+Praca w źródle prawdy (Gitea) **nie wdraża niczego** - commit i push tam są
+bezpieczne. Na produkcję wychodzi wyłącznie to, co przepuścisz przez skrypt
+publikacji, a ten sam odmówi wysyłki, jeśli build albo `verify:geo` nie przejdą.
+
+Nazwa Workera to `przewodnikai` (`wrangler.jsonc`) i nie ma związku z nazwą
+repozytorium - `.github/workflows/deploy-check.yml` odwołuje się właśnie do niej.
+
+Jedna rzecz, która przetrwała przepięcie repozytorium i wymaga uwagi:
+`profile-sync.yml` nasłuchuje `repository_dispatch` z repo-profilu autora
+i otwiera PR z aktualizacją danych. W lustrze taki PR zostanie nadpisany przy
+następnej publikacji - sync danych autora trzeba zrobić w źródle prawdy
+(`npm run profile:sync`), nie przez ten workflow.
 
 ## Konwencje treści
 
