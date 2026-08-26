@@ -1,0 +1,309 @@
+---
+import { NEWSLETTER, ostrzezJesliZastepcze } from '../config/newsletter';
+
+ostrzezJesliZastepcze();
+
+interface Props {
+	/** `sekcja` - blok na stronie glownej. `pasek` - waski wariant pod artykulem. */
+	wariant?: 'sekcja' | 'pasek';
+}
+
+const { wariant = 'sekcja' } = Astro.props;
+
+/**
+ * Wariant pod artykulem jest zwijany, wariant na stronie glownej nie.
+ *
+ * Pod artykulem formularz jest dodatkiem doklejonym do cudzej tresci - w pelnej
+ * postaci to nagłowek, opis, pole, zgoda i akapit prawny, czyli wiecej wysokosci
+ * niz niejedna sekcja artykulu. Na stronie glownej jest odwrotnie: to swiadomy
+ * element oferty, po ktory czlowiek przyszedl, wiec chowanie go obnizyloby
+ * konwersje.
+ *
+ * CALY formularz - razem z przyciskiem wysylki - siedzi w zwijanym panelu.
+ * To nie jest kwestia estetyki, tylko warunek poprawnosci: pole `gdpr` ma
+ * `required`, a gdyby zostalo ukryte przy widocznym przycisku, przegladarka
+ * probowalaby ustawic fokus na niewidocznym polu i wysylka cicho by padala
+ * ("An invalid form control is not focusable"). Skoro przycisk jest schowany
+ * razem ze zgoda, ten stan nie moze wystapic.
+ */
+const zwijany = wariant === 'pasek';
+const Kontener = zwijany ? 'details' : Fragment;
+
+const naglowek = zwijany ? 'Nowy rozdział? Dam Ci znać - bez spamu.' : 'Nie przegap nowych materiałów';
+---
+
+{/* data-pagefind-ignore jest konieczne: stopka Starlight lezy WEWNATRZ
+    data-pagefind-body, wiec bez tego tresc formularza trafialaby do indeksu
+    i zasmiecala wyniki wyszukiwania w serwisie. */}
+<section class:list={['newsletter', wariant]} data-pagefind-ignore aria-labelledby="newsletter-naglowek">
+	<Kontener>
+		{/*
+			Nagłowek wchodzi do <summary> zamiast zostac nad nim: specyfikacja
+			HTML dopuszcza w <summary> pojedynczy element naglowkowy, dzieki
+			czemu `aria-labelledby` sekcji dalej wskazuje istniejacy element,
+			artykul nie traci pozycji w strukturze naglowkow, a po rozwinieciu
+			nic sie nie dubluje.
+
+			W wariancie zwijanym nie ma osobnego `.opis` - linia w <summary>
+			niesie te sama obietnice, wiec opis powtarzalby ja slowo w slowo.
+		*/}
+		{
+			zwijany ? (
+				<summary>
+					<span class="ikona" aria-hidden="true">✉</span>
+					<h2 id="newsletter-naglowek">{naglowek}</h2>
+				</summary>
+			) : (
+				<div class="tekst">
+					<h2 id="newsletter-naglowek">{naglowek}</h2>
+					<p class="opis">
+						Zapisz się, a dam Ci znać, kiedy pojawi się nowy rozdział albo gdy zaktualizuję istniejący. Bez
+						spamu.
+					</p>
+				</div>
+			)
+		}
+
+		<form action={NEWSLETTER.endpoint} method="POST" accept-charset="utf-8">
+			<div class="pola">
+				<label class="sr-only" for={`email-${wariant}`}>Twój adres e-mail</label>
+				<input
+					type="email"
+					name="email"
+					id={`email-${wariant}`}
+					placeholder="Twój adres e-mail"
+					autocomplete="email"
+					inputmode="email"
+					required
+				/>
+				<button type="submit" name="submit">Zapisz się</button>
+			</div>
+
+			{/* Honeypot antyspamowy - ukryty przed ludzmi i przed czytnikami ekranu. */}
+			<div style="display:none;" aria-hidden="true">
+				<input type="text" name="hp" tabindex="-1" autocomplete="off" />
+			</div>
+
+			{/*
+				`gdpr` MUSI byc niezaznaczonym checkboxem, nie ukrytym polem.
+
+				W instancji Sendy wlaczony jest tryb zgody RODO, wiec Sendy zapisuje
+				przy subskrybencie potwierdzenie zgody na podstawie tego pola. Ukryte
+				pole z wartoscia "1" oznaczaloby, ze system rejestruje zgode, ktorej
+				czlowiek nigdy nie udzielil - a motyw 32 RODO wprost stwierdza, ze
+				pola zaznaczone z gory nie stanowia zgody. Falszywy dowod zgody jest
+				gorszy niz jego brak, bo art. 7 ust. 1 wymaga, by zgode UMIEC WYKAZAC.
+
+				`required` przenosi wymuszenie na przegladarke, wiec formularz nie
+				wyjdzie bez swiadomego zaznaczenia.
+			*/}
+			<div class="zgoda-pole">
+				<input type="checkbox" name="gdpr" id={`gdpr-${wariant}`} value="true" required />
+				<label for={`gdpr-${wariant}`}>
+					Zgadzam się na otrzymywanie e-mailem powiadomień o nowych i zaktualizowanych materiałach w Przewodniku
+					AI.
+				</label>
+			</div>
+
+			<input type="hidden" name="list" value={NEWSLETTER.listId} />
+			<input type="hidden" name="subform" value="yes" />
+
+			<p class="zgoda">
+				Zgodę możesz wycofać w każdej chwili - klikając link w stopce dowolnej wiadomości albo pisząc na{' '}
+				<a href={`mailto:${NEWSLETTER.contactEmail}`}>{NEWSLETTER.contactEmail}</a>. Szczegóły przetwarzania danych
+				opisuje <a href={NEWSLETTER.privacyUrl} target="_blank" rel="noopener">Polityka prywatności</a>.
+			</p>
+		</form>
+	</Kontener>
+</section>
+
+<style>
+	.newsletter {
+		border: 1px solid var(--sl-color-gray-5);
+		border-radius: 0.5rem;
+		padding: 1.5rem;
+		background: var(--sl-color-gray-7, transparent);
+	}
+
+	/* Wariant pod artykulem: wezszy, spokojniejszy, oddzielony od tresci. */
+	.newsletter.pasek {
+		margin-top: 2.5rem;
+		padding: 1.25rem;
+	}
+
+	.newsletter.sekcja {
+		margin: 2rem 0;
+		text-align: center;
+	}
+
+	.newsletter h2 {
+		margin: 0;
+		font-size: var(--sl-text-h4);
+		color: var(--sl-color-white);
+		line-height: var(--sl-line-height-headings);
+	}
+
+	.opis {
+		margin: 0.5rem 0 0;
+		font-size: var(--sl-text-sm);
+		color: var(--sl-color-gray-2);
+	}
+
+	/* --- Zwijany wariant pod artykulem --- */
+
+	summary {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		cursor: pointer;
+		/* Domyslny trojkat zastapiony wlasnym szewronem po prawej stronie. */
+		list-style: none;
+	}
+
+	/* Starsze WebKit ignoruje `list-style` na <summary> i potrzebuje wlasnej reguly. */
+	summary::-webkit-details-marker {
+		display: none;
+	}
+
+	/* Specyficznosc musi przebic `.newsletter h2` powyzej, stad selektor
+	   trzyczlonowy: w zwinietej linii naglowek ma zapraszac, nie krzyczec. */
+	.newsletter summary h2 {
+		flex: 1;
+		font-size: var(--sl-text-base);
+	}
+
+	.ikona {
+		flex-shrink: 0;
+		color: var(--sl-color-gray-3);
+	}
+
+	/* Szewron zlozony z rogu kwadratu: w prawo gdy zwiniete, w dol po rozwinieciu. */
+	summary::after {
+		content: '';
+		flex-shrink: 0;
+		width: 0.45rem;
+		height: 0.45rem;
+		border-right: 2px solid currentColor;
+		border-bottom: 2px solid currentColor;
+		color: var(--sl-color-gray-3);
+		transform: rotate(-45deg);
+	}
+
+	details[open] summary::after {
+		transform: rotate(45deg);
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		summary::after {
+			transition: transform 0.15s ease;
+		}
+	}
+
+	summary:hover::after {
+		color: var(--sl-color-white);
+	}
+
+	summary:focus-visible {
+		outline: 2px solid var(--sl-color-accent);
+		outline-offset: 2px;
+		border-radius: 0.25rem;
+	}
+
+	.pola {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		margin-top: 1rem;
+	}
+
+	.newsletter.sekcja .pola {
+		justify-content: center;
+	}
+
+	input[type='email'] {
+		flex: 1 1 16rem;
+		min-width: 0;
+		padding: 0.6rem 0.8rem;
+		border: 1px solid var(--sl-color-gray-5);
+		border-radius: 0.35rem;
+		background: var(--sl-color-black);
+		color: var(--sl-color-white);
+		font: inherit;
+		font-size: var(--sl-text-sm);
+	}
+
+	input[type='email']:focus-visible {
+		outline: 2px solid var(--sl-color-accent);
+		outline-offset: 1px;
+	}
+
+	button {
+		padding: 0.6rem 1.2rem;
+		border: 1px solid var(--sl-color-accent);
+		border-radius: 0.35rem;
+		background: var(--sl-color-accent);
+		color: var(--sl-color-white);
+		font: inherit;
+		font-size: var(--sl-text-sm);
+		font-weight: 600;
+		cursor: pointer;
+	}
+
+	button:hover {
+		background: var(--sl-color-accent-high);
+		border-color: var(--sl-color-accent-high);
+		color: var(--sl-color-black);
+	}
+
+	.zgoda-pole {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.5rem;
+		margin-top: 1rem;
+		text-align: start;
+	}
+
+	.zgoda-pole input {
+		/* Wyrownanie do pierwszej linii etykiety, nie do srodka bloku tekstu. */
+		margin-top: 0.15rem;
+		flex-shrink: 0;
+		width: 1rem;
+		height: 1rem;
+		accent-color: var(--sl-color-accent);
+	}
+
+	.zgoda-pole label {
+		font-size: var(--sl-text-sm);
+		color: var(--sl-color-gray-2);
+		line-height: 1.5;
+		cursor: pointer;
+	}
+
+	/* W wariancie wysrodkowanym sam blok zgody zostaje wyrownany do lewej
+	   (czyta sie lepiej), ale jako calosc jest wysrodkowany wzgledem sekcji. */
+	.newsletter.sekcja .zgoda-pole {
+		max-width: 34rem;
+		margin-inline: auto;
+	}
+
+	.zgoda {
+		margin: 0.75rem 0 0;
+		font-size: var(--sl-text-xs);
+		color: var(--sl-color-gray-3);
+		line-height: 1.5;
+	}
+
+	/* Etykieta dla czytnikow ekranu - pole ma placeholder, ale sam placeholder
+	   nie jest dostepna etykieta. */
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip-path: inset(50%);
+		white-space: nowrap;
+		border: 0;
+	}
+</style>

@@ -1,0 +1,133 @@
+# Przekierowania 301: stare płaskie URL-e (przewodnikai.pl/<slug>/)
+# -> nowa struktura z prefiksami sekcji (Cloudflare Pages).
+# UWAGA: reguły są dopasowywane co do ścieżki (exact match) i mają
+# pierwszeństwo przed plikami statycznymi - reguła pod adresem sekcji
+# przesłoniłaby jej stronę indeksową. Każda z siedmiu sekcji ma własną
+# stronę (src/content/docs/<sekcja>/index.mdx), więc nie dodawaj tu reguł
+# dla /podstawy/, /jak-dziala-ai/, /prompt-engineering/, /narzedzia/,
+# /praktyka/, /etyka/ ani /zasoby/.
+
+# --- Podstawy ---
+/wstep/ /podstawy/ 302
+/wprowadzenie/ /podstawy/ 302
+/jak-uczyc-sie-ai/ /podstawy/ 302
+/pierwsza-rozmowa-z-ai/ /podstawy/ 302
+/mity-vs-rzeczywistosc/ /podstawy/ 302
+/nie-dajmy-sie-zwariowac/ /podstawy/ 302
+/ograniczenia/ /podstawy/ 302
+/weryfikacja-informacji/ /podstawy/ 302
+
+# --- Jak działa AI ---
+/jak-ucza-sie-modele/ /jak-dziala-ai/ 302
+/typy-ai/ /jak-dziala-ai/ 302
+/modele-jezykowe/ /jak-dziala-ai/ 302
+/tokeny-i-kontekst/ /jak-dziala-ai/ 302
+/embedding/ /jak-dziala-ai/ 302
+/parametry-modeli/ /jak-dziala-ai/ 302
+/dane-dla-poczatkujacych/ /jak-dziala-ai/ 302
+/boom-ai/ /jak-dziala-ai/ 302
+/mapa-ai/ /jak-dziala-ai/ 302
+
+# --- Prompt Engineering ---
+/prompt-podstawy/ /prompt-engineering/ 302
+/prompt-techniki/ /prompt-engineering/ 302
+/prompt-rozumowanie/ /prompt-engineering/ 302
+/prompt-schematy/ /prompt-engineering/ 302
+/prompt-automatyzacja/ /prompt-engineering/ 302
+/prompt-programowanie/ /prompt-engineering/ 302
+/prompt-praktyki/ /prompt-engineering/ 302
+/baza-promptow/ /prompt-engineering/ 302
+
+# --- Narzędzia AI ---
+/narzedzia-chatboty/ /narzedzia/ 302
+/narzedzia-generatory-obrazow/ /narzedzia/ 302
+/narzedzia-pisanie/ /narzedzia/ 302
+/narzedzia-specjalistyczne/ /narzedzia/ 302
+/ai-w-codziennej-pracy/ /narzedzia/ 302
+
+# --- AI w praktyce ---
+/ai-w-branzach/ /praktyka/ 302
+/case-studies/ /praktyka/ 302
+/najlepsze-praktyki/ /praktyka/ 302
+/ai-i-praca/ /praktyka/ 302
+
+# --- Etyka i bezpieczeństwo ---
+/prywatnosc/ /etyka/ 302
+/przyszlosc-ai/ /etyka/ 302
+
+# --- Zasoby ---
+/slownik-pojec/ /zasoby/ 302
+/faq/ /zasoby/ 302
+/biblioteka/ /zasoby/ 302
+/o-mnie/ /zasoby/o-mnie/ 301
+/kontakt/ /zasoby/kontakt/ 301
+/regulamin/ /zasoby/kontakt/ 301
+
+# --- Strony w przebudowie redakcyjnej (generowane automatycznie) ---
+# 302, nie 301: te adresy wroca po przegladzie redakcyjnym. Regula
+# znika sama w dniu publikacji artykulu. Nie edytuj tej sekcji recznie -
+# steruje nia pole `status` we frontmatterze artykulu.
+/etyka/ai-a-dzieci/ /etyka/ 302
+/etyka/etyczne-aspekty/ /etyka/ 302
+/etyka/prywatnosc/ /etyka/ 302
+/etyka/przyszlosc-ai/ /etyka/ 302
+/jak-dziala-ai/agenci-ai/ /jak-dziala-ai/ 302
+/jak-dziala-ai/ai-ml-sieci-neuronowe/ /jak-dziala-ai/ 302
+/jak-dziala-ai/boom-ai/ /jak-dziala-ai/ 302
+/jak-dziala-ai/dane-dla-poczatkujacych/ /jak-dziala-ai/ 302
+/jak-dziala-ai/embedding/ /jak-dziala-ai/ 302
+/jak-dziala-ai/jak-ucza-sie-modele/ /jak-dziala-ai/ 302
+/jak-dziala-ai/mapa-ai/ /jak-dziala-ai/ 302
+/jak-dziala-ai/modele-jezykowe/ /jak-dziala-ai/ 302
+/jak-dziala-ai/modele-rozumujace/ /jak-dziala-ai/ 302
+/jak-dziala-ai/parametry-modeli/ /jak-dziala-ai/ 302
+/jak-dziala-ai/rag/ /jak-dziala-ai/ 302
+/jak-dziala-ai/tokeny-i-kontekst/ /jak-dziala-ai/ 302
+/jak-dziala-ai/typy-ai/ /jak-dziala-ai/ 302
+/narzedzia/ai-w-codziennej-pracy/ /narzedzia/ 302
+/narzedzia/asystenci-agentowi/ /narzedzia/ 302
+/narzedzia/chatboty/ /narzedzia/ 302
+/narzedzia/generatory-obrazow/ /narzedzia/ 302
+/narzedzia/ile-kosztuje-ai/ /narzedzia/ 302
+/narzedzia/pisanie/ /narzedzia/ 302
+/narzedzia/serwery-mcp/ /narzedzia/ 302
+/narzedzia/specjalistyczne/ /narzedzia/ 302
+/narzedzia/tryby-pracy-chatbotow/ /narzedzia/ 302
+/podstawy/czym-jest-ai/ /podstawy/ 302
+/podstawy/jak-uczyc-sie-ai/ /podstawy/ 302
+/podstawy/mity-vs-rzeczywistosc/ /podstawy/ 302
+/podstawy/nie-dajmy-sie-zwariowac/ /podstawy/ 302
+/podstawy/ograniczenia/ /podstawy/ 302
+/podstawy/pierwsza-rozmowa-z-ai/ /podstawy/ 302
+/podstawy/weryfikacja-informacji/ /podstawy/ 302
+/podstawy/wstep/ /podstawy/ 302
+/praktyka/ai-i-praca/ /praktyka/ 302
+/praktyka/ai-w-branzach/ /praktyka/ 302
+/praktyka/case-studies/ /praktyka/ 302
+/praktyka/najlepsze-praktyki/ /praktyka/ 302
+/prompt-engineering/automatyzacja/ /prompt-engineering/ 302
+/prompt-engineering/baza-promptow/ /prompt-engineering/ 302
+/prompt-engineering/inzynieria-kontekstu/ /prompt-engineering/ 302
+/prompt-engineering/najlepsze-praktyki/ /prompt-engineering/ 302
+/prompt-engineering/podstawy/ /prompt-engineering/ 302
+/prompt-engineering/programowanie/ /prompt-engineering/ 302
+/prompt-engineering/rozumowanie/ /prompt-engineering/ 302
+/prompt-engineering/schematy/ /prompt-engineering/ 302
+/prompt-engineering/techniki/ /prompt-engineering/ 302
+/prompt-engineering/wprowadzenie/ /prompt-engineering/ 302
+/sciezki/manager/ /sciezki/ 302
+/sciezki/nauczyciel/ /sciezki/ 302
+/sciezki/pracownik-biurowy/ /sciezki/ 302
+/sciezki/rodzic/ /sciezki/ 302
+/sciezki/senior/ /sciezki/ 302
+/sciezki/student/ /sciezki/ 302
+/sciezki/uczen-liceum/ /sciezki/ 302
+/sciezki/uczen-podstawowka/ /sciezki/ 302
+/sciezki/wlasciciel-firmy/ /sciezki/ 302
+/suwerenne-ai/ai-na-wlasnym-komputerze/ /suwerenne-ai/ 302
+/suwerenne-ai/bielik-i-polskie-modele/ /suwerenne-ai/ 302
+/suwerenne-ai/europejskie-modele/ /suwerenne-ai/ 302
+/suwerenne-ai/polski-ekosystem-ai/ /suwerenne-ai/ 302
+/zasoby/biblioteka/ /zasoby/ 302
+/zasoby/faq/ /zasoby/ 302
+/zasoby/slownik-pojec/ /zasoby/ 302

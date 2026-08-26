@@ -1,0 +1,74 @@
+---
+/**
+ * Blok "Pojęcia z tej strony" na dole artykułu. Wypisuje krótkie wyjaśnienia
+ * podanych terminów + linki do pełnych haseł w słowniku.
+ *
+ * Treść bierze z src/data/slownik.ts (to samo źródło co <Termin>), więc dymek
+ * w tekście i wyjaśnienie na dole są zawsze zgodne.
+ * Użycie: <SlowniczekStrony terminy={["prompt", "chatbot"]} />
+ */
+import { SLOWNIK, SLOWNIK_URL } from '../data/slownik';
+
+interface Props {
+	terminy: string[];
+}
+
+const { terminy } = Astro.props;
+const pojecia = terminy.map((id) => {
+	const pojecie = SLOWNIK[id];
+	if (!pojecie) {
+		throw new Error(
+			`<SlowniczekStrony>: nieznane id "${id}" - brak hasła w src/data/slownik.ts.`,
+		);
+	}
+	return { id, ...pojecie };
+});
+---
+
+<aside class="slowniczek-strony" aria-label="Pojęcia z tej strony">
+	<p class="slowniczek-naglowek">Pojęcia z tej strony</p>
+	<dl>
+		{
+			pojecia.map((p) => (
+				<div class="slowniczek-pozycja">
+					<dt>
+						<a href={`${SLOWNIK_URL}#${p.anchor}`}>{p.termin}</a>
+					</dt>
+					<dd>{p.krotka}</dd>
+				</div>
+			))
+		}
+	</dl>
+	<p class="slowniczek-stopka">
+		Pełne definicje w <a href={SLOWNIK_URL}>słowniku pojęć</a>.
+	</p>
+</aside>
+
+<style>
+	.slowniczek-strony {
+		margin-top: 2.5rem;
+		padding-top: 1rem;
+		border-top: 1px solid var(--sl-color-hairline);
+	}
+	.slowniczek-naglowek {
+		margin: 0 0 0.75rem;
+		font-weight: 600;
+	}
+	.slowniczek-strony dl {
+		margin: 0;
+	}
+	.slowniczek-pozycja {
+		margin-bottom: 0.6rem;
+	}
+	.slowniczek-strony dt {
+		font-weight: 600;
+	}
+	.slowniczek-strony dd {
+		margin: 0.1rem 0 0;
+		color: var(--sl-color-gray-2);
+	}
+	.slowniczek-stopka {
+		margin-top: 0.75rem;
+		font-size: 0.875rem;
+	}
+</style>

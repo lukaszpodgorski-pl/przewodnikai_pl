@@ -1,0 +1,107 @@
+---
+title: Jak działa AI
+description: Mechanika AI bez matematyki i bez tabeli modeli na dziś. Trzynaście lekcji - każda z ćwiczeniem na 5 minut.
+sidebar:
+  hidden: true
+about:
+  - name: Uczenie maszynowe
+    sameAs: https://pl.wikipedia.org/wiki/Uczenie_maszynowe
+  - name: Duży model językowy
+    sameAs: https://pl.wikipedia.org/wiki/Du%C5%BCy_model_j%C4%99zykowy
+  - name: Sztuczna sieć neuronowa
+    sameAs: https://pl.wikipedia.org/wiki/Sztuczna_sie%C4%87_neuronowa
+mentions:
+  - name: Transformer
+    sameAs: https://en.wikipedia.org/wiki/Transformer_(deep_learning_architecture)
+  - name: Word embedding
+    sameAs: https://en.wikipedia.org/wiki/Word_embedding
+  - name: Tokenizacja
+    sameAs: https://en.wikipedia.org/wiki/Lexical_analysis#Tokenization
+faq:
+  - q: Czy muszę rozumieć, jak AI działa, żeby z niej korzystać?
+    a: Nie musisz, tak jak nie musisz rozumieć silnika, żeby prowadzić samochód. Ale kierowca, który wie, co się dzieje pod maską, szybciej rozpoznaje, że coś jest nie tak. Tutaj chodzi dokładnie o to - zrozumienie mechaniki pozwala przewidzieć, kiedy AI się pomyli i dlaczego.
+  - q: Czy w tej sekcji jest matematyka?
+    a: Nie ma wzorów. Pojęcia takie jak embedding czy funkcja straty tłumaczę przez analogie i przykłady, nie przez notację. Jeśli chcesz wejść głębiej w matematykę, w sekcji Zasoby znajdziesz odesłania do materiałów, które to robią.
+  - q: Po co mi wiedza o tokenach i oknie kontekstowym?
+    a: "Bo od tokenów zależy, ile tekstu model bierze pod uwagę naraz i ile kosztuje wywołanie API. To też najczęstsza przyczyna, dla której AI gubi początek długiej rozmowy. Cennik otwierasz u dostawcy - drabina planów jest w Ile kosztuje AI."
+status: zastane
+---
+
+import { CardGrid, LinkCard, Card } from '@astrojs/starlight/components';
+
+
+:::note[Ta sekcja jest w przebudowie]
+Przechodzę przez te teksty artykuł po artykule i poprawiam to, co się nie broni.
+Lekcje wracają tutaj pojedynczo, w miarę jak kończę przegląd - pod tymi samymi
+adresami co wcześniej. Poniżej lista tego, co się w tej sekcji pojawi.
+:::
+
+![Przezroczysty mózg-maszyna z trybikami i węzłami sieci - jak działa AI](../../../assets/jak-dziala-ai/przeglad.jpg)
+
+## Czego się tu nauczysz
+
+Po sekcji [Podstawy](/podstawy/) wiesz już, czym AI jest i potrafisz z nią rozmawiać. Teraz zaglądamy pod maskę. Nie po to, żeby zrobić z Ciebie inżyniera - po to, żeby przestać traktować sztuczną inteligencję jak czarną skrzynkę, która czasem daje dobre odpowiedzi, a czasem dziwne, i nie wiadomo dlaczego.
+
+Zaczynamy od uporządkowania trzech pojęć, które w rozmowach potocznych używane są zamiennie, a znaczą co innego: sztuczna inteligencja, uczenie maszynowe i sieci neuronowe. Potem przechodzimy do tego, jak model w ogóle się uczy - skąd bierze wiedzę i co to znaczy, że "został wytrenowany". Zaraz potem porządkujemy typy AI - wąską, ogólną i superinteligencję - i pokazujemy, że dziś istnieje tylko ta pierwsza. Następnie zajmujemy się modelami językowymi, czyli tą rodziną AI, z którą masz do czynienia, gdy piszesz do chatbota.
+
+Dalej robi się konkretniej. Modele rozumujące tłumaczą, co naprawdę robi przycisk "myślenia" w chatbocie. Tokeny i okno kontekstowe wyjaśniają, dlaczego model gubi wątek w długiej rozmowie. Embeddingi pokazują, w jaki sposób maszyna reprezentuje znaczenie słów, a RAG - jak dzięki temu chatbot potrafi odpowiadać na podstawie Twoich dokumentów, a nie tylko z pamięci. Parametry - temperature, top-p i reszta - to pokrętła, którymi da się sterować zachowaniem modelu. Rozumienie danych uczy zadawać zbiorowi danych proste pytania, zanim uwierzysz wykresowi czy statystyce. Na koniec cofamy się o krok: dlaczego ten boom nastąpił akurat teraz, czym są agenci AI i jak wygląda mapa systemów AI.
+
+## Dla kogo to jest
+
+Dla osoby, która korzysta z AI i zaczyna zadawać pytania "dlaczego". Nadal nie potrzebujesz wykształcenia technicznego, ale ta sekcja jest gęstsza od poprzedniej i lepiej czyta się ją, mając za sobą pierwsze rozmowy z chatbotem.
+
+## W jakiej kolejności czytać
+
+Pierwszych pięć artykułów tworzy ciąg - warto trzymać kolejność. Dalsze są w dużej mierze niezależne, więc jeśli interesują Cię akurat koszty i limity, możesz przeskoczyć wprost do tokenów. "Mapa systemów AI" na końcu podsumowuje całość i dobrze działa też jako materiał do wracania.
+
+## Czego nie ma w tej sekcji
+
+Nie ma tu instrukcji obsługi konkretnych narzędzi ani technik pisania promptów. Tłumaczymy mechanikę; zastosowania czekają w [Prompt Engineering](/prompt-engineering/) i [Narzędziach AI](/narzedzia/).
+
+## Artykuły w tej sekcji
+
+<CardGrid>
+	<Card title="AI, ML, sieci neuronowe">
+		Poznasz różnicę między AI, uczeniem maszynowym, sieciami neuronowymi i deep learningiem na pięciu przykładach z życia. Ćwiczenie: 5 minut. (w przygotowaniu)
+	</Card>
+	<Card title="Jak uczą się modele AI">
+		Przypiszesz trzy przykłady z życia do uczenia nadzorowanego, nienadzorowanego i przez wzmacnianie. Ćwiczenie: 5 minut. (w przygotowaniu)
+	</Card>
+	<Card title="Typy AI">
+		Dowiesz się, że cała dzisiejsza AI to wąska AI, a AGI (ogólna) i ASI (superinteligencja) na razie nie istnieją. Ćwiczenie: 5 minut. (w przygotowaniu)
+	</Card>
+	<Card title="Modele językowe LLM">
+		Rozpoznasz, że czat tylko przewiduje kolejne słowo, i dobierzesz narzędzie według zadania, nie rankingu z internetu. Ćwiczenie: 5 minut. (w przygotowaniu)
+	</Card>
+	<Card title="Modele rozumujące">
+		Kiedy włączyć tryb myślenia, a kiedy nie. Ćwiczenie: 5 minut. (w przygotowaniu)
+	</Card>
+	<Card title="Tokeny i okno kontekstowe">
+		Policzysz tokeny (kawałki tekstu) na własnym zdaniu i zrozumiesz, dlaczego długa rozmowa z AI zaczyna gubić początek. Ćwiczenie: 5 minut. (w przygotowaniu)
+	</Card>
+	<Card title="Embedding">
+		Zobaczysz, że AI łączy zdania o tym samym problemie, nawet bez wspólnych słów, i nie daje się zwieść zdaniu, które tylko brzmi podobnie. Ćwiczenie: 5 minut. (w przygotowaniu)
+	</Card>
+	<Card title="RAG - AI na Twoich dokumentach">
+		Najpierw cytat z Twojego tekstu, potem odpowiedź. Ćwiczenie: 5 minut. (w przygotowaniu)
+	</Card>
+	<Card title="Parametry modeli AI">
+		Na trzech próbach zobaczysz, jak szeroko model losuje kolejne słowa, i nauczysz się zawężać ten wybór, gdy zależy Ci na jednej, przewidywalnej odpowiedzi. Ćwiczenie: 5 minut. (w przygotowaniu)
+	</Card>
+	<Card title="Rozumienie danych dla nieprogramistów">
+		Trzy pytania do zbioru danych, zanim uwierzysz wykresowi. Ćwiczenie: 5 minut. (w przygotowaniu)
+	</Card>
+	<Card title="Dlaczego AI teraz?">
+		Przypiszesz nagłówek o AI do jednego z trzech filarów boomu: mocy obliczeniowej, danych albo algorytmu. Ćwiczenie: 5 minut. (w przygotowaniu)
+	</Card>
+	<Card title="Agenci AI">
+		Odróżnisz agenta, który sam wykonuje zadanie, od chatbota, który tylko podpowiada, i wskażesz, które działanie zostawiasz do własnej zgody. Ćwiczenie: 5 minut. (w przygotowaniu)
+	</Card>
+	<Card title="Mapa systemów AI">
+		Ułożysz trzy systemy, których używasz na co dzień, na czterech warstwach mapy AI: model, autonomia, protokoły i nadzór. Ćwiczenie: 5 minut. (w przygotowaniu)
+	</Card>
+</CardGrid>
+
+:::note[Następny krok]
+**Zacznij tutaj:** AI, ML, sieci neuronowe - uporządkujesz trzy pojęcia, które w rozmowach o AI mylone są najczęściej.
+:::

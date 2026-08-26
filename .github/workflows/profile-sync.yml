@@ -1,0 +1,35 @@
+name: Profile sync
+
+on:
+  repository_dispatch:
+    types: [profile-updated]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: npm run profile:sync
+        env:
+          PROFILE_REF: ${{ github.event.client_payload.sha || 'main' }}
+      - uses: peter-evans/create-pull-request@v8
+        with:
+          token: ${{ secrets.PROFILE_SYNC_TOKEN }}
+          branch: chore/profile-sync
+          commit-message: 'chore: aktualizacja danych autora z repo-profilu'
+          title: 'chore: aktualizacja danych autora z repo-profilu'
+          body: |
+            Automatyczna aktualizacja zvendorowanych danych autora
+            (src/data/autor.json, src/data/autor-krotki.html, zdjęcie)
+            po zmianie w repo lukaszpodgorski-pl/author-profile.
+
+            🤖 Generated with [Claude Code](https://claude.com/claude-code)
+          delete-branch: true

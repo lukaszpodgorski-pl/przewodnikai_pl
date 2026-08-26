@@ -1,0 +1,91 @@
+---
+title: Podstawy AI
+description: Od czego zacząć naukę AI. Osiem lekcji z krótkim ćwiczeniem (5-10 minut) - od mapy kursu po SIFT.
+sidebar:
+  hidden: true
+about:
+  - name: Sztuczna inteligencja
+    sameAs: https://pl.wikipedia.org/wiki/Sztuczna_inteligencja
+  - name: Generatywna sztuczna inteligencja
+    sameAs: https://pl.wikipedia.org/wiki/Generatywna_sztuczna_inteligencja
+mentions:
+  - name: ChatGPT
+    sameAs: https://en.wikipedia.org/wiki/ChatGPT
+    type: SoftwareApplication
+  - name: Halucynacja AI
+    sameAs: https://en.wikipedia.org/wiki/Hallucination_(artificial_intelligence)
+faq:
+  - q: Od czego zacząć naukę AI, jeśli nie mam wykształcenia technicznego?
+    a: Od tej sekcji - jest napisana z założeniem, że nie masz za sobą informatyki ani matematyki na poziomie studiów. Zacznij od "Wstępu", potem "Czym jest AI?" i "Jak uczyć się AI" (numer 0-5, jedno zadanie). Pierwszą rozmowę z chatbotem robisz dopiero potem. Do mechaniki i promptów wrócisz w kolejnych sekcjach.
+  - q: Ile czasu zajmuje przejście sekcji Podstawy?
+    a: Osiem artykułów, każdy do przeczytania w 6-8 minut - to niecała godzina łącznie. Jeśli będziesz po drodze wykonywać ćwiczenia z chatbotem - a warto - licz razem około 1,5-2 godzin, rozłożone na kilka wieczorów. Nie ma nagrody za pośpiech.
+  - q: Czy muszę za coś zapłacić, żeby przejść tę sekcję?
+    a: Nie. Cały przewodnik jest darmowy, a wszystkie ćwiczenia da się wykonać na bezpłatnych planach popularnych chatbotów. Płatna wersja przyda się dopiero przy bardziej wymagających zadaniach z dalszych sekcji.
+status: zastane
+---
+
+import { CardGrid, LinkCard, Card } from '@astrojs/starlight/components';
+
+
+:::note[Ta sekcja jest w przebudowie]
+Przechodzę przez te teksty artykuł po artykule i poprawiam to, co się nie broni.
+Lekcje wracają tutaj pojedynczo, w miarę jak kończę przegląd - pod tymi samymi
+adresami co wcześniej. Poniżej lista tego, co się w tej sekcji pojawi.
+:::
+
+![Klocki i otwarta księga z wyrastającym z niej kiełkiem - podstawy AI](../../../assets/podstawy/przeglad.jpg)
+
+## Czego się tu nauczysz
+
+To jest miejsce, od którego zaczyna się cały kurs: bez założenia, że masz za sobą informatykę albo matematykę, tylko z chęcią zrozumieć, o co w tym AI chodzi, zanim zaczniesz z niego korzystać na poważnie.
+
+Osiem lekcji poniżej idzie jedna po drugiej: mapa kursu i pierwszy prompt, czym AI właściwie jest, Twój poziom kompetencji w skali 0-5, pierwsza pełna rozmowa z chatbotem, cztery mity o AI, obrona przed FOMO, trzy ściany, w które uderza model, i na koniec metoda SIFT do sprawdzania faktów. Każda kończy się krótkim, konkretnym zadaniem - bez tego zostaje sama teoria.
+
+## Dla kogo to jest
+
+Dla osób nietechnicznych. Nauczycieli, rodziców, przedsiębiorców, urzędników, studentów, emerytów. Nie znajdziesz tu wzorów, kodu ani żargonu bez wyjaśnienia. Każde angielskie określenie tłumaczę przy pierwszym użyciu.
+
+## W jakiej kolejności czytać
+
+Po kolei, od góry do dołu - każdy artykuł korzysta z tego, co ustaliliśmy wcześniej. Jeśli masz przeczytać tylko jeden - niech to będzie "Weryfikacja informacji". Jeśli dwa - dołóż "Twoja pierwsza rozmowa z AI".
+
+## Czego nie ma w tej sekcji
+
+Mechaniki (sieci neuronowe, uczenie modeli, tokeny) i technik pisania promptów - obie czekają w kolejnych sekcjach, [Jak działa AI](/jak-dziala-ai/) i [Prompt engineering](/prompt-engineering/). Tutaj budujemy fundament pod jedno i drugie.
+
+:::tip[Szukasz artykułu o AI, ML i sieciach neuronowych?]
+Tekst "AI, ML, sieci neuronowe" mieszkał kiedyś pod tym adresem. Przeniósł się do sekcji poświęconej mechanice AI - znajdziesz go pod adresem AI, ML, sieci neuronowe.
+:::
+
+## Artykuły w tej sekcji
+
+<CardGrid>
+	<Card title="Wstęp do kursu AI">
+		Mapa ośmiu sekcji i pierwszy prompt o jednym problemie z tygodnia. Ćwiczenie: 5 minut. (w przygotowaniu)
+	</Card>
+	<Card title="Czym jest AI?">
+		Trzy rzeczy z własnego dnia: AI rozpoznaje/wybiera albo tworzy treść. Ćwiczenie: 5 minut. (w przygotowaniu)
+	</Card>
+	<Card title="Jak uczyć się AI? 6 poziomów kompetencji">
+		Określasz swój poziom w skali 0-5 i wybierasz jedno zadanie na 7 dni. Ćwiczenie: 5 minut. (w przygotowaniu)
+	</Card>
+	<Card title="Twoja pierwsza rozmowa z AI">
+		Zakładasz konto, wysyłasz pierwszy prompt i doprecyzowujesz odpowiedź. Ćwiczenie: dwa komunikaty w jednej rozmowie. (w przygotowaniu)
+	</Card>
+	<Card title="Mity vs rzeczywistość AI">
+		Cztery najczęstsze mity o AI - praca, świadomość, nieomylność, przejęcie świata - i jak je odróżnić od faktów. Ćwiczenie: 5 minut. (w przygotowaniu)
+	</Card>
+	<Card title="Nie dajmy się zwariować">
+		Jak nie dać się wciągnąć w FOMO wokół AI - zapisujesz, czego nie gonisz, i wstawiasz 15 minut w kalendarz. Ćwiczenie: 5 minut. (w przygotowaniu)
+	</Card>
+	<Card title="Ograniczenia sztucznej inteligencji">
+		Trzy główne ograniczenia AI: model nie rozumie, nie zna bieżących wydarzeń i powiela uprzedzenia z danych. Ćwiczenie: 5 minut. (w przygotowaniu)
+	</Card>
+	<Card title="Weryfikacja informacji">
+		Sprawdzasz jedną odpowiedź AI w czterech krokach metody SIFT. Ćwiczenie: 5 minut. (w przygotowaniu)
+	</Card>
+</CardGrid>
+
+:::note[Następny krok]
+**Zacznij tutaj:** Wstęp do kursu AI - poznasz strukturę całego przewodnika i wykonasz swój pierwszy prompt.
+:::

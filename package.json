@@ -1,0 +1,31 @@
+{
+  "name": "przewodnikai-pl",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "publish": "node scripts/publish.mjs",
+    "preview:prod": "node scripts/publish.mjs && npm --prefix .publish run preview",
+    "status": "node scripts/status.mjs",
+    "verify:geo": "node scripts/verify-geo.mjs",
+    "grafiki": "node scripts/przetworz-grafiki.mjs",
+    "test:grafiki": "node --test scripts/lib/przetwarzanie-grafik.test.mjs",
+    "test:publish": "node --test scripts/lib/publish.test.mjs",
+    "profile:sync": "node scripts/fetch-profile.mjs"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
+    "@astrojs/starlight": "^0.41.7",
+    "astro": "^7.2.4",
+    "astro-og-canvas": "^0.13.0",
+    "sharp": "^0.35.3",
+    "starlight-llms-txt": "^0.11.0"
+  },
+  "devDependencies": {
+    "marked": "^18.0.10"
+  }
+}

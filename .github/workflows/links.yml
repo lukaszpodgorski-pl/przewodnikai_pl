@@ -1,0 +1,50 @@
+name: Sprawdzanie linków
+
+on:
+  pull_request:
+    paths: ['**/*.md', '**/*.mdx']
+  schedule:
+    # raz w tygodniu, poniedziałek 06:00 UTC — łapie linki, które umarły z czasem
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+jobs:
+  lychee:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Instalacja (zgodna z lockfile)
+        run: npm ci
+      - name: Build produkcyjny
+        run: npm run build
+      - name: lychee — weryfikacja linków
+        uses: lycheeverse/lychee-action@v2
+        with:
+          # Sprawdzamy ZBUDOWANY serwis, nie źródła w Markdownie. Powód: linki
+          # wewnętrzne są root-relative (`/etyka/prywatnosc/`), a w źródłach nie da
+          # się ich rozwiązać - Astro z `trailingSlash: 'always'` mapuje ten adres
+          # na plik `etyka/prywatnosc.md`, nie na katalog. lychee zgłaszał wtedy
+          # "Cannot resolve root-relative link" dla każdego z nich, a `--exclude`
+          # tego nie tłumi, bo błąd powstaje na etapie rozwiązywania URI, zanim
+          # filtr ma co odrzucać. W `dist/` te adresy są prawdziwymi katalogami
+          # z `index.html`, więc rozwiązują się poprawnie razem z zewnętrznymi.
+          # Kod 999 to celowa blokada LinkedIn wobec botów - link jest sprawny.
+          # Kod 202 zwraca deepseek.com (warstwa antybotowa) - w przeglądarce
+          # strona otwiera się normalnie, a 202 i tak należy do rodziny 2xx.
+          # speakleash.org zwraca 521 (origin Cloudflare nie odpowiada) od
+          # min. 2026-08-21, potwierdzone niezależnie spoza CI - realna awaria
+          # cudzej strony, nie coś do naprawy u nas. --accept nie łapie 5xx,
+          # więc speakleash.org jest wpisany do --exclude, żeby cotygodniowy
+          # cron nie czerwienił się za każdym razem, gdy ich serwer akurat leży.
+          # Do usunięcia z --exclude, gdy strona wróci na stałe.
+          args: >-
+            --no-progress
+            --accept 200,202,206,403,429,999
+            --exclude speakleash\.org
+            --root-dir "${{ github.workspace }}/dist"
+            'dist/**/*.html'
+          fail: true

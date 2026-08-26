@@ -1,0 +1,106 @@
+---
+title: Przewodnik AI
+description: Otwarta, społecznościowa baza wiedzy o sztucznej inteligencji po polsku. Kurs AI od podstaw - bez żargonu, z ćwiczeniem na każdej lekcji.
+template: splash
+hero:
+  title: Naucz się AI - krok po kroku, po polsku
+  tagline: Otwarta baza wiedzy o sztucznej inteligencji dla każdego. Bez żargonu, bez logowania, za darmo. Współtworzona przez społeczność.
+  actions:
+    - text: Zacznij naukę
+      link: /podstawy/wstep/
+      icon: right-arrow
+    - text: Wybierz swoją ścieżkę
+      link: /sciezki/
+      icon: forward-slash
+      variant: secondary
+    - text: Współtwórz na GitHubie
+      link: https://github.com/lukaszpodgorski-pl/przewodnikai_pl
+      icon: external
+      variant: minimal
+status: zastane
+---
+
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+import CourseStats from '../../components/CourseStats.astro';
+import Newsletter from '../../components/Newsletter.astro';
+import AutorKrotki from '../../components/AutorKrotki.astro';
+
+<CourseStats />
+
+AI wydaje się magią - dopóki nie zajrzysz do środka. A tam nie ma umysłu ani wyroczni: jest maszyna, która na podstawie miliardów przykładów przewiduje, co pasuje dalej. To dobra wiadomość. Magii nie da się nauczyć - narzędzia owszem. I o to właśnie chodzi w tym przewodniku.
+
+## Program kursu
+
+Osiem sekcji ułożonych w jedną ścieżkę - od pierwszej rozmowy z chatbotem po etykę. Każda lekcja kończy się ćwiczeniem na 5 minut. Możesz iść po kolei albo zacząć od sekcji, która najbardziej Cię interesuje.
+
+<CardGrid>
+	<LinkCard
+		title="1. Podstawy"
+		description="Mapa kursu, pierwsza rozmowa i sprawdzanie informacji. Ćwiczenie na każdej lekcji."
+		href="/podstawy/"
+	/>
+	<LinkCard
+		title="2. Jak działa AI"
+		description="Mechanika AI: tokeny, RAG i agenci - bez tabeli modeli, która zdezaktualizuje się za miesiąc."
+		href="/jak-dziala-ai/"
+	/>
+	<LinkCard
+		title="3. Prompt Engineering"
+		description="Zamiana słabego promptu na konkretny. Jeden przykład do przerobienia, nie katalog technik."
+		href="/prompt-engineering/"
+	/>
+	<LinkCard
+		title="4. Narzędzia AI"
+		description="Chatboty, obrazy, pisanie i asystenci - dobrane pod zadanie, nie pod ranking."
+		href="/narzedzia/"
+	/>
+	<LinkCard
+		title="5. Suwerenne AI"
+		description="Polskie i europejskie modele, plus AI na własnym komputerze - bez uzależnienia od jednego dostawcy."
+		href="/suwerenne-ai/"
+	/>
+	<LinkCard
+		title="6. AI w praktyce"
+		description="AI w Twojej branży, przykłady wdrożeń i wpływ na rynek pracy."
+		href="/praktyka/"
+	/>
+	<LinkCard
+		title="7. Etyka i bezpieczeństwo"
+		description="Prawo i etyka, ochrona danych, próg wieku dla dzieci przy czacie - i granica między faktem a spekulacją."
+		href="/etyka/"
+	/>
+	<LinkCard
+		title="8. Zasoby"
+		description="Słownik pojęć, odpowiedzi na częste pytania i materiały, do których warto wracać."
+		href="/zasoby/"
+	/>
+</CardGrid>
+
+<Newsletter />
+
+## Dlaczego Przewodnik AI?
+
+<CardGrid>
+	<Card title="Od zera, bez żargonu" icon="rocket">
+		Nie trzeba umieć programować. Kurs prowadzi od pierwszej rozmowy z AI po
+		promptowanie - prostym językiem, z ćwiczeniem na 5 minut.
+	</Card>
+	<Card title="Żywe wiki" icon="pencil">
+		AI zmienia się co tydzień - ta baza wiedzy też. Każdą stronę może poprawić
+		każdy: wystarczy kliknąć "Edytuj stronę" i zaproponować zmianę.
+	</Card>
+	<Card title="Przejrzyste i otwarte" icon="github">
+		Cała treść jest dostępna na licencji CC BY-SA 4.0, a historia każdej zmiany
+		jest publiczna na GitHubie.
+	</Card>
+	<Card title="Sprawdzone informacje" icon="approve-check">
+		Zmiany merytoryczne wymagają źródeł i przechodzą recenzję, zanim trafią na
+		stronę - to nasza tarcza przeciw dezinformacji.
+	</Card>
+</CardGrid>
+
+## Kto prowadzi ten przewodnik?
+
+<AutorKrotki />
+
+Ten przewodnik to mój projekt edukacyjny - [więcej o mnie i o tym, dlaczego powstał](/zasoby/o-mnie/).

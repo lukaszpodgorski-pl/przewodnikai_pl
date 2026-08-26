@@ -1,0 +1,14 @@
+---
+/**
+ * Kanoniczny krótki biogram autora. Treść jest ZVENDOROWANĄ KOPIĄ
+ * z repo github.com/lukaszpodgorski-pl/author-profile (bio/krotki.md),
+ * konwertowaną do HTML przez scripts/fetch-profile.mjs (npm run profile:sync).
+ * Nie edytuj src/data/autor-krotki.html ręcznie - zmiany rób w repo-profilu.
+ *
+ * Dane strukturalne (jobTitle, opis, sameAs) pochodzą z tego samego źródła:
+ * AUTHOR w src/lib/structured-data.ts czyta src/data/autor.json.
+ */
+import html from '../data/autor-krotki.html?raw';
+---
+
+<Fragment set:html={html} />

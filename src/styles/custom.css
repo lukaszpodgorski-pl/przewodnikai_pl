@@ -1,0 +1,260 @@
+/*
+ * Kolor marki: teal #0d9488.
+ *
+ * Ten plik jest CELOWO bezwarstwowy. Starlight trzyma wszystkie swoje style
+ * w @layer starlight.* (patrz node_modules/@astrojs/starlight/style/layers.css),
+ * a pliki z `customCss` sa importowane surowo, bez warstwy (patrz
+ * integrations/vite-virtual-modules.ts). Bezwarstwowy CSS wygrywa z warstwowym
+ * niezaleznie od specyficznosci - dlatego proste selektory ponizej nadpisuja
+ * Starlight bez !important. Nie owijaj tego pliku w @layer.
+ */
+
+/* --- Skala akcentu: motyw ciemny (domyslny) --- */
+:root {
+	--sl-color-accent-low: #042f2e;
+	--sl-color-accent: #0d9488;
+	--sl-color-accent-high: #5eead4;
+}
+
+/*
+ * Motyw jasny odwraca skale: -high jest najciemniejszy, bo sluzy za kolor
+ * tekstu na jasnym tle. Zachowujemy te konwencje Starlight.
+ */
+:root[data-theme='light'] {
+	--sl-color-accent-low: #ccfbf1;
+	--sl-color-accent: #0d9488;
+	--sl-color-accent-high: #115e59;
+}
+
+/* --- Hero: subtelna poswiata zamiast pustego tla --- */
+/* [data-has-hero] siedzi na <html> i jest ustawiane przez Starlight tylko
+   dla stron z hero, wiec reguly nie wyciekaja na artykuly. */
+[data-has-hero] .hero {
+	position: relative;
+}
+
+/*
+ * Hero bez obrazka: wysrodkuj zamiast zostawiac pusta kolumne.
+ *
+ * Powyzej 50rem Starlight przestawia hero na `grid-template-columns: 7fr 4fr`
+ * i wyrownuje tekst do lewej - kolumna 4fr jest tam przeznaczona na obrazek.
+ * Nasze hero obrazka nie ma, wiec ta kolumna zostawala pusta, a tresc
+ * niepotrzebnie lgnela do lewej krawedzi. Gdy kiedys dojdzie `hero.image`,
+ * warunek :has() przestanie pasowac i wroci oryginalny uklad dwukolumnowy.
+ */
+@media (min-width: 50rem) {
+	.hero:not(:has(> img, > .hero-html)) {
+		grid-template-columns: 100%;
+		/* Domyslne 10vmin robi wyrwe miedzy CTA a trescia ponizej. */
+		padding-block: clamp(2rem, calc(1rem + 6vmin), 6rem);
+	}
+
+	.hero:not(:has(> img, > .hero-html)) .stack {
+		text-align: center;
+	}
+
+	.hero:not(:has(> img, > .hero-html)) .copy {
+		align-items: center;
+	}
+}
+
+[data-has-hero] .hero::before {
+	content: '';
+	position: absolute;
+	/* Bez ujemnych wartosci poziomych - te powodowalyby poziomy suwak. */
+	inset: -8rem 0 -2rem;
+	z-index: -1;
+	background: radial-gradient(60% 70% at 50% 45%, var(--sl-color-accent-low), transparent 70%);
+	opacity: 0.6;
+	pointer-events: none;
+}
+
+/* --- Kafelki: jeden kolor zamiast teczy --- */
+/* Starlight koloruje ikony kart cyklicznie przez :nth-child(4n+1/3/4/5)
+   - pomaranczowy, fioletowy, zielony, czerwony. Na stronie glownej wyglada
+   to przypadkowo. Ujednolicamy do akcentu. */
+.card {
+	--sl-card-border: var(--sl-color-accent);
+	--sl-card-bg: var(--sl-color-accent-low);
+}
+
+/* --- LinkCard: akcent na hoverze zamiast szarosci --- */
+.sl-link-card {
+	transition: border-color 0.15s ease;
+}
+
+.sl-link-card:hover {
+	border-color: var(--sl-color-accent);
+}
+
+/* --- Hero CTA: hierarchia --- */
+
+/*
+ * Trzy przyciski hero mialy jednakowa wage wizualna, a powyzej 50rem Starlight
+ * ustawia .actions na `justify-content: flex-start` - przy wysrodkowanym hero
+ * (patrz regula wyzej) lgnely do lewej krawedzi, mimo ze naglowek i tagline
+ * sa na srodku.
+ *
+ * Grid zamiast flexa: dwa glowne CTA dostaja identyczna szerokosc kolumny
+ * i czytaja sie jako para rownorzednych wyborow, a "Wspoltworz na GitHubie"
+ * schodzi do wlasnego wiersza. `justify-self` trzyma jego pole klikalne przy
+ * tekscie - przy `flex-basis: 100%` rozciagneloby sie na caly wiersz i lapalo
+ * kliki daleko od linku (a prowadzi poza serwis).
+ */
+.hero .actions {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 15rem));
+	justify-content: center;
+	gap: 0.75rem 1rem;
+
+	/* Wspolne tempo wszystkich przejsc CTA - uzasadnienie w sekcji hover nizej. */
+	--cta-duration: 0.28s;
+	--cta-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (max-width: 30rem) {
+	.hero .actions {
+		grid-template-columns: minmax(0, 15rem);
+	}
+}
+
+.hero .actions .sl-link-button:where(.primary, .secondary) {
+	justify-content: center;
+	font-weight: 600;
+}
+
+/*
+ * Trzecie CTA dotyczy wspoltworzenia, nie nauki - wlasny wiersz, mniejszy
+ * stopien pisma i wygaszony kolor (ten sam token co pasek liczb nizej)
+ * odsuwaja je od glownej pary.
+ */
+.hero .actions .sl-link-button.minimal {
+	grid-column: 1 / -1;
+	justify-self: center;
+	margin-top: 0.25rem;
+	font-size: var(--sl-text-sm);
+	color: var(--sl-color-gray-3);
+	text-decoration: underline;
+	text-decoration-color: transparent;
+	text-underline-offset: 0.25rem;
+}
+
+/* --- Hero CTA: hover i focus --- */
+
+/*
+ * Ruch jest miekki celowo: krzywa wyhamowujaca zamiast `ease` i dluzszy czas.
+ * Przy tak duzej zmianie koloru krotkie 0,2s czyta sie jak przeskok stanu,
+ * a nie przejscie.
+ */
+.hero .actions .sl-link-button {
+	transition:
+		transform var(--cta-duration) var(--cta-ease),
+		box-shadow var(--cta-duration) var(--cta-ease),
+		background-color var(--cta-duration) var(--cta-ease),
+		border-color var(--cta-duration) var(--cta-ease),
+		color var(--cta-duration) var(--cta-ease),
+		text-decoration-color var(--cta-duration) var(--cta-ease);
+}
+
+/*
+ * Cien w spoczynku jest przezroczysty, ale ma juz docelowa geometrie - hover
+ * jest wtedy czystym przenikaniem koloru. Animacja od `box-shadow: none`
+ * rozciaga cien od zerowego rozmiaru, co widac jako szarpniecie.
+ */
+.hero .actions .sl-link-button.primary {
+	box-shadow: 0 0.75rem 1.5rem -0.5rem transparent;
+}
+
+.hero .actions .sl-link-button svg {
+	transition: transform var(--cta-duration) var(--cta-ease);
+}
+
+/* Klawiatura dostaje to samo co mysz - :focus-visible zawsze obok :hover. */
+.hero .actions .sl-link-button:where(.primary, .secondary):is(:hover, :focus-visible) {
+	transform: translateY(-3px);
+}
+
+.hero .actions .sl-link-button.primary:is(:hover, :focus-visible) {
+	box-shadow: 0 0.75rem 1.5rem -0.5rem color-mix(in srgb, var(--sl-color-text-accent) 60%, transparent);
+}
+
+/* Strzalka sugeruje ruch naprzod - niech go zrobi. */
+.hero .actions .sl-link-button.primary:is(:hover, :focus-visible) svg {
+	transform: translateX(0.25rem);
+}
+
+/*
+ * Kolory tekstu na hoverze (tu i przy .minimal nizej) biora
+ * --sl-color-accent-high, nie -text-accent. W motywie jasnym -text-accent to
+ * #0d9488, ktore na tle --sl-color-accent-low daje kontrast 3,3:1 - ponizej
+ * progu WCAG AA. -accent-high (#115e59) daje 6,7:1, a w motywie ciemnym
+ * (#5eead4 na #042f2e) 9,8:1.
+ */
+.hero .actions .sl-link-button.secondary:is(:hover, :focus-visible) {
+	background: var(--sl-color-accent-low);
+	border-color: var(--sl-color-accent-high);
+	color: var(--sl-color-accent-high);
+}
+
+.hero .actions .sl-link-button.minimal:is(:hover, :focus-visible) {
+	color: var(--sl-color-accent-high);
+	text-decoration-color: currentColor;
+}
+
+/* Ikona linku zewnetrznego - drobny ruch w strone, ktora oznacza. */
+.hero .actions .sl-link-button.minimal:is(:hover, :focus-visible) svg {
+	transform: translate(0.125rem, -0.125rem);
+}
+
+/*
+ * prefers-reduced-motion wycisza RUCH, nie cale sprzezenie zwrotne. Kasujemy
+ * wiec same przesuniecia, a przenikanie koloru i cienia zostaje - nie wywoluje
+ * reakcji przedsionkowych, a bez niego hover jest twardym przeskokiem stanu.
+ *
+ * Nie wracaj tu do `transition: none`. Windows ma te preferencje wlaczona
+ * zawsze, gdy uzytkownik wylaczy "Efekty animacji" w ustawieniach ulatwien
+ * dostepu - to czesty przypadek, nie egzotyczny wyjatek.
+ */
+@media (prefers-reduced-motion: reduce) {
+	.hero .actions .sl-link-button:is(:hover, :focus-visible),
+	.hero .actions .sl-link-button:is(:hover, :focus-visible) svg {
+		transform: none;
+	}
+}
+
+/* --- Pasek liczb pod hero (uzywany przez src/content/docs/index.mdx) --- */
+.stats {
+	margin-top: 0;
+	text-align: center;
+	font-size: var(--sl-text-sm);
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--sl-color-gray-3);
+}
+
+/* --- Szerszy panel tresci na duzych ekranach --- */
+/*
+ * Starlight domyslnie ogranicza srodkowa kolumne tresci (miedzy lewym
+ * sidebarem a spisem tresci) do 45rem / 720px - patrz --sl-content-width w
+ * node_modules/@astrojs/starlight/style/props.css. Na stronach bez sidebara
+ * (template: splash, w tym /sciezki/) Page.astro dokleja wlasny inline
+ * <style> z regula `html:not([data-has-sidebar])` (specyficznosc 0,1,1),
+ * ktora renderuje sie PO tym pliku w <head> - zwykle "root" by przegral.
+ * Podbijamy specyficznosc atrybutem [lang], ktory Starlight zawsze ustawia
+ * na <html>, zeby ta regula wygrywala w obu przypadkach.
+ *
+ * Wartosc to max-width uzyta w min()/max() (TwoColumnContent.astro,
+ * ContentPanel.astro), wiec na waskich i srednich ekranach kolumna i tak nie
+ * osiaga 75rem - efekt widac dopiero na szerokich monitorach, gdzie wczesniej
+ * zostawal pusty margines.
+ */
+html:root[lang] {
+	--sl-content-width: 75rem;
+}
+
+/* --- Rytm pionowy na stronach splash --- */
+/* Bez centrowania: naglowki zostaja przy lewej, zgodnie z akapitami pod nimi.
+   Wysrodkowany jest tylko blok hero z paskiem liczb. */
+[data-has-hero] .sl-markdown-content :is(h2, .sl-heading-wrapper) {
+	margin-top: 3rem;
+}

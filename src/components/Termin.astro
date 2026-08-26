@@ -1,0 +1,41 @@
+---
+/**
+ * Zaznacza trudny termin w treści: subtelne podkreślenie kropkowane, dymek
+ * z krótkim wyjaśnieniem (title) i link do pełnego hasła w słowniku pojęć.
+ *
+ * Krótkie wyjaśnienie bierze z src/data/slownik.ts - nie wpisuj go w treści.
+ * Użycie: <Termin id="prompt">prompt</Termin> (slot = wyświetlane słowo).
+ */
+import { SLOWNIK, SLOWNIK_URL } from '../data/slownik';
+
+interface Props {
+	id: string;
+}
+
+const { id } = Astro.props;
+const pojecie = SLOWNIK[id];
+
+if (!pojecie) {
+	throw new Error(
+		`<Termin id="${id}"> nie ma odpowiednika w src/data/slownik.ts - dodaj hasło albo popraw id.`,
+	);
+}
+---
+
+<a class="termin" href={`${SLOWNIK_URL}#${pojecie.anchor}`} title={pojecie.krotka}>
+	<slot />
+</a>
+
+<style>
+	.termin {
+		color: inherit;
+		text-decoration: underline dotted;
+		text-decoration-thickness: 1px;
+		text-underline-offset: 0.2em;
+	}
+	.termin:hover,
+	.termin:focus-visible {
+		text-decoration-style: solid;
+		color: var(--sl-color-text-accent);
+	}
+</style>

@@ -1,0 +1,40 @@
+---
+import { getCollection } from 'astro:content';
+import { SECTIONS, SECTION_LABELS } from '../config/sections';
+import { count } from '../lib/plural';
+
+/**
+ * Pasek liczb pod hero na stronie glownej.
+ *
+ * Liczby sa wyliczane z kolekcji `docs` przy buildzie, a nie wpisane recznie.
+ * Wersja reczna wymagala pamietania o aktualizacji przy kazdym nowym artykule
+ * i po cichu rozjezdzala sie z rzeczywistoscia - czego nikt by nie zauwazyl,
+ * bo build nie ma jak sprawdzic liczby w zdaniu.
+ */
+
+const entries = await getCollection('docs');
+
+// Artykul = wpis lezacy bezposrednio w jednej z zarejestrowanych sekcji.
+// Klasyfikacja przez allowliste z src/config/sections.ts, tak samo jak
+// w src/components/Head.astro - nowa sekcja dopisana tam liczy sie tutaj sama.
+const articleCount = entries.filter((entry) => {
+	const segments = entry.id.split('/');
+	return segments.length === 2 && SECTION_LABELS[segments[0]] !== undefined;
+}).length;
+
+// Sciezki nauki sa poza sidebarem i poza SECTIONS, wiec liczone osobno.
+// `sciezki/index` to strona-rozdroze (CardGrid), nie sciezka - stad wykluczenie.
+const pathCount = entries.filter(
+	(entry) => entry.id.startsWith('sciezki/') && entry.id !== 'sciezki/index',
+).length;
+
+const sectionCount = SECTIONS.length;
+
+const parts = [
+	count(sectionCount, 'sekcja', 'sekcje', 'sekcji'),
+	count(articleCount, 'artykuł', 'artykuły', 'artykułów'),
+	count(pathCount, 'ścieżka nauki', 'ścieżki nauki', 'ścieżek nauki'),
+];
+---
+
+<p class="stats">{parts.join(' · ')}</p>

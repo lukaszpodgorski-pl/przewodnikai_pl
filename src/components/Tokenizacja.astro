@@ -1,0 +1,190 @@
+---
+import { count } from '../lib/plural';
+
+export interface Przyklad {
+	/** Slowo wejsciowe, tak jak widzi je czytelnik. */
+	slowo: string;
+	/** Tokeny, na ktore dzieli je model - w kolejnosci wystepowania. */
+	tokeny: string[];
+}
+
+interface Props {
+	przyklady: Przyklad[];
+	/** Podpis pod widgetem, np. wskazanie modelu lub zrodla podzialow. */
+	zrodlo?: string;
+}
+
+const { przyklady, zrodlo } = Astro.props;
+
+/**
+ * Wizualizacja podzialu slow na tokeny.
+ *
+ * Podzialy NIE sa liczone - przychodza z artykulu jako props. To celowe:
+ * wyliczanie ich wymagaloby prawdziwego tokenizera (kilka MB do bundla),
+ * a zmyslanie podzialow byloby bledem merytorycznym na stronie edukacyjnej.
+ * Komponent tylko pokazuje to, co autor tekstu juz zweryfikowal.
+ *
+ * Progresywne wzbogacanie: bez JS tokeny sa po prostu widoczne. Skrypt
+ * dopiero dokłada animacje sekwencyjnego pojawiania sie, i tylko wtedy,
+ * gdy widget wejdzie w pole widzenia. Przy prefers-reduced-motion
+ * animacja jest wylaczona calkowicie.
+ */
+---
+
+<figure class="tokenizacja">
+	<ol>
+		{
+			przyklady.map(({ slowo, tokeny }) => (
+				<li>
+					<span class="slowo">{slowo}</span>
+					<span class="strzalka" aria-hidden="true">
+						→
+					</span>
+					<span class="tokeny">
+						{tokeny.map((t) => (
+							<span class="token">{t}</span>
+						))}
+					</span>
+					<span class="licznik">{count(tokeny.length, 'token', 'tokeny', 'tokenów')}</span>
+				</li>
+			))
+		}
+	</ol>
+	{zrodlo && <figcaption>{zrodlo}</figcaption>}
+</figure>
+
+<script>
+	// Animacja wlacza sie dopiero, gdy widget jest widoczny - inaczej czytelnik
+	// przewijajacy z gory zobaczylby juz zakonczona sekwencje.
+	const widgety = document.querySelectorAll<HTMLElement>('.tokenizacja');
+	if (widgety.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+		const obserwator = new IntersectionObserver(
+			(wpisy) => {
+				for (const wpis of wpisy) {
+					if (!wpis.isIntersecting) continue;
+					(wpis.target as HTMLElement).dataset.stan = 'animuj';
+					obserwator.unobserve(wpis.target);
+				}
+			},
+			{ threshold: 0.4 },
+		);
+		for (const w of widgety) {
+			// Klasa dokladana z JS, nie w HTML - bez skryptu tokeny zostaja widoczne.
+			w.dataset.stan = 'gotowy';
+			obserwator.observe(w);
+		}
+	}
+</script>
+
+<style>
+	.tokenizacja {
+		margin: 1.5rem 0;
+		border: 1px solid var(--sl-color-gray-5);
+		border-radius: 0.5rem;
+		padding: 1rem 1.25rem;
+		background: var(--sl-color-gray-7, transparent);
+	}
+
+	.tokenizacja ol {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.tokenizacja li {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.slowo {
+		font-family: var(--sl-font-mono);
+		font-size: var(--sl-text-sm);
+		color: var(--sl-color-white);
+	}
+
+	.strzalka {
+		color: var(--sl-color-gray-3);
+	}
+
+	.tokeny {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.25rem;
+	}
+
+	.token {
+		font-family: var(--sl-font-mono);
+		font-size: var(--sl-text-sm);
+		padding: 0.1em 0.45em;
+		border-radius: 0.25rem;
+		border: 1px solid var(--sl-color-accent);
+		background: var(--sl-color-accent-low);
+		color: var(--sl-color-white);
+		/* Spacja wiodaca w tokenie (np. " intelig") jest znaczaca - bez tego
+		   przegladarka by ja zjadla, a to wlasnie o niej mowi artykul. */
+		white-space: pre;
+	}
+
+	.licznik {
+		margin-inline-start: auto;
+		font-size: var(--sl-text-xs);
+		color: var(--sl-color-gray-3);
+		white-space: nowrap;
+	}
+
+	figcaption {
+		margin-top: 0.9rem;
+		padding-top: 0.6rem;
+		border-top: 1px solid var(--sl-color-gray-5);
+		font-size: var(--sl-text-xs);
+		color: var(--sl-color-gray-3);
+	}
+
+	/* Stan ustawiany przez skrypt. Bez JS zaden z tych selektorow nie zadziala
+	   i tokeny pozostaja w domyslnym, widocznym stanie. */
+	.tokenizacja[data-stan='gotowy'] .token {
+		opacity: 0;
+	}
+
+	.tokenizacja[data-stan='animuj'] .token {
+		animation: pojaw 0.28s ease-out both;
+	}
+
+	/* Kaskada: kazdy kolejny token startuje nieco pozniej, zeby bylo widac,
+	   ze model sklada odpowiedz po kawalku. */
+	.tokenizacja[data-stan='animuj'] li:nth-child(1) .token:nth-child(1) { animation-delay: 0.05s; }
+	.tokenizacja[data-stan='animuj'] li:nth-child(1) .token:nth-child(2) { animation-delay: 0.2s; }
+	.tokenizacja[data-stan='animuj'] li:nth-child(1) .token:nth-child(3) { animation-delay: 0.35s; }
+	.tokenizacja[data-stan='animuj'] li:nth-child(2) .token:nth-child(1) { animation-delay: 0.5s; }
+	.tokenizacja[data-stan='animuj'] li:nth-child(2) .token:nth-child(2) { animation-delay: 0.65s; }
+	.tokenizacja[data-stan='animuj'] li:nth-child(2) .token:nth-child(3) { animation-delay: 0.8s; }
+	.tokenizacja[data-stan='animuj'] li:nth-child(3) .token:nth-child(1) { animation-delay: 0.95s; }
+	.tokenizacja[data-stan='animuj'] li:nth-child(3) .token:nth-child(2) { animation-delay: 1.1s; }
+	.tokenizacja[data-stan='animuj'] li:nth-child(3) .token:nth-child(3) { animation-delay: 1.25s; }
+
+	@keyframes pojaw {
+		from {
+			opacity: 0;
+			transform: translateY(0.25rem);
+		}
+		to {
+			opacity: 1;
+			transform: none;
+		}
+	}
+
+	/* Zabezpieczenie na wypadek, gdyby stan zdazyl sie ustawic, a uzytkownik
+	   mial wylaczone animacje - tokeny musza zostac widoczne bezwarunkowo. */
+	@media (prefers-reduced-motion: reduce) {
+		.tokenizacja[data-stan] .token {
+			opacity: 1;
+			animation: none;
+			transform: none;
+		}
+	}
+</style>

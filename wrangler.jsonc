@@ -1,0 +1,26 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "przewodnikai",
+	"compatibility_date": "2024-11-01",
+	"compatibility_flags": ["nodejs_compat"],
+	"assets": {
+		"directory": "./dist",
+		// Bez tej linii Cloudflare stosuje domyslne "none" i na nieistniejacej
+		// sciezce zwraca 404 z pustym cialem - zbudowany przez Starlight
+		// dist/404.html nigdy nie trafia do przegladarki. "404-page" serwuje ten
+		// plik ze statusem 404.
+		// NIE zmieniaj na "single-page-application": ta wartosc serwuje
+		// index.html ze statusem 200, czyli soft-404. Google widzi wtedy dowolna
+		// liczbe adresow zwracajacych tresc strony glownej i traci zaufanie do
+		// indeksu - przy serwisie nastawionym na GEO/AEO to kosztowna pomylka.
+		"not_found_handling": "404-page"
+	},
+	// Cutover produkcyjny: Worker przechwytuje ruch na domenie, zanim trafi on
+	// do starego origin (PHP na cyberfolks). Rekordy DNS zostaja nietkniete -
+	// wycofanie to usuniecie tych route'ow, ruch wraca wtedy na stary hosting.
+	// Route wymaga proxowanego (pomaranczowa chmurka) rekordu DNS - taki juz istnieje.
+	"routes": [
+		{ "pattern": "przewodnikai.pl/*", "zone_name": "przewodnikai.pl" },
+		{ "pattern": "www.przewodnikai.pl/*", "zone_name": "przewodnikai.pl" }
+	]
+}

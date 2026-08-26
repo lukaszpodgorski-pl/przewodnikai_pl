@@ -1,0 +1,84 @@
+---
+title: Etyka i bezpieczeństwo AI
+description: Odpowiedzialność za decyzje podejmowane z pomocą AI, ochrona danych osobowych, próg wieku dla dzieci przy czacie i odróżnianie faktów od spekulacji o przyszłości AI. Cztery lekcje, każda z ćwiczeniem na 5 minut.
+sidebar:
+  hidden: true
+about:
+  - name: Etyka sztucznej inteligencji
+    sameAs: https://en.wikipedia.org/wiki/Ethics_of_artificial_intelligence
+  - name: Ochrona danych osobowych
+    sameAs: https://pl.wikipedia.org/wiki/Ochrona_danych_osobowych
+mentions:
+  - name: RODO
+    sameAs: https://pl.wikipedia.org/wiki/Og%C3%B3lne_rozporz%C4%85dzenie_o_ochronie_danych
+  - name: AI Act
+    sameAs: https://en.wikipedia.org/wiki/Artificial_Intelligence_Act
+  - name: Sztuczna superinteligencja
+    sameAs: https://pl.wikipedia.org/wiki/Superinteligencja
+faq:
+  - q: Czy mogę wkleić dane klientów do chatbota AI?
+    a: Domyślnie zakładaj, że nie. Wszystko zależy od polityki danych konkretnego dostawcy, planu, z którego korzystasz, i podstawy prawnej przetwarzania po Twojej stronie. Zanim wkleisz cokolwiek, co pozwala zidentyfikować osobę, przeczytaj artykuł o prywatności i sprawdź regulamin narzędzia u źródła.
+  - q: Skąd biorą się uprzedzenia w odpowiedziach AI?
+    a: Z danych, na których model był trenowany, i z decyzji podjętych przy jego dostrajaniu. Model odtwarza wzorce obecne w materiale źródłowym, łącznie z tymi, których nikt nie chciał tam umieścić. Dlatego uprzedzenia algorytmów są problemem technicznym i społecznym jednocześnie.
+  - q: Od ilu lat dziecko może korzystać z chatbota?
+    a: "Z regulaminu konkretnego dostawcy, otwartego dziś. Progi bywają 13 lat ze zgodą rodzica albo 18 lat. Gemini na koncie dziecka przez Family Link nie działa w EOG. Szczegóły i ćwiczenie znajdziesz w lekcji AI a dzieci."
+  - q: Czy sztuczna inteligencja jest groźna?
+    a: To zależy, o którym zagrożeniu mówimy. Ryzyka, które są realne dziś - dezinformacja, wycieki danych, uprzedzenia w decyzjach automatycznych - różnią się od scenariuszy dotyczących superinteligencji, które pozostają hipotezami. W tej sekcji rozdzielam jedno od drugiego zamiast wrzucać wszystko do wspólnego worka.
+status: zastane
+---
+
+import { CardGrid, LinkCard, Card } from '@astrojs/starlight/components';
+
+
+:::note[Ta sekcja jest w przebudowie]
+Przechodzę przez te teksty artykuł po artykule i poprawiam to, co się nie broni.
+Lekcje wracają tutaj pojedynczo, w miarę jak kończę przegląd - pod tymi samymi
+adresami co wcześniej. Poniżej lista tego, co się w tej sekcji pojawi.
+:::
+
+![Waga obok tarczy i kłódki prywatności - etyka i bezpieczeństwo AI](../../../assets/etyka/przeglad.jpg)
+
+## Czego się tu nauczysz
+
+Ta sekcja bywa pomijana, a jest jedną z ważniejszych. Nie chodzi w niej o moralizowanie, tylko o rzeczy, które mają bezpośrednie konsekwencje: co możesz wkleić do chatbota, a czego nie; kiedy odpowiedź AI może być systematycznie stronnicza; co z AI Act już obowiązuje, a co ma późniejszy kalendarz; od jakiego wieku w ogóle wolno otworzyć konto dziecku.
+
+Pierwszy artykuł zajmuje się etyką i prawem łącznie, bo w praktyce trudno je rozdzielić. Znajdziesz tam uprzedzenia algorytmów, przejrzystość decyzji, odpowiedzialność za błąd maszyny i prawa autorskie do treści generowanych, a także regulacje, które próbują to wszystko uporządkować.
+
+Drugi artykuł to prywatność i dane - najbardziej praktyczna lekcja w tej sekcji. Uczy rozróżniać czat konsumencki, plan firmowy i model uruchomiony lokalnie, pokazuje, jakich danych nigdy nie wklejać do publicznego czatu, i tłumaczy, jak anonimizować treść przed wysłaniem. Jeśli pracujesz z danymi osobowymi, ta lekcja jest obowiązkowa.
+
+Trzeci artykuł jest dla domu, w którym dziecko korzysta z czatu AI. Pokazuje próg wieku ustalony przez poszczególnych dostawców, jakich danych dziecko nie powinno wklejać, i dlaczego Google Family Link nie pozwala obecnie założyć dziecku konta z dostępem do Gemini w Europejskim Obszarze Gospodarczym.
+
+Czwarty artykuł patrzy w przyszłość, ale nie zgaduje dat powstania ogólnej sztucznej inteligencji (AGI). Ćwiczysz w nim odróżnianie tego, co w AI już działa, od zapowiedzi producentów i od czystej spekulacji - bez paniki i bez marketingowego optymizmu.
+
+## Dla kogo to jest
+
+Dla wszystkich, ale szczególnie dla osób pracujących z danymi innych ludzi: nauczycieli, lekarzy, prawników, HR, właścicieli firm - i dla rodziców, gdy czat wchodzi do domu. Jeśli wprowadzasz AI w organizacji, ta sekcja jest ważniejsza niż przegląd narzędzi.
+
+## W jakiej kolejności czytać
+
+Po kolei. Cztery artykuły układają się od najbardziej praktycznych do najbardziej spekulatywnych. Jeśli masz czas tylko na jeden i korzystasz z AI zawodowo - wybierz "Prywatność i dane w AI". Jeśli w domu jest dziecko przy czacie - "AI a dzieci".
+
+## Czego nie ma w tej sekcji
+
+Nie ma tu porady prawnej. Przepisy dotyczące AI zmieniają się szybko i różnią się między krajami - w sprawach o realnych konsekwencjach prawnych sprawdź aktualny stan u źródła albo skonsultuj się z prawnikiem.
+
+## Artykuły w tej sekcji
+
+<CardGrid>
+	<Card title="Etyka i prawo w świecie AI">
+		Kto ponosi odpowiedzialność za decyzję podjętą z pomocą AI i czy da się ją cofnąć. Ćwiczenie: 5 minut. (w przygotowaniu)
+	</Card>
+	<Card title="Prywatność i dane w AI">
+		Co możesz swobodnie wpisać do chatbota, co trzeba wcześniej zanonimizować, a czego nigdy nie wklejać. Ćwiczenie: 5 minut. (w przygotowaniu)
+	</Card>
+	<Card title="AI a dzieci">
+		Od ilu lat wolno założyć dziecku konto w chatbocie AI i jakich danych nie powinno tam wpisywać. Ćwiczenie: 5 minut. (w przygotowaniu)
+	</Card>
+	<Card title="Przyszłość AI">
+		Jak odróżnić to, co w AI już działa, od zapowiedzi na najbliższe lata i od czystej spekulacji o przyszłości. Ćwiczenie: 5 minut. (w przygotowaniu)
+	</Card>
+</CardGrid>
+
+:::note[Następny krok]
+**Zacznij tutaj:** Etyka i prawo w świecie AI - kto ponosi odpowiedzialność za decyzję podjętą z pomocą AI i czy da się ją cofnąć.
+:::

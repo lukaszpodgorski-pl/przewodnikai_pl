@@ -1,0 +1,82 @@
+---
+title: Suwerenne AI
+description: Polskie i europejskie modele AI, plus jak uruchomić AI na własnym komputerze - żebyś nie zależał od jednego zagranicznego dostawcy. Cztery lekcje, każda z ćwiczeniem na 5 minut.
+sidebar:
+  hidden: true
+about:
+  - name: Suwerenność cyfrowa
+    sameAs: https://en.wikipedia.org/wiki/Digital_sovereignty
+  - name: Bielik
+    sameAs: https://pl.wikipedia.org/wiki/Bielik_(model_j%C4%99zykowy)
+mentions:
+  - name: Mistral AI
+    sameAs: https://en.wikipedia.org/wiki/Mistral_AI
+    type: Organization
+  - name: SpeakLeash
+    sameAs: https://speakleash.org/
+    type: Organization
+  - name: ElevenLabs
+    sameAs: https://en.wikipedia.org/wiki/ElevenLabs
+    type: Organization
+faq:
+  - q: Co znaczy "suwerenne AI"?
+    a: AI, z której możesz korzystać bez krytycznej zależności od pojedynczego zagranicznego dostawcy - bo model jest otwarty i możesz uruchomić go u siebie, bo tworzy go firma podlegająca europejskiemu prawu, albo bo infrastruktura stoi w Twoim regionie.
+  - q: Czy polskie i europejskie modele dorównują ChatGPT?
+    a: To złe pytanie na ranking. W testach liderzy bywają z USA, ale ta czołówka zmienia się z miesiąca na miesiąc. Do pisania, tłumaczeń i streszczeń często wystarczy model, który uruchomisz u siebie, albo taki, który działa na podstawie umowy z europejskim dostawcą. Najpierw sprawdź, gdzie mają być Twoje dane, czy zależy Ci na dostępie do wag modelu i jakie to zadanie - dopiero potem wybieraj konkretne narzędzie.
+  - q: Czy muszę być osobą techniczną, żeby skorzystać z tej sekcji?
+    a: Nie. Z Bielika i Vibe (dawniej Le Chat) skorzystasz w przeglądarce jak z każdego chatbota, a uruchamianie modeli lokalnie pokazuję na narzędziach z prostym interfejsem - LM Studio to aplikacja okienkowa, w której model wybiera się z listy.
+status: zastane
+---
+
+import { CardGrid, LinkCard, Card } from '@astrojs/starlight/components';
+import Termin from '../../../components/Termin.astro';
+
+
+:::note[Ta sekcja jest w przebudowie]
+Przechodzę przez te teksty artykuł po artykule i poprawiam to, co się nie broni.
+Lekcje wracają tutaj pojedynczo, w miarę jak kończę przegląd - pod tymi samymi
+adresami co wcześniej. Poniżej lista tego, co się w tej sekcji pojawi.
+:::
+
+## Czego się tu nauczysz
+
+To, z jakich narzędzi AI możesz korzystać, zależy dziś od decyzji firm i rządów spoza Europy - podpis pod jedną decyzją potrafi zmienić dostępność modeli dla całych regionów. Skalę tej zależności raport EuroStack (CEPS, luty 2025) szacuje na ponad 80% importowanej infrastruktury cyfrowej ([CEPS](https://www.ceps.eu/ceps-publications/eurostack-a-european-alternative-for-digital-sovereignty/), [eurostack.eu](https://eurostack.eu/)). Właśnie dlatego coraz częściej mówi się o tym, czym jest <Termin id="suwerennosc-cyfrowa">suwerenność cyfrowa</Termin>. Ta sekcja jest o niej.
+
+Zaczynamy od kryterium wyboru, nie od rankingu marek: czyje są wagi modelu (czy możesz go pobrać i uruchomić sam), gdzie fizycznie leżą Twoje dane i czyj mandat - społeczny czy państwowy - stoi za twórcą. Na polskich modelach ćwiczysz to samo pytanie, potem na europejskich, potem na mapie warstw infrastruktury (chmura, firmy w UE albo w Polsce, Twój komputer). Na końcu dobierasz klasę sprzętu do modelu lokalnego - bez listy zakupów i bez abonamentu.
+
+## Dla kogo to jest
+
+Dla każdego, komu zależy na prywatności, przewidywalnych kosztach albo wspieraniu lokalnego rynku. Przyda się też firmom, które rozważają wdrożenie AI bez wysyłania danych do chmury.
+
+## W jakiej kolejności czytać
+
+Kolejność w menu odpowiada naturalnej ścieżce: od polskich modeli, przez europejskie firmy i polski ekosystem, aż po uruchamianie modeli lokalnie. Ale każdy artykuł czyta się samodzielnie - możesz zacząć od tego, który najbardziej Cię ciekawi.
+
+## Czego nie ma w tej sekcji
+
+Nie znajdziesz tu rankingów w stylu "najlepszy model" ani nachalnej promocji. Amerykańskie narzędzia są świetne i piszemy o nich w całym kursie. W tej sekcji chodzi o coś innego: o świadomy wybór i o plan B - o to, żeby decyzja, z czego korzystasz, należała do Ciebie.
+
+:::caution[Fakty zmieniają się szybko]
+Ceny, wersje modeli i liczby w tej sekcji zmieniają się z miesiąca na miesiąc. Dlatego przy faktach znajdziesz linki do źródeł i daty - zanim podejmiesz decyzję, sprawdź stan na dziś u źródła.
+:::
+
+## Artykuły w tej sekcji
+
+<CardGrid>
+	<Card title="Bielik i polskie modele AI">
+		Kryterium: prywatność, niezależność albo wygoda chmury. Ćwiczenie: 5 minut. (w przygotowaniu)
+	</Card>
+	<Card title="Europejskie modele i firmy AI">
+		Prawo UE, open-weight albo rodzaj zadania - nie podium. Ćwiczenie: 5 minut. (w przygotowaniu)
+	</Card>
+	<Card title="Polski ekosystem AI">
+		Gdzie siedzą dane: chmura, UE/PL albo Twój komputer. Ćwiczenie: 5 minut. (w przygotowaniu)
+	</Card>
+	<Card title="AI na własnym komputerze">
+		Klasa sprzętu do lokalnego modelu, bez rankingu nazw. Ćwiczenie: 5 minut. (w przygotowaniu)
+	</Card>
+</CardGrid>
+
+:::note[Następny krok]
+**Zacznij tutaj:** Bielik i polskie modele AI - wybierzesz kryterium, które się liczy (czyje są wagi modelu, gdzie leżą dane, czyj za nim stoi mandat), i sprawdzisz polski model. Przykłady wdrożeń są w ramce z datą, nie jako ranking.
+:::

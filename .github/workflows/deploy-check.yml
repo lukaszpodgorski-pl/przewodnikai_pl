@@ -1,0 +1,65 @@
+name: Siatka bezpieczeństwa wdrożenia
+
+# Powód istnienia tego workflow: 2026-07-31 merge PR #37 do main nie
+# wywołał builda w Cloudflare Workers Builds (potwierdzone przez
+# "wrangler versions list" - brak wpisu dla tego commita). Cloudflare nie
+# zgłasza statusu builda z powrotem do GitHuba, więc z poziomu repo ten
+# zgubiony webhook był niewidoczny - produkcja serwowała stare treści
+# przez ~10 dni, do kolejnego, niepowiązanego mergea.
+#
+# Ten workflow nie zastępuje integracji git Cloudflare - tylko ją
+# obserwuje. Po każdym pushu do main sprawdza (do 4 minut, co 30 s), czy
+# na koncie pojawiła się nowa wersja Workera. Jeśli tak - kończy się bez
+# akcji. Jeśli nie - sam robi "wrangler deploy" z tym samym builda, który
+# Cloudflare i tak by wykonał, więc produkcja i tak dogania main.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  sprawdz-i-napraw:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Instalacja (zgodna z lockfile)
+        run: npm ci
+      - name: Build produkcyjny
+        run: npm run build
+      - name: Zapamiętaj najnowszą wersję Workera sprzed tego pusha
+        id: przed
+        run: |
+          ID=$(npx wrangler versions list --name przewodnikai --json | jq -r '.[0].id // empty')
+          echo "Wersja sprzed pusha: ${ID:-brak}"
+          echo "id=$ID" >> "$GITHUB_OUTPUT"
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      - name: Czekaj na automatyczny build Cloudflare Workers Builds
+        id: czekaj
+        run: |
+          for i in $(seq 1 8); do
+            sleep 30
+            NOWY=$(npx wrangler versions list --name przewodnikai --json | jq -r '.[0].id // empty')
+            if [ -n "$NOWY" ] && [ "$NOWY" != "${{ steps.przed.outputs.id }}" ]; then
+              echo "Cloudflare wdrożył sam (wersja $NOWY) po $((i * 30)) s - koniec."
+              echo "wdrozono=tak" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+          done
+          echo "Brak nowej wersji po 4 min - Cloudflare Workers Builds nie wystartował."
+          echo "wdrozono=nie" >> "$GITHUB_OUTPUT"
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      - name: Deploy awaryjny - Cloudflare Workers Builds nie zadziałał
+        if: steps.czekaj.outputs.wdrozono == 'nie'
+        run: npx wrangler deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

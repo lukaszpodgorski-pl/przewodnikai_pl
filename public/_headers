@@ -1,0 +1,5 @@
+# Cloudflare (Workers static assets) czyta ten plik tak samo jak _redirects.
+# Na razie tylko regula dla Service Workera - naglowki bezpieczenstwa tej domeny
+# stoja jeszcze w wersji PHP (przewodnikai.pl/public_html/.htaccess).
+/sw.js
+  Cache-Control: no-cache, must-revalidate

@@ -1,0 +1,40 @@
+---
+import Default from '@astrojs/starlight/components/Footer.astro';
+import Newsletter from './Newsletter.astro';
+import { PREFIX_STRON_POWROTU } from '../config/newsletter';
+
+// Zapis na newsletter pod każdym artykułem - w momencie, gdy czytelnik
+// właśnie skończył czytać. Wyjątki:
+//   - strona główna ma własną, szerszą sekcję wstawioną wprost w index.mdx,
+//     więc tutaj byłaby duplikatem (dwa formularze na jednej stronie to też
+//     dwa pola o tym samym `id`, czyli błąd dostępności),
+//   - 404 nie jest treścią, na której ktokolwiek kończy lekturę,
+//   - strony powrotu z Sendy: człowiek właśnie zapisał się, potwierdził zapis
+//     albo się wypisał. Podsuwanie mu wtedy tego samego formularza jest w
+//     najlepszym razie bez sensu, a na stronie po wypisaniu wręcz nachalne -
+//     ktoś świadomie zrezygnował, więc nie prosimy go od razu z powrotem.
+const pathname = Astro.url.pathname;
+const pokazNewsletter =
+	pathname !== '/' && pathname !== '/404/' && !pathname.startsWith(PREFIX_STRON_POWROTU);
+---
+
+<Default><slot /></Default>
+{pokazNewsletter && <Newsletter wariant="pasek" />}
+<p class="made-with-love">
+	made with ❤️ by <a href="https://aitomate.pl">aitomate.pl</a> - Łukasz Podgórski
+</p>
+
+<style>
+	.made-with-love {
+		margin: 0.5rem 0 0;
+		font-size: var(--sl-text-xs);
+		color: var(--sl-color-gray-3);
+		text-align: center;
+	}
+	.made-with-love a {
+		color: var(--sl-color-gray-2);
+	}
+	.made-with-love a:hover {
+		color: var(--sl-color-white);
+	}
+</style>

@@ -1,0 +1,135 @@
+---
+import Default from '@astrojs/starlight/components/Head.astro';
+import {
+	SITE_URL,
+	SITE_NAME,
+	absoluteUrl,
+	buildArticle,
+	buildBreadcrumbs,
+	buildCollectionPage,
+	buildFaqPage,
+	buildWebSite,
+	AUTHOR,
+	type FaqItem,
+} from '../lib/structured-data';
+import { SECTION_LABELS } from '../config/sections';
+
+const route = Astro.locals.starlightRoute;
+const data = route.entry.data;
+const pathname = Astro.url.pathname;
+
+const isHome = pathname === '/';
+// Rozróżnienie po ścieżce URL, nie po `data.template` - tylko `sciezki/index.mdx`
+// ma faktycznie ustawione `template: splash` we frontmatterze, pozostałe 9 stron
+// ścieżek nauki go nie ma. Harness (scripts/verify-geo.mjs) klasyfikuje strony
+// wyłącznie po prefiksie `/sciezki/`, więc robimy to samo, żeby CollectionPage
+// trafił na wszystkie 10 stron, a TechArticle na żaden z nich.
+const isSciezka = pathname.startsWith('/sciezki/');
+
+// Rozpoznanie strony jako allowlista oparta o rejestr sekcji (SECTION_LABELS),
+// nie jako negacja - strona spoza zarejestrowanej sekcji (np. 404) nie dostaje
+// żadnego bloku JSON-LD, co dla danych strukturalnych jest bezpieczniejszym
+// domyślnym zachowaniem. Nowa sekcja dopisana do src/config/sections.ts
+// klasyfikuje się tu automatycznie.
+//
+// Liczba segmentów rozdziela stronę zbiorczą sekcji od artykułu w środku:
+// `/podstawy/` (jeden segment) to strona sekcji, `/podstawy/wstep/` (dwa) to
+// artykuł. Bez tego rozróżnienia strona sekcji dostałaby TechArticle.
+const segments = pathname.split('/').filter(Boolean);
+const section = segments[0];
+const wSekcji = section !== undefined && SECTION_LABELS[section] !== undefined;
+const isSekcja = wSekcji && segments.length === 1;
+const isArticle = wSekcji && segments.length > 1;
+
+// Obraz generowany per strona przez src/pages/og/[...route].ts, ale ten
+// endpoint tworzy pliki wyłącznie z wpisów kolekcji `docs` - więc obrazu per
+// strona dostają tylko strony sklasyfikowane jako artykuł, sekcja lub ścieżka
+// (isArticle/isSekcja/isSciezka, patrz wyżej). Wszystko poza tym - strona
+// główna (puste `id` w kolekcji) i strona 404 (w ogóle nie jest wpisem
+// kolekcji) - dostaje stały obraz domyślny, bo `/og/404.png` nigdy by nie
+// powstał. Strony zbiorcze (`<sekcja>/index.mdx`) mieszczą się w tej regule:
+// Astro obcina `/index` z identyfikatora wpisu zagnieżdżonego, więc `route.id`
+// to `podstawy`, a nie `podstawy/index` - tak samo działa `sciezki/index.mdx`.
+const ogImage = isArticle || isSekcja || isSciezka
+	? `${SITE_URL}/og/${route.id}.png`
+	: `${SITE_URL}/og-default.png`;
+
+// Strona główna ma w kolekcji tytuł "Przewodnik AI", więc doklejenie sufiksu
+// dałoby "Przewodnik AI - Przewodnik AI". Sufiks ma dopowiadać, czyja jest
+// grafika, a nie powtarzać tytuł, który już to mówi.
+const ogImageAlt = data.title === SITE_NAME ? data.title : `${data.title} - ${SITE_NAME}`;
+
+const blocks: object[] = [];
+
+if (isHome) {
+	blocks.push(buildWebSite());
+} else if (isSciezka || isSekcja) {
+	// Strona zbiorcza - spis artykułów sekcji albo ścieżek nauki. CollectionPage,
+	// nie TechArticle: nie jest jednostką dydaktyczną, tylko wejściem do zbioru.
+	blocks.push(
+		buildCollectionPage({ pathname, title: data.title, description: data.description, image: ogImage }),
+	);
+	blocks.push(buildBreadcrumbs(pathname, data.title));
+} else if (isArticle) {
+	blocks.push(
+		buildArticle({
+			pathname,
+			title: data.title,
+			description: data.description,
+			image: ogImage,
+			dateModified: route.lastUpdated,
+			educationalLevel: data.educationalLevel,
+			teaches: data.teaches,
+			about: data.about,
+			mentions: data.mentions,
+		}),
+	);
+	blocks.push(buildBreadcrumbs(pathname, data.title));
+}
+
+// Niezależne od klasyfikacji strony (isHome/isSciezka/isArticle) - FAQPage
+// dokleja się do bloków, które już powstały dla danej strony, o ile artykuł ma
+// wypełnione pole `faq`. Dla stron bez tego pola (w tym 404, gdzie `data.faq`
+// jest niezdefiniowane) warunek nie przechodzi i `blocks` pozostaje bez zmian.
+const faq = data.faq as FaqItem[] | undefined;
+if (faq && faq.length > 0) blocks.push(buildFaqPage(faq));
+
+// Analityka (Cloudflare Web Analytics) NIE jest wstrzykiwana z tego komponentu.
+// Cloudflare dokleja beacon automatycznie na brzegu sieci, dla ruchu
+// rozpoznanego jako przeglądarka - dlatego nie widać go w `dist/`, a mimo to
+// statystyki i Core Web Vitals działają. Dodanie tu drugiego znacznika liczyłoby
+// każdą odsłonę podwójnie. Konfiguracja jest w panelu Cloudflare (Web Analytics),
+// nie w repo.
+---
+
+<Default><slot /></Default>
+
+{/* Strony pomocnicze (potwierdzenia zapisu na newsletter) - patrz `noindex`
+    w src/content.config.ts. Muszą też być pominięte w sitemapie, inaczej
+    mapa i znacznik mówiłyby wyszukiwarce dwie sprzeczne rzeczy. */}
+{data.noindex && <meta name="robots" content="noindex, follow" />}
+
+<meta name="author" content={AUTHOR.name} />
+<link rel="author" href={AUTHOR.url} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={ogImageAlt} />
+<meta name="twitter:image" content={ogImage} />
+<link rel="alternate" type="text/plain" href={absoluteUrl('/llms.txt')} />
+
+{blocks.map((block) => (
+	<script type="application/ld+json" is:inline set:html={JSON.stringify(block)} />
+))}
+
+<!-- Service Worker poziom 1 - przechwytuje wylacznie nawigacje i podaje
+     /offline.html, gdy siec nie odpowiada. Pliki sw.js i offline.html leza
+     w public/, wiec trafiaja do katalogu glownego dist/. Wycofanie: podmien
+     tresc public/sw.js na wersje samolikwidujaca sie (CLAUDE.md, sekcja 1). -->
+<script is:inline>
+	if ('serviceWorker' in navigator) {
+		window.addEventListener('load', () => {
+			navigator.serviceWorker.register('/sw.js');
+		});
+	}
+</script>

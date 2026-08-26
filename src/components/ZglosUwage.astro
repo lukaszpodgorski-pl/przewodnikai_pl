@@ -1,0 +1,37 @@
+---
+import { Icon } from '@astrojs/starlight/components';
+import { GITHUB_REPO } from '../config/repo';
+
+// Zastępuje domyślny EditLink Starlight ("Edytuj tę stronę").
+//
+// Publiczne repozytorium na GitHubie jest lustrem, nie źródłem prawdy: treść
+// powstaje w prywatnym repo, a skrypt publikacji przepisuje ją przy każdym
+// wydaniu (odnośniki do stron w przebudowie, karty, przekierowania). Edycja
+// pliku w lustrze zostałaby więc nadpisana przy następnej publikacji - i to
+// bez śladu dla osoby, która poświęciła czas na poprawkę.
+//
+// Dlatego zamiast prowadzić do edytora plików, kierujemy do zgłoszenia. Uwaga
+// trafia wtedy do właściciela, wraca do źródła prawdy i wychodzi na produkcję
+// normalną ścieżką.
+const ZGLOSZENIE = `${GITHUB_REPO}/issues/new/choose`;
+---
+
+<a href={ZGLOSZENIE} class="sl-flex print:hidden" rel="noopener noreferrer" target="_blank">
+	<Icon name="comment" size="1.2em" />
+	Zgłoś uwagę do tej strony
+</a>
+
+<style>
+	@layer starlight.core {
+		a {
+			gap: 0.5rem;
+			align-items: center;
+			text-decoration: none;
+			color: var(--sl-color-gray-3);
+			font-size: var(--sl-text-sm);
+		}
+		a:hover {
+			color: var(--sl-color-white);
+		}
+	}
+</style>

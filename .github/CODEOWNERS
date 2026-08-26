@@ -1,0 +1,6 @@
+# Globalny fallback — właściciel projektu recenzuje wszystko domyślnie.
+* @lukaszpodgorski-pl
+
+# Ownerzy tematyczni per sekcja (dodawaj w miarę dołączania redaktorów), np.:
+# /src/content/docs/etyka/ @redaktor-etyki
+# /src/content/docs/prompt-engineering/ @redaktor-promptow
