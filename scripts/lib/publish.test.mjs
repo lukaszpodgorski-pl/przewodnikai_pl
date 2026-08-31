@@ -19,6 +19,7 @@ import {
 	podmienNastepnyKrok,
 	transformuj,
 	urlSekcji,
+	usunMartweWiecej,
 } from '../publish.mjs';
 
 const WYCIETE = new Set(['/podstawy/wstep/', '/podstawy/ograniczenia/']);
@@ -112,4 +113,50 @@ test('transformuj zachowuje kolejnosc: Nastepny krok przed odlinkowaniem', () =>
 test('transformuj nie zmienia tresci bez odnosnikow do wycietych stron', () => {
 	const wejscie = 'Zwykły akapit z [odnośnikiem](/etyka/etyczne-aspekty/) i **pogrubieniem**.';
 	assert.equal(transformuj(wejscie, czyWyciety), wejscie);
+});
+
+test('usunMartweWiecej kasuje wiersz, gdy jedyny odnosnik jest wyciety', () => {
+	const wejscie = 'Tekst hasla.\n\n**Więcej:** [Wstęp](/podstawy/wstep/)\n\n## Kolejne haslo\n';
+	assert.equal(usunMartweWiecej(wejscie, czyWyciety), 'Tekst hasla.\n\n## Kolejne haslo\n');
+});
+
+test('usunMartweWiecej zostawia wiersz z odnosnikiem do strony publikowanej', () => {
+	const wejscie = '**Więcej:** [Chatboty](/narzedzia/chatboty/)\n';
+	assert.equal(usunMartweWiecej(wejscie, czyWyciety), wejscie);
+});
+
+test('usunMartweWiecej zostawia wiersz, gdy choc jeden odnosnik zyje', () => {
+	const wejscie = '**Więcej:** [Wstęp](/podstawy/wstep/) i [Chatboty](/narzedzia/chatboty/)\n';
+	assert.equal(usunMartweWiecej(wejscie, czyWyciety), wejscie);
+});
+
+test('usunMartweWiecej nie rusza wiersza bez odnosnikow', () => {
+	const wejscie = '**Więcej:** zajrzyj do sekcji obok\n';
+	assert.equal(usunMartweWiecej(wejscie, czyWyciety), wejscie);
+});
+
+test('usunMartweWiecej nie rusza zwyklego akapitu z odnosnikiem do wycietej strony', () => {
+	const wejscie = 'Zobacz [Wstęp](/podstawy/wstep/) po szczegóły.\n';
+	assert.equal(usunMartweWiecej(wejscie, czyWyciety), wejscie);
+});
+
+test('transformuj kasuje martwe Wiecej, ale zostawia zywe', () => {
+	const wejscie = [
+		'## Agent AI',
+		'',
+		'Definicja.',
+		'',
+		'**Więcej:** [Wstęp](/podstawy/wstep/)',
+		'',
+		'## Chatbot',
+		'',
+		'Definicja.',
+		'',
+		'**Więcej:** [Chatboty](/narzedzia/chatboty/)',
+		'',
+	].join('\n');
+	const wynik = transformuj(wejscie, czyWyciety);
+	assert.ok(!wynik.includes('**Więcej:** Wstęp'), 'martwy wiersz powinien zniknac');
+	assert.ok(wynik.includes('**Więcej:** [Chatboty](/narzedzia/chatboty/)'), 'zywy wiersz zostaje');
+	assert.ok(wynik.includes('## Agent AI'), 'naglowek nietkniety');
 });

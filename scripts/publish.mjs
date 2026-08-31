@@ -166,6 +166,27 @@ function podmienNastepnyKrok(tresc, czyWyciety) {
 	);
 }
 
+/**
+ * Wiersz "**Wiecej:**", w ktorym KAZDY odnosnik prowadzi do wycietej strony,
+ * znika w calosci razem z pustym wierszem po nim.
+ *
+ * Powod: samo odlinkowanie zostawia "**Wiecej:** Agenci AI" - napis, ktory
+ * wyglada jak odnosnik, ale nigdzie nie prowadzi. Przy dwoch takich wierszach
+ * na stronie to nie przeszkadza; w slowniku pojec, gdzie odnosnik stoi przy
+ * niemal kazdym hasle, czytelnik dostaje 35 martwych obietnic pod rzad.
+ *
+ * Wiersz z choc jednym zywym odnosnikiem zostaje - tam odlinkowanie wystarczy.
+ * Musi isc PRZED odlinkujOdnosniki, bo potem nie ma juz z czego odczytac URL-i.
+ */
+function usunMartweWiecej(tresc, czyWyciety) {
+	return tresc.replace(/^\*\*Więcej:\*\*[^\n]*(\r?\n)?(\r?\n)?/gm, (calosc) => {
+		const odnosniki = [...calosc.matchAll(/\[[^\]]+\]\(([^)\s]+)\)/g)];
+		if (!odnosniki.length) return calosc;
+		const wszystkieWyciete = odnosniki.every(([, url]) => czyWyciety(url));
+		return wszystkieWyciete ? '' : calosc;
+	});
+}
+
 /** Odnosnik markdown do wycietej strony -> sam tekst, bez nawiasow. */
 function odlinkujOdnosniki(tresc, czyWyciety) {
 	return tresc.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (calosc, etykieta, url) =>
@@ -215,20 +236,29 @@ function dodajZapowiedzSekcji(tresc) {
 }
 
 /**
- * Kolejnosc ma znaczenie: "Nastepny krok" musi pojsc PRZED odlinkowaniem,
- * bo inaczej odlinkowanie zjada odnosnik w tym bloku i zostaje zdanie
- * zapowiadajace lekcje, ktorej nie ma na stronie.
+ * Kolejnosc ma znaczenie: "Nastepny krok" i "Wiecej" musza pojsc PRZED
+ * odlinkowaniem, bo inaczej odlinkowanie zjada odnosnik w tych blokach
+ * i zostaje zdanie zapowiadajace lekcje, ktorej nie ma na stronie.
  */
 function transformuj(tresc, czyWyciety, { pustaSekcja = false } = {}) {
 	let wynik = podmienKarty(tresc, czyWyciety);
 	wynik = podmienNastepnyKrok(wynik, czyWyciety);
+	wynik = usunMartweWiecej(wynik, czyWyciety);
 	wynik = odlinkujOdnosniki(wynik, czyWyciety);
 	if (pustaSekcja) wynik = dodajZapowiedzSekcji(wynik);
 	return wynik;
 }
 
 // Eksport na potrzeby testow (scripts/lib/publish.test.mjs).
-export { odlinkujOdnosniki, plikNaUrl, podmienKarty, podmienNastepnyKrok, transformuj, urlSekcji };
+export {
+	odlinkujOdnosniki,
+	plikNaUrl,
+	podmienKarty,
+	podmienNastepnyKrok,
+	transformuj,
+	urlSekcji,
+	usunMartweWiecej,
+};
 
 // ---------------------------------------------------------------------------
 // Glowny przebieg

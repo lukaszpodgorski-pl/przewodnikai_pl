@@ -56,10 +56,10 @@
 /przyszlosc-ai/ /etyka/ 302
 
 # --- Zasoby ---
-/slownik-pojec/ /zasoby/ 302
+/slownik-pojec/ /zasoby/slownik-pojec/ 301
 /faq/ /zasoby/ 301
 /zasoby/faq/ /zasoby/ 301
-/biblioteka/ /zasoby/ 302
+/biblioteka/ /zasoby/biblioteka/ 301
 /o-mnie/ /zasoby/o-mnie/ 301
 /kontakt/ /zasoby/kontakt/ 301
 /regulamin/ /zasoby/regulamin/ 301
@@ -129,5 +129,3 @@
 /suwerenne-ai/bielik-i-polskie-modele/ /suwerenne-ai/ 302
 /suwerenne-ai/europejskie-modele/ /suwerenne-ai/ 302
 /suwerenne-ai/polski-ekosystem-ai/ /suwerenne-ai/ 302
-/zasoby/biblioteka/ /zasoby/ 302
-/zasoby/slownik-pojec/ /zasoby/ 302

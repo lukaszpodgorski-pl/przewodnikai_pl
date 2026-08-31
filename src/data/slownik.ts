@@ -8,8 +8,9 @@
  * krótkie i pełne wyjaśnienie mają po jednym domu i nie mogą się rozjechać.
  *
  * Dodając nowe pojęcie: `id` to klucz używany w <Termin id="...">, `anchor`
- * musi pokrywać się z id nagłówka `### ...` na stronie słownika (małe litery,
- * spacje na myślniki - tak generuje je Starlight).
+ * musi pokrywać się z id nagłówka `## ...` na stronie słownika (małe litery,
+ * spacje na myślniki, nawiasy usunięte - tak generuje je Starlight, np.
+ * "RAG (Retrieval-Augmented Generation)" -> `rag-retrieval-augmented-generation`).
  */
 export interface Pojecie {
 	/** Nazwa hasła tak, jak brzmi na stronie słownika. */

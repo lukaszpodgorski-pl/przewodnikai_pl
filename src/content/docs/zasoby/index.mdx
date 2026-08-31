@@ -21,7 +21,7 @@ faq:
 status: zastane
 ---
 
-import { CardGrid, LinkCard, Card } from '@astrojs/starlight/components';
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
 
 ## Czego się tu nauczysz
 
@@ -48,12 +48,16 @@ Nie ma tu materiału kursowego. Cała merytoryka jest w siedmiu wcześniejszych 
 ## Strony w tej sekcji
 
 <CardGrid>
-	<Card title="Słownik pojęć AI">
-		Najważniejsze terminy z kursu wyjaśnione po polsku, w jednym miejscu. (w przygotowaniu)
-	</Card>
-	<Card title="Biblioteka zasobów AI">
-		Sprawdzone kursy, przewodniki, polska społeczność i źródła newsów. (w przygotowaniu)
-	</Card>
+	<LinkCard
+		title="Słownik pojęć AI"
+		description="Najważniejsze terminy z kursu wyjaśnione po polsku, w jednym miejscu."
+		href="/zasoby/slownik-pojec/"
+	/>
+	<LinkCard
+		title="Biblioteka zasobów AI"
+		description="Sprawdzone kursy, przewodniki, polska społeczność i źródła newsów."
+		href="/zasoby/biblioteka/"
+	/>
 	<LinkCard
 		title="O mnie"
 		description="Kto pisze ten przewodnik i dlaczego powstał."
@@ -67,5 +71,5 @@ Nie ma tu materiału kursowego. Cała merytoryka jest w siedmiu wcześniejszych 
 </CardGrid>
 
 :::note[Zacznij tutaj]
-**Najczęściej przydaje się:** Słownik pojęć AI - wyjaśnienia najważniejszych terminów, które pojawiają się w kursie.
+**Najczęściej przydaje się:** [Słownik pojęć AI](/zasoby/slownik-pojec/) - wyjaśnienia najważniejszych terminów, które pojawiają się w kursie.
 :::
