@@ -485,6 +485,29 @@ function wyslij({ publikowane, wyciete }) {
 		console.log('  Inicjalizacja repozytorium publikacji...');
 		wPublikacji(['init', '-b', 'main']);
 		wPublikacji(['remote', 'add', 'origin', REPO_PUBLICZNE]);
+	} else {
+		// Lustro dostaje commity, ktorych nie ma lokalny katalog `.publish`:
+		// merge PR-a Dependabota, poprawka zrobiona w GitHubie, publikacja
+		// z innej maszyny. Bez tego `git push` konczy sie non-fast-forward
+		// i publikacja pada juz PO buildzie i weryfikacji.
+		//
+		// `reset --mixed` przestawia HEAD na stan lustra, nie ruszajac plikow
+		// w katalogu roboczym - a te sa i tak odtwarzane od zera przy kazdym
+		// uruchomieniu. Commit publikacyjny powstaje wiec na szczycie lustra
+		// i wysylka jest fast-forward.
+		//
+		// Skutek dla tresci jest ten sam, co opisany w AGENTS.md: publikacja
+		// nadpisuje zmiany wniesione w lustrze recznie. Jesli maja przetrwac,
+		// musza trafic do zrodla prawdy - lustro ich nie obroni.
+		try {
+			wPublikacji(['fetch', 'origin', 'main']);
+			wPublikacji(['reset', '--mixed', 'origin/main']);
+		} catch (blad) {
+			przerwij(
+				'nie udalo sie pobrac stanu lustra przed publikacja.\n' +
+					`  ${blad.message}`,
+			);
+		}
 	}
 
 	wPublikacji(['add', '-A']);
