@@ -1,0 +1,108 @@
+---
+title: Interfejs i skróty klawiszowe Claude Code
+description: Sterowanie sesją, menu rewind, edycja readline, tryb Vim, wejście wieloliniowe oraz wklejanie obrazów i plików. Skróty, które zamieniają terminal w narzędzie pracy. Ćwiczenie zajmie 5 minut.
+sidebar:
+  label: 'Interfejs i skróty'
+  order: 5
+educationalLevel: Intermediate
+teaches:
+  - Jak przerwać i cofnąć pracę agenta bez utraty kontekstu
+  - Jak pisać wieloliniowe prompty w dowolnym terminalu
+  - Jak wkleić obraz i odwołać się do pliku w rozmowie
+about:
+  - name: Interfejs wiersza poleceń
+    sameAs: https://en.wikipedia.org/wiki/Command-line_interface
+  - name: Skrót klawiszowy
+    sameAs: https://en.wikipedia.org/wiki/Keyboard_shortcut
+mentions:
+  - name: Vim
+    sameAs: https://en.wikipedia.org/wiki/Vim_(text_editor)
+    type: SoftwareApplication
+  - name: GNU Readline
+    sameAs: https://en.wikipedia.org/wiki/GNU_Readline
+    type: SoftwareApplication
+faq:
+  - q: Jak cofnąć zmiany, które Claude już wprowadził?
+    a: 'Podwójnym Esc na pustym polu otwierasz menu rewind. Przywraca ono kod i rozmowę do wcześniejszego punktu. Te same akcje mają odpowiedniki w komendach /rewind, /checkpoint i /undo.'
+  - q: Jak wpisać prompt w kilku liniach, skoro Enter go wysyła?
+    a: 'Ukośnikiem wstecznym i Enterem - działa wszędzie. W nowszych terminalach zadziała też Shift+Enter, a Ctrl+J w każdym. Komenda /terminal-setup instaluje binding Shift+Enter w VS Code, Cursor i iTerm2.'
+  - q: Gdzie podziała się komenda /vim?
+    a: 'Została usunięta w wersji 2.1.92. Tryb Vim włączasz teraz przez /config i pozycję Editor mode. Sam tryb nie zniknął - dostajesz pełne NORMAL, INSERT i VISUAL.'
+status: gotowe
+---
+
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+:::note[O tej stronie]
+**Czas:** ok. 6 minut czytania + 5 minut ćwiczenia.
+**Poziom:** średni, po [komendach i flagach](/claude-code/komendy-i-flagi/).
+**Wcześniej:** umiesz uruchomić sesję. Tu: nauczysz się nią sterować.
+:::
+
+## Sterowanie ogólne
+
+- `Esc` - przerwij Claude lub zamknij dialog. Praca wykonana do tej pory zostaje zachowana.
+- `Esc Esc` (podwójny) - przy tekście: wyczyść i zapisz draft. Przy pustym polu: otwórz **menu rewind**, czyli przywracanie kodu i rozmowy do wcześniejszego punktu.
+- `Ctrl+C` - przerwij działanie. Przy pustym polu drugie naciśnięcie kończy Claude Code.
+- `Ctrl+D` - wyjście (podwójne w 800 ms).
+- `Ctrl+L` - przerysuj ekran.
+- `Ctrl+R` - reverse search historii promptów.
+- `Ctrl+O` - podgląd transkryptu ze szczegółami wywołań narzędzi.
+- `Ctrl+B` - przenieś zadanie w tło (w tmux: dwukrotnie).
+- `Ctrl+T` - pokaż lub ukryj checklistę zadań Claude.
+- `Ctrl+S` - schowaj lub przywróć prompt.
+- `Ctrl+Z` - zawieś proces (Unix; `fg` żeby wrócić).
+- `Shift+Tab` - cykl trybów uprawnień: `default` (Manual) → `acceptEdits` → `plan` → opcjonalnie `bypassPermissions` → `auto`. Na Windows bez VT: `Alt+M`.
+- `Option+P` albo `Alt+P` - przełącz model. `Option+T` albo `Alt+T` - extended thinking. `Option+O` albo `Alt+O` - fast mode.
+
+Menu rewind jest tym skrótem, który warto zapamiętać jako pierwszy. Agent, którego da się cofnąć, jest znacznie mniej stresujący niż agent, którego nie da się cofnąć.
+
+## Edycja tekstu (readline)
+
+`Ctrl+A` i `Ctrl+E` (początek i koniec linii), `Ctrl+K`, `Ctrl+U`, `Ctrl+W` (kasowanie), `Ctrl+Y` (wklej skasowane), `Alt+B` i `Alt+F` (słowo w tył i w przód), `Alt+D` (skasuj słowo).
+
+Na macOS klawisze `Alt` i `Option` wymagają ustawienia Option jako Meta w terminalu. Ustawienie `keybindingFlavor: "readline"` zmienia zachowanie `Ctrl+W` - kasuje wtedy do białego znaku.
+
+## Tryb Vim
+
+Włącz przez `/config` → Editor mode. Dawna komenda `/vim` została **usunięta w v2.1.92**.
+
+Dostajesz pełne NORMAL, INSERT i VISUAL, `hjkl`, `w/e/b`, operatory `d/c/y`, text objects (`iw`, `i"`, `i{`) oraz remap `jj` → Esc przez `vimInsertModeRemaps`.
+
+## Wejście wieloliniowe
+
+`\` plus `Enter` działa wszędzie. `Option+Enter` na macOS. `Shift+Enter` natywnie w iTerm2, WezTerm, Ghostty, Kitty, Warp, Apple Terminal i Windows Terminal. `Ctrl+J` w każdym terminalu.
+
+Uruchom `/terminal-setup`, żeby zainstalować binding `Shift+Enter` w VS Code, Cursor i iTerm2.
+
+## Obrazy i pliki
+
+Wklej obraz ze schowka przez `Ctrl+V` (iTerm2: `Cmd+V`; Windows i WSL: `Alt+V`) - wstawia chip `[Image #N]`.
+
+Odwołania do plików: `@ścieżka` z autouzupełnianiem.
+
+Shell mode: `!` na początku linii, na przykład `! npm test`.
+
+## Drobiazgi, które oszczędzają czas
+
+`/btw` - pytanie poboczne bez dodawania do historii. `/recap` - jednoliniowe podsumowanie sesji. Wiadomości można kolejkować, gdy Claude pracuje: Enter dodaje je do kolejki zamiast przerywać.
+
+## Ćwiczenie: 5 minut
+
+1. Wpisz długi prompt w kilku liniach, używając `\` plus `Enter`.
+2. Przerwij pracę Claude przez `Esc`.
+3. Na pustym polu naciśnij `Esc` dwa razy i otwórz menu rewind.
+
+**Zaliczenie:** widziałeś menu rewind i wiesz, że da się cofnąć zarówno rozmowę, jak i kod. To zmienia sposób, w jaki podchodzisz do ryzykownych poleceń.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** naciśnij `Ctrl+O` w trakcie pracy agenta i obejrzyj transkrypt wywołań narzędzi. To najlepszy sposób, żeby zrozumieć, co Claude właściwie robi.
+
+## Teraz wiesz
+
+- `Esc` przerywa bez utraty pracy, podwójny `Esc` otwiera cofanie.
+- Wieloliniowy prompt masz zawsze pod `\` i `Enter`, reszta bindingów zależy od terminala.
+- Obraz wklejasz, plik wskazujesz przez `@`, a komendę shella odpalasz przez `!`.
+
+**Następny krok:** [Slash commands](/claude-code/slash-commands/) - pełna lista komend wbudowanych, pogrupowana tak, żeby dało się ją przejrzeć.
+
+<SlowniczekStrony terminy={["agent-ai"]} />

@@ -1,5 +1,16 @@
 /*
- * Kolor marki: teal #0d9488.
+ * Kolor marki: niebieski #4a9fdd (ciemny) / #2a6fa8 (jasny).
+ *
+ * Paleta jest przeniesiona z pozostalych serwisow wlasciciela, ktore dziela
+ * jeden system tokenow: lukaszpodgorski.pl (tryb jasny) i aitomate.pl (tryb
+ * ciemny). Stad konkretne wartosci - `paper` #fafaf7, `ink` #111114,
+ * `brand` #378ccf z odcieniem tekstowym #2a6fa8 - a nie odcienie dobrane
+ * osobno dla tego serwisu. Czytelnik przechodzacy miedzy trzema stronami
+ * ma widziec jedna marke.
+ *
+ * Uwaga na temperature szarosci: w motywie jasnym sa CIEPLE (#8c887e, #514e47
+ * maja domieszke bezu), w ciemnym CHLODNE (#a8a8b0, #3a3a40). Tak jest
+ * w zrodle i to wlasnie daje obu trybom charakter - nie ujednolicaj ich.
  *
  * Ten plik jest CELOWO bezwarstwowy. Starlight trzyma wszystkie swoje style
  * w @layer starlight.* (patrz node_modules/@astrojs/starlight/style/layers.css),
@@ -9,21 +20,130 @@
  * Starlight bez !important. Nie owijaj tego pliku w @layer.
  */
 
-/* --- Skala akcentu: motyw ciemny (domyslny) --- */
+/*
+ * --- Motyw ciemny (domyslny): tryb ciemny aitomate.pl ---
+ *
+ * UWAGA na semantyke Starlight, jest mylaca: --sl-color-white to kolor TEKSTU,
+ * a --sl-color-black to kolor TLA. W motywie jasnym oba sa odwrocone. Skala
+ * gray-1..7 idzie zawsze od koloru najblizszego tekstowi do najblizszego tlu.
+ *
+ * Tla i panele dziedzicza z tej skali (props.css): bg = black,
+ * bg-nav = bg-sidebar = gray-6, bg-inline-code = gray-5.
+ */
 :root {
-	--sl-color-accent-low: #042f2e;
-	--sl-color-accent: #0d9488;
-	--sl-color-accent-high: #5eead4;
+	--sl-color-white: #fafaf7; /* naglowki - paper marki, 17,7:1 */
+	--sl-color-gray-1: #ededf2;
+	/*
+	 * Tresc artykulow lekko ponizej bieli naglowkow. aitomate.pl uzywa
+	 * #fafaf7 wszedzie, ale tam teksty sa krotkie; tutaj czyta sie akapity
+	 * przez kilka minut, a pelna biel zostawia wtedy halo wokol liter.
+	 * #e4e4ea daje 14,6:1, czyli wciaz mocno powyzej AAA.
+	 */
+	--sl-color-gray-2: #e4e4ea; /* --sl-color-text: tresc artykulow */
+	--sl-color-gray-3: #a8a8b0; /* tekst drugorzedny, podpisy - 7,9:1 */
+	--sl-color-gray-4: #6e6e78; /* elementy nieaktywne - 3,7:1 */
+	--sl-color-gray-5: #3a3a40; /* linie, tlo kodu w linii */
+	--sl-color-gray-6: #1c1c21; /* tlo nawigacji i menu bocznego */
+	--sl-color-gray-7: #18181c;
+	--sl-color-black: #131316; /* tlo strony */
+
+	/*
+	 * Linie sa jasniejsze niz tlo paneli (#3a3a40 wobec #1c1c21). Starlight
+	 * domyslnie bierze hairline z gray-6, przez co zlewalyby sie z panelami.
+	 */
+	--sl-color-hairline: #3a3a40;
+	--sl-color-hairline-light: #4a4a52;
+	--sl-color-hairline-shade: #131316;
+
+	--sl-color-accent-low: #14283a; /* tlo blokow akcentowanych */
+	--sl-color-accent: #4a9fdd; /* obramowania, wypelnienia - 6,4:1 */
+	--sl-color-accent-high: #7fbde8; /* tekst i odnosniki - 9,1:1 */
+
+	/*
+	 * Kolory semantyczne asides (:::note, :::tip, :::caution, :::danger).
+	 * Asides sa w niemal kazdym artykule, wiec ich kolory wazą na odbiorze
+	 * calego serwisu.
+	 *
+	 * Odcienie sa CELOWO przygaszone - marka jest chlodna i stonowana, a jaskrawe
+	 * domyslne kolory Starlight wygladaly na niej jak naklejki. Blok "note"
+	 * (niebieski) jest odsuniety od koloru akcentu, zeby zwykla informacja nie
+	 * udawala elementu marki. Kazda para tekst na tle trzyma co najmniej 8:1.
+	 */
+	--sl-color-blue-low: #1a2733;
+	--sl-color-blue: #79b8e0;
+	--sl-color-blue-high: #b3d9f0;
+	--sl-color-green-low: #16281f;
+	--sl-color-green: #74c69d;
+	--sl-color-green-high: #b0e0c6;
+	--sl-color-orange-low: #33261a;
+	--sl-color-orange: #e0a458;
+	--sl-color-orange-high: #f0cfa8;
+	--sl-color-red-low: #331c1c;
+	--sl-color-red: #e08585;
+	--sl-color-red-high: #f0bcbc;
+	--sl-color-purple-low: #251f33;
+	--sl-color-purple: #b39ddb;
+	--sl-color-purple-high: #d6c9ec;
+
+	--sl-color-backdrop-overlay: hsla(240, 8%, 8%, 0.72);
 }
 
 /*
- * Motyw jasny odwraca skale: -high jest najciemniejszy, bo sluzy za kolor
- * tekstu na jasnym tle. Zachowujemy te konwencje Starlight.
+ * --- Motyw jasny: lukaszpodgorski.pl ---
+ *
+ * Skala odwrocona: --sl-color-white to ciemny tekst, --sl-color-black to biel
+ * tla. Analogicznie -accent-high jest tu NAJCIEMNIEJSZY, bo sluzy za kolor
+ * tekstu. Zachowujemy te konwencje Starlight.
  */
 :root[data-theme='light'] {
-	--sl-color-accent-low: #ccfbf1;
-	--sl-color-accent: #0d9488;
-	--sl-color-accent-high: #115e59;
+	--sl-color-white: #111114; /* naglowki - ink marki, 18,0:1 */
+	--sl-color-gray-1: #23221e;
+	--sl-color-gray-2: #514e47; /* tresc artykulow - 7,9:1 */
+	--sl-color-gray-3: #6b675e; /* tekst drugorzedny - 5,4:1 */
+	--sl-color-gray-4: #8c887e;
+	--sl-color-gray-5: #c9c6bc;
+	--sl-color-gray-6: #e7e5de; /* tlo kodu w linii */
+	--sl-color-gray-7: #f2f1ec; /* tlo nawigacji */
+	--sl-color-black: #fafaf7; /* tlo strony - paper marki */
+
+	--sl-color-hairline: #c9c6bc;
+	--sl-color-hairline-light: #e7e5de;
+	--sl-color-hairline-shade: #c9c6bc;
+
+	--sl-color-accent-low: #dcebf8; /* tlo blokow akcentowanych */
+	/*
+	 * -accent sluzy w motywie jasnym takze za kolor odnosnikow ORAZ za tlo
+	 * przyciskow z bialym napisem. Bazowy #378ccf dawalby 3,45:1 - dosc na
+	 * obramowanie, za malo na tekst i na etykiete przycisku. Marka ma na to
+	 * osobny odcien: --brand-600 #2a6fa8, ktory daje 5,1:1 na tle i 5,3:1 pod
+	 * bialym napisem.
+	 */
+	--sl-color-accent: #2a6fa8;
+	--sl-color-accent-high: #06243f; /* tekst w blokach akcentowanych - 13,0:1 */
+
+	/*
+	 * Kolory semantyczne asides. Tla sa CIEPLE, zgodnie z reszta motywu jasnego
+	 * (paper #fafaf7 i szarosci marki maja domieszke bezu) - chlodne, czysto
+	 * bialawe tla Starlight odcinaly sie od strony jak obce wtracenia.
+	 * Kazda para tekst na tle trzyma co najmniej 7:1.
+	 */
+	--sl-color-blue-low: #dcebf8;
+	--sl-color-blue: #2a6fa8;
+	--sl-color-blue-high: #06243f;
+	--sl-color-green-low: #dfeee2;
+	--sl-color-green: #2f7d4f;
+	--sl-color-green-high: #15391f;
+	--sl-color-orange-low: #f7ecdc;
+	--sl-color-orange: #96601a;
+	--sl-color-orange-high: #3d2a10;
+	--sl-color-red-low: #f7e4e2;
+	--sl-color-red: #b03636;
+	--sl-color-red-high: #40161a;
+	--sl-color-purple-low: #ebe6f5;
+	--sl-color-purple: #6a4fa3;
+	--sl-color-purple-high: #2a1d47;
+
+	--sl-color-backdrop-overlay: hsla(45, 12%, 92%, 0.72);
 }
 
 /* --- Hero: subtelna poswiata zamiast pustego tla --- */
@@ -186,9 +306,9 @@
 /*
  * Kolory tekstu na hoverze (tu i przy .minimal nizej) biora
  * --sl-color-accent-high, nie -text-accent. W motywie jasnym -text-accent to
- * #0d9488, ktore na tle --sl-color-accent-low daje kontrast 3,3:1 - ponizej
- * progu WCAG AA. -accent-high (#115e59) daje 6,7:1, a w motywie ciemnym
- * (#5eead4 na #042f2e) 9,8:1.
+ * #2a6fa8, ktore na tle --sl-color-accent-low (#dcebf8) daje 4,4:1 - ledwie
+ * ponad progiem WCAG AA. -accent-high (#06243f) daje tam 13,0:1, a w motywie ciemnym
+ * (#7fbde8 na #14283a) 7,4:1, czyli realny zapas na obu motywach.
  */
 .hero .actions .sl-link-button.secondary:is(:hover, :focus-visible) {
 	background: var(--sl-color-accent-low);
@@ -252,9 +372,65 @@ html:root[lang] {
 	--sl-content-width: 75rem;
 }
 
+/*
+ * --- Skala naglowkow: plaska, ta sama na kazdym ekranie ---
+ *
+ * Starlight ma dwie skale: bazowa (h2 29 px) i podbita o stopien powyzej 50em
+ * (h2 35 px, props.css). Obie sa za mocne dla tej kolumny - przy 75rem
+ * (sekcja wyzej) i tekscie 16 px naglowek czytal sie jak drugi tytul strony,
+ * a nie jak podzial tekstu.
+ *
+ * Ustawiamy jedna wartosc bez media query, wiec telefon i monitor dostaja to
+ * samo: h2 24 px, czyli 1,5:1 wzgledem tekstu. Roznice robi tu waga i odstep,
+ * nie rozmiar. h1 zostaje nietkniety - jako jedyny ma dominowac.
+ *
+ * h4 zrownuje sie z h5 (18 px), bo w tresci nie wystepuje zaden z nich
+ * (zero `####` i `#####` w src/content/docs) - wartosc jest tylko po to, zeby
+ * komponent uzywajacy h4 nie wyladowal na rozmiarze h2.
+ *
+ * Nie ruszaj tego przez `.sl-markdown-content h2` - zmienne `--sl-text-h*`
+ * obsluguja tez naglowki poza trescia (np. "Na tej stronie" w spisie tresci
+ * i naglowki komponentow), wiec zmiana tokenu trzyma je zgodne ze soba.
+ */
+:root {
+	--sl-text-h2: var(--sl-text-2xl); /* 24 px */
+	--sl-text-h3: var(--sl-text-xl); /* 20 px */
+	--sl-text-h4: var(--sl-text-lg); /* 18 px */
+}
+
 /* --- Rytm pionowy na stronach splash --- */
 /* Bez centrowania: naglowki zostaja przy lewej, zgodnie z akapitami pod nimi.
    Wysrodkowany jest tylko blok hero z paskiem liczb. */
 [data-has-hero] .sl-markdown-content :is(h2, .sl-heading-wrapper) {
 	margin-top: 3rem;
+}
+
+/*
+ * --- Ilustracja naglowkowa: dekorator, nie bohater strony ---
+ *
+ * Kazdy artykul otwiera obrazek 1600x900 wstawiony zwyklym Markdownem jako
+ * pierwszy element tresci. W oryginalnych proporcjach zajmowal on przy
+ * szerokosci kolumny okolo 540 px, czyli caly pierwszy ekran: czytelnik
+ * musial przewinac, zeby w ogole zobaczyc, o czym jest lekcja. Ilustracje sa
+ * dekoracyjne - nie niosa tresci, ktorej nie ma w tekscie - wiec nie maja
+ * prawa wypychac tekstu ponizej zagiecia.
+ *
+ * Kadrowanie zamiast skalowania (`object-fit: cover`) zachowuje czytelnosc
+ * motywu; `object-position` celuje w gorna czesc kadru, bo tam zwykle sa
+ * twarze i glowny obiekt. Wysokosc w `vh` daje ten sam pasek niezaleznie od
+ * szerokosci kolumny - na telefonie i na monitorze proporcje ilustracji do
+ * tekstu zostaja podobne.
+ *
+ * Selektor celuje wylacznie w obrazek bedacy JEDYNA trescia PIERWSZEGO
+ * akapitu. Diagramy i zrzuty wstawione w srodku artykulu (dwa takie pliki)
+ * zachowuja pelny rozmiar, bo tam obraz niesie informacje.
+ */
+.sl-markdown-content > p:first-child > img:only-child {
+	display: block;
+	width: 100%;
+	height: clamp(140px, 24vh, 220px);
+	object-fit: cover;
+	object-position: 50% 30%;
+	border-radius: 0.5rem;
+	border: 1px solid var(--sl-color-hairline);
 }

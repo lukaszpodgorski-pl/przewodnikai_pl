@@ -1,0 +1,122 @@
+---
+title: CLAUDE.md i pamięć projektu
+description: Cztery poziomy pliku CLAUDE.md, importy, reguły w .claude/rules, AGENTS.md i auto memory. Zapisujesz reguły raz zamiast powtarzać je w każdej rozmowie. Ćwiczenie zajmie 10 minut.
+sidebar:
+  label: 'CLAUDE.md i pamięć'
+  order: 8
+educationalLevel: Intermediate
+teaches:
+  - Jaka jest hierarchia plików pamięci i który wygrywa
+  - Jak importować treść do CLAUDE.md i ograniczać reguły do ścieżek
+  - Czym auto memory różni się od pliku, który piszesz sam
+about:
+  - name: Claude
+    sameAs: https://en.wikipedia.org/wiki/Claude_(language_model)
+  - name: Markdown
+    sameAs: https://en.wikipedia.org/wiki/Markdown
+mentions:
+  - name: Git
+    sameAs: https://en.wikipedia.org/wiki/Git
+    type: SoftwareApplication
+faq:
+  - q: Który plik CLAUDE.md wygrywa, gdy reguły się kłócą?
+    a: 'Bardziej specyficzny. Kolejność ładowania idzie od najszerszego zakresu: polityka organizacji, plik użytkownika, plik projektu, plik lokalny. Polityki organizacji nie da się wykluczyć.'
+  - q: Czy Claude Code czyta AGENTS.md?
+    a: 'Nie czyta go bezpośrednio. Czyta CLAUDE.md. Jeśli trzymasz instrukcje w AGENTS.md, zaimportuj go wewnątrz CLAUDE.md przez małpę i nazwę pliku, albo zrób symlink poleceniem ln -s AGENTS.md CLAUDE.md.'
+  - q: Jak długi powinien być CLAUDE.md?
+    a: 'Celuj poniżej 200 linii na plik. Każda linia zajmuje miejsce w oknie kontekstu przy każdej sesji, więc wpisuj tylko to, co inaczej tłumaczyłbyś za każdym razem: komendy build i test, konwencje, układ katalogów.'
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+:::note[O tej stronie]
+**Czas:** ok. 8 minut czytania + 10 minut ćwiczenia.
+**Poziom:** średni, po [własnych komendach](/claude-code/wlasne-komendy/).
+**Wcześniej:** umiesz zapisać powtarzalny prompt. Tu: zapiszesz wiedzę o projekcie.
+:::
+
+Każda sesja startuje ze świeżym <Termin id="okno-kontekstowe">oknem kontekstu</Termin>. Wiedzę między sesjami przenoszą dwie rzeczy: **CLAUDE.md**, który piszesz Ty, i **auto memory**, którą pisze Claude.
+
+## Hierarchia CLAUDE.md
+
+Pliki ładowane są w tej kolejności, od najszerszego zakresu:
+
+| Zakres | Lokalizacja | Współdzielone z |
+| --- | --- | --- |
+| Managed policy | macOS `/Library/Application Support/ClaudeCode/CLAUDE.md`; Linux i WSL `/etc/claude-code/CLAUDE.md`; Windows `C:\Program Files\ClaudeCode\CLAUDE.md` | cała organizacja |
+| User | `~/.claude/CLAUDE.md` | tylko Ty, wszystkie projekty |
+| Project | `./CLAUDE.md` albo `./.claude/CLAUDE.md` | zespół (git) |
+| Local | `./CLAUDE.local.md` (dodaj do `.gitignore`) | tylko Ty, ten projekt |
+
+Bardziej specyficzne instrukcje mają wyższy priorytet. Pliki w katalogach _nad_ katalogiem roboczym ładują się przy starcie, a pliki w podkatalogach - na żądanie, gdy Claude sięgnie po pliki z tych podkatalogów. Managed policy nie da się wykluczyć.
+
+## Importy
+
+Składnia to `@ścieżka/do/pliku`. Ścieżki relatywne rozwiązywane są względem pliku importującego, maksymalnie 4 poziomy zagnieżdżeń. Import spoza katalogu roboczego w pliku projektowym wywoła dialog zatwierdzenia.
+
+```markdown
+See @README for project overview and @package.json for available npm commands.
+
+# Additional Instructions
+- git workflow @docs/git-instructions.md
+- @~/.claude/my-project-instructions.md   # prywatne, działa między worktree
+```
+
+## AGENTS.md
+
+Claude Code czyta CLAUDE.md, **nie** AGENTS.md. Rozwiązanie: `@AGENTS.md` wewnątrz CLAUDE.md albo symlink (`ln -s AGENTS.md CLAUDE.md`).
+
+## Reguły w `.claude/rules/`
+
+Modularne pliki `.md` ładowane obok CLAUDE.md. Mogą być ograniczone do ścieżek przez frontmatter `paths:` (glob), więc ładują się tylko przy pracy z pasującymi plikami.
+
+```markdown
+---
+paths:
+  - "src/api/**/*.ts"
+---
+# Reguły API
+- Walidacja wejścia w każdym endpoincie.
+```
+
+To dobra odpowiedź na rosnący CLAUDE.md: zamiast jednego pliku, który zawsze zajmuje kontekst, masz kilka mniejszych, ładowanych wtedy, gdy są potrzebne.
+
+## Szybkie dodawanie
+
+`/init` generuje startowy CLAUDE.md (`CLAUDE_CODE_NEW_INIT=1` włącza tryb interaktywny). `/memory` edytuje pliki.
+
+Możesz też poprosić Claude "dodaj to do CLAUDE.md" albo powiedzieć "zapamiętaj, że...", co trafia do auto memory. Znak `#` na początku promptu również szybko dopisuje do pamięci.
+
+## Auto memory
+
+Claude sam zapisuje notatki - typy `user`, `feedback`, `project`, `reference` - w `~/.claude/projects/<project>/memory/`. Ładowane jest pierwsze 200 linii albo 25 KB pliku `MEMORY.md`. Wyłączysz przez `autoMemoryEnabled: false` albo `CLAUDE_CODE_DISABLE_AUTO_MEMORY=1`.
+
+## Dobre praktyki
+
+Celuj poniżej 200 linii na plik. Pisz konkretnie i weryfikowalnie - "Use 2-space indentation", nie "format nicely". Używaj nagłówków i punktów. Unikaj sprzecznych reguł. Wpisuj to, co inaczej wyjaśniałbyś co sesję: komendy build i test, konwencje, układ katalogów.
+
+:::caution[CLAUDE.md to kontekst, nie wymuszenie]
+Rzeczy typu "to musi się wykonać w danym momencie" rób **hookiem**, nie wpisem w CLAUDE.md. Wpis w pamięci jest silną sugestią, hook jest gwarancją. Szczegóły w lekcji o [hookach](/claude-code/hooks/).
+:::
+
+## Ćwiczenie: 10 minut
+
+1. Dodaj do projektowego `CLAUDE.md` trzy reguły: komendę testów, konwencję nazewnictwa i katalog handlerów.
+2. Uruchom `/context`.
+3. Potwierdź, że plik widnieje pod "Memory files".
+
+**Zaliczenie:** trzy konkretne, weryfikowalne reguły w pliku i potwierdzenie w `/context`, że Claude je wczytał. Jeśli którejś reguły nie da się sprawdzić patrząc na kod, przepisz ją.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** przenieś jedną z reguł do `.claude/rules/` z polem `paths:` i sprawdź, czy przestała się ładować przy pracy poza tą ścieżką.
+
+## Teraz wiesz
+
+- Pamięć ma cztery poziomy, a bardziej specyficzny wygrywa z ogólniejszym.
+- Reguły w `.claude/rules/` ładują się warunkowo i oszczędzają kontekst.
+- CLAUDE.md sugeruje, hook wymusza - to nie są zamienniki.
+
+**Następny krok:** [Narzędzia agenta](/claude-code/narzedzia-agenta/) - pełna lista tego, co Claude potrafi wywołać, i co z tego wymaga Twojej zgody.
+
+<SlowniczekStrony terminy={["okno-kontekstowe", "agent-ai"]} />

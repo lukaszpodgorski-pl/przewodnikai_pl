@@ -1,0 +1,90 @@
+---
+title: Najlepsze praktyki i typowe workflow
+description: Cykl Explore, Plan, Code, Commit, weryfikacja jako największa dźwignia, TDD z agentem, adwersaryjny przegląd subagentem i własny recap przy wielu sesjach. Ćwiczenie zajmie 10 minut.
+sidebar:
+  label: 'Najlepsze praktyki'
+  order: 19
+educationalLevel: Intermediate
+teaches:
+  - Na czym polega cykl Explore, Plan, Code, Commit
+  - Dlaczego weryfikacja ma największy wpływ na jakość wyniku
+  - Jak ustawić adwersaryjny przegląd zmian subagentem
+about:
+  - name: Claude
+    sameAs: https://en.wikipedia.org/wiki/Claude_(language_model)
+  - name: Test-driven development
+    sameAs: https://en.wikipedia.org/wiki/Test-driven_development
+mentions:
+  - name: Anthropic
+    sameAs: https://en.wikipedia.org/wiki/Anthropic
+    type: Organization
+  - name: Git
+    sameAs: https://en.wikipedia.org/wiki/Git
+    type: SoftwareApplication
+faq:
+  - q: Co najbardziej poprawia jakość pracy agenta?
+    a: Weryfikacja. Dołącz testy, zrzuty ekranu albo oczekiwane wyjścia, żeby Claude mógł sam siebie sprawdzić. Dokumentacja mówi to wprost - to pojedyncza rzecz o największym wpływie. Bez tego kod wygląda dobrze, ale bywa błędny.
+  - q: Czy przy pracy z agentem można robić TDD?
+    a: 'Tak, i warto. Napisz testy najpierw, zacommituj je, potem implementuj do zielonego. Zacommitowanie testów jest kluczowe: bez tego Claude bywa skłonny zmieniać testy zamiast kodu.'
+  - q: Kiedy pomijać tryb planowania?
+    a: Przy drobnych i oczywistych zmianach - literówce, dodaniu logu, zmianie nazwy zmiennej. Plan mode jest do eksploracji nieznanego albo dużego repozytorium, nie do każdej poprawki.
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+:::note[O tej stronie]
+**Czas:** ok. 8 minut czytania + 10 minut ćwiczenia.
+**Poziom:** średni, po [kontekście i kosztach](/claude-code/kontekst-i-koszty/).
+**Wcześniej:** znasz wszystkie mechanizmy. Tu: układasz je w sposób pracy.
+:::
+
+**1. Explore → Plan → Code → Commit.** Najpierw niech Claude przeczyta właściwe pliki i napisze plan ("nie pisz jeszcze kodu"), potem implementuje, weryfikuje i commituje. Fazy Explore i Plan są najtańsze tokenowo, a jednocześnie najcenniejsze.
+
+**2. Weryfikacja to najwyższa dźwignia.** Dokumentacja mówi to wprost: dołącz testy, zrzuty ekranu albo oczekiwane wyjścia, żeby Claude mógł sam siebie sprawdzić - to pojedyncza rzecz o największym wpływie. Bez tego kod "wygląda dobrze", ale bywa błędny.
+
+**3. TDD.** Napisz testy najpierw, zacommituj je, potem implementuj do zielonego. Claude bywa skłonny zmieniać testy zamiast kodu - zacommitowanie testów temu zapobiega. **Nie blokuj Edit ani Write w trakcie planu**, waliduj przez `PostToolUse` albo pre-commit.
+
+**4. Plan mode** (`Shift+Tab` do `plan` albo `/plan`) do eksploracji nieznanego lub dużego repozytorium. Dla małych zadań pomiń planowanie: przy oczywistym zakresie i drobnej poprawce - literówka, dodanie logu, zmiana nazwy zmiennej - poproś po prostu o zmianę.
+
+**5. Zrzuty ekranu i mockupy.** Wklej obraz (`Ctrl+V`), poproś o implementację i porównanie wizualne, na przykład przez integrację Chrome.
+
+**6. Precyzyjne prompty i korygowanie kursu.** `Esc` przerywa, podwójny `Esc` cofa. `/rewind` i checkpointy przywracają stan.
+
+**7. Higiena sesji.** Częste `/clear`, `--resume` i `--continue` do wznawiania, `/branch` i `/fork` do eksperymentów.
+
+**8. Adwersaryjny przegląd subagentem.** Zanim spojrzysz na PR napisany przez Claude, poproś o <Termin id="agent-ai">subagenta</Termin>, który _zaatakuje_ zmianę pod kątem poprawności i prostoty, a potem spisze przyjęte założenia i decyzje projektowe wraz z uzasadnieniem i opublikuje to jako artefakt.
+
+Subagent nie widział rozmowy, więc nie dzieli ślepych plam sesji głównej. Artefakt mówi Ci, gdzie patrzeć, zamiast zmuszać do czytania całego diffa na zimno. _(praktyka Dicksona Tsaia, Claude Code w Anthropic)_
+
+**9. Własny `/recap` przy wielu sesjach.** Przy ośmiu i więcej równoległych sesjach nie da się pamiętać, gdzie która jest. Skill `/recap` może wymuszać: najpierw odświeżenie tego, co mogło się zdezaktualizować - pull requesty, uruchomione joby, podlinkowane wątki - a potem raport w czterech punktach:
+
+1. cel, słowami tego, kto o niego prosił,
+2. faktyczny stan **wraz z dowodem** (przechodzące testy jednostkowe to nie dowód),
+3. co jest zablokowane na człowieku, a co technicznie,
+4. krótka lista kolejnych kroków, każdy oznaczony: Claude czy Ty.
+
+Twardy warunek: recap **nie zaczyna żadnej nowej pracy**. _(praktyka Richarda Zhuanga z Anthropic)_
+
+**10. Odpowiedzialność.** To Ty odpowiadasz za kod w pull requeście z Twoim nazwiskiem, niezależnie od tego, jak powstał. Recenzuj.
+
+## Ćwiczenie: 10 minut
+
+1. Zrób pełny cykl na drobnej funkcji: plan mode → zatwierdź plan → implementacja → testy → commit.
+2. Puść na tym samym diffie adwersaryjnego subagenta.
+3. Porównaj, co znalazł, z tym, co sam byś zauważył.
+
+**Zaliczenie:** masz przejście przez cały cykl i listę uwag od subagenta, który nie widział rozmowy. Jeśli znalazł coś, czego nie widziałeś, wiesz już, po co ten krok istnieje.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** zapisz sobie punkt 9 jako własny skill `/recap` i przetestuj go po tygodniu pracy nad kilkoma rzeczami naraz.
+
+## Teraz wiesz
+
+- Explore i Plan są najtańsze i najcenniejsze - to tam wygrywa się zadanie.
+- Bez sposobu weryfikacji agent nie wie, czy skończył, a Ty nie wiesz, czy działa.
+- Świeże spojrzenie subagenta jest wartościowe właśnie dlatego, że nie zna rozmowy.
+
+**Następny krok:** [Rozwiązywanie problemów](/claude-code/rozwiazywanie-problemow/) - tabela objaw, przyczyna, komenda naprawcza.
+
+<SlowniczekStrony terminy={["agent-ai", "prompt"]} />

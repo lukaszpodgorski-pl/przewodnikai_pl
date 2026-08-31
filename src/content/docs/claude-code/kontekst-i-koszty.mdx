@@ -1,0 +1,86 @@
+---
+title: Zarządzanie kontekstem i koszty
+description: Okno kontekstu to najważniejszy zasób w pracy z agentem. Różnica między compact a clear, cache promptów, dobór modelu i budżet rozumowania. Ćwiczenie zajmie 5 minut.
+sidebar:
+  label: 'Kontekst i koszty'
+  order: 18
+educationalLevel: Intermediate
+teaches:
+  - Czym różni się compact od clear i kiedy użyć którego
+  - Jak działa cache promptów i co go unieważnia
+  - Jak dobrać model i budżet rozumowania do zadania
+about:
+  - name: Okno kontekstowe
+    sameAs: https://en.wikipedia.org/wiki/Context_window
+  - name: Claude
+    sameAs: https://en.wikipedia.org/wiki/Claude_(language_model)
+mentions:
+  - name: Anthropic
+    sameAs: https://en.wikipedia.org/wiki/Anthropic
+    type: Organization
+  - name: OAuth
+    sameAs: https://en.wikipedia.org/wiki/OAuth
+faq:
+  - q: Czym różni się /compact od /clear?
+    a: '/compact podsumowuje dotychczasową rozmowę i zwalnia miejsce, zachowując wątek. /clear startuje czystą rozmowę, ale zachowuje pamięć z pliku CLAUDE.md. Compact wybierasz w środku zadania, clear między zadaniami.'
+  - q: Co unieważnia cache promptów?
+    a: Przełączenie modelu w trakcie sesji - Claude Code o tym ostrzega. Fork sesji natomiast dzieli cache z rodzicem, więc nie płacisz drugi raz za to samo.
+  - q: Który model wybrać do jakiego zadania?
+    a: 'Haiku do rzeczy prostych i szybkich, Sonnet do codziennego kodowania, Opus do złożonego rozumowania, Fable do najtrudniejszych zadań. Alias opusplan daje Opus w trybie planowania i Sonnet w wykonaniu.'
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+:::note[O tej stronie]
+**Czas:** ok. 6 minut czytania + 5 minut ćwiczenia.
+**Poziom:** średni, po [trybie headless](/claude-code/tryb-headless-i-ci/).
+**Wcześniej:** umiesz zbudować automat. Tu: pilnujesz, żeby nie kosztował więcej, niż daje.
+:::
+
+<Termin id="okno-kontekstowe">Okno kontekstu</Termin> ma od 200 tys. tokenów (Haiku 4.5) do 1 mln (Opus, Sonnet i Fable 5 z aliasami `[1m]`). Gdy się zapełnia, jakość spada - to najważniejszy zasób, którym zarządzasz.
+
+## `/compact` kontra `/clear`
+
+`/compact [instrukcje]` podsumowuje rozmowę i zwalnia miejsce, zachowując wątek. `/clear` startuje czystą rozmowę, ale zachowuje pamięć z CLAUDE.md.
+
+**Auto-compact** uruchamia się sam przy zapełnieniu. Sterują nim `/autocompact`, `--autocompact` i `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE`.
+
+`/context` pokazuje, co zajmuje okno: memory files, narzędzia MCP, historię.
+
+**Oszczędzanie tokenów** sprowadza się do pięciu nawyków: częste `/clear` między zadaniami, subagenci do operacji o dużym wyjściu (logi, testy), `--bare` w skryptach, ograniczanie liczby serwerów MCP (pomaga Tool Search) i zwięzły CLAUDE.md.
+
+## Prompt caching
+
+Ponowne użycie cache obniża koszty. Przełączanie modelu unieważnia cache - Claude Code o tym ostrzega. Fork sesji dzieli cache z rodzicem.
+
+**NOWE v2.1.243: `promptCacheTtl`.** Na kluczu API albo providerze chmurowym ustaw `promptCacheTtl`, żeby cache głównej rozmowy żył **60 minut zamiast 5**. Powrót po przerwie nie startuje wtedy z zimnego cache - realna oszczędność przy pracy w blokach z przerwami.
+
+**NOWE v2.1.248.** Naprawiono cogodzinny miss cache: po odświeżeniu tokenu OAuth definicje narzędzi były renderowane od nowa i następna tura mijała się z cache, mniej więcej raz na godzinę. Długie sesje trzymają teraz cache przez refresh.
+
+## Model i budżet rozumowania
+
+Haiku do prostych i szybkich rzeczy, Sonnet do codziennego kodowania, Opus do złożonego rozumowania, Fable do najtrudniejszych zadań. Alias `opusplan` daje Opus w plan mode i Sonnet w wykonaniu.
+
+**Thinking.** `Option+T` albo `Alt+T` przełącza extended thinking. Słowa "think", "think harder" i "ultrathink" w prompcie zwiększają budżet rozumowania. `MAX_THINKING_TOKENS` (minimum 1000, na przykład 31999) steruje budżetem, a `--effort` i `/effort` poziomem (`low` do `max`, plus `ultracode`).
+
+## Ćwiczenie: 5 minut
+
+1. Po długiej sesji uruchom `/context` i zapisz zapełnienie.
+2. Uruchom `/compact "zachowaj decyzje architektoniczne"`.
+3. Uruchom `/context` ponownie i porównaj liczby.
+
+**Zaliczenie:** masz dwie liczby i wiesz, ile miejsca odzyskało streszczenie. Sprawdź też, czy Claude nadal pamięta decyzje, o których zachowanie prosiłeś.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** zobacz w `/context`, ile zajmują narzędzia MCP. Jeśli to duży kawałek, masz gotowy pomysł na oszczędność.
+
+## Teraz wiesz
+
+- Okno kontekstu jest zasobem, a spadek jakości to pierwszy objaw jego zapełnienia.
+- Compact zostaje w wątku, clear go kończy - i to jest cała różnica.
+- Model dobierasz do trudności zadania, a nie zawsze do góry.
+
+**Następny krok:** [Najlepsze praktyki i workflow](/claude-code/najlepsze-praktyki/) - cykl Explore, Plan, Code, Commit i to, czego wymagać od raportu agenta.
+
+<SlowniczekStrony terminy={["okno-kontekstowe", "prompt"]} />

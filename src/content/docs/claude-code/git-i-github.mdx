@@ -1,0 +1,72 @@
+---
+title: Praca z Gitem i GitHubem w Claude Code
+description: Commity, pull requesty, konflikty, przegląd kodu, gh CLI, GitHub Actions i git worktrees. Siedem typowych workflow, które zdejmują z Ciebie mechaniczną robotę. Ćwiczenie zajmie 10 minut.
+sidebar:
+  label: 'Git i GitHub'
+  order: 15
+educationalLevel: Intermediate
+teaches:
+  - Jak delegować commity, pull requesty i konflikty
+  - Czym różnią się poziomy komendy code-review
+  - Jak uruchomić Claude w GitHub Actions i w worktree
+about:
+  - name: Git
+    sameAs: https://en.wikipedia.org/wiki/Git
+  - name: Claude
+    sameAs: https://en.wikipedia.org/wiki/Claude_(language_model)
+mentions:
+  - name: GitHub
+    sameAs: https://en.wikipedia.org/wiki/GitHub
+    type: Organization
+  - name: GitLab
+    sameAs: https://en.wikipedia.org/wiki/GitLab
+    type: Organization
+  - name: Continuous integration
+    sameAs: https://en.wikipedia.org/wiki/Continuous_integration
+faq:
+  - q: Czy do pracy z GitHubem potrzebuję czegoś poza Claude Code?
+    a: 'Tak, narzędzia gh CLI. Jest wymagane do statusu pull requesta w stopce i do wielu operacji na GitHubie. Uwierzytelnisz je poleceniem gh auth login. Odpowiednikiem dla GitLaba jest glab.'
+  - q: Jak często commitować, pracując z agentem?
+    a: Często - co zadanie albo co godzinę. Częste commity dają Ci punkty, do których możesz wrócić, a przy pracy z agentem to najtańsze zabezpieczenie przed zmianą, która poszła w złą stronę.
+  - q: Jak pracować nad kilkoma rzeczami równolegle?
+    a: 'Przez git worktrees. Polecenie claude -w feature-auth daje izolowany worktree do równoległej sesji, flaga --tmux tworzy panel tmux, a subagent z ustawieniem isolation worktree dostaje własną kopię repozytorium.'
+status: gotowe
+---
+
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+:::note[O tej stronie]
+**Czas:** ok. 5 minut czytania + 10 minut ćwiczenia.
+**Poziom:** średni, po [skills i plugins](/claude-code/skills-i-plugins/).
+**Wcześniej:** commit i branch to dla Ciebie znane słowa. Tu: oddajesz agentowi mechaniczną część.
+:::
+
+Claude Code świetnie radzi sobie z gitem. Siedem typowych workflow:
+
+- **Commity** - poproś "zrób commit z opisową wiadomością", albo użyj własnej komendy `/commit` z lekcji o [własnych komendach](/claude-code/wlasne-komendy/). Commituj często: co zadanie albo co godzinę.
+- **Pull requesty** - "utwórz PR z tytułem i podsumowaniem w trzech punktach". Claude użyje `gh` CLI.
+- **Konflikty** - "rozwiąż konflikty merge w tych plikach". Claude czyta i proponuje rozwiązanie.
+- **Przegląd** - `/code-review` (alias `/review`) znajduje bugi i cleanup w bieżącym diffie. `--fix` aplikuje poprawki, `--comment` dodaje komentarze do PR, `ultra` uruchamia głęboki review w chmurze. `/security-review` szuka podatności.
+- **`gh` CLI** - wymagany do statusu PR w stopce i wielu operacji GitHub. Uwierzytelnij przez `gh auth login`. Odpowiednik dla GitLaba to `glab`.
+- **GitHub Actions** - `/install-github-app` instaluje aplikację Claude GitHub i konfiguruje workflow. Potem tagujesz `@claude` w komentarzach PR i issue, żeby Claude działał w CI.
+- **Git worktrees** - `claude -w feature-auth` daje izolowany worktree do równoległych sesji, `--tmux` tworzy panel tmux, a subagent z `isolation: worktree` dostaje izolowaną kopię repozytorium.
+
+## Ćwiczenie: 10 minut
+
+1. Na gałęzi z małą zmianą uruchom `/diff`.
+2. Uruchom `/code-review` i przeczytaj znalezione uwagi.
+3. Poproś Claude o commit z opisową wiadomością.
+
+**Zaliczenie:** masz commit, którego wiadomości nie musiałeś pisać, i listę uwag, których sam nie szukałeś. Oceń, ile z nich było trafnych - to Twój punkt odniesienia na przyszłość.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** uruchom `/code-review --fix` na tej samej gałęzi i porównaj, co narzędzie zmieniło samo, a co zostawiło Tobie.
+
+## Teraz wiesz
+
+- Commity, pull requesty i konflikty to zadania, które oddajesz w całości.
+- `gh` CLI jest wymagane, a nie opcjonalne, jeśli pracujesz z GitHubem.
+- Worktree to sposób na kilka równoległych sesji bez deptania sobie po gałęziach.
+
+**Następny krok:** [Terminal, IDE i urządzenia](/claude-code/terminal-ide-urzadzenia/) - konfiguracja terminala, wtyczki do edytorów i przenoszenie sesji między urządzeniami.
+
+<SlowniczekStrony terminy={["agent-ai"]} />

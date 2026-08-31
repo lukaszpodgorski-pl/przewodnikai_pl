@@ -8,7 +8,7 @@ Wskazówki dla agentów AI (Claude Code i pokrewnych) pracujących w tym repozyt
 
 [przewodnikai.pl](https://przewodnikai.pl) - otwarta baza wiedzy o AI po polsku, zbudowana na **Astro 7 + Starlight**, hostowana na **Cloudflare Workers** (static assets, konfiguracja w `wrangler.jsonc`).
 
-**To repozytorium treści, nie aplikacji.** 57 artykułów w `src/content/docs/`, kilka własnych komponentów, zero logiki biznesowej. Większość zadań to edycja Markdowna.
+**To repozytorium treści, nie aplikacji.** 78 artykułów w `src/content/docs/`, kilka własnych komponentów, zero logiki biznesowej. Większość zadań to edycja Markdowna.
 
 ### Dwa repozytoria - przeczytaj to przed pierwszym commitem
 
@@ -27,9 +27,11 @@ ręcznie**, następna publikacja nadpisze zmiany. Cloudflare buduje z GitHuba.
 
 Serwis jest w trakcie przeglądu artykuł po artykule. Powód: duża część treści
 powstała z dużym udziałem AI i właściciel nie publikuje jej pod swoim nazwiskiem
-przed sprawdzeniem. **Wszystkie 57 artykułów jest wyciętych z produkcji.**
-Publicznie stoi 19 stron: strona główna, dziewięć stron zbiorczych (osiem sekcji
-plus ścieżki), `zasoby/kontakt`, `zasoby/o-mnie` i siedem stron newslettera.
+przed sprawdzeniem. **Wszystkie 56 lekcji pierwotnego kursu jest wyciętych
+z produkcji.** Publicznie stoi 42 strony: strona główna, dziesięć stron
+zbiorczych (dziewięć sekcji plus ścieżki), cała sekcja `claude-code`
+(21 lekcji, materiał autorski właściciela), `zasoby/kontakt`, `zasoby/o-mnie`,
+`zasoby/regulamin` i siedem stron newslettera.
 
 Steruje tym pole `status` we frontmatterze (`src/content.config.ts`):
 
@@ -122,7 +124,7 @@ opublikowanej wersji.
 
 ### Routing i treść
 
-Jedna kolekcja `docs` (`src/content.config.ts`) ładowana przez `docsLoader()` Starlight. **Folder w `src/content/docs/` = sekcja w menu bocznym**, ale sidebar nie jest w pełni automatyczny: lista ośmiu sekcji siedzi w `src/config/sections.ts` (`podstawy`, `jak-dziala-ai`, `prompt-engineering`, `narzedzia`, `suwerenne-ai`, `praktyka`, `etyka`, `zasoby`) i stamtąd idzie do `astro.config.mjs`. Każda ma `autogenerate` w środku. **Nowy folder najwyższego poziomu nie pojawi się w menu, dopóki nie dopiszesz go do `SECTIONS`.**
+Jedna kolekcja `docs` (`src/content.config.ts`) ładowana przez `docsLoader()` Starlight. **Folder w `src/content/docs/` = sekcja w menu bocznym**, ale sidebar nie jest w pełni automatyczny: lista dziewięciu sekcji siedzi w `src/config/sections.ts` (`podstawy`, `jak-dziala-ai`, `prompt-engineering`, `narzedzia`, `suwerenne-ai`, `praktyka`, `etyka`, `claude-code`, `zasoby`) i stamtąd idzie do `astro.config.mjs`. Każda ma `autogenerate` w środku. **Nowy folder najwyższego poziomu nie pojawi się w menu, dopóki nie dopiszesz go do `SECTIONS`.**
 
 Każda sekcja ma stronę zbiorczą `<sekcja>/index.mdx` - wstęp, `CardGrid` z artykułami i `faq`. To ona jest środkowym poziomem breadcrumba i celem linków z ekranu głównego. W menu bocznym widnieje jako ręcznie dopisany wpis "Przegląd"; sam plik ma `sidebar.hidden: true`, żeby `autogenerate` nie dodał go po raz drugi. **Nowa sekcja bez `index.mdx` zapali `verify-geo.mjs` na czerwono** - asercja "każdy katalog sekcji ma stronę zbiorczą" pilnuje, żeby breadcrumb nie wskazywał na nieistniejący adres.
 
@@ -132,7 +134,7 @@ Każda sekcja ma stronę zbiorczą `<sekcja>/index.mdx` - wstęp, `CardGrid` z a
 
 1. **`trailingSlash: 'always'`** - wszystkie linki wewnętrzne muszą kończyć się ukośnikiem (`/podstawy/wstep/`).
 2. **`public/_redirects`** - mapa 301 ze starych płaskich URL-i. Reguły mają pierwszeństwo przed plikami statycznymi, więc **nie dodawaj tam reguły pod adresem sekcji** (`/podstawy/`, `/narzedzia/` itd.) - przesłoniłaby stronę zbiorczą tej sekcji. Trzy takie kolizje (`/podstawy/`, `/prompt-engineering/`, `/etyka/`) usunięto przy wprowadzaniu stron zbiorczych; stare adresy prowadzą teraz na stronę sekcji zamiast na dawny artykuł.
-3. **Łańcuch "Następny krok"** - treść artykułów prowadzi czytelnika liniowo przez sekcje w kolejności `podstawy → jak-dziala-ai → prompt-engineering → narzedzia → suwerenne-ai → praktyka → etyka → zasoby`. `sidebar.order` w każdym pliku odzwierciedla tę ścieżkę. Zmiana kolejności wymaga aktualizacji linków "Następny krok" w sąsiednich plikach.
+3. **Łańcuch "Następny krok"** - treść artykułów prowadzi czytelnika liniowo przez sekcje w kolejności `podstawy → jak-dziala-ai → prompt-engineering → narzedzia → suwerenne-ai → praktyka → etyka → claude-code → zasoby`. `sidebar.order` w każdym pliku odzwierciedla tę ścieżkę. Zmiana kolejności wymaga aktualizacji linków "Następny krok" w sąsiednich plikach.
 
 ### Frontmatter GEO/AEO
 

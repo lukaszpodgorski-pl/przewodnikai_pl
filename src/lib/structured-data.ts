@@ -16,6 +16,9 @@ const LICENSE = 'https://creativecommons.org/licenses/by-sa/4.0/';
  */
 export const AUTHOR = {
 	'@type': 'Person',
+	// Kanoniczny @id encji - IDENTYCZNY na wszystkich domenach (brand-kit/entity-graph.php).
+	// Bez tego crawler widzi tu osobna, niepowiazana osobe i konsolidacja encji nie zachodzi.
+	'@id': autor['@id'],
 	name: autor.name,
 	url: autor.url,
 	image: autor.photo,

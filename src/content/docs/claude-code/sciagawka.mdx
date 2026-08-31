@@ -1,0 +1,131 @@
+---
+title: Ściągawka Claude Code
+description: Komendy CLI, slash commands, skróty klawiszowe, ścieżki plików konfiguracyjnych i modele - wszystko na jednej stronie. Na końcu ćwiczenie końcowe całej sekcji. Ćwiczenie zajmie 30 minut.
+sidebar:
+  label: 'Ściągawka'
+  order: 21
+educationalLevel: Intermediate
+teaches:
+  - Gdzie leżą wszystkie pliki konfiguracyjne Claude Code
+  - Jak szybko przypomnieć sobie komendę albo skrót
+  - Jak zbudować własny starter kit z całej sekcji
+about:
+  - name: Claude
+    sameAs: https://en.wikipedia.org/wiki/Claude_(language_model)
+  - name: Interfejs wiersza poleceń
+    sameAs: https://en.wikipedia.org/wiki/Command-line_interface
+mentions:
+  - name: Model Context Protocol
+    sameAs: https://en.wikipedia.org/wiki/Model_Context_Protocol
+  - name: Anthropic
+    sameAs: https://en.wikipedia.org/wiki/Anthropic
+    type: Organization
+faq:
+  - q: Gdzie leżą ustawienia Claude Code?
+    a: 'W trzech miejscach naraz: ~/.claude/settings.json dla użytkownika, .claude/settings.json w repozytorium dla zespołu i .claude/settings.local.json dla ustawień prywatnych, które trafiają do gitignore. Do tego managed-settings.json po stronie organizacji.'
+  - q: Gdzie Claude trzyma pamięć?
+    a: 'Pamięć, którą piszesz Ty, leży w plikach CLAUDE.md - w katalogu domowym, w repozytorium i w wersji lokalnej. Pamięć, którą Claude pisze sam, leży w ~/.claude/projects/ w podkatalogu memory, a pamięć subagentów w .claude/agent-memory/.'
+  - q: Które modele są dostępne w sierpniu 2026?
+    a: 'Aliasy sonnet, opus, haiku, fable, best i opusplan. Pełne identyfikatory to claude-opus-5, claude-sonnet-5, claude-fable-5 i claude-haiku-4-5-20251001. Domyślny model to Opus 5 na planie Max i w API, a Sonnet 5 na planie Pro.'
+status: gotowe
+---
+
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+:::note[O tej stronie]
+**Czas:** ok. 4 minuty czytania + 30 minut ćwiczenia końcowego.
+**Poziom:** średni, ostatnia lekcja sekcji.
+**Wcześniej:** przeszedłeś całą sekcję. Tu: wszystko na jednej stronie i jedno duże ćwiczenie.
+:::
+
+## Komendy CLI
+
+```text
+claude                      # sesja interaktywna
+claude "prompt"             # z promptem początkowym
+claude -p "prompt"          # tryb print (skrypty, CI)
+claude -c   /  --continue   # kontynuuj ostatnią
+claude -r "id" "prompt"     # wznów sesję
+claude --model opus         # wybór modelu
+claude -w feature           # git worktree
+claude --bg "task"          # background agent
+claude rc                   # Remote Control (start sesji z telefonu)
+claude update / doctor / install
+claude mcp add|list|remove|get|login|logout
+claude plugin install <name>@<marketplace>
+claude auth login|logout|status
+claude setup-token          # token do CI
+```
+
+## Slash commands
+
+```text
+/help /clear /compact /context /config /model /effort
+/init /memory /agents /mcp /permissions /hooks
+/review /code-review /security-review /diff /simplify
+/status /usage /cost /doctor /debug /bug /feedback
+/resume /rewind /branch /fork /subtask /export /statusline
+/rename /color /desktop /cd /loop /claude-api
+/plan /ide /install-github-app     (/vim → /config Editor mode)
+```
+
+## Skróty klawiszowe
+
+```text
+Esc            przerwij            Esc Esc     rewind / czyść draft
+Ctrl+C         przerwij/wyjdź      Ctrl+D      wyjście
+Ctrl+L         przerysuj           Ctrl+R      reverse search
+Ctrl+O         transkrypt          Ctrl+T      checklista zadań
+Ctrl+B         w tło               Shift+Tab   cykl trybów uprawnień
+Alt+P model    Alt+T thinking      Alt+O       fast mode
+\+Enter / Shift+Enter / Ctrl+J     wielolinia
+!komenda       shell mode          @ścieżka    plik lub zasób MCP
+```
+
+## Ścieżki plików konfiguracyjnych
+
+```text
+~/.claude/settings.json                 # user settings
+.claude/settings.json                   # project settings (git)
+.claude/settings.local.json             # local (gitignore)
+managed-settings.json                   # enterprise
+~/.claude/CLAUDE.md · ./CLAUDE.md · ./CLAUDE.local.md   # pamięć
+.claude/rules/*.md                      # reguły (opcjonalnie paths:)
+.claude/commands/  ~/.claude/commands/  # własne slash commands
+.claude/agents/    ~/.claude/agents/    # subagenci
+.claude/agent-memory/                   # pamięć subagentów
+.claude/skills/    ~/.claude/skills/    # skills (SKILL.md)
+.mcp.json                               # MCP (project scope)
+~/.claude.json                          # MCP local/user + stan
+~/.claude/projects/<project>/memory/    # auto memory
+```
+
+## Modele (sierpień 2026)
+
+Aliasy: `sonnet`, `opus`, `haiku`, `fable`, `best`, `opusplan`. Pełne ID: `claude-opus-5`, `claude-sonnet-5`, `claude-fable-5`, `claude-haiku-4-5-20251001`. Domyślny: Opus 5 na Max i API, Sonnet 5 na Pro.
+
+## Ćwiczenie końcowe: 30 minut
+
+Zbuduj własny starter kit. Pięć elementów, po jednym z każdej ważnej lekcji tej sekcji:
+
+1. `CLAUDE.md` z regułami projektu.
+2. Jedną własną komendę `/commit`.
+3. Jednego subagenta `code-reviewer` z `memory: project`.
+4. Jeden hook auto-formatujący po edycji.
+5. Jeden serwer MCP w `.mcp.json`.
+
+Potem przejdź pełny cykl Explore → Plan → Code → Commit i zweryfikuj wynik przez `/code-review` oraz adwersaryjnego subagenta.
+
+**Zaliczenie:** wszystkie pięć elementów działa naraz w jednym projekcie, a cykl kończy się commitem, którego nie musiałeś poprawiać ręcznie. To jest Twoja konfiguracja startowa do każdego następnego repozytorium.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** spakuj to wszystko jako plugin i sprawdź, czy da się zainstalować w drugim projekcie jedną komendą.
+
+## Teraz wiesz
+
+- Cała konfiguracja Claude Code mieści się w kilkunastu ścieżkach, które warto znać na pamięć.
+- Starter kit z pięciu elementów zamyka wszystko, czego uczyła ta sekcja.
+- Ściągawka jest po to, żeby do niej wracać - nie żeby ją zapamiętać.
+
+**Następny krok:** [Zasoby](/zasoby/) - słownik pojęć, biblioteka materiałów i kontakt, gdy chcesz zgłosić uwagę do tego kursu.
+
+<SlowniczekStrony terminy={["agent-ai", "okno-kontekstowe", "prompt"]} />

@@ -130,9 +130,24 @@ function stripJsonLd(html) {
 	return html.replace(/<script type="application\/ld\+json"[^>]*>[\s\S]*?<\/script>/g, '');
 }
 
+/**
+ * Zamienia encje HTML na znaki. Bez tego cudzysłów w pytaniu z frontmattera
+ * (`Czy ChatGPT "rozumie"...`) nie zrówna się z HTML, bo komponent renderuje
+ * go jako `&quot;`. `&amp;` rozwijamy na końcu, żeby nie odkodować dwa razy.
+ */
+function decodeEntities(text) {
+	return text
+		.replace(/&(?:quot|#34|#x22);/gi, '"')
+		.replace(/&(?:apos|#39|#x27);/gi, "'")
+		.replace(/&(?:nbsp|#160);/gi, ' ')
+		.replace(/&(?:lt|#60);/gi, '<')
+		.replace(/&(?:gt|#62);/gi, '>')
+		.replace(/&(?:amp|#38);/gi, '&');
+}
+
 /** Płaski tekst widoczny dla czytelnika - bez bloków JSON-LD i bez znaczników HTML. */
 function visibleText(html) {
-	return stripJsonLd(html).replace(/<[^>]+>/g, ' ');
+	return decodeEntities(stripJsonLd(html).replace(/<[^>]+>/g, ' '));
 }
 
 /**
@@ -376,35 +391,21 @@ check('liczba stron z blokiem FAQPage odpowiada liczbie plików z polem faq: w f
 	return `${withFaq.length}/${sourceFaqCount}`;
 });
 
-// Jedyna strona z jawnym wyjątkiem: pole `faqHidden` w jej frontmatterze
-// wyłącza wygenerowaną sekcję "Częste pytania", bo treść artykułu sama jest
-// FAQ (pytania jako nagłówki `##` z rozwiniętymi odpowiedziami), a
-// wygenerowana sekcja pod spodem powielałaby dokładnie te same pytania.
-// Blok FAQPage zostaje - warunek widocznej treści (wymagany przez Google)
-// spełnia tu sama treść artykułu. To jedyny URL, któremu wolno nie mieć
-// "Częste pytania" mimo FAQPage; każda inna strona z tym wyjątkiem to
-// prawdziwy defekt.
-const FAQ_HIDDEN_URL = '/zasoby/faq/';
-
-check('FAQPage zawsze towarzyszy widocznej sekcji (poza jawnym wyjątkiem faqHidden)', () => {
+// Google wymaga, żeby treść z bloku FAQPage była widoczna na stronie.
+// Dziś nie ma od tego wyjątku. Jedynym była strona `zasoby/faq.md`: jej
+// pytania stały w treści jako nagłówki `##`, więc flaga `faqHidden`
+// wyłączała wygenerowaną sekcję, żeby nie powielać ich drugi raz. Strona
+// została usunięta - powtarzała odpowiedzi z artykułów, a jej dwa unikalne
+// pytania trafiły do FAQ lekcji, które ten temat omawiają.
+//
+// Flaga `faqHidden` została w schemacie (src/content.config.ts), ale nie
+// używa jej żaden plik. Jeśli wróci, ta asercja potrzebuje listy wyjątków -
+// inaczej zapali się na czerwono na pierwszej takiej stronie.
+check('FAQPage zawsze towarzyszy widocznej sekcji "Częste pytania"', () => {
 	const withFaq = pageData.filter((p) => typesIn(p.html).has('FAQPage'));
-	const bad = withFaq.filter((p) => p.url !== FAQ_HIDDEN_URL && !p.html.includes('Częste pytania'));
+	const bad = withFaq.filter((p) => !p.html.includes('Częste pytania'));
 	assert(bad.length === 0, `JSON-LD bez widocznej treści: ${bad.map((p) => p.url).join(', ')}`);
-	return `${withFaq.length - 1}/${withFaq.length - 1} (jedyny wyjątek: ${FAQ_HIDDEN_URL})`;
-});
-check(`faqHidden działa na ${FAQ_HIDDEN_URL}: FAQPage jest, wygenerowana sekcja - nie`, () => {
-	const page = pageData.find((p) => p.url === FAQ_HIDDEN_URL);
-	// Strona może być wycięta z publikacji (status: szkic we frontmatterze).
-	// Harness biegnie zarówno na źródle prawdy, jak i na zawartości .publish/,
-	// więc jej brak jest tu stanem dopuszczalnym, a nie błędem - inaczej
-	// wycięcie jednego artykułu blokowałoby całą publikację.
-	if (!page) return 'pominięte - strona wycięta z tej publikacji';
-	assert(typesIn(page.html).has('FAQPage'), `${FAQ_HIDDEN_URL} powinna mieć blok FAQPage`);
-	assert(
-		!page.html.includes('Częste pytania'),
-		`${FAQ_HIDDEN_URL} nie powinna mieć wygenerowanej sekcji "Częste pytania" - flaga faqHidden nie działa`
-	);
-	return 'FAQPage + brak wygenerowanej sekcji';
+	return `${withFaq.length}/${withFaq.length}`;
 });
 check('brak sekcji FAQ na stronach bez FAQPage', () => {
 	const bad = pageData.filter(
@@ -502,24 +503,34 @@ check('encja autora (Person) ma niepuste pole name wszędzie, gdzie występuje',
 	assert(bad.length === 0, `puste pole name w encji Person: ${bad.join(', ')}`);
 	return 'wszystkie encje Person mają niepuste name';
 });
-check(`każde pytanie z faq: na ${FAQ_HIDDEN_URL} występuje w widocznej treści HTML`, () => {
-	const srcFile = `${join(SRC_DOCS, ...FAQ_HIDDEN_URL.split('/').filter(Boolean))}.md`;
-	// Jak wyżej: przy publikacji częściowej pliku może po prostu nie być.
-	if (!existsSync(srcFile)) return 'pominięte - strona wycięta z tej publikacji';
-	const content = readFileSync(srcFile, 'utf8');
-	const questions = extractFaqQuestions(content);
-	assert(questions.length > 0, `nie znaleziono żadnego pytania w ${srcFile}`);
-
-	const page = pageData.find((p) => p.url === FAQ_HIDDEN_URL);
-	assert(page, `nie znaleziono strony ${FAQ_HIDDEN_URL}`);
-
-	const visible = normalizeForMatch(visibleText(page.html));
-	const missing = questions.filter((q) => !visible.includes(normalizeForMatch(q)));
+// Google honoruje FAQPage tylko wtedy, gdy dokładnie te pytania są widoczne
+// na stronie. Wcześniej sprawdzaliśmy to na jednym adresie (`zasoby/faq.md`,
+// jedyna strona pisząca pytania ręcznie w treści). Ta strona zniknęła, a
+// asercja została i objęła wszystkie strony naraz: pytania bierzemy wprost
+// z bloku JSON-LD i szukamy ich w tekście po odjęciu znaczników.
+check('każde pytanie z bloku FAQPage występuje w widocznej treści strony', () => {
+	const bad = [];
+	let sprawdzone = 0;
+	for (const p of pageData) {
+		let visible = null;
+		for (const block of jsonLdBlocks(p.html)) {
+			const nodes = Array.isArray(block['@graph']) ? block['@graph'] : [block];
+			for (const node of nodes) {
+				if (node['@type'] !== 'FAQPage') continue;
+				visible ??= normalizeForMatch(visibleText(p.html));
+				for (const q of node.mainEntity ?? []) {
+					sprawdzone++;
+					if (!visible.includes(normalizeForMatch(q.name ?? ''))) bad.push(`${p.url}: ${q.name}`);
+				}
+			}
+		}
+	}
+	assert(sprawdzone > 0, 'nie znaleziono ani jednego pytania w blokach FAQPage');
 	assert(
-		missing.length === 0,
-		`pytania nieobecne w widocznej treści (poza JSON-LD): ${missing.join(' | ')}`,
+		bad.length === 0,
+		`pytania nieobecne w widocznej treści (poza JSON-LD): ${bad.join(' | ')}`,
 	);
-	return `${questions.length}/${questions.length} pytań widocznych w HTML`;
+	return `${sprawdzone}/${sprawdzone} pytań widocznych w HTML`;
 });
 
 // --- raport ---

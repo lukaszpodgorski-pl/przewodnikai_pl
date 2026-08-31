@@ -1,0 +1,99 @@
+---
+title: Skills i plugins w Claude Code
+description: Skill to folder z plikiem SKILL.md ładowany progresywnie, plugin pakuje skills, subagentów, hooki i serwery MCP. Kryterium wyboru między skillem a subagentem. Ćwiczenie zajmie 10 minut.
+sidebar:
+  label: 'Skills i plugins'
+  order: 14
+educationalLevel: Intermediate
+teaches:
+  - Na czym polega progresywne ładowanie skilla
+  - Kiedy wybrać skill, a kiedy subagenta
+  - Jak zainstalować plugin z marketplace
+about:
+  - name: Claude
+    sameAs: https://en.wikipedia.org/wiki/Claude_(language_model)
+  - name: Wtyczka
+    sameAs: https://en.wikipedia.org/wiki/Plug-in_(computing)
+mentions:
+  - name: Anthropic
+    sameAs: https://en.wikipedia.org/wiki/Anthropic
+    type: Organization
+  - name: Markdown
+    sameAs: https://en.wikipedia.org/wiki/Markdown
+faq:
+  - q: Czym skill różni się od subagenta?
+    a: Miejscem pracy. Skill działa w głównym oknie kontekstu i dokłada do niego wiedzę. Subagent pracuje w osobnym oknie i zwraca tylko podsumowanie. To jest właściwe kryterium wyboru między jednym a drugim.
+  - q: Czy skill zajmuje kontekst, nawet gdy go nie używam?
+    a: 'Prawie nie. Zawsze załadowane są tylko nazwa i opis, czyli kilkadziesiąt tokenów. Pełna treść wchodzi dopiero wtedy, gdy Claude uzna skill za istotny albo gdy wywołasz go ukośnikiem.'
+  - q: Co dokładnie pakuje plugin?
+    a: Skills, subagentów, hooki i serwery MCP w jednej paczce. Marketplace to katalog takich paczek, z którego instalujesz je jedną komendą.
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+:::note[O tej stronie]
+**Czas:** ok. 6 minut czytania + 10 minut ćwiczenia.
+**Poziom:** średni, po [MCP](/claude-code/mcp/).
+**Wcześniej:** umiesz podłączyć narzędzia. Tu: dokładasz wiedzę i gotowe paczki.
+:::
+
+## Agent Skills
+
+Skill to folder z plikiem `SKILL.md` - frontmatter plus treść. Działa na zasadzie **progressive disclosure**, w trzech poziomach:
+
+1. Zawsze załadowane są tylko `name` i `description` - kilkadziesiąt tokenów.
+2. Pełna treść `SKILL.md` ładuje się, gdy Claude uzna skill za istotny albo gdy wpiszesz `/skill-name`.
+3. Pliki pomocnicze (REFERENCE.md, skrypty) ładowane są dopiero na żądanie.
+
+```markdown
+---
+name: architecture-diagram
+description: Use this when generating architecture or system diagrams
+allowed-tools: Read, Grep
+---
+Używaj formatu Mermaid. Zaznacz granice usług, kierunek przepływu danych,
+zależności zewnętrzne.
+```
+
+Lokalizacje: `.claude/skills/` dla projektu, `~/.claude/skills/` dla użytkownika. Frontmatter: `name`, `description`, `allowed-tools`, plus `disable-model-invocation`.
+
+Skills to domyślna jednostka reużywalnej wiedzy działająca **w głównym <Termin id="okno-kontekstowe">kontekście</Termin>** - w odróżnieniu od [subagentów](/claude-code/subagenci/), którzy mają kontekst osobny. To jest właściwe kryterium wyboru między jednym a drugim.
+
+## Plugins i marketplace'y
+
+Plugin pakuje skills, subagentów, hooks i serwery MCP. Marketplace to katalog pluginów.
+
+```text
+/plugin                                  # menu pluginów
+/plugin marketplace add anthropics/claude-plugins-official
+/plugin install code-review@claude-plugins-official
+/reload-plugins                          # aktywacja bez restartu
+```
+
+Z shella: `claude plugin install <name>@<marketplace>`, `claude plugin list`. Sesyjnie: `--plugin-dir ./my-plugin`, `--plugin-url https://.../plugin.zip`. Placeholdery: `${CLAUDE_PLUGIN_ROOT}`, `${CLAUDE_PLUGIN_DATA}`.
+
+:::caution[Obszar eksperymentalny]
+Ekosystem skills i pluginów rozwija się bardzo szybko - składnia i pola frontmattera mogą się zmieniać. Weryfikuj w [dokumentacji Agent Skills](https://docs.claude.com/en/docs/agents-and-tools/agent-skills/overview).
+:::
+
+## Ćwiczenie: 10 minut
+
+1. Utwórz plik `~/.claude/skills/commit-style/SKILL.md`.
+2. Opisz w nim styl commitów, którego używasz w swoich projektach.
+3. Sprawdź, że skill pojawia się na liście `/skills`.
+
+**Zaliczenie:** skill jest na liście, a po jego wywołaniu Claude pisze commit w Twoim stylu bez przypominania. Jeden plik zastąpił powtarzalną instrukcję.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** dodaj do skilla plik `REFERENCE.md` z przykładami i sprawdź w `/context`, że nie ładuje się, dopóki nie jest potrzebny.
+
+## Teraz wiesz
+
+- Skill ładuje się progresywnie, więc dziesięć skilli nie kosztuje dziesięciu razy tyle kontekstu.
+- Skill dokłada wiedzę do Twojego okna, subagent pracuje w swoim - to jedyne kryterium, które trzeba pamiętać.
+- Plugin pakuje wszystko naraz, a marketplace to katalog gotowych paczek.
+
+**Następny krok:** [Praca z Gitem i GitHubem](/claude-code/git-i-github/) - commity, pull requesty, przeglądy kodu i Claude w GitHub Actions.
+
+<SlowniczekStrony terminy={["okno-kontekstowe", "agent-ai"]} />

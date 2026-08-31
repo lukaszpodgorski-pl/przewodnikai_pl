@@ -25,6 +25,7 @@ import { execFileSync } from 'node:child_process';
 import {
 	cpSync,
 	existsSync,
+	lstatSync,
 	mkdirSync,
 	readdirSync,
 	readFileSync,
@@ -417,6 +418,18 @@ function main() {
 	}
 
 	const moduly = join(KATALOG_PUBLIKACJI, 'node_modules');
+	// `existsSync` idzie po dowiazaniu, wiec dla junction wskazujacego w pustke
+	// (np. po przeniesieniu projektu na inna sciezke) zwraca false - a samo
+	// dowiazanie nadal lezy na dysku i `symlinkSync` konczy sie EEXIST.
+	// Dlatego zwisajace dowiazanie kasujemy, zamiast probowac je nadpisac.
+	let jestDowiazanie = false;
+	try {
+		jestDowiazanie = lstatSync(moduly).isSymbolicLink();
+	} catch {
+		// brak wpisu - nic do sprzatania
+	}
+	if (jestDowiazanie && !existsSync(moduly)) rmSync(moduly, { force: true });
+
 	if (!existsSync(moduly)) {
 		try {
 			symlinkSync(join(KORZEN, 'node_modules'), moduly, 'junction');

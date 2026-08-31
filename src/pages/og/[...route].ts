@@ -31,11 +31,15 @@ export const { getStaticPaths, GET } = await OGImageRoute({
 		// zostaje przy znaku marki. Zmiana favicon.svg nie wymaga już regeneracji
 		// tego pliku.
 		logo: { path: './public/og-logo.png', size: [72, 72] },
+		// Tlo i obramowanie ida z motywu ciemnego marki (aitomate.pl): #131316
+		// do #1c1c21, obramowanie w kolorze akcentu #4a9fdd. Karta OG pokazuje
+		// sie na cudzych tlach (Facebook, LinkedIn, Slack), wiec trzyma sie
+		// wersji ciemnej niezaleznie od motywu wybranego przez czytelnika.
 		bgGradient: [
-			[24, 24, 27],
-			[39, 39, 42],
+			[19, 19, 22],
+			[28, 28, 33],
 		],
-		border: { color: [13, 148, 136], width: 16, side: 'inline-start' },
+		border: { color: [74, 159, 221], width: 16, side: 'inline-start' },
 		padding: 70,
 		// Domyślny font Noto Sans w astro-og-canvas ładuje wyłącznie podzbiór
 		// "latin" (bez ą, ę, ł, ż) - polskie znaki renderowały się jako puste

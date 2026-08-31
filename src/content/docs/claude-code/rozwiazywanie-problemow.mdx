@@ -1,0 +1,93 @@
+---
+title: Rozwiązywanie problemów w Claude Code
+description: Tabela objaw, diagnoza, komenda naprawcza - od command not found po wysokie zużycie tokenów. Plus zgłaszanie bugów i lista znanych, naprawionych awarii. Ćwiczenie zajmie 5 minut.
+sidebar:
+  label: 'Rozwiązywanie problemów'
+  order: 20
+educationalLevel: Intermediate
+teaches:
+  - Jak zdiagnozować najczęstsze problemy z instalacją i konfiguracją
+  - Od czego zacząć, gdy Claude nie widzi plików albo zużywa za dużo tokenów
+  - Jak zgłosić błąd i co sprawdzić w starszych wersjach
+about:
+  - name: Debugowanie
+    sameAs: https://en.wikipedia.org/wiki/Debugging
+  - name: Claude
+    sameAs: https://en.wikipedia.org/wiki/Claude_(language_model)
+mentions:
+  - name: GitHub
+    sameAs: https://en.wikipedia.org/wiki/GitHub
+    type: Organization
+  - name: Windows Subsystem for Linux
+    sameAs: https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux
+    type: SoftwareApplication
+faq:
+  - q: Od czego zacząć diagnozę dowolnego problemu?
+    a: 'Od claude doctor w shellu albo /doctor w sesji - ta druga potrafi część rzeczy naprawić. Jeśli podejrzewasz zepsutą konfigurację, uruchom claude --safe-mode, który wyłącza wszystkie customizacje.'
+  - q: Claude nie widzi moich plików. Co zrobić?
+    a: 'Dodaj katalog przez /add-dir albo flagę add-dir przy starcie. Potem sprawdź w /context sekcję Memory files oraz katalog roboczy - najczęściej problem leży w tym drugim.'
+  - q: Czy skasowanie katalogu ~/.claude naprawia problemy?
+    a: To zły pierwszy krok. Katalog zawiera settings i stan, więc jego skasowanie usuwa też konfigurację, serwery MCP i historię. Zacznij od diagnostyki, a kasowanie zostaw na koniec.
+status: gotowe
+---
+
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+:::note[O tej stronie]
+**Czas:** ok. 6 minut czytania + 5 minut ćwiczenia.
+**Poziom:** średni, po [najlepszych praktykach](/claude-code/najlepsze-praktyki/).
+**Wcześniej:** wszystko działa. Tu: strona, do której wracasz, gdy przestanie.
+:::
+
+| Problem | Diagnoza i naprawa |
+| --- | --- |
+| `command not found` po instalacji | PATH nieodświeżony → zrestartuj terminal, potem `which -a claude` |
+| Dwie instalacje albo stara wersja | `which -a claude` lub `where.exe claude`; po migracji `npm uninstall -g @anthropic-ai/claude-code` plus `hash -r` |
+| Błędy npm `EACCES` | nie używaj sudo; napraw katalog globalny npm albo przejdź na natywny installer |
+| Błędy logowania albo nieoczekiwane koszty | `/status` pokazuje aktywną metodę; ustawiony `ANTHROPIC_API_KEY` wygrywa nad subskrypcją - usuń go ze środowiska |
+| Wysokie zużycie tokenów | `/context`, częste `/clear` i `/compact`, subagenci, tańszy model, `--bare` |
+| Spowolnienia, wysokie CPU albo RAM | `/heapdump` (dołączaj tylko `-diagnostics.json`), zmniejsz kontekst |
+| WSL: wolne operacje na plikach | trzymaj repozytorium w systemie plików Linuksa, nie na `/mnt/c/...` |
+| "Claude nie widzi plików" | dodaj katalog przez `/add-dir` albo `--add-dir`; sprawdź `/context` → Memory files i katalog roboczy |
+| Problemy z uprawnieniami | `/permissions`; sprawdź precedencję deny → ask → allow i źródło reguły |
+| Zepsuta konfiguracja | `claude --safe-mode` wyłącza customizacje, potem `claude doctor` |
+| Ogólna diagnostyka | `claude doctor` z shella, `/doctor` w sesji (potrafi naprawić), `/debug` |
+| JetBrains albo VS Code nie łączy | `/ide`, restart IDE i rozszerzenia; sprawdź, czy CLI jest na PATH |
+
+## Zgłaszanie bugów
+
+`/bug` (alias `/share`) dołącza kontekst sesji za Twoją zgodą. Jest też `/feedback` oraz issues w repozytorium [anthropics/claude-code](https://github.com/anthropics/claude-code).
+
+**NOWE v2.1.247.** Gdy coś w sesji się wywali, Claude sam redaguje zgłoszenie z wypełnionymi szczegółami. Przeglądasz je w `/feedback` i decydujesz, czy wysłać. Wyłączysz w `/config`.
+
+:::caution[Nie kasuj ~/.claude jako pierwszego kroku]
+Katalog `~/.claude` zawiera settings i stan. Skasowanie go usuwa konfigurację, serwery MCP i historię - a rzadko jest tym, co naprawia problem.
+:::
+
+## Znane, naprawione awarie
+
+Warto je znać, jeśli trafisz na starszą wersję:
+
+- Crash przy starcie na dystrybucjach z glibc 2.44 (Arch, CachyOS, Fedora Rawhide) w v2.1.242 i v2.1.243 → naprawione w **v2.1.245**.
+- Sesje desktopowe znikające po 30 dniach: czyszczenie transkryptów usuwało sesje, które aplikacja desktop wciąż pokazywała → naprawione w **v2.1.248**.
+- Cogodzinny miss prompt-cache po odświeżeniu tokenu OAuth w długich sesjach → naprawione w **v2.1.248**.
+
+## Ćwiczenie: 5 minut
+
+1. Uruchom `claude doctor`.
+2. Uruchom `/context`.
+3. Wypisz jedną rzecz, którą możesz poprawić w konfiguracji.
+
+**Zaliczenie:** masz jedną konkretną poprawkę do zrobienia. Nie musisz jej wdrażać od razu - chodzi o to, żebyś wiedział, gdzie patrzeć, zanim coś się zepsuje.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** uruchom `claude --safe-mode` i porównaj `/context` z tym, co widziałeś wcześniej. Zobaczysz, ile z Twojego kontekstu pochodzi z customizacji.
+
+## Teraz wiesz
+
+- `claude doctor` i `/doctor` to pierwszy krok przy każdym problemie.
+- Większość zagadek z kosztami i uprawnieniami rozwiązuje `/status` i `/permissions`.
+- Kasowanie `~/.claude` to ostateczność, nie pierwsza próba.
+
+**Następny krok:** [Ściągawka](/claude-code/sciagawka/) - cała sekcja na jednej stronie plus ćwiczenie końcowe.
+
+<SlowniczekStrony terminy={["okno-kontekstowe"]} />

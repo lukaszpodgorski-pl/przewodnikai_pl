@@ -1,0 +1,174 @@
+---
+title: Claude Code
+description: Kurs Claude Code w terminalu - od instalacji, przez uprawnienia i pamięć projektu, po subagentów, hooks, MCP i automatyzację. 21 lekcji, gotowe konfiguracje do skopiowania, ćwiczenie po każdej.
+sidebar:
+  hidden: true
+educationalLevel: Intermediate
+about:
+  - name: Claude
+    sameAs: https://en.wikipedia.org/wiki/Claude_(language_model)
+  - name: Interfejs wiersza poleceń
+    sameAs: https://en.wikipedia.org/wiki/Command-line_interface
+mentions:
+  - name: Anthropic
+    sameAs: https://en.wikipedia.org/wiki/Anthropic
+    type: Organization
+  - name: Model Context Protocol
+    sameAs: https://en.wikipedia.org/wiki/Model_Context_Protocol
+  - name: Git
+    sameAs: https://en.wikipedia.org/wiki/Git
+    type: SoftwareApplication
+faq:
+  - q: Czy muszę umieć programować, żeby przejść tę sekcję?
+    a: Nie musisz być programistą, ale musisz być gotowy pracować w terminalu. Claude Code uruchamiasz jedną komendą i rozmawiasz z nim zwykłymi zdaniami po polsku. Jeśli okno z czarnym tłem i migającym kursorem to dla Ciebie nowość, zacznij od lekcji o instalacji i wróć do reszty sekcji po tygodniu używania.
+  - q: Czym Claude Code różni się od Claude w przeglądarce?
+    a: 'Zakresem działania. W przeglądarce Claude pisze odpowiedź, a Ty ją kopiujesz. Claude Code działa u Ciebie na dysku - czyta i zmienia pliki, uruchamia komendy, tworzy commity. Dlatego cała sekcja tyle miejsca poświęca uprawnieniom: narzędzie, które może zmieniać, może też zepsuć.'
+  - q: Czy Claude Code jest darmowy?
+    a: Nie. Potrzebujesz subskrypcji Claude (Pro, Max, Team, Enterprise) albo konta API z rozliczeniem za zużycie. Sposoby logowania, różnice między planami i monitorowanie zużycia opisuje lekcja o logowaniu i planach.
+  - q: Czy ten kurs zdezaktualizuje się za pół roku?
+    a: Częściowo tak i nie ukrywam tego. Kurs opisuje Claude Code 2.1.x według stanu na 30 sierpnia 2026 roku. Mechanika (agentowa pętla, uprawnienia, CLAUDE.md, hooks, MCP) jest stabilna, ale konkretne flagi i nazwy modeli się zmieniają. Fragmenty najświeższe oznaczam etykietą NOWE, a przy każdej wątpliwości sprawdzasz w "claude --help", "/help" i dokumentacji Anthropic.
+status: gotowe
+---
+
+import { CardGrid, LinkCard, Badge } from '@astrojs/starlight/components';
+import Termin from '../../../components/Termin.astro';
+
+## Czego się tu nauczysz
+
+Cały pozostały kurs jest o tym, jak rozmawiać z AI w oknie czatu. Ta sekcja jest o czymś innym: o narzędziu, które <Termin id="agent-ai">działa</Termin> zamiast tylko odpowiadać. Claude Code to program uruchamiany w terminalu, który czyta i zmienia pliki na Twoim dysku, uruchamia komendy, tworzy commity i podłącza się do zewnętrznych usług.
+
+Przechodzisz przez to po kolei: instalacja, logowanie, pierwsza sesja, skróty klawiszowe. Potem rzeczy, które robią różnicę między zabawką a narzędziem pracy - plik `CLAUDE.md` z pamięcią projektu, system uprawnień, własne komendy. Na końcu zaawansowane: subagenci, hooks, MCP, tryb bez interfejsu do automatyzacji i CI, oraz zarządzanie kosztami.
+
+## Dla kogo to jest
+
+Dla osób średnio zaawansowanych. Nie musisz umieć programować, ale musisz być gotowy pracować w terminalu i mieć projekt, na którym da się ćwiczyć - repozytorium z kodem, katalog z dokumentami, cokolwiek, co ma strukturę plików.
+
+Jeśli terminal jest dla Ciebie nowością, a chcesz tylko zobaczyć, o co chodzi z agentami: zacznij od Asystentów agentowych w sekcji Narzędzia, a tu wróć później.
+
+## Jak korzystać z tego kursu
+
+Każda lekcja kończy się **ćwiczeniem**. Terminy, komendy, flagi i nazwy plików zostają po angielsku - tak wyglądają w dokumentacji i w samym narzędziu, więc tłumaczenie ich tylko utrudniłoby Ci szukanie pomocy. Znak `~` oznacza katalog domowy użytkownika.
+
+Fragmenty oznaczone <Badge text="NOWE" variant="tip" /> to zmiany świeższe niż główny korpus kursu. Jeśli Twoja wersja Claude Code jest starsza, mogą jeszcze nie działać.
+
+:::caution[Stan na 30 sierpnia 2026, Claude Code 2.1.x]
+Funkcje oznaczone jako nowe mogą się jeszcze zmieniać. Zanim oprzesz na czymś proces, zweryfikuj w `claude --help`, `/help` i [dokumentacji Anthropic](https://docs.claude.com/en/docs/claude-code/overview).
+:::
+
+## Czego nie ma w tej sekcji
+
+Nie ma tu nauki programowania ani kursu Gita - zakładam, że commit i branch to dla Ciebie znane słowa. Nie ma też porównania Claude Code z konkurencyjnymi narzędziami. To kurs jednego narzędzia, nie ranking.
+
+## Lekcje w tej sekcji
+
+<CardGrid>
+	<LinkCard
+		title="Czym jest Claude Code"
+		description="Agentowa pętla, różnica wobec czatu i modele. Ćwiczenie: 5 minut."
+		href="/claude-code/czym-jest-claude-code/"
+	/>
+	<LinkCard
+		title="Wymagania i instalacja"
+		description="Pięć metod instalacji, Windows natywny czy WSL2. Ćwiczenie: 10 minut."
+		href="/claude-code/instalacja/"
+	/>
+	<LinkCard
+		title="Logowanie i plany"
+		description="Subskrypcja czy API, zmienne środowiskowe, zużycie. Ćwiczenie: 5 minut."
+		href="/claude-code/logowanie-i-plany/"
+	/>
+	<LinkCard
+		title="Komendy i flagi CLI"
+		description="Pełna tabela flag i podkomend, do wracania. Ćwiczenie: 5 minut."
+		href="/claude-code/komendy-i-flagi/"
+	/>
+	<LinkCard
+		title="Interfejs i skróty klawiszowe"
+		description="Sterowanie sesją, tryb Vim, obrazy i pliki. Ćwiczenie: 5 minut."
+		href="/claude-code/interfejs-i-skroty/"
+	/>
+	<LinkCard
+		title="Slash commands"
+		description="Pełna lista komend wbudowanych i nowości. Ćwiczenie: 5 minut."
+		href="/claude-code/slash-commands/"
+	/>
+	<LinkCard
+		title="Własne slash commands"
+		description="Komenda w pliku Markdown, pięć gotowych przykładów. Ćwiczenie: 10 minut."
+		href="/claude-code/wlasne-komendy/"
+	/>
+	<LinkCard
+		title="CLAUDE.md i pamięć"
+		description="Hierarchia plików pamięci, importy, dobre praktyki. Ćwiczenie: 10 minut."
+		href="/claude-code/claude-md-i-pamiec/"
+	/>
+	<LinkCard
+		title="Narzędzia agenta"
+		description="Co Claude potrafi wywołać i co wymaga zgody. Ćwiczenie: 5 minut."
+		href="/claude-code/narzedzia-agenta/"
+	/>
+	<LinkCard
+		title="Uprawnienia i bezpieczeństwo"
+		description="Tryby, reguły allow/ask/deny, precedencja settings. Ćwiczenie: 10 minut."
+		href="/claude-code/uprawnienia-i-bezpieczenstwo/"
+	/>
+	<LinkCard
+		title="Subagenci"
+		description="Osobne okno kontekstu na osobne zadanie. Ćwiczenie: 10 minut."
+		href="/claude-code/subagenci/"
+	/>
+	<LinkCard
+		title="Hooks"
+		description="Twój skrypt w wybranym momencie pracy agenta. Ćwiczenie: 10 minut."
+		href="/claude-code/hooks/"
+	/>
+	<LinkCard
+		title="MCP w Claude Code"
+		description="Serwery, zakresy, transporty, plik .mcp.json. Ćwiczenie: 10 minut."
+		href="/claude-code/mcp/"
+	/>
+	<LinkCard
+		title="Skills i plugins"
+		description="Progresywne ładowanie wiedzy i paczki rozszerzeń. Ćwiczenie: 10 minut."
+		href="/claude-code/skills-i-plugins/"
+	/>
+	<LinkCard
+		title="Praca z Gitem i GitHubem"
+		description="Commity, PR-y, review i GitHub Actions. Ćwiczenie: 10 minut."
+		href="/claude-code/git-i-github/"
+	/>
+	<LinkCard
+		title="Terminal, IDE i urządzenia"
+		description="Konfiguracja terminala, wtyczki IDE, wiele sesji. Ćwiczenie: 5 minut."
+		href="/claude-code/terminal-ide-urzadzenia/"
+	/>
+	<LinkCard
+		title="Tryb headless, automatyzacja i CI"
+		description="Claude bez interfejsu, w skryptach i pipeline. Ćwiczenie: 10 minut."
+		href="/claude-code/tryb-headless-i-ci/"
+	/>
+	<LinkCard
+		title="Kontekst i koszty"
+		description="Okno kontekstu, cache promptów, budżet rozumowania. Ćwiczenie: 5 minut."
+		href="/claude-code/kontekst-i-koszty/"
+	/>
+	<LinkCard
+		title="Najlepsze praktyki i workflow"
+		description="Explore, Plan, Code, Commit - i co robić z raportem. Ćwiczenie: 10 minut."
+		href="/claude-code/najlepsze-praktyki/"
+	/>
+	<LinkCard
+		title="Rozwiązywanie problemów"
+		description="Objaw, przyczyna, komenda naprawcza. Ćwiczenie: 5 minut."
+		href="/claude-code/rozwiazywanie-problemow/"
+	/>
+	<LinkCard
+		title="Ściągawka"
+		description="Wszystko na jednej stronie plus ćwiczenie końcowe. Ćwiczenie: 30 minut."
+		href="/claude-code/sciagawka/"
+	/>
+</CardGrid>
+
+:::note[Następny krok]
+**Zacznij tutaj:** [Czym jest Claude Code](/claude-code/czym-jest-claude-code/) - zobaczysz, na czym polega agentowa pętla i czym to narzędzie różni się od okna czatu, zanim cokolwiek zainstalujesz.
+:::

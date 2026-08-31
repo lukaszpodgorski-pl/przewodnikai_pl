@@ -1,0 +1,84 @@
+---
+import { Image } from 'astro:assets';
+import zdjecie from '../assets/zasoby/o-mnie/lukasz.jpg';
+
+/**
+ * Biogram autora z jego zdjęciem obok tekstu.
+ *
+ * Zdjęcie stało wcześniej w treści jako zwykły obrazek Markdowna. Plik ma
+ * 1200x900, więc w kolumnie 75rem rozciągał się na całą jej szerokość i sam
+ * zajmował pierwszy ekran strony "O mnie" - zanim czytelnik dotarł do
+ * jednego zdania o tym, kto to w ogóle jest.
+ *
+ * Zamiast float używamy flexa: float wymagałby `clear` na następnym
+ * nagłówku, a przy krótkim biogramie kolejna sekcja i tak wchodziłaby obok
+ * zdjęcia. Flex trzyma oba elementy w jednym wierszu bez takich niespodzianek.
+ *
+ * Kadrowanie do kwadratu (`object-fit: cover`) zamiast skalowania: oryginał
+ * jest poziomy 4:3, a portret w proporcji 1:1 czyta się jak zdjęcie
+ * profilowe, nie jak ilustracja. `object-position` celuje wyżej niż środek,
+ * bo tam jest twarz.
+ *
+ * Biogram wchodzi slotem, żeby treść została w artykule (zwykle
+ * `<AutorKrotki />`), a komponent odpowiadał wyłącznie za układ.
+ */
+---
+
+<div class="autor">
+	<Image
+		class="zdjecie"
+		src={zdjecie}
+		alt="Łukasz Podgórski, autor Przewodnika AI"
+		width={440}
+		height={330}
+		loading="eager"
+	/>
+	<div class="biogram">
+		<slot />
+	</div>
+</div>
+
+<style>
+	.autor {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-start;
+		gap: 1.5rem;
+		margin: 1.5rem 0;
+	}
+
+	.zdjecie {
+		flex: none;
+		width: 13.75rem;
+		height: 13.75rem;
+		object-fit: cover;
+		object-position: center 28%;
+		border-radius: 0.75rem;
+		border: 1px solid var(--sl-color-gray-5);
+	}
+
+	/* `min-width` wymusza zawinięcie do drugiego wiersza, zanim tekst zrobi
+	   się węższy niż kilka wyrazów w linii - inaczej na tablecie biogram
+	   stawałby się pionowym paskiem obok zdjęcia. */
+	.biogram {
+		flex: 1 1 20rem;
+		min-width: 0;
+	}
+
+	/* Pierwszy akapit biogramu przychodzi slotem z zewnątrz, więc margines
+	   górny ustawiamy tutaj - inaczej tekst startowałby niżej niż zdjęcie. */
+	.biogram :global(> :first-child) {
+		margin-top: 0;
+	}
+
+	@media (max-width: 30rem) {
+		.autor {
+			gap: 1rem;
+		}
+
+		.zdjecie {
+			width: 10rem;
+			height: 10rem;
+		}
+	}
+</style>

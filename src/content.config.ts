@@ -28,9 +28,14 @@ export const collections = {
 				faq: z.array(z.object({ q: z.string(), a: z.string() })).optional(),
 				// Ukrywa wygenerowaną sekcję "Częste pytania" w treści strony, przy
 				// zachowaniu bloku FAQPage w JSON-LD (Head.astro nie sprawdza tej
-				// flagi). Ustaw, gdy artykuł sam w sobie jest FAQ (np. zasoby/faq.md)
-				// i wygenerowana sekcja powielałaby te same pytania, które już są
-				// nagłówkami `##` w treści.
+				// flagi). Ustaw, gdy artykuł sam w sobie jest FAQ - pytania stoją
+				// w treści jako nagłówki `##` - i wygenerowana sekcja powielałaby
+				// dokładnie te same pytania.
+				//
+				// Dziś nie używa jej żaden plik: jedyna taka strona (zasoby/faq.md)
+				// została usunięta, bo powtarzała odpowiedzi z artykułów. Włączając
+				// tę flagę sprawdź asercję "FAQPage zawsze towarzyszy widocznej
+				// sekcji" w scripts/verify-geo.mjs - potrzebuje wtedy wyjątku.
 				faqHidden: z.boolean().optional(),
 				// Wyłącza indeksowanie strony: `<meta name="robots" content="noindex">`
 				// w Head.astro plus pominięcie w sitemapie (astro.config.mjs).

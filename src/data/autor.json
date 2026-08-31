@@ -1,8 +1,9 @@
 {
-	"updated": "2026-07-23",
+	"updated": "2026-08-27",
+	"@id": "https://lukaszpodgorski.pl/#person",
 	"name": "Łukasz Podgórski",
 	"jobTitle": "Specjalista AI i automatyzacji",
-	"url": "https://aitomate.pl",
+	"url": "https://lukaszpodgorski.pl/",
 	"knowsLanguage": [
 		"pl",
 		"en"

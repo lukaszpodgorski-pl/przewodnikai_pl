@@ -1,0 +1,116 @@
+---
+export interface Poziom {
+	/** Nazwa zbioru, np. "Sztuczna inteligencja (AI)". */
+	nazwa: string;
+	/** Co lezy na TYM poziomie, a nie w zagniezdzonym w srodku. */
+	opis: string;
+}
+
+interface Props {
+	/** Zbiory od najszerszego do najwezszego - kazdy zawiera nastepny. */
+	poziomy: Poziom[];
+	/** Podpis pod rysunkiem. Tu tlumaczymy zagniezdzenie slowami. */
+	podpis?: string;
+	/**
+	 * Ustawiane wylacznie przez rekurencje ponizej. Nie podawaj z artykulu.
+	 */
+	wewnetrzny?: boolean;
+}
+
+const { poziomy, podpis, wewnetrzny = false } = Astro.props;
+const [biezacy, ...glebiej] = poziomy;
+
+/**
+ * Matrioszka pojec: kazdy kolejny zbior miesci sie w poprzednim.
+ *
+ * Zastapila rysunek ASCII w bloku kodu. Tamten mial trzy wady, ktorych nie
+ * dalo sie usunac, zostajac przy znakach ramek: na telefonie 61-znakowe linie
+ * wychodzily poza ekran i zagniezdzenie przestawalo byc czytelne, czytnik
+ * ekranu odczytywal ramki jako ciag smieci, a wyrownanie pilnowal czlowiek
+ * (jedna linia i tak byla przesunieta o znak).
+ *
+ * Zagniezdzenie jest tu prawdziwe - w DOM, nie namalowane. Czytnik ekranu
+ * przechodzi zbiory od zewnetrznego do wewnetrznego, czyli w tej samej
+ * kolejnosci, w ktorej czyta je wzrok. Zamiast osobnego opisu alternatywnego
+ * jest `figcaption`, widoczny dla wszystkich.
+ *
+ * Tla poziomow buduje `--sl-color-white`, czyli w Starlight kolor TEKSTU
+ * (mylaca nazwa, patrz komentarz w custom.css). Dzieki temu jedna regula
+ * dziala w obu motywach: w ciemnym kolejne warstwy jasnieja, w jasnym
+ * ciemnieja, a w obu przypadkach glebiej znaczy mocniej.
+ */
+---
+
+{
+	wewnetrzny ? (
+		<div class:list={['poziom', { najglebszy: glebiej.length === 0 }]}>
+			<p class="nazwa">{biezacy.nazwa}</p>
+			<p class="opis">{biezacy.opis}</p>
+			{glebiej.length > 0 && <Astro.self poziomy={glebiej} wewnetrzny />}
+		</div>
+	) : (
+		<figure class="zbiory">
+			<Astro.self poziomy={poziomy} wewnetrzny />
+			{podpis && <figcaption>{podpis}</figcaption>}
+		</figure>
+	)
+}
+
+<style>
+	.zbiory {
+		margin: 1.75rem 0;
+	}
+
+	.poziom {
+		border: 1px solid var(--sl-color-gray-5);
+		border-radius: 0.6rem;
+		padding: 0.85rem 1rem 1rem;
+		background: color-mix(in srgb, var(--sl-color-white) 4%, transparent);
+	}
+
+	/* Odstep miedzy ramka rodzica a ramka dziecka. Bez niego cztery poziomy
+	   zlewaja sie w jedna grubsza kreske. */
+	.poziom .poziom {
+		margin-top: 0.85rem;
+	}
+
+	/* Ostatni zbior to puenta akapitu obok - dostaje kolor marki, zeby oko
+	   trafilo najpierw w niego, a dopiero potem wracalo do szerszych ramek. */
+	.najglebszy {
+		border-color: var(--sl-color-accent);
+		background: var(--sl-color-accent-low);
+	}
+
+	.nazwa {
+		margin: 0;
+		font-weight: 600;
+		line-height: 1.3;
+		color: var(--sl-color-white);
+	}
+
+	.opis {
+		margin: 0.3rem 0 0;
+		font-size: var(--sl-text-sm);
+		line-height: 1.5;
+		color: var(--sl-color-gray-2);
+	}
+
+	figcaption {
+		margin-top: 0.9rem;
+		font-size: var(--sl-text-xs);
+		line-height: 1.5;
+		color: var(--sl-color-gray-3);
+	}
+
+	/* Cztery poziomy po 1 rem z kazdej strony zjadaja na telefonie polowe
+	   szerokosci ekranu. Wcieciu wystarczy byc widocznym, nie wygodnym. */
+	@media (max-width: 30rem) {
+		.poziom {
+			padding: 0.7rem 0.6rem 0.75rem;
+		}
+
+		.poziom .poziom {
+			margin-top: 0.7rem;
+		}
+	}
+</style>

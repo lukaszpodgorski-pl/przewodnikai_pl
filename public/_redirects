@@ -57,11 +57,12 @@
 
 # --- Zasoby ---
 /slownik-pojec/ /zasoby/ 302
-/faq/ /zasoby/ 302
+/faq/ /zasoby/ 301
+/zasoby/faq/ /zasoby/ 301
 /biblioteka/ /zasoby/ 302
 /o-mnie/ /zasoby/o-mnie/ 301
 /kontakt/ /zasoby/kontakt/ 301
-/regulamin/ /zasoby/kontakt/ 301
+/regulamin/ /zasoby/regulamin/ 301
 
 # --- Strony w przebudowie redakcyjnej (generowane automatycznie) ---
 # 302, nie 301: te adresy wroca po przegladzie redakcyjnym. Regula
@@ -129,5 +130,4 @@
 /suwerenne-ai/europejskie-modele/ /suwerenne-ai/ 302
 /suwerenne-ai/polski-ekosystem-ai/ /suwerenne-ai/ 302
 /zasoby/biblioteka/ /zasoby/ 302
-/zasoby/faq/ /zasoby/ 302
 /zasoby/slownik-pojec/ /zasoby/ 302

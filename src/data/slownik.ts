@@ -113,4 +113,34 @@ export const SLOWNIK: Record<string, Pojecie> = {
 		krotka:
 			'Technika promptowania, w której prosisz model o rozpisanie rozumowania krok po kroku, zanim poda ostateczną odpowiedź.',
 	},
+	model: {
+		termin: 'Model',
+		anchor: 'model',
+		krotka:
+			'Wytrenowany na danych system AI - w tym przewodniku najczęściej duży model językowy, czyli to, co generuje odpowiedzi w ChatGPT czy Claude.',
+	},
+	trenowanie: {
+		termin: 'Trenowanie',
+		anchor: 'trenowanie-trening',
+		krotka:
+			'Jednorazowy proces, w którym model dopasowuje swoje wagi do ogromnych zbiorów danych - potem wagi są zamrożone i w rozmowie z tobą model już się nie uczy.',
+	},
+	'uczenie-glebokie': {
+		termin: 'Głębokie uczenie',
+		anchor: 'głębokie-uczenie-deep-learning',
+		krotka:
+			'Uczenie maszynowe na sieciach neuronowych o wielu warstwach - radzi sobie z surowymi danymi, bo cechy ważne dla zadania wypracowuje samo, bez podpowiedzi człowieka.',
+	},
+	'waska-ai': {
+		termin: 'Wąska AI',
+		anchor: 'wąska-ai-ani',
+		krotka:
+			'System AI wyspecjalizowany w jednym zadaniu - bardzo dobry w tym, do czego go wytrenowano, i bezradny poza tym obszarem; cała AI dostępna dzisiaj jest właśnie taka.',
+	},
+	'ogolna-ai': {
+		termin: 'Ogólna AI',
+		anchor: 'ogólna-ai-agi',
+		krotka:
+			'Hipotetyczny system dorównujący człowiekowi w dowolnej dziedzinie - przenoszący umiejętności między zadaniami i uczący się w trakcie działania; dziś nie istnieje.',
+	},
 };

@@ -11,6 +11,8 @@
 // stron ma <lastmod>, część nie) - nie jest, a spec sitemap.xml wprost tego
 // zabrania.
 import { execFileSync } from 'node:child_process';
+import { readdirSync } from 'node:fs';
+import { join } from 'node:path';
 
 const DOCS_PATHSPEC = 'src/content/docs';
 const DOCS_PREFIX = `${DOCS_PATHSPEC}/`;
@@ -71,5 +73,42 @@ export function lastModMap() {
 			if (!map.has(url)) map.set(url, iso);
 		}
 	}
+
+	// Pełna historia to za mało: plik jeszcze niezacommitowany w TYM repozytorium
+	// nie ma ani jednego commitu, więc wypada z mapy. Zdarza się to przy każdej
+	// publikacji dokładającej nowe strony - katalog `.publish/` dostaje je jako
+	// świeże pliki, a lustro pozna je dopiero po commicie publikacyjnym, który
+	// powstaje PO weryfikacji. Wynik byłby wtedy sygnałem częściowym, a ten
+	// - jak w komentarzu na górze pliku - jest gorszy niż żaden.
+	const bezDaty = docUrls().filter((url) => !map.has(url));
+	if (bezDaty.length) {
+		console.warn(
+			`[sitemap] ${bezDaty.length} stron bez historii git (np. ${bezDaty[0]}) - ` +
+				'pomijam <lastmod> w calej sitemapie zamiast dawac sygnal czesciowy.',
+		);
+		return new Map();
+	}
 	return map;
+}
+
+/** Adresy wszystkich stron kolekcji `docs`, prosto z układu katalogów. */
+function docUrls() {
+	const out = [];
+	(function walk(dir, prefix) {
+		let wpisy;
+		try {
+			wpisy = readdirSync(dir, { withFileTypes: true });
+		} catch {
+			return;
+		}
+		for (const wpis of wpisy) {
+			// Podkreślenie na początku - udokumentowana konwencja Astro
+			// wykluczająca ścieżkę z routingu. Tak samo traktuje ją verify-geo.
+			if (wpis.name.startsWith('_')) continue;
+			const rel = prefix ? `${prefix}/${wpis.name}` : wpis.name;
+			if (wpis.isDirectory()) walk(join(dir, wpis.name), rel);
+			else if (/\.mdx?$/.test(wpis.name)) out.push(urlFor(rel));
+		}
+	})(DOCS_PATHSPEC, '');
+	return out;
 }

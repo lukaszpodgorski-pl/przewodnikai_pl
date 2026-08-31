@@ -1,0 +1,100 @@
+---
+title: Slash commands w Claude Code
+description: Pełna lista komend wbudowanych, pogrupowana według tego, po co sięgasz - setup, kontekst, praca, przegląd, diagnostyka. Plus nowości warte osobnej uwagi. Ćwiczenie zajmie 5 minut.
+sidebar:
+  label: 'Slash commands'
+  order: 6
+educationalLevel: Intermediate
+teaches:
+  - Które komendy odpowiadają za setup projektu i pamięć
+  - Jak sterować modelem, kontekstem i kosztem w trakcie sesji
+  - Które komendy zostały usunięte i czym je zastąpiono
+about:
+  - name: Claude
+    sameAs: https://en.wikipedia.org/wiki/Claude_(language_model)
+  - name: Interfejs wiersza poleceń
+    sameAs: https://en.wikipedia.org/wiki/Command-line_interface
+mentions:
+  - name: Model Context Protocol
+    sameAs: https://en.wikipedia.org/wiki/Model_Context_Protocol
+  - name: GitHub
+    sameAs: https://en.wikipedia.org/wiki/GitHub
+    type: Organization
+faq:
+  - q: Jak zobaczyć listę dostępnych komend?
+    a: Wpisz sam ukośnik w oknie sesji. Lista pokaże komendy dostępne dla Twojego planu i platformy - część z nich zależy właśnie od tego, co masz wykupione i na czym pracujesz.
+  - q: Czym różni się /clear od /compact?
+    a: '/clear zaczyna nową rozmowę i czyści kontekst, zachowując pamięć projektu z pliku CLAUDE.md. /compact streszcza dotychczasową rozmowę i zostawia streszczenie zamiast pełnej historii, więc ciągłość pracy zostaje.'
+  - q: Co się stało z komendą /pr-comments?
+    a: Została usunięta w wersji 2.1.91. Zamiast niej po prostu poproś Claude bezpośrednio o przejrzenie komentarzy w pull requeście.
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+:::note[O tej stronie]
+**Czas:** ok. 7 minut czytania + 5 minut ćwiczenia.
+**Poziom:** średni, po [interfejsie i skrótach](/claude-code/interfejs-i-skroty/).
+**Wcześniej:** sterujesz sesją z klawiatury. Tu: poznajesz komendy, które robią całą resztę.
+:::
+
+Wpisz `/`, żeby zobaczyć dostępne komendy. Dostępność zależy od planu i platformy - nie wszystko z tej listy zobaczysz u siebie.
+
+## Setup i projekt
+
+`/init` (generuje startowy CLAUDE.md), `/memory` (edycja plików pamięci, auto memory), `/config` (alias `/settings`; przyjmuje `key=value`), `/permissions` (alias `/allowed-tools`), `/mcp`, `/hooks`, `/agents` (od v2.1.198 tylko przypomnienie, żeby poprosić Claude albo edytować `.claude/agents/`), `/statusline`, `/output-style`, `/terminal-setup`, `/ide`, `/keybindings`, `/theme`, `/install-github-app`, `/install-slack-app`.
+
+## Modele i kontekst
+
+`/model` (przełącza i zapisuje domyślny; `s` = tylko sesja), `/effort` (`low` do `max`, plus `ultracode` i `auto`), `/fast` (fast mode), `/context` (co zajmuje <Termin id="okno-kontekstowe">okno kontekstu</Termin>), `/compact [instrukcje]`, `/clear` (aliasy `/new`, `/reset` - nowa rozmowa, zachowuje pamięć), `/autocompact`.
+
+## Podczas pracy
+
+`/plan [opis]`, `/btw`, `/tasks` (alias `/bashes` - praca w tle), `/subtask <task>` (forked subagent), `/background` (alias `/bg`), `/branch`, `/fork`, `/rewind` (aliasy `/checkpoint`, `/undo`), `/resume` (alias `/continue`), `/export`, `/copy`, `/recap`.
+
+## Przegląd i ship
+
+`/diff`, `/code-review [low|...|ultra] [--fix] [--comment] [pr#|branch|path]` (alias `/review`), `/security-review`, `/simplify`.
+
+Komenda `/pr-comments` została **usunięta w v2.1.91** - poproś Claude bezpośrednio.
+
+## Diagnostyka i konto
+
+`/doctor` (alias `/checkup`), `/debug`, `/status`, `/usage` (aliasy `/cost`, `/stats`), `/usage-credits`, `/bug` (alias `/share`), `/feedback`, `/release-notes`, `/help`, `/login`, `/logout`, `/add-dir`, `/cd`, `/rename`, `/color`, `/desktop`.
+
+`/vim` zostało **usunięte** - użyj `/config` → Editor mode.
+
+## Skills i workflow (bundled)
+
+`/deep-research`, `/batch`, `/verify`, `/run`, `/dataviz`, `/loop`, `/schedule` (alias `/routines`), `/workflows`, `/todos`, **NOWE v2.1.247:** `/claude-api`.
+
+Prompty MCP pojawiają się jako `/servername:promptname (MCP)` albo `/mcp__servername__promptname`.
+
+## Nowości warte osobnej uwagi
+
+**Rozróżnianie wielu sesji.** `/rename` nadaje sesji nazwę, `/color` zmienia kolor paska promptu. To banalne, ale przy kilku otwartych terminalach ratuje życie. Nazwa i kolor **zostają przy `--resume`**, a z włączonym Remote Control są widoczne także na claude.ai/code.
+
+**NOWE v2.1.246: `/cd` zachowuje się inaczej.** Po przeniesieniu sesji do innego katalogu settings, hooks, serwery MCP, skills i agents nowego projektu ładują się **od razu**. Wcześniej dopiero przy `--resume`.
+
+**NOWE v2.1.247: `/claude-api`** - skill do optymalizacji kosztów API. Uruchom go w projekcie, który woła Claude API. Zmierzy bieżące wydatki, a potem przejdzie po jednej zmianie naraz - caching, batching, effort, wybór modelu - mierząc efekt każdej przed przejściem do następnej.
+
+## Ćwiczenie: 5 minut
+
+1. W nowym repozytorium uruchom `/init`.
+2. Uruchom `/memory` i obejrzyj wygenerowany `CLAUDE.md`.
+3. Zakończ komendą `/context` i zobacz, ile miejsca zajął ten plik.
+
+**Zaliczenie:** masz w projekcie wygenerowany `CLAUDE.md` i wiesz, jaki procent okna kontekstu zajmuje. To pierwsze zetknięcie z kosztem pamięci projektu.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** uruchom `/rename` i nazwij sesję. Potem zamknij ją i wróć przez `claude --resume` - nazwa będzie na liście.
+
+## Teraz wiesz
+
+- Komendy dzielą się na pięć rodzin i wpisanie samego `/` zawsze pokaże aktualną listę.
+- `/clear` czyści rozmowę, `/compact` ją streszcza - to nie są zamienniki.
+- Część komend zniknęła między wersjami, więc lista z internetu bywa nieaktualna.
+
+**Następny krok:** [Własne slash commands](/claude-code/wlasne-komendy/) - zamienisz powtarzalny prompt w komendę, którą wywołasz jednym słowem.
+
+<SlowniczekStrony terminy={["okno-kontekstowe"]} />

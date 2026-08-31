@@ -20,13 +20,47 @@ const pokazNewsletter =
 
 <Default><slot /></Default>
 {pokazNewsletter && <Newsletter wariant="pasek" />}
+<nav class="stopka-prawna" aria-label="Informacje prawne">
+	<a href="https://aitomate.pl/polityka-prywatnosci" rel="noopener noreferrer" target="_blank">
+		Polityka prywatności
+	</a>
+	<span aria-hidden="true">·</span>
+	<a href="/zasoby/regulamin/">Regulamin</a>
+	<span aria-hidden="true">·</span>
+	<a href="/zasoby/kontakt/">Kontakt</a>
+</nav>
 <p class="made-with-love">
 	made with ❤️ by <a href="https://aitomate.pl">aitomate.pl</a> - Łukasz Podgórski
 </p>
 
 <style>
+	/* Odnośniki prawne. Polityka prywatności jest wspólna dla wszystkich
+	   serwisów autora i utrzymywana na aitomate.pl (patrz komentarz
+	   w src/config/newsletter.ts) - dlatego wychodzi poza domenę. Regulamin
+	   jest tutejszy: opisuje ten serwis i ten newsletter, i to on niesie
+	   dane firmy, które wcześniej stały na stronie kontaktu. */
+	.stopka-prawna {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+		gap: 0.5rem;
+		margin-top: 1.5rem;
+		font-size: var(--sl-text-xs);
+		color: var(--sl-color-gray-3);
+	}
+	.stopka-prawna a {
+		color: var(--sl-color-gray-2);
+		text-decoration: none;
+	}
+	.stopka-prawna a:hover,
+	.stopka-prawna a:focus-visible {
+		color: var(--sl-color-white);
+		text-decoration: underline;
+	}
+
 	.made-with-love {
-		margin: 0.5rem 0 0;
+		margin: 0.4rem 0 0;
 		font-size: var(--sl-text-xs);
 		color: var(--sl-color-gray-3);
 		text-align: center;

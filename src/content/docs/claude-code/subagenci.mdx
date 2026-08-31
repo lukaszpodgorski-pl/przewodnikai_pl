@@ -1,0 +1,187 @@
+---
+title: Subagenci w Claude Code
+description: Wyspecjalizowany asystent w osobnym oknie kontekstu, z własnymi narzędziami, uprawnieniami i pamięcią. Format pliku, delegacja, równoległość i cztery gotowe przykłady. Ćwiczenie zajmie 10 minut.
+sidebar:
+  label: 'Subagenci'
+  order: 11
+educationalLevel: Intermediate
+teaches:
+  - Po co wydzielać zadanie do osobnego okna kontekstu
+  - Jak zdefiniować subagenta plikiem Markdown
+  - Jak działa pamięć subagenta i dlaczego samo pole nie wystarczy
+about:
+  - name: Agent AI
+    sameAs: https://en.wikipedia.org/wiki/Intelligent_agent
+  - name: Claude
+    sameAs: https://en.wikipedia.org/wiki/Claude_(language_model)
+mentions:
+  - name: Git
+    sameAs: https://en.wikipedia.org/wiki/Git
+    type: SoftwareApplication
+  - name: Model Context Protocol
+    sameAs: https://en.wikipedia.org/wiki/Model_Context_Protocol
+faq:
+  - q: Po co w ogóle używać subagentów?
+    a: 'Głównie po to, żeby chronić główne okno kontekstu. Subagent pracuje w osobnym oknie i zwraca tylko podsumowanie. Przy okazji dostajesz wymuszone ograniczenie narzędzi, specjalizację i kontrolę kosztów, bo do lekkich zadań możesz przypisać tańszy model.'
+  - q: Czy subagent pamięta coś między sesjami?
+    a: 'Tak, jeśli dodasz mu pole memory ustawione na project, user albo local. Dostaje wtedy własny katalog w .claude/agent-memory/. Uwaga: samo pole nie wystarczy - w system prompcie musisz wprost polecić subagentowi, żeby pamięć aktualizował.'
+  - q: Ilu subagentów może pracować naraz?
+    a: 'Domyślnie dwudziestu. Limit ustawia zmienna CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS, a sesje z aktywnym trybem ultracode są z niego zwolnione.'
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+:::note[O tej stronie]
+**Czas:** ok. 10 minut czytania + 10 minut ćwiczenia.
+**Poziom:** średni, po [uprawnieniach](/claude-code/uprawnienia-i-bezpieczenstwo/).
+**Wcześniej:** wiesz, czego agentowi wolno. Tu: rozdzielasz pracę na kilku wyspecjalizowanych.
+:::
+
+Subagent to wyspecjalizowany asystent w **osobnym <Termin id="okno-kontekstowe">oknie kontekstu</Termin>**, z własnym system promptem, zestawem narzędzi, uprawnieniami i opcjonalnie własnym modelem. Zwraca tylko podsumowanie, więc chroni główny kontekst.
+
+Zyskujesz pięć rzeczy: izolację kontekstu, wymuszanie ograniczeń narzędzi, reużywalność, specjalizację i kontrolę kosztów - na przykład Haiku do lekkich zadań.
+
+## Wbudowani subagenci
+
+**Explore** - szybki, tylko do odczytu, do przeszukiwania kodu (pomija CLAUDE.md dla szybkości). **Plan** - research w plan mode. **general-purpose** - złożone zadania z modyfikacją. Do tego `statusline-setup` i `claude-code-guide`.
+
+**Lokalizacje**, priorytet malejąco: managed settings → flaga `--agents` (JSON, tylko sesja) → `.claude/agents/` (projekt) → `~/.claude/agents/` (użytkownik) → plugin.
+
+Twórz je, prosząc Claude, albo ręcznie. Od v2.1.198 `/agents` nie otwiera już kreatora, tylko o tym przypomina.
+
+## Format pliku
+
+```markdown
+---
+name: code-reviewer
+description: Kiedy delegować (Claude używa opisu do decyzji). Dodaj "use PROACTIVELY".
+tools: Read, Grep, Glob        # jak pominiesz - dziedziczy wszystkie
+model: sonnet                  # sonnet/opus/haiku/fable/pełne ID/inherit (domyślnie inherit)
+---
+System prompt subagenta...
+```
+
+Pola opcjonalne: `disallowedTools`, `permissionMode`, `maxTurns`, `skills`, `mcpServers`, `hooks`, `memory` (`user`, `project` albo `local`), `effort`, `isolation: worktree`, `color`, `initialPrompt`, `background`.
+
+## Pamięć subagenta
+
+**NOWE.** Dodaj `memory: project` (albo `user`, albo `local`) do frontmattera, a subagent dostaje własny katalog w **`.claude/agent-memory/`**. Czyta z niego przy starcie i dopisuje w trakcie pracy, więc nie odkrywa tych samych rzeczy o Twoim repozytorium w każdej sesji.
+
+```markdown
+---
+name: code-reviewer
+description: Reviews code for quality and best practices
+memory: user
+---
+
+W trakcie przeglądu aktualizuj swoją pamięć o wykryte wzorce
+i powtarzające się problemy.
+```
+
+:::caution[Samo pole nie wystarczy]
+**W system prompcie musisz wprost polecić subagentowi, żeby pamięć aktualizował.** Pole `memory` tworzy katalog i pozwala z niego czytać, ale nie zmusza do pisania.
+:::
+
+## Delegacja
+
+Automatyczna - Claude dopasowuje po `description`. Przez nazwę w prompcie. Przez `@"code-reviewer (agent)"`, co gwarantuje wybór. Albo `claude --agent <name>`, gdy cała sesja ma być danym subagentem. Zwrot "use PROACTIVELY" w opisie zachęca do proaktywnego wywoływania.
+
+**Równoległość.** Poproś o kilku subagentów naraz. Domyślny limit współbieżnych subagentów wynosi **20**, sterowany zmienną `CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS`. Sesje z aktywnym `ultracode` są z niego zwolnione.
+
+**Zagnieżdżanie.** Wersja v2.1.217 domyślnie je wyłączyła, a v2.1.219 przywróciła z domyślną głębokością **3**, sterowaną przez `CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH`.
+
+**NOWE v2.1.246: wyczerpanie `maxTurns`.** Subagent, który uderzy w limit tur, zwraca teraz to, co zdążył zrobić, **oznaczone jako częściowe**, a Claude może go kontynuować przez `SendMessage`. Wcześniej wyglądało to, jakby normalnie skończył - czyli cicha, trudna do wykrycia utrata pracy.
+
+**Koszty.** Wyniki wracają do głównego kontekstu, więc wielu subagentów ze szczegółowymi wynikami też zużywa kontekst.
+
+## Gotowe przykłady
+
+**code-reviewer** (tylko do odczytu):
+
+```markdown
+---
+name: code-reviewer
+description: Ekspert od przeglądu kodu. Proaktywnie przegląda kod pod kątem jakości,
+  bezpieczeństwa, utrzymania. Use immediately after writing or modifying code.
+tools: Read, Grep, Glob, Bash
+model: inherit
+---
+Jesteś starszym recenzentem kodu.
+
+Po wywołaniu:
+1. Uruchom git diff, by zobaczyć zmiany.
+2. Skup się na zmodyfikowanych plikach.
+
+Checklist: czytelność, nazewnictwo, brak duplikacji, obsługa błędów, brak sekretów,
+walidacja wejścia, pokrycie testami, wydajność.
+
+Feedback wg priorytetu: Krytyczne / Ostrzeżenia / Sugestie. Podawaj konkretne poprawki.
+```
+
+**debugger** (może naprawiać):
+
+```markdown
+---
+name: debugger
+description: Specjalista debugowania błędów, awarii testów i nieoczekiwanych zachowań.
+  Use proactively when encountering any issues.
+tools: Read, Edit, Bash, Grep, Glob
+---
+Jesteś ekspertem debugowania (root cause analysis).
+
+Po wywołaniu: przechwyć błąd i stack trace, ustal reprodukcję, izoluj miejsce,
+wprowadź minimalną poprawkę, zweryfikuj.
+
+Dla każdego problemu podaj: przyczynę, dowody, poprawkę, sposób testowania, zapobieganie.
+```
+
+**test-runner:**
+
+```markdown
+---
+name: test-runner
+description: Uruchamia testy i raportuje TYLKO nieudane z komunikatami błędów.
+  Use proactively after code changes.
+tools: Bash, Read, Grep
+model: haiku
+---
+Wykryj framework testowy, uruchom pełny zestaw, zwróć wyłącznie listę nieudanych
+testów wraz z komunikatami. Nie zmieniaj kodu.
+```
+
+**security-auditor** (tylko do odczytu):
+
+```markdown
+---
+name: security-auditor
+description: Audytuje zmiany pod kątem podatności (injection, auth, wyciek danych).
+  Use proactively before merge.
+tools: Read, Grep, Glob, Bash(git diff:*)
+model: opus
+---
+Przeanalizuj diff gałęzi względem origin/main. Szukaj: SQL i command injection,
+błędów autoryzacji, ekspozycji danych, niebezpiecznych zależności.
+Raportuj wg severity z konkretną lokalizacją.
+```
+
+## Ćwiczenie: 10 minut
+
+1. Utwórz `~/.claude/agents/code-reviewer.md` według przykładu wyżej.
+2. Zmodyfikuj dowolny plik w repozytorium i poproś: "use the code-reviewer subagent to review my recent changes".
+3. Dodaj subagentowi `memory: project`, przepuść dwa przeglądy w osobnych sesjach i zajrzyj do `.claude/agent-memory/`.
+
+**Zaliczenie:** w `.claude/agent-memory/` leży plik z notatkami, które subagent zapisał sam. Jeśli katalog jest pusty, wróć do ostrzeżenia wyżej - prawdopodobnie brakuje polecenia w system prompcie.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** poproś o dwóch subagentów naraz (przegląd i testy) i zobacz w `/context`, ile z ich wyników wróciło do głównego okna.
+
+## Teraz wiesz
+
+- Subagent to osobne okno kontekstu, a jego głównym zadaniem jest chronić Twoje.
+- Definicja to plik Markdown z frontmatterem, gdzie `description` decyduje o delegacji.
+- Pamięć subagenta wymaga i pola we frontmatterze, i polecenia w system prompcie.
+
+**Następny krok:** [Hooks](/claude-code/hooks/) - kiedy sugestia w pamięci to za mało i potrzebujesz gwarancji, że coś się wykona.
+
+<SlowniczekStrony terminy={["agent-ai", "okno-kontekstowe"]} />

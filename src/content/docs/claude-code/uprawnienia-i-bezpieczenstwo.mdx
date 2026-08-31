@@ -1,0 +1,112 @@
+---
+title: Uprawnienia i bezpieczeństwo w Claude Code
+description: Sześć trybów uprawnień, reguły allow, ask i deny, precedencja plików settings oraz zasady bezpiecznej pracy z agentem. Najważniejsza lekcja w tej sekcji. Ćwiczenie zajmie 10 minut.
+sidebar:
+  label: 'Uprawnienia i bezpieczeństwo'
+  order: 10
+educationalLevel: Intermediate
+teaches:
+  - Czym różnią się tryby uprawnień i kiedy który wybrać
+  - Jak pisać reguły allow, ask i deny w settings.json
+  - Kiedy nie wolno używać trybu pomijającego pytania
+about:
+  - name: Bezpieczeństwo komputerowe
+    sameAs: https://pl.wikipedia.org/wiki/Bezpiecze%C5%84stwo_teleinformatyczne
+  - name: Claude
+    sameAs: https://en.wikipedia.org/wiki/Claude_(language_model)
+mentions:
+  - name: JSON
+    sameAs: https://en.wikipedia.org/wiki/JSON
+  - name: Model Context Protocol
+    sameAs: https://en.wikipedia.org/wiki/Model_Context_Protocol
+  - name: Prompt injection
+    sameAs: https://en.wikipedia.org/wiki/Prompt_injection
+faq:
+  - q: W jakiej kolejności sprawdzane są reguły uprawnień?
+    a: 'Najpierw deny, potem ask, na końcu allow. Pierwsze trafienie wygrywa, a specyficzność reguły nie zmienia tej kolejności. Deny wygrywa zawsze.'
+  - q: Kiedy nie wolno używać flagi pomijającej pytania o zgodę?
+    a: 'Nigdy na maszynie z produkcyjnymi poświadczeniami, nigdy w nieznanym repozytorium i nigdy wtedy, gdy chcesz recenzować zmiany. Tylko w izolowanych środowiskach: kontenerze, maszynie wirtualnej albo efemerycznym CI.'
+  - q: Który plik settings.json ma pierwszeństwo?
+    a: 'Od najwyższego: managed dla organizacji, potem wskazany flagą settings, potem lokalny plik projektu, potem plik projektu w repozytorium, na końcu plik użytkownika.'
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+:::note[O tej stronie]
+**Czas:** ok. 9 minut czytania + 10 minut ćwiczenia.
+**Poziom:** średni, po [narzędziach agenta](/claude-code/narzedzia-agenta/).
+**Wcześniej:** wiesz, co Claude może wywołać. Tu: decydujesz, czego mu wolno.
+:::
+
+To najważniejsza lekcja w tej sekcji. Wszystko inne da się nadrobić, ale źle ustawione uprawnienia kosztują dane.
+
+## Tryby uprawnień
+
+Przełączasz je przez `Shift+Tab`, flagę `--permission-mode` albo `defaultMode` w settings.
+
+- `default` (etykieta **Manual**) - pyta przed edycją i komendami, odczyt bez pytania.
+- `acceptEdits` - automatycznie akceptuje edycje plików i bezpieczne operacje na plikach w katalogu roboczym.
+- `plan` - tylko odczyt. Claude bada i przedstawia plan, nic nie zmienia (komendy eksploracji nadal mogą pytać).
+- `auto` - klasyfikator w tle decyduje o większości promptów. Pro, Max i Team startują domyślnie właśnie tu.
+- `dontAsk` - nigdy nie pyta. Działają tylko preaprobowane narzędzia, reszta jest odrzucana.
+- `bypassPermissions` - pomija prompty, to samo co `--dangerously-skip-permissions`.
+
+## Reguły allow, ask i deny
+
+Kolejność ewaluacji: **deny → ask → allow**, pierwsze trafienie wygrywa. Specyficzność nie zmienia kolejności, a deny wygrywa zawsze.
+
+```json
+{
+  "permissions": {
+    "allow": ["Bash(git diff:*)", "Read(./src/**)", "Bash(npm test:*)"],
+    "ask":   ["Bash(git push:*)"],
+    "deny":  ["Read(./.env)", "Read(./.env.*)", "Bash(rm -rf:*)", "Edit(*.env)"],
+    "additionalDirectories": ["../shared-lib"],
+    "defaultMode": "acceptEdits"
+  }
+}
+```
+
+**Składnia reguł** to `Tool(specifier)`. Bash używa wildcardów - spacja plus `*` to granica słowa, a złożone komendy wymagają dopasowania każdej podkomendy. Read i Edit przyjmują ścieżki w stylu gitignore. Pobieranie z sieci: `WebFetch(domain:example.com)`. MCP: `mcp__server__tool`.
+
+## Pliki settings.json i precedencja
+
+Od najwyższej: **managed (enterprise) → CLI (`--settings`) → local (`.claude/settings.local.json`) → project (`.claude/settings.json`) → user (`~/.claude/settings.json`)**.
+
+Managed na macOS leży w `/Library/Application Support/ClaudeCode/managed-settings.json`. Interaktywnie zarządzasz tym przez `/permissions`.
+
+**NOWE v2.1.246: zakładka Auto mode w `/permissions`.** Listuje wszystkie reguły `allow`, `soft_deny` i `hard_deny`, których używa klasyfikator trybu `auto`. Dodajesz i zmieniasz je tam, zamiast ręcznie edytować JSON. To pierwszy moment, w którym tryb `auto` przestaje być czarną skrzynką - przejrzyj go, zanim zaczniesz w nim pracować na serio.
+
+## Bezpieczeństwo
+
+:::danger[Kiedy nie używać bypass]
+**Nigdy** na maszynie z produkcyjnymi poświadczeniami, **nigdy** w nieznanym repozytorium i **nigdy** interaktywnie, jeśli chcesz recenzować zmiany. Tylko w **izolowanych** środowiskach: kontener, maszyna wirtualna, efemeryczne CI.
+:::
+
+**Prompt injection.** Serwery MCP i treści z sieci mogą zawierać wrogie instrukcje. Claude Code skanuje wyjścia subagentów i chroni przed wstrzyknięciami, ale to nie zastępuje ograniczania narzędzi. Trzymaj `deny` na `.env` i sekretach.
+
+**Sandboxing i izolacja sieci.** `/sandbox` na wspieranych platformach, sandbox na macOS, WSL2 dla sandboxingu na Windows, kontenery dla trybu bypass. Administratorzy mogą wyłączyć bypass przez `disableBypassPermissionsMode`.
+
+Ścieżki chronione (`.git`, `.claude`, `.vscode`, `.idea`, `.husky` i podobne) oraz `rm` i `rmdir` na krytycznych ścieżkach nie są automatycznie akceptowane w żadnym trybie poza bypass.
+
+## Ćwiczenie: 10 minut
+
+1. Dodaj do projektowego `settings.json` regułę `deny` na `.env`.
+2. Dodaj regułę `allow` na `Bash(git diff:*)`.
+3. Uruchom `/permissions` i sprawdź, z którego pliku pochodzą reguły.
+
+**Zaliczenie:** widzisz obie reguły w `/permissions` razem ze źródłem. Jeśli któraś przyszła z innego pliku, niż myślałeś, właśnie zrozumiałeś precedencję.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** poproś Claude o odczytanie `.env` i sprawdź, że odmawia. To najtańszy test, czy Twoja konfiguracja faktycznie działa.
+
+## Teraz wiesz
+
+- Sześć trybów, a `plan` jest tym, od którego warto zaczynać w nieznanym kodzie.
+- `deny` wygrywa zawsze - to jedyna reguła, na której możesz polegać bezwarunkowo.
+- Bypass ma sens tylko tam, gdzie zniszczenie maszyny nic nie kosztuje.
+
+**Następny krok:** [Subagenci](/claude-code/subagenci/) - osobne okno kontekstu na osobne zadanie, z własnym zestawem narzędzi i uprawnień.
+
+<SlowniczekStrony terminy={["agent-ai", "prompt"]} />

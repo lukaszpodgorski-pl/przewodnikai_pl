@@ -1,0 +1,167 @@
+---
+title: Wymagania i instalacja Claude Code
+description: Pięć metod instalacji, wymagania systemowe i decyzja Windows natywny czy WSL2. Plus diagnostyka, migracja z npm i deinstalacja. Ćwiczenie zajmie 10 minut.
+sidebar:
+  label: 'Wymagania i instalacja'
+  order: 2
+educationalLevel: Intermediate
+teaches:
+  - Jakie są wymagania systemowe Claude Code
+  - Którą metodę instalacji wybrać na swoim systemie
+  - Jak zdiagnozować i naprawić nieudaną instalację
+about:
+  - name: Claude
+    sameAs: https://en.wikipedia.org/wiki/Claude_(language_model)
+  - name: Instalacja oprogramowania
+    sameAs: https://en.wikipedia.org/wiki/Installation_(computer_programs)
+mentions:
+  - name: Homebrew
+    sameAs: https://en.wikipedia.org/wiki/Homebrew_(package_manager)
+    type: SoftwareApplication
+  - name: Windows Subsystem for Linux
+    sameAs: https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux
+    type: SoftwareApplication
+  - name: npm
+    sameAs: https://en.wikipedia.org/wiki/Npm
+    type: SoftwareApplication
+faq:
+  - q: Którą metodę instalacji wybrać?
+    a: Natywny installer. Nie wymaga Node.js i aktualizuje się sam w tle. Homebrew, WinGet i menedżery pakietów Linuksa wymagają ręcznej aktualizacji, a instalacja przez npm jest dziś rozwiązaniem przestarzałym.
+  - q: Windows natywnie czy w WSL2?
+    a: Natywnie do projektów windowsowych. WSL2 do pełnej zgodności z Linuksem i do sandboxingu. W WSL uruchamiasz instalator linuksowy wewnątrz WSL, nie binarkę Windows, a repozytorium trzymasz w systemie plików Linuksa, bo praca na /mnt/c jest zauważalnie wolniejsza.
+  - q: Po instalacji terminal pisze "command not found". Co teraz?
+    a: Najczęściej PATH nie został odświeżony - zrestartuj terminal. Jeśli to nie pomaga, sprawdź "which -a claude" na macOS i Linuksie albo "where.exe claude" na Windowsie, żeby wykryć konflikt dwóch instalacji.
+status: gotowe
+---
+
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+:::note[O tej stronie]
+**Czas:** ok. 8 minut czytania + 10 minut ćwiczenia.
+**Poziom:** średni, po [Czym jest Claude Code](/claude-code/czym-jest-claude-code/).
+**Wcześniej:** wiesz, co robi to narzędzie. Tu: postawisz je u siebie.
+:::
+
+## Wymagania
+
+macOS 13.0+, Windows 10 1809+ albo Server 2019+, Ubuntu 20.04+, Debian 10+, Alpine 3.19+. Do tego 4 GB+ RAM, procesor x64 lub ARM64, połączenie z internetem i shell: Bash, Zsh, PowerShell albo CMD.
+
+GPU nie jest potrzebne - model liczy się po stronie Anthropic, nie u Ciebie. `ripgrep` zwykle jest dołączony.
+
+## Metoda 1 - natywny installer (zalecana)
+
+Bez Node.js, z automatyczną aktualizacją.
+
+```bash
+# macOS, Linux, WSL:
+curl -fsSL https://claude.ai/install.sh | bash
+```
+
+```powershell
+# Windows PowerShell:
+irm https://claude.ai/install.ps1 | iex
+```
+
+```bat
+:: Windows CMD:
+curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
+```
+
+Natywne instalacje aktualizują się w tle. Binarka trafia do `~/.local/bin/claude` (symlink do `~/.local/share/claude/versions/`). Instalacja konkretnej wersji: `curl -fsSL https://claude.ai/install.sh | bash -s 2.1.89` albo `stable`.
+
+**NOWE v2.1.243.** Binarka jest pakowana zstd: pobranie i auto-update to ok. **75 MB zamiast 340 MB** (mierzone na Linux x64). Kod ładuje się na żądanie zamiast cały naraz, co oszczędza ok. **40-70 MB RAM w każdej sesji**.
+
+## Metoda 2 - Homebrew (macOS, Linux)
+
+```bash
+brew install --cask claude-code          # kanał stable (~tydzień opóźnienia)
+brew install --cask claude-code@latest   # kanał latest
+```
+
+Homebrew **nie** aktualizuje automatycznie: `brew upgrade claude-code`.
+
+## Metoda 3 - WinGet (Windows)
+
+```powershell
+winget install Anthropic.ClaudeCode
+winget upgrade Anthropic.ClaudeCode   # manualny update
+```
+
+## Metoda 4 - menedżery pakietów Linux (apt, dnf, apk)
+
+Dostępne są podpisane repozytoria. Klucz podpisujący ma fingerprint `31DDDE24DDFAB679F42D7BD2BAA929FF1A7ECACE` - dokumentacja mówi wprost, że taki właśnie odcisk powinien wypisać `gpg`. Brak lub zły klucz daje błąd przy `apt update`: `NO_PUBKEY BAA929FF1A7ECACE`. Aktualizacja przebiega przez normalny system pakietów.
+
+## Metoda 5 - npm (legacy)
+
+```bash
+npm install -g @anthropic-ai/claude-code
+npm install -g @anthropic-ai/claude-code@latest   # upgrade - NIE npm update -g
+```
+
+Wymaga **Node.js 22+** (od v2.1.198). Na starszym Node pojawi się ostrzeżenie `EBADENGINE`, ale binarka i tak zadziała, bo npm pobiera natywny plik binarny przez optional dependency.
+
+:::danger[Nigdy sudo]
+**Nigdy nie używaj `sudo npm install -g`.** To źródło trwałych problemów z uprawnieniami, które później trudno rozplątać.
+:::
+
+## Windows: natywny czy WSL2
+
+- **Native Windows** - dla projektów Windows. Opcjonalnie zainstaluj **Git for Windows**, co włącza narzędzie Bash przez Git Bash; bez niego działa narzędzie PowerShell. Ścieżkę Git Bash ustawisz w settings przez `CLAUDE_CODE_GIT_BASH_PATH`.
+- **WSL2** - zalecane dla pełnej zgodności z Linuksem i sandboxingu. Uruchom instalator Linux _wewnątrz_ WSL (nie instaluj binarki Windows do WSL). Trzymaj repo w systemie plików Linuksa - operacje na `/mnt/c/...` są zauważalnie wolniejsze.
+- **Alpine i musl:** `apk add bash curl libgcc libstdc++ ripgrep`, potem ustaw `USE_BUILTIN_RIPGREP=0`.
+
+## Weryfikacja, diagnostyka, aktualizacja
+
+```bash
+claude --version           # np. 2.1.224 (Claude Code)
+claude doctor              # diagnostyka instalacji i settings (read-only)
+claude update              # manualny update natywnej instalacji
+claude install stable      # instalacja/reinstalacja kanału lub wersji
+```
+
+**Migracja z npm na natywną:** w sesji `/migrate-installer`, albo z shella `claude install`. Najczęstszy problem po migracji to stara binarka npm "zasłaniająca" natywną na PATH:
+
+```bash
+npm uninstall -g @anthropic-ai/claude-code
+hash -r                    # bash; w zsh: rehash
+which claude               # powinno zwrócić ~/.local/bin/claude
+claude doctor              # potwierdź install type = 'native'
+```
+
+**Typowe błędy instalacji:**
+
+- `command not found` → PATH nie odświeżony, zrestartuj terminal.
+- npm `EACCES` → napraw katalog globalny npm, nie używaj `sudo`.
+- Konflikt dwóch instalacji → `which -a claude` (macOS, Linux) albo `where.exe claude` (Windows).
+- Zarządzanie przez asdf → shim może wskazywać starą wersję.
+
+**Deinstalacja (natywna):**
+
+```bash
+rm -f ~/.local/bin/claude
+rm -rf ~/.local/share/claude
+```
+
+Konfigurację usuwa `rm -rf ~/.claude` plus `rm ~/.claude.json`. Uwaga: to kasuje settings, MCP i historię. Wyłączenie auto-update: `DISABLE_AUTOUPDATER=1` w sekcji `env` w settings.json.
+
+**NOWE v2.1.245.** Wersje v2.1.242 i v2.1.243 wywalały się przy starcie na dystrybucjach z glibc 2.44 (Arch, CachyOS, Fedora Rawhide). Jeśli utknąłeś na jednej z nich, to jest powód - napraw aktualizacją do v2.1.245 lub nowszej.
+
+## Ćwiczenie: 10 minut
+
+1. Zainstaluj Claude Code preferowaną metodą - domyślnie natywnym installerem.
+2. Uruchom `claude doctor`.
+3. Zapisz, jaki masz "install type".
+
+**Zaliczenie:** `claude doctor` kończy się bez błędu, a Ty wiesz, czy masz instalację `native`, czy jakąś inną. Jeśli inną, wiesz też, czy chcesz migrować.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** sprawdź `claude --version` i porównaj z wersją, przy której opisane są nowości w tej sekcji. Zobaczysz od razu, które fragmenty kursu Cię jeszcze nie dotyczą.
+
+## Teraz wiesz
+
+- Natywny installer to domyślny wybór: bez Node.js i z aktualizacją w tle.
+- Na Windowsie decyzja natywnie czy WSL2 zapada raz i wpływa na wydajność.
+- `claude doctor` jest pierwszą komendą przy każdym problemie z instalacją.
+
+**Następny krok:** [Logowanie i plany](/claude-code/logowanie-i-plany/) - subskrypcja czy klucz API, i dlaczego jedna zmienna środowiskowa potrafi po cichu przestawić Cię na rozliczenie za zużycie.
+
+<SlowniczekStrony terminy={["agent-ai"]} />

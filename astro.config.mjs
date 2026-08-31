@@ -7,6 +7,7 @@ import { lastModMap } from './scripts/sitemap-lastmod.mjs';
 import { SECTIONS } from './src/config/sections';
 
 import { GITHUB_REPO } from './src/config/repo';
+import { rehypeIlustracjaNaglowkowa } from './src/lib/rehype-ilustracja-naglowkowa.mjs';
 
 // Prefiks stron pomocniczych obsługi newslettera (cele przekierowań z Sendy).
 // Mają `noindex: true` we frontmatterze i są pomijane w sitemapie.
@@ -32,6 +33,20 @@ export default defineConfig({
 			description:
 				'Otwarta, społecznościowa baza wiedzy o sztucznej inteligencji po polsku. Kurs AI od podstaw - bez żargonu, z ćwiczeniem na każdej lekcji.',
 			customCss: ['./src/styles/custom.css'],
+			// Bloki kodu na tej stronie to w większości prompty - zwykłe zdania
+			// po polsku, często dłuższe niż kolumna tekstu. Expressive Code
+			// domyślnie chowa nadmiar w poziomym pasku przewijania, więc
+			// czytelnik widzi początek promptu i musi przewijać w bok, żeby
+			// poznać resztę. Na telefonie znika w ten sposób połowa treści.
+			// `wrap` zawija wiersz dopiero wtedy, gdy nie mieści się w szerokości
+			// bloku - krótkie linie zostają nietknięte.
+			//
+			// `preserveIndent` (domyślnie włączone) trzyma wcięcie w kontynuacji
+			// zawiniętego wiersza, więc nieliczne bloki z prawdziwym kodem nadal
+			// czyta się po strukturze.
+			expressiveCode: {
+				defaultProps: { wrap: true },
+			},
 			components: {
 				Footer: './src/components/Footer.astro',
 				Head: './src/components/Head.astro',
@@ -90,6 +105,11 @@ export default defineConfig({
 			},
 		}),
 	],
+	// Pierwszy obraz artykulu stoi w pierwszym ekranie, wiec nie moze byc
+	// ladowany leniwie - patrz komentarz w samym pluginie.
+	markdown: {
+		rehypePlugins: [rehypeIlustracjaNaglowkowa],
+	},
 	vite: {
 		build: {
 			rolldownOptions: {

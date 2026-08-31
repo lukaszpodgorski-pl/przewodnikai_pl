@@ -1,0 +1,134 @@
+---
+title: Hooks w Claude Code
+description: Twój skrypt uruchamiany automatycznie w wybranym momencie pracy agenta. Zdarzenia, struktura konfiguracji, kody wyjścia i trzy przykłady do skopiowania. Ćwiczenie zajmie 10 minut.
+sidebar:
+  label: 'Hooks'
+  order: 12
+educationalLevel: Intermediate
+teaches:
+  - Które zdarzenia cyklu życia sesji można przechwycić
+  - Jak zbudować konfigurację hooka i dobrać matcher
+  - Jak zablokować niepożądaną operację kodem wyjścia
+about:
+  - name: Claude
+    sameAs: https://en.wikipedia.org/wiki/Claude_(language_model)
+  - name: Skrypt powłoki
+    sameAs: https://en.wikipedia.org/wiki/Shell_script
+mentions:
+  - name: JSON
+    sameAs: https://en.wikipedia.org/wiki/JSON
+  - name: Bash
+    sameAs: https://en.wikipedia.org/wiki/Bash_(Unix_shell)
+    type: SoftwareApplication
+  - name: Model Context Protocol
+    sameAs: https://en.wikipedia.org/wiki/Model_Context_Protocol
+faq:
+  - q: Czym hook różni się od reguły w CLAUDE.md?
+    a: Gwarancją. Wpis w CLAUDE.md to kontekst, który model bierze pod uwagę. Hook to kod, który wykonuje się zawsze w danym momencie, niezależnie od tego, co model uzna za stosowne.
+  - q: Jak zablokować operację hookiem?
+    a: 'Kodem wyjścia 2 na zdarzeniu, które może blokować - typowo PreToolUse. Komunikat dla użytkownika wypisujesz na stderr. Kod 0 razem z JSON-em na stdout daje bardziej precyzyjną kontrolę przez pole permissionDecision.'
+  - q: Czy hook jest bezpieczny?
+    a: To arbitralny kod uruchamiany z Twoimi uprawnieniami, więc traktuj go jak każdy inny skrypt w repozytorium. Hooki z plików projektowych wymagają zaufania folderu, ale to nie zwalnia z przeczytania, co dokładnie robią.
+status: gotowe
+---
+
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+:::note[O tej stronie]
+**Czas:** ok. 8 minut czytania + 10 minut ćwiczenia.
+**Poziom:** średni, po [subagentach](/claude-code/subagenci/).
+**Wcześniej:** znasz miękkie sterowanie agentem. Tu: twarde.
+:::
+
+Hooks to komendy shell, wywołania HTTP, MCP, prompty albo agenci uruchamiani automatycznie w określonych momentach cyklu życia sesji. Konfigurujesz je w `settings.json`, a także we frontmatterze skills i subagentów oraz w pluginach.
+
+Jedna rzecz do zapamiętania: **CLAUDE.md prosi, hook wymusza.**
+
+## Zdarzenia
+
+Oficjalna referencja wylicza **34** nazwane zdarzenia cyklu życia. Najczęściej używane: `SessionStart`, `SessionEnd`, `Setup`, `UserPromptSubmit`, `PreToolUse`, `PostToolUse`, `PostToolUseFailure`, `Notification`, `SubagentStart`, `SubagentStop`, `Stop`, `StopFailure`, `PreCompact`, `PostCompact`.
+
+Pozostałe obejmują między innymi `UserPromptExpansion`, `PermissionRequest`, `PermissionDenied`, `PostToolBatch`, `TaskCreated`, `TaskCompleted`, `TeammateIdle`, `InstructionsLoaded`, `ConfigChange`, `CwdChanged`, `DirectoryAdded`, `WorktreeCreate`, `WorktreeRemove`, `PreModelSwitch`, `PostModelSwitch`, `Elicitation`, `ElicitationResult`, `MessageDisplay`.
+
+## Struktura
+
+Trzy poziomy zagnieżdżeń: zdarzenie → matcher group → hook handler.
+
+**Matcher.** `"*"` albo pusty oznacza wszystko. `Bash`, `Edit|Write` to dokładne nazwy narzędzi. Znaki specjalne przechodzą w wyrażenie regularne (bez kotwiczenia). MCP: `mcp__server__.*`.
+
+**Wejście i wyjście.** JSON na standardowym wejściu dla command hooks, body POST dla HTTP. Komunikacja odbywa się przez **kody wyjścia** oraz stdout i stderr.
+
+**Exit 2 = blokada** na zdarzeniach, które mogą blokować. Exit 0 plus JSON daje strukturalną kontrolę: `hookSpecificOutput.permissionDecision` (allow, deny, ask), `additionalContext`, `updatedInput`.
+
+## Przykład 1: auto-format po edycji (`PostToolUse`)
+
+```json
+{
+  "hooks": {
+    "PostToolUse": [
+      { "matcher": "Edit|Write",
+        "hooks": [ { "type": "command",
+                     "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/format.sh",
+                     "args": [] } ] }
+    ]
+  }
+}
+```
+
+## Przykład 2: blokada edycji i odczytu `.env` (`PreToolUse`, exit 2)
+
+```bash
+#!/bin/bash
+# .claude/hooks/block-env.sh
+INPUT=$(cat)
+FILE=$(echo "$INPUT" | jq -r '.tool_input.file_path // empty')
+if echo "$FILE" | grep -qE '\.env($|\.)'; then
+  echo "Blocked: pliki .env są chronione" >&2
+  exit 2
+fi
+exit 0
+```
+
+```json
+{ "hooks": { "PreToolUse": [
+  { "matcher": "Edit|Write|Read",
+    "hooks": [ { "type": "command",
+                 "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/block-env.sh" } ] } ] } }
+```
+
+## Przykład 3: powiadomienie desktopowe (`Notification`)
+
+```bash
+#!/bin/bash
+input=$(cat)
+title="Claude Code"
+body=$(jq -r '.message // "Needs your attention"' <<< "$input")
+seq=$(printf '\033]777;notify;%s;%s\007' "$title" "$body")
+jq -nc --arg seq "$seq" '{terminalSequence: $seq}'
+```
+
+Konfigurację przejrzysz przez `/hooks`. Hooks działają też wewnątrz subagentów.
+
+:::danger[Hook to Twój kod z Twoimi uprawnieniami]
+Hook uruchamia arbitralny kod z Twoimi uprawnieniami. Pliki projektowe wymagają zaufania folderu (workspace trust), ale przed uruchomieniem cudzego repozytorium przeczytaj, co jego hooki właściwie robią.
+:::
+
+## Ćwiczenie: 10 minut
+
+1. Dodaj hook `PreToolUse` blokujący `.env` według przykładu 2.
+2. Poproś Claude o odczyt pliku `.env`.
+3. Sprawdź, że operacja została zablokowana wraz z Twoim komunikatem.
+
+**Zaliczenie:** Claude nie odczytał `.env`, a w terminalu widzisz tekst, który sam wpisałeś do skryptu. Masz gwarancję zamiast sugestii.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** porównaj to z regułą `deny` z lekcji o uprawnieniach. Obie blokują, ale hook daje Ci własny komunikat i możliwość logowania prób.
+
+## Teraz wiesz
+
+- Hook to Twój kod w wybranym momencie cyklu życia sesji, a zdarzeń jest 34.
+- Kod wyjścia 2 blokuje operację, a JSON na stdout pozwala sterować decyzją precyzyjniej.
+- Hooki z cudzego repozytorium czytasz przed uruchomieniem, bo działają z Twoimi uprawnieniami.
+
+**Następny krok:** [MCP w Claude Code](/claude-code/mcp/) - podłączysz agenta do issue trackera, bazy albo API bez pisania integracji.
+
+<SlowniczekStrony terminy={["agent-ai", "prompt"]} />

@@ -1,0 +1,90 @@
+---
+title: Czym jest Claude Code
+description: Agentowe narzędzie CLI, które działa w Twoim repozytorium zamiast odpowiadać w oknie czatu. Poznasz agentową pętlę, różnice wobec innych powierzchni Claude i aktualne modele. Ćwiczenie zajmie 5 minut.
+sidebar:
+  label: 'Czym jest Claude Code'
+  order: 1
+educationalLevel: Intermediate
+teaches:
+  - Czym Claude Code różni się od czatu w przeglądarce
+  - Na czym polega agentowa pętla
+  - Które modele są dostępne i jak je przełączać
+about:
+  - name: Claude
+    sameAs: https://en.wikipedia.org/wiki/Claude_(language_model)
+  - name: Interfejs wiersza poleceń
+    sameAs: https://en.wikipedia.org/wiki/Command-line_interface
+mentions:
+  - name: Anthropic
+    sameAs: https://en.wikipedia.org/wiki/Anthropic
+    type: Organization
+  - name: Model Context Protocol
+    sameAs: https://en.wikipedia.org/wiki/Model_Context_Protocol
+faq:
+  - q: Czym Claude Code różni się od Claude w przeglądarce?
+    a: Zakresem działania. W przeglądarce dostajesz tekst, który sam kopiujesz. Claude Code jest programem terminalowym - czyta i edytuje pliki na Twoim dysku, uruchamia komendy shell, tworzy commity i otwiera pull requesty.
+  - q: Czy rozszerzenie do VS Code to co innego niż Claude Code?
+    a: Nie. Wtyczki do VS Code i JetBrains to nakładki na ten sam silnik. Rdzeniem jest CLI, więc wszystko z tego kursu działa również pod wtyczką.
+  - q: Który model jest domyślny?
+    a: To zależy od planu. Opus 5 na Max, Team Premium, Enterprise PAYG i API. Sonnet 5 na Pro i Team Standard. Sonnet 4.5 na Microsoft Foundry. Fable 5 nie jest domyślny nigdzie - włączasz go komendą "/model fable".
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+:::note[O tej stronie]
+**Czas:** ok. 6 minut czytania + 5 minut ćwiczenia.
+**Poziom:** średni, początek sekcji.
+**Wcześniej:** wiesz, czym jest chatbot. Tu: co się zmienia, gdy model dostaje dostęp do Twojego dysku.
+:::
+
+## Program, nie okno czatu
+
+Claude Code to **agentowe narzędzie CLI** Anthropic działające w terminalu. To natywny binarny program, który wykonuje realne działania na Twojej maszynie: czyta i edytuje pliki, uruchamia komendy shell, tworzy commity, otwiera PR-y, łączy się z zewnętrznymi usługami przez MCP.
+
+Jedna rzecz do zapamiętania: **czat proponuje, Claude Code robi.** Cała reszta tej sekcji, a zwłaszcza lekcja o uprawnieniach, wynika z tego jednego zdania.
+
+## Czym różni się od innych powierzchni Claude
+
+- **Claude.ai, aplikacja desktop, mobile** - interfejs czatu. Claude Code to program terminalowy, który _działa_ w Twoim repo.
+- **Rozszerzenia IDE (VS Code, JetBrains)** - to nakładki na ten sam silnik Claude Code. Sam CLI jest rdzeniem.
+- **Cienkie klienty API** - Claude Code to nie prosty klient API, tylko pełen <Termin id="agent-ai">agent</Termin> z pętlą narzędziową, pamięcią i systemem uprawnień.
+
+## Agentowa pętla
+
+Claude otrzymuje prompt → planuje → wywołuje narzędzia (Read, Edit, Bash i pozostałe) → obserwuje wyniki → iteruje, aż zadanie jest gotowe.
+
+Kluczowym zasobem jest <Termin id="okno-kontekstowe">okno kontekstu</Termin>. Gdy się zapełnia, jakość spada - dlatego zarządzanie kontekstem dostało w tym kursie [osobną lekcję](/claude-code/kontekst-i-koszty/).
+
+## Modele (stan sierpień 2026)
+
+Aliasy: `sonnet`, `opus`, `haiku`, `fable`, plus `best`, `opusplan`, `sonnet[1m]`, `opus[1m]`.
+
+Pełne ID: `claude-opus-5`, `claude-sonnet-5`, `claude-fable-5`, `claude-haiku-4-5-20251001`.
+
+Domyślny model zależy od planu: **Opus 5** na Max, Team Premium, Enterprise PAYG i API; **Sonnet 5** na Pro i Team Standard; **Sonnet 4.5** na Microsoft Foundry. Fable 5 nie jest domyślny nigdzie - używasz go dopiero po `/model fable`.
+
+Przełączanie: `/model` w sesji, `--model` przy starcie, `ANTHROPIC_MODEL`, pole `model` w settings, `ANTHROPIC_DEFAULT_MODEL` dla nowych sesji.
+
+Opus 5 wymaga v2.1.219+, Sonnet 5 wymaga v2.1.197+. Aliasy `opus` i `sonnet` rozwijają się różnie zależnie od providera - na Bedrock i Vertex `sonnet` to Sonnet 4.5.
+
+## Ćwiczenie: 5 minut
+
+1. Uruchom `claude` w katalogu dowolnego projektu.
+2. Zapytaj: "opisz strukturę tego projektu".
+3. Obserwuj, jakie narzędzia Claude wywołuje - zobaczysz nazwy Read, Grep, Glob.
+
+**Zaliczenie:** masz na kartce trzy nazwy narzędzi, które Claude wywołał, żeby odpowiedzieć na jedno zdanie. To jest agentowa pętla w praktyce, nie metafora.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** zapytaj o coś, czego w projekcie nie ma ("gdzie jest konfiguracja płatności?"). Zobaczysz, jak Claude szuka i jak przyznaje, że czegoś nie znalazł.
+
+## Teraz wiesz
+
+- Claude Code to program, który zmienia pliki, a nie czat, który podpowiada.
+- Pętla to plan → narzędzie → obserwacja → następny krok, aż do końca zadania.
+- Model dobierasz sam, a domyślny zależy od planu, nie od Twojego wyboru.
+
+**Następny krok:** [Wymagania i instalacja](/claude-code/instalacja/) - pięć metod instalacji, a przy Windowsie dodatkowo decyzja natywnie czy w WSL2.
+
+<SlowniczekStrony terminy={["agent-ai", "okno-kontekstowe"]} />

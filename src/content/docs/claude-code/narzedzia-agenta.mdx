@@ -1,0 +1,104 @@
+---
+title: Narzędzia agenta i wymagane uprawnienia
+description: Pełna lista narzędzi, które Claude Code potrafi wywołać, z informacją, które wymagają Twojej zgody. Plus poziomy uprawnień i zakres opcji "Yes, don't ask again". Ćwiczenie zajmie 5 minut.
+sidebar:
+  label: 'Narzędzia agenta'
+  order: 9
+educationalLevel: Intermediate
+teaches:
+  - Które narzędzia Claude wywołuje bez pytania
+  - Dlaczego odczyt poza katalogiem roboczym wymaga zgody
+  - Jak długo działa zgoda udzielona raz
+about:
+  - name: Claude
+    sameAs: https://en.wikipedia.org/wiki/Claude_(language_model)
+  - name: Bezpieczeństwo komputerowe
+    sameAs: https://pl.wikipedia.org/wiki/Bezpiecze%C5%84stwo_teleinformatyczne
+mentions:
+  - name: Model Context Protocol
+    sameAs: https://en.wikipedia.org/wiki/Model_Context_Protocol
+  - name: Bash
+    sameAs: https://en.wikipedia.org/wiki/Bash_(Unix_shell)
+    type: SoftwareApplication
+faq:
+  - q: Które narzędzia działają bez pytania o zgodę?
+    a: 'Odczytowe: Read, Grep i Glob w katalogu roboczym, a także narzędzia organizacyjne jak TodoWrite, Agent czy AskUserQuestion. Zgody wymaga wszystko, co zmienia pliki, uruchamia komendy albo sięga do sieci.'
+  - q: Dlaczego Claude pyta o zgodę na sam odczyt pliku?
+    a: Bo plik leży poza katalogiem roboczym i poza katalogami dodanymi przez add-dir. W obrębie katalogu roboczego odczyt jest wolny od pytań.
+  - q: Co dokładnie oznacza "Yes, don't ask again"?
+    a: 'To zależy od narzędzia. Przy Bash zgoda jest trwała dla danego repozytorium i danej komendy. Przy edycji plików obowiązuje do końca sesji. Przy pobieraniu z sieci jest trwała dla repozytorium i domeny.'
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+:::note[O tej stronie]
+**Czas:** ok. 5 minut czytania + 5 minut ćwiczenia.
+**Poziom:** średni, po [CLAUDE.md](/claude-code/claude-md-i-pamiec/).
+**Wcześniej:** wiesz, skąd Claude bierze kontekst. Tu: czym może w tym kontekście działać.
+:::
+
+Kolumna "Wymaga zgody" dotyczy trybu Manual i ścieżek w katalogu roboczym.
+
+| Narzędzie | Wymaga zgody | Narzędzie | Wymaga zgody |
+| --- | --- | --- | --- |
+| `Read` | Nie | `Edit` | Tak |
+| `Grep` | Nie | `Write` | Tak |
+| `Glob` | Nie | `NotebookEdit` | Tak |
+| `Bash` | Tak\* | `PowerShell` | Tak |
+| `WebFetch` | Tak\*\* | `WebSearch` | Tak |
+| `Agent` (dawniej Task) | Nie | `Skill` | Tak |
+| `TodoWrite` | Nie | `Workflow` | Tak |
+| `Artifact` | Tak | `Monitor` | Tak |
+| `AskUserQuestion` | Nie | `EnterWorktree` | Tak |
+| `ExitWorktree` | Nie | `ExitPlanMode` | Tak |
+| `EnterPlanMode` | Nie | `EndConversation` | Nie |
+| `TaskCreate` i pokrewne | Nie | `ToolSearch` | Nie |
+| `SendMessage`, `ListAgents` | Nie | `LSP` | Nie |
+| `ReadMcpResourceTool` | Nie | `WaitForMcpServers` | Nie |
+| `CronCreate` i pokrewne | Nie | `ScheduleWakeup` | Nie |
+
+:::note[Dwie gwiazdki z tabeli]
+`Bash` jest oznaczone "Tak", ale wbudowany zestaw komend tylko do odczytu (`ls`, `cat`, `echo`, `pwd`, `head`, `tail`, `grep`, `find`, `wc`, `which`, `diff`, `stat`, `du`, `cd` oraz odczytowe formy `git`) działa bez promptu w każdym trybie.
+
+`WebFetch` ma preaprobowany zestaw domen dokumentacji.
+:::
+
+Trzy uwagi, które łatwo przeoczyć:
+
+- `Read`, `Grep` i `Glob` mimo "Nie" pytają o ścieżki **poza** katalogiem roboczym i katalogami dodatkowymi.
+- `TodoWrite` jest domyślnie wyłączone na rzecz `TaskCreate` i `TaskList` na Opus 4.8, Sonnet 5 oraz Fable 5+. Wrócisz do niego przez `CLAUDE_CODE_ENABLE_TASKS=0`.
+- `Agent` to narzędzie delegowania do <Termin id="agent-ai">subagentów</Termin>. Dawna nazwa `Task` działa jako alias.
+
+## Poziomy uprawnień
+
+| Typ narzędzia | Przykład | Wymaga zgody | "Yes, don't ask again" |
+| --- | --- | --- | --- |
+| Read-only | odczyt plików, Grep | Nie (w katalogu roboczym) | - |
+| Bash | shell | Tak (poza read-only) | trwale, per repo i komenda |
+| Modyfikacja plików | Edit, Write | Tak | do końca sesji |
+| Web fetch | WebFetch | Tak (poza preaprobowanymi) | trwale, per repo i domena |
+| Web search | WebSearch | Tak | trwale, per repo |
+
+Ostatnia kolumna jest ważniejsza, niż wygląda. Zgoda na komendę shella zostaje z Tobą na stałe w danym repozytorium, a zgoda na edycję pliku znika po sesji. Warto o tym pamiętać, zanim klikniesz w pośpiechu.
+
+## Ćwiczenie: 5 minut
+
+1. Poproś Claude: "użyj Grep, żeby znaleźć wszystkie `TODO` w repo".
+2. Zaobserwuj, że nie pyta o zgodę.
+3. Poproś o odczyt pliku spoza katalogu projektu i porównaj zachowanie.
+
+**Zaliczenie:** widziałeś obie sytuacje i wiesz, że granicą nie jest rodzaj operacji, tylko miejsce, w którym się odbywa.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** poproś o `git status` i zobacz, że odczytowa forma `git` przechodzi bez pytania. Potem poproś o `git commit` i porównaj.
+
+## Teraz wiesz
+
+- Granica "z pytaniem czy bez" biegnie po tym, czy operacja zmienia coś na zewnątrz.
+- Katalog roboczy jest strefą swobodnego odczytu, wszystko poza nim wymaga zgody.
+- Zgoda "nie pytaj więcej" ma różny zasięg w zależności od narzędzia.
+
+**Następny krok:** [Uprawnienia i bezpieczeństwo](/claude-code/uprawnienia-i-bezpieczenstwo/) - tryby, reguły allow, ask i deny, oraz to, który plik settings wygrywa.
+
+<SlowniczekStrony terminy={["agent-ai"]} />

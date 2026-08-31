@@ -1,0 +1,153 @@
+---
+title: Własne slash commands w Claude Code
+description: Powtarzalny prompt zamieniasz w komendę zapisaną jako plik Markdown. Frontmatter, argumenty, wstawianie wyniku shella i pięć gotowych przykładów do skopiowania. Ćwiczenie zajmie 10 minut.
+sidebar:
+  label: 'Własne komendy'
+  order: 7
+educationalLevel: Intermediate
+teaches:
+  - Gdzie umieścić własną komendę i jak nadać jej nazwę
+  - Co można ustawić we frontmatterze komendy
+  - Jak wstawić do promptu argumenty, pliki i wynik komendy shell
+about:
+  - name: Claude
+    sameAs: https://en.wikipedia.org/wiki/Claude_(language_model)
+  - name: Markdown
+    sameAs: https://en.wikipedia.org/wiki/Markdown
+mentions:
+  - name: Git
+    sameAs: https://en.wikipedia.org/wiki/Git
+    type: SoftwareApplication
+  - name: GitHub
+    sameAs: https://en.wikipedia.org/wiki/GitHub
+    type: Organization
+faq:
+  - q: Gdzie zapisać własną komendę?
+    a: 'W katalogu .claude/commands/ wewnątrz projektu, jeśli ma być współdzielona przez repozytorium, albo w ~/.claude/commands/, jeśli ma działać we wszystkich projektach. Nazwa pliku staje się nazwą komendy.'
+  - q: Jak przekazać komendzie argumenty?
+    a: 'Zmienna $ARGUMENTS wstawia cały tekst po nazwie komendy, a $1, $2 i kolejne wstawiają argumenty pozycyjne. Podpowiedź dla użytkownika ustawiasz polem argument-hint we frontmatterze.'
+  - q: Czy Claude może sam wywołać moją komendę?
+    a: 'Domyślnie tak. Jeśli komenda ma efekty uboczne, na przykład commituje albo wdraża, ustaw disable-model-invocation na true - wtedy uruchomisz ją tylko Ty.'
+status: gotowe
+---
+
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+:::note[O tej stronie]
+**Czas:** ok. 7 minut czytania + 10 minut ćwiczenia.
+**Poziom:** średni, po [slash commands](/claude-code/slash-commands/).
+**Wcześniej:** znasz komendy wbudowane. Tu: napiszesz własną.
+:::
+
+Własne komendy to zwykłe pliki `.md`:
+
+- **Projektowe:** `.claude/commands/` - współdzielone przez git.
+- **Użytkownika:** `~/.claude/commands/` - dostępne we wszystkich projektach.
+
+Nazwa pliku staje się nazwą komendy (`deploy.md` → `/deploy`). Podkatalogi tworzą namespacing.
+
+## Frontmatter
+
+```markdown
+---
+description: Krótki opis (pokazywany w /help)
+argument-hint: [message]
+allowed-tools: Bash(git add:*), Bash(git commit:*)
+model: haiku
+disable-model-invocation: false
+---
+Treść promptu. $ARGUMENTS = wszystko po nazwie; $1, $2 = pozycyjne.
+Wstaw plik przez @ścieżka; uruchom bash i wstaw wynik przez !`komenda`.
+```
+
+- `$ARGUMENTS` - cały tekst. `$1`, `$2` i kolejne - argumenty pozycyjne.
+- `` !`komenda` `` - wykona bash i wstawi wynik (wymaga `allowed-tools`).
+- `@ścieżka` - wstawia zawartość pliku.
+- `disable-model-invocation: true` - tylko Ty możesz uruchomić komendę. Warto dla komend z efektami ubocznymi, jak `/commit` czy `/deploy`.
+
+## Przykład 1: `/commit`
+
+Plik `.claude/commands/commit.md`:
+
+```markdown
+---
+description: Utwórz git commit wg Conventional Commits
+allowed-tools: Bash(git add:*), Bash(git commit:*), Bash(git status:*), Bash(git diff:*)
+argument-hint: [message]
+model: haiku
+---
+# Kontekst
+- Status: !`git status`
+- Diff (staged): !`git diff --cached`
+
+Utwórz commit wg Conventional Commits. Jeśli podano $ARGUMENTS, użyj jako wiadomości.
+```
+
+## Przykład 2: `/fix-issue`
+
+```markdown
+---
+description: Napraw issue z GitHub
+argument-hint: <issue-number> [priority]
+allowed-tools: Bash(gh issue:*), Read, Edit
+---
+Napraw issue #$1 z priorytetem $2. Najpierw pobierz szczegóły przez `gh issue view $1`,
+przeczytaj CONTRIBUTING.md, potem zaproponuj plan i wprowadź poprawkę.
+```
+
+## Przykład 3: `/explain-diff`
+
+```markdown
+---
+description: Wyjaśnij bieżący git diff
+allowed-tools: Bash(git status:*), Bash(git diff:*), Bash(git log:*)
+---
+# Kontekst
+- Status: !`git status`
+- Diff: !`git diff HEAD`
+
+Wyjaśnij po polsku, co się zmieniło i dlaczego.
+```
+
+## Przykład 4: `/generate-tests`
+
+```markdown
+---
+description: Wygeneruj testy dla wskazanego pliku
+argument-hint: [ścieżka]
+allowed-tools: Read, Write, Bash
+---
+Wygeneruj testy jednostkowe dla @$ARGUMENTS. Wykryj framework,
+dopasuj konwencje repo, uruchom testy.
+```
+
+## Przykład 5: `/review-pr`
+
+```markdown
+---
+description: Przegląd PR pod kątem jakości
+allowed-tools: Read, Grep, Glob, Bash(git diff:*)
+model: opus
+---
+Przejrzyj zmiany w PR #$1: poprawność, bezpieczeństwo, wydajność, pokrycie testami.
+```
+
+## Ćwiczenie: 10 minut
+
+1. Utwórz plik `~/.claude/commands/ship.md`.
+2. Wpisz w nim treść: "Przejrzyj bieżący diff, uruchom testy, jeśli przechodzą - zrób commit".
+3. Wywołaj `/ship` w dowolnym projekcie.
+
+**Zaliczenie:** komenda `/ship` pojawia się na liście po wpisaniu `/` i uruchamia się. Masz pierwszy własny skrót do powtarzalnej pracy.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** dopisz do niej frontmatter z `description` i `allowed-tools`, potem porównaj, jak wygląda w `/help` przed i po.
+
+## Teraz wiesz
+
+- Własna komenda to plik Markdown, a jego nazwa to nazwa komendy.
+- Frontmatter steruje opisem, narzędziami, modelem i tym, czy Claude może ją wywołać sam.
+- Do promptu wstawisz argumenty, zawartość pliku i wynik komendy shell.
+
+**Następny krok:** [CLAUDE.md i pamięć](/claude-code/claude-md-i-pamiec/) - plik, w którym zapisujesz reguły projektu raz, zamiast powtarzać je w każdej rozmowie.
+
+<SlowniczekStrony terminy={["prompt"]} />

@@ -1,0 +1,130 @@
+---
+title: MCP w Claude Code
+description: Podłączenie agenta do issue trackera, bazy danych albo API przez Model Context Protocol. Dodawanie serwerów, zakresy, transporty, zasoby i gotowy plik .mcp.json. Ćwiczenie zajmie 10 minut.
+sidebar:
+  label: 'MCP'
+  order: 13
+educationalLevel: Intermediate
+teaches:
+  - Jak dodać serwer MCP w każdym z trzech transportów
+  - Czym różnią się zakresy local, project i user
+  - Jak sięgnąć po zasoby i prompty udostępnione przez serwer
+about:
+  - name: Model Context Protocol
+    sameAs: https://en.wikipedia.org/wiki/Model_Context_Protocol
+  - name: Claude
+    sameAs: https://en.wikipedia.org/wiki/Claude_(language_model)
+mentions:
+  - name: GitHub
+    sameAs: https://en.wikipedia.org/wiki/GitHub
+    type: Organization
+  - name: OAuth
+    sameAs: https://en.wikipedia.org/wiki/OAuth
+  - name: JSON
+    sameAs: https://en.wikipedia.org/wiki/JSON
+faq:
+  - q: Który zakres serwera MCP wybrać?
+    a: 'Local, gdy serwer ma być prywatny i tylko w tym projekcie. Project, gdy ma być współdzielony przez repozytorium - wtedy trafia do pliku .mcp.json i idzie do gita. User, gdy ma działać we wszystkich Twoich projektach.'
+  - q: Czy dodanie wielu serwerów MCP zapcha kontekst?
+    a: W praktyce nie. Domyślnie włączony Tool Search odracza definicje narzędzi, więc serwery nie zajmują miejsca, dopóki nie są potrzebne.
+  - q: Czy Claude Code może sam być serwerem MCP?
+    a: 'Tak. Komenda claude mcp serve udostępnia jego własne narzędzia innym klientom protokołu.'
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+:::note[O tej stronie]
+**Czas:** ok. 8 minut czytania + 10 minut ćwiczenia.
+**Poziom:** średni, po [hookach](/claude-code/hooks/).
+**Wcześniej:** znasz MCP od strony użytkownika czatu. Tu: od strony konfiguracji.
+:::
+
+MCP to otwarty standard łączący Claude z zewnętrznymi narzędziami i danymi: issue trackerami, bazami, API, monitoringiem. Jeśli nie znasz go w ogóle, zacznij od lekcji Serwery MCP w sekcji Narzędzia - tu zajmujemy się wyłącznie konfiguracją w Claude Code.
+
+## Dodawanie serwerów
+
+```bash
+# HTTP (zalecane dla zdalnych):
+claude mcp add --transport http notion https://mcp.notion.com/mcp
+claude mcp add --transport http github https://api.githubcopilot.com/mcp/ \
+  --header "Authorization: Bearer YOUR_PAT"
+
+# SSE (deprecated):
+claude mcp add --transport sse asana https://mcp.asana.com/sse
+
+# stdio (lokalny proces) - pamiętaj o --:
+claude mcp add --env AIRTABLE_API_KEY=KEY --transport stdio airtable \
+  -- npx -y airtable-mcp-server
+
+# z JSON:
+claude mcp add-json weather '{"type":"http","url":"https://api.weather.com/mcp",
+  "headers":{"Authorization":"Bearer token"}}'
+
+# import z Claude Desktop (macOS, WSL):
+claude mcp add-from-claude-desktop
+```
+
+Zarządzanie: `claude mcp list`, `claude mcp get <name>`, `claude mcp remove <name>`, `claude mcp login <name>` i `logout <name>` z shella, a w sesji `/mcp`.
+
+## Zakresy
+
+`local` - domyślny, w `~/.claude.json`, tylko ten projekt, prywatny. `project` - plik `.mcp.json` w repozytorium, współdzielony przez git. `user` - `~/.claude.json`, wszystkie projekty.
+
+Precedencja: local → project → user → plugin → connector claude.ai.
+
+## Transporty i uwierzytelnianie
+
+Transporty: stdio, HTTP (streamable-http), SSE (deprecated), WebSocket (`type: "ws"`, tylko przez JSON).
+
+OAuth uruchomisz przez `/mcp`. Dostępne są `--callback-port`, `--client-id`, `--client-secret`, `oauth.scopes` oraz `headersHelper` dla niestandardowej autoryzacji. W `.mcp.json` działa ekspansja zmiennych: `${VAR}`, `${VAR:-default}`.
+
+## Zasoby i prompty
+
+Zasoby przez `@`: `@server:protocol://path`, na przykład `@github:issue://123` albo `@postgres:schema://users`.
+
+Prompty MCP jako komendy: `/mcp__server__prompt [args]`, na przykład `/mcp__github__list_prs`.
+
+**Tool Search**, domyślnie włączony, odracza definicje narzędzi - dzięki temu dodanie wielu serwerów minimalnie obciąża <Termin id="okno-kontekstowe">okno kontekstu</Termin>.
+
+## Przykład `.mcp.json` (zakres projektu, do commita)
+
+```json
+{
+  "mcpServers": {
+    "db": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y","@bytebase/dbhub","--dsn","${DB_DSN}"]
+    },
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/",
+      "headers": {"Authorization":"Bearer ${GITHUB_PAT}"}
+    }
+  }
+}
+```
+
+**Claude Code jako serwer MCP:** `claude mcp serve` udostępnia jego własne narzędzia innym klientom.
+
+## Ćwiczenie: 10 minut
+
+1. Dodaj lokalny serwer plikowy: `claude mcp add --transport stdio filesystem -- npx -y @modelcontextprotocol/server-filesystem /tmp`.
+2. Uruchom `/mcp` i sprawdź, że serwer się połączył.
+3. Spróbuj sięgnąć po zasób: `@filesystem:file:///tmp`.
+
+**Zaliczenie:** `/mcp` pokazuje serwer jako połączony, a odwołanie przez `@` zwraca zawartość katalogu. Masz działającą integrację bez linijki własnego kodu.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** usuń serwer przez `claude mcp remove filesystem` i dodaj go ponownie w zakresie `project`. Zobacz, jak wygląda wygenerowany `.mcp.json`.
+
+## Teraz wiesz
+
+- Serwer dodajesz jedną komendą, a transport wybierasz według tego, gdzie serwer stoi.
+- Zakres decyduje o tym, kto jeszcze zobaczy Twoją konfigurację - `project` idzie do repozytorium.
+- Zasoby i prompty serwera masz pod `@` i pod ukośnikiem, bez dodatkowej konfiguracji.
+
+**Następny krok:** [Skills i plugins](/claude-code/skills-i-plugins/) - jak dokładać agentowi wiedzę i całe paczki rozszerzeń.
+
+<SlowniczekStrony terminy={["okno-kontekstowe", "agent-ai"]} />

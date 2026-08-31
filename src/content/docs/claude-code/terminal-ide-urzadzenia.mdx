@@ -1,0 +1,93 @@
+---
+title: Terminal, IDE i urządzenia
+description: Konfiguracja terminala i powiadomień, wtyczki do VS Code i JetBrains, tmux i wiele instancji, oraz przenoszenie sesji między terminalem, aplikacją desktop i telefonem. Ćwiczenie zajmie 5 minut.
+sidebar:
+  label: 'Terminal, IDE, urządzenia'
+  order: 16
+educationalLevel: Intermediate
+teaches:
+  - Jak skonfigurować terminal pod pracę z agentem
+  - Jak działa integracja z IDE i czym różni się od CLI
+  - Jak przenieść sesję na desktop albo sterować nią z telefonu
+about:
+  - name: Emulator terminala
+    sameAs: https://en.wikipedia.org/wiki/Terminal_emulator
+  - name: Zintegrowane środowisko programistyczne
+    sameAs: https://en.wikipedia.org/wiki/Integrated_development_environment
+mentions:
+  - name: Visual Studio Code
+    sameAs: https://en.wikipedia.org/wiki/Visual_Studio_Code
+    type: SoftwareApplication
+  - name: JetBrains
+    sameAs: https://en.wikipedia.org/wiki/JetBrains
+    type: Organization
+  - name: tmux
+    sameAs: https://en.wikipedia.org/wiki/Tmux
+    type: SoftwareApplication
+faq:
+  - q: Czy wtyczka do VS Code to inne narzędzie niż CLI?
+    a: 'Nie. Rozszerzenia do VS Code i JetBrains są nakładkami na ten sam silnik i piszą do tego samego katalogu ~/.claude/. Wtyczka do VS Code ma dodatkowo własny panel czatu i widok Focus.'
+  - q: Jak przenieść rozpoczętą sesję z terminala na desktop?
+    a: 'Komendą /desktop. W drugą stronę działa /resume w aplikacji desktop - otwiera picker sesji terminalowych pogrupowanych po dniach, z folderem, gałęzią i podglądem miejsca, w którym skończyłeś.'
+  - q: Czy mogę uruchomić zadanie na komputerze, będąc poza domem?
+    a: 'Tak, przez Remote Control. Maszyna z uruchomionym claude rc pojawia się jako karta urządzenia w aplikacji mobilnej. Wybierasz katalog i startujesz sesję na tej maszynie, z jej plikami i narzędziami.'
+status: gotowe
+---
+
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+:::note[O tej stronie]
+**Czas:** ok. 6 minut czytania + 5 minut ćwiczenia.
+**Poziom:** średni, po [pracy z Gitem](/claude-code/git-i-github/).
+**Wcześniej:** pracujesz w jednym terminalu. Tu: rozkładasz pracę na kilka miejsc naraz.
+:::
+
+## Konfiguracja terminala
+
+`/terminal-setup` instaluje binding `Shift+Enter` w VS Code, Cursor, iTerm2, Zed i Alacritty.
+
+Na macOS ustaw Option jako Meta: w iTerm2 Settings → Profiles → Keys → Left/Right Option = "Esc+", w Terminal.app "Use Option as Meta Key". Windows Terminal wspiera `Shift+Enter` natywnie.
+
+**Powiadomienia** realizujesz hookiem `Notification` plus `terminalSequence` (patrz [lekcja o hookach](/claude-code/hooks/)), a `FORCE_HYPERLINK` włącza klikalne linki do pull requestów.
+
+## IDE
+
+Tryb `/ide` zarządza integracją i pokazuje status, a `--ide` łączy automatycznie przy starcie.
+
+Rozszerzenie **VS Code** ma własny panel czatu i Focus view, jest też plugin **JetBrains**. Obie to nakładki na ten sam silnik - piszą do `~/.claude/`.
+
+## tmux i wiele instancji
+
+tmux działa normalnie, pamiętaj tylko o podwójnym `Ctrl+B` przez prefiks tmux. Tryb `--teammate-mode tmux` obsługuje agent teams.
+
+Równolegle możesz pracować przez osobne terminale i worktree, background agents (`claude --bg`, `claude agents`, `claude attach <id>`) oraz agent teams (eksperymentalne, `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS`).
+
+## Terminal, desktop i telefon
+
+**NOWE.** Trzy kierunki przenoszenia sesji:
+
+- **`/desktop`** - z terminala do aplikacji desktop. Przydatne, gdy chcesz zobaczyć diffy i podgląd na żywo obok siebie.
+- **`/resume` w aplikacji desktop** - kierunek odwrotny. Otwiera picker sesji terminalowych pogrupowanych po dniach, z folderem i gałęzią oraz podglądem miejsca, w którym skończyłeś. Działa też dla sesji już zamkniętych i kontynuuje ten sam transkrypt.
+- **Remote Control** - maszyna z uruchomionym **`claude rc`** pojawia się jako karta urządzenia na górze zakładki Code w aplikacji mobilnej. Wybierasz katalog i startujesz sesję **na tej maszynie**, z jej plikami, serwerami MCP i narzędziami. Sensowne, gdy chcesz odpalić zadanie, będąc z dala od biurka.
+
+Wymaga aktualizacji do najnowszej wersji po obu stronach. Nazwa z `/rename` i kolor z `/color` są wtedy widoczne także na claude.ai/code.
+
+## Ćwiczenie: 5 minut
+
+1. Uruchom `/terminal-setup`.
+2. Uruchom `/ide` i sprawdź status integracji.
+3. Odpal `claude rc` na maszynie roboczej i wystartuj sesję z telefonu w katalogu testowego repozytorium.
+
+**Zaliczenie:** `Shift+Enter` łamie linię w Twoim edytorze, a na telefonie widzisz kartę swojego komputera. Punkt trzeci jest opcjonalny, jeśli nie masz aplikacji mobilnej.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** nazwij sesję przez `/rename`, nadaj jej kolor przez `/color` i sprawdź, czy oba zostały po przeniesieniu na desktop.
+
+## Teraz wiesz
+
+- `/terminal-setup` załatwia większość drobiazgów, które inaczej irytują codziennie.
+- Wtyczka IDE i CLI to jeden silnik, nie dwa różne narzędzia.
+- Sesja nie jest przywiązana do terminala - przenosisz ją na desktop i sterujesz z telefonu.
+
+**Następny krok:** [Tryb headless, automatyzacja i CI](/claude-code/tryb-headless-i-ci/) - Claude Code bez interfejsu, w skryptach i w pipeline.
+
+<SlowniczekStrony terminy={["agent-ai"]} />

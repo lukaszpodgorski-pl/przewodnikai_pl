@@ -30,9 +30,11 @@ Nie musisz nic instalować ani zakładać konta. Wejdź na [przewodnikai.pl](htt
 | Sprawdzić konkretne narzędzie | [Narzędzia AI](https://przewodnikai.pl/narzedzia/) |
 | Wiedzieć, gdzie są granice i zagrożenia | [Etyka i bezpieczeństwo](https://przewodnikai.pl/etyka/) |
 
-Materiał to **57 lekcji w 8 sekcjach**, ułożonych w kolejności: podstawy → jak działa AI → prompt engineering → narzędzia → suwerenne AI → praktyka → etyka → zasoby. Każda lekcja kończy się ćwiczeniem na 5 minut i odnośnikiem "Następny krok", więc można iść po kolei albo wskakiwać w środek.
+Materiał to **78 stron w 9 sekcjach**, ułożonych w kolejności: podstawy → jak działa AI → prompt engineering → narzędzia → suwerenne AI → praktyka → etyka → Claude Code → zasoby. Każda lekcja kończy się ćwiczeniem na 5 minut i odnośnikiem "Następny krok", więc można iść po kolei albo wskakiwać w środek.
 
-Nie ma tu logowania, kont ani ciasteczek śledzących - i dlatego nie zobaczysz banera zgody. Więcej: [Czy Przewodnik AI zbiera dane o mnie?](https://przewodnikai.pl/zasoby/faq/)
+Ostatnia sekcja, [Claude Code](https://przewodnikai.pl/claude-code/), odstaje poziomem od reszty: to kurs pracy z agentem w terminalu, oznaczony jako średnio zaawansowany. Nie trzeba przez niego przechodzić, żeby skorzystać z całej reszty.
+
+Nie ma tu logowania, kont ani ciasteczek śledzących - i dlatego nie zobaczysz banera zgody. Ruch mierzy Cloudflare Web Analytics, które zlicza wyświetlenia bez zapisywania czegokolwiek na Twoim urządzeniu.
 
 ## Jak to działa
 

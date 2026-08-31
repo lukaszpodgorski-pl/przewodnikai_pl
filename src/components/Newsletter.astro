@@ -237,22 +237,50 @@ const naglowek = zwijany ? 'Nowy rozdział? Dam Ci znać - bez spamu.' : 'Nie pr
 		outline-offset: 1px;
 	}
 
+	/*
+	 * Przycisk zapisu ma WLASNE kolory, nie tokeny motywu - i to jest celowe.
+	 *
+	 * Wczesniej bral `background: var(--sl-color-accent)` z `color:
+	 * var(--sl-color-white)`. W Starlight `--sl-color-white` to w motywie
+	 * jasnym kolor TEKSTU, czyli prawie czarny - wychodzil ciemny napis na
+	 * ciemnym tle i etykieta byla nieczytelna. Tokeny motywu nie nadaja sie
+	 * tutaj, bo ich znaczenie odwraca sie miedzy motywami.
+	 *
+	 * Zielen zamiast koloru marki: to jedyna akcja na stronie, ktora czegos
+	 * od czytelnika chce. Odrozniona kolorem nie konkuruje z odnosnikami
+	 * w tresci, ktore sa niebieskie.
+	 *
+	 * Jasna zielen ma jednak kontrast 1,6:1 wobec jasnego tla strony - sam
+	 * przycisk zlewalby sie z papierem. Stad obramowanie w ciemniejszym
+	 * odcieniu (3,8:1 na jasnym, 4,7:1 na ciemnym), ktore rysuje jego ksztalt
+	 * w obu motywach.
+	 */
 	button {
+		--zielen-tlo: #7ed9a8;
+		--zielen-tlo-hover: #93e3b5;
+		--zielen-obwodka: #3f8f66;
+		--zielen-napis: #0f2419;
+
 		padding: 0.6rem 1.2rem;
-		border: 1px solid var(--sl-color-accent);
+		border: 1px solid var(--zielen-obwodka);
 		border-radius: 0.35rem;
-		background: var(--sl-color-accent);
-		color: var(--sl-color-white);
+		background: var(--zielen-tlo);
+		color: var(--zielen-napis); /* 9,6:1 - czytelne w obu motywach */
 		font: inherit;
 		font-size: var(--sl-text-sm);
 		font-weight: 600;
 		cursor: pointer;
+		transition: background-color 0.15s ease;
 	}
 
 	button:hover {
-		background: var(--sl-color-accent-high);
-		border-color: var(--sl-color-accent-high);
-		color: var(--sl-color-black);
+		background: var(--zielen-tlo-hover); /* napis: 10,8:1 */
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		button {
+			transition: none;
+		}
 	}
 
 	.zgoda-pole {

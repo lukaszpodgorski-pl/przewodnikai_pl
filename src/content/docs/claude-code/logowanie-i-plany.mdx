@@ -1,0 +1,109 @@
+---
+title: Logowanie i plany w Claude Code
+description: Subskrypcja czy klucz API, zmienne środowiskowe, Bedrock i Vertex, oraz monitorowanie zużycia. Poznasz jedną zmienną, która po cichu przestawia rozliczenie. Ćwiczenie zajmie 5 minut.
+sidebar:
+  label: 'Logowanie i plany'
+  order: 3
+educationalLevel: Intermediate
+teaches:
+  - Które plany Claude obejmują Claude Code
+  - Jak zmienne środowiskowe wpływają na rozliczenie
+  - Jak sprawdzić koszt sesji i zapełnienie kontekstu
+about:
+  - name: Claude
+    sameAs: https://en.wikipedia.org/wiki/Claude_(language_model)
+  - name: Uwierzytelnianie
+    sameAs: https://en.wikipedia.org/wiki/Authentication
+mentions:
+  - name: Anthropic
+    sameAs: https://en.wikipedia.org/wiki/Anthropic
+    type: Organization
+  - name: Amazon Bedrock
+    sameAs: https://en.wikipedia.org/wiki/Amazon_Web_Services
+    type: SoftwareApplication
+  - name: Google Cloud
+    sameAs: https://en.wikipedia.org/wiki/Google_Cloud_Platform
+    type: SoftwareApplication
+faq:
+  - q: Czy darmowy plan Claude wystarczy do Claude Code?
+    a: Nie. Potrzebujesz planu Pro, Max, Team albo Enterprise, ewentualnie konta Console z rozliczeniem API. Darmowy plan Claude.ai nie obejmuje Claude Code.
+  - q: Dlaczego mimo subskrypcji dostaję rachunek za API?
+    a: 'Najprawdopodobniej masz ustawioną zmienną ANTHROPIC_API_KEY. Ma ona priorytet nad subskrypcją, także wtedy, gdy jest pusta. Aktywną metodę logowania sprawdzisz komendą /status.'
+  - q: Jak sprawdzić, ile kosztuje moja sesja?
+    a: 'Komendą /usage, która pokazuje koszt sesji, limity planu i statystyki. Działa też pod aliasami /cost i /stats. Zapełnienie okna kontekstu pokazuje osobna komenda /context.'
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+:::note[O tej stronie]
+**Czas:** ok. 5 minut czytania + 5 minut ćwiczenia.
+**Poziom:** średni, po [instalacji](/claude-code/instalacja/).
+**Wcześniej:** masz działającą binarkę. Tu: podłączysz ją do konta i zobaczysz, co ile kosztuje.
+:::
+
+## Który plan jest potrzebny
+
+Claude Code wymaga planu **Pro, Max, Team lub Enterprise**, albo konta **Console (API)**. Darmowy plan Claude.ai **nie** obejmuje Claude Code.
+
+**Logowanie kontem Claude (Pro, Max):**
+
+```bash
+claude              # przy pierwszym starcie otwiera przeglądarkę
+claude auth login   # jawne logowanie; --console dla konta Console (rozliczanie API)
+claude auth status  # status (JSON; --text dla wersji czytelnej)
+claude auth logout
+```
+
+W sesji działają odpowiedniki: `/login` i `/logout`.
+
+## Zmienne środowiskowe
+
+| Zmienna | Znaczenie |
+| --- | --- |
+| `ANTHROPIC_API_KEY` | klucz API (Console). **Ma priorytet nad subskrypcją** → rozliczenie pay-as-you-go |
+| `ANTHROPIC_MODEL` | model główny (alias lub pełne ID) |
+| `ANTHROPIC_DEFAULT_MODEL` | domyślny model nowych sesji |
+| `ANTHROPIC_DEFAULT_OPUS_MODEL` i pokrewne | do czego rozwijają się poszczególne aliasy |
+| `CLAUDE_CODE_SUBAGENT_MODEL` | model dla subagentów |
+| `CLAUDE_CODE_USE_BEDROCK=1` | użyj Amazon Bedrock (auth przez AWS; `ANTHROPIC_API_KEY` ignorowany) |
+| `CLAUDE_CODE_USE_VERTEX=1` | użyj Google Vertex albo Agent Platform |
+| `AWS_REGION`, `ANTHROPIC_VERTEX_PROJECT_ID`, `CLOUD_ML_REGION` | konfiguracja providerów chmurowych |
+
+:::danger[Pusta zmienna też wygrywa]
+Ustawiony `ANTHROPIC_API_KEY` - nawet pusty - wygrywa nad subskrypcją i może wygenerować nieoczekiwane koszty API. Sprawdź aktywną metodę przez `/status`.
+:::
+
+**Amazon Bedrock:** kreator `/setup-bedrock`, ukryty w menu dopóki nie ustawisz `CLAUDE_CODE_USE_BEDROCK=1`. Wymaga zatwierdzenia "use case" w konsoli Bedrock.
+
+**Google Vertex i Agent Platform:** kreator `/setup-vertex`, analogicznie po `CLAUDE_CODE_USE_VERTEX=1`.
+
+**Token długoterminowy do CI:** `claude setup-token` - wymaga subskrypcji, wypisuje token OAuth do `CLAUDE_CODE_OAUTH_TOKEN`.
+
+## Monitorowanie zużycia
+
+- `/usage` - koszt sesji, limity planu, statystyki (aliasy `/cost`, `/stats`). **NOWE v2.1.243:** zaplanowane zadania `/loop` mają tu osobne wiersze - ile razy się uruchomiły i ile tokenów zużyły. Wreszcie widać, co kosztuje która automatyzacja.
+- `/context` - co zajmuje <Termin id="okno-kontekstowe">okno kontekstu</Termin> (siatka, ostrzeżenia).
+- `/status` - wersja, model, konto, łączność, aktywna metoda uwierzytelnienia.
+- Limity claude.ai: przy uderzeniu w limit Claude Code może **automatycznie poczekać** na reset i kontynuować (`/rate-limit-options`, ustawienie `autoContinueAtUsageLimit`).
+
+## Ćwiczenie: 5 minut
+
+1. Uruchom `/status` i sprawdź, jaką masz aktywną metodę uwierzytelnienia.
+2. Uruchom `/usage` i zapisz koszt bieżącej sesji.
+3. Uruchom `/context` i zapisz procent zapełnienia okna kontekstu.
+
+**Zaliczenie:** masz trzy liczby na kartce i wiesz, czy płacisz z subskrypcji, czy z API. Jeśli to drugie, a nie tak miało być, znasz już przyczynę.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** wpisz `echo $ANTHROPIC_API_KEY` (PowerShell: `$env:ANTHROPIC_API_KEY`) i sprawdź, czy zmienna nie siedzi w Twoim profilu shella z jakiegoś dawnego eksperymentu.
+
+## Teraz wiesz
+
+- Claude Code nie działa na darmowym planie - potrzebna jest subskrypcja albo konto API.
+- `ANTHROPIC_API_KEY` przebija subskrypcję i to najczęstsza przyczyna niespodzianek na rachunku.
+- `/status`, `/usage` i `/context` to trzy komendy, od których zaczynasz każdą diagnozę kosztów.
+
+**Następny krok:** [Komendy i flagi CLI](/claude-code/komendy-i-flagi/) - pełna tabela do wracania, plus podkomendy, o których łatwo zapomnieć.
+
+<SlowniczekStrony terminy={["okno-kontekstowe"]} />
