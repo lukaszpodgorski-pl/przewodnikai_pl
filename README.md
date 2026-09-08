@@ -83,7 +83,7 @@ Stąd sztywna zasada o źródłach i stąd przegląd strona po stronie. Narzędz
 
 ## Kto za tym stoi
 
-Projekt prowadzi **Łukasz Podgórski** - konsultant AI i trener, ponad 15 lat w IT, w tym ponad 5 lat pracy ze sztuczną inteligencją. Dzieli się wiedzą o AI na [kanale YouTube](https://www.youtube.com/@lukaszpodgorski) (ponad 1300 osób) i prowadzi klub zainteresowanych sztuczną inteligencją zrzeszający blisko 1000 osób.
+Projekt prowadzi **Łukasz Podgórski** - konsultant AI i trener, ponad 20 lat w IT, w tym ponad 5 lat pracy ze sztuczną inteligencją. Dzieli się wiedzą o AI na [kanale YouTube](https://www.youtube.com/@lukaszpodgorski) (ponad 1300 osób) i prowadzi klub zainteresowanych sztuczną inteligencją zrzeszający blisko 1000 osób.
 
 Więcej: [O mnie](https://przewodnikai.pl/zasoby/o-mnie/) · [Kontakt](https://przewodnikai.pl/zasoby/kontakt/)
 

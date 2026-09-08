@@ -13,6 +13,11 @@ import {
 	type FaqItem,
 } from '../lib/structured-data';
 import { SECTION_LABELS } from '../config/sections';
+import { consentBootstrapScript } from '../lib/consent';
+import { newsletterEvent, pageType } from '../lib/page-context';
+import { CF_BEACON_TOKEN, ostrzezJesliZastepcze } from '../config/analytics';
+
+ostrzezJesliZastepcze();
 
 const route = Astro.locals.starlightRoute;
 const data = route.entry.data;
@@ -94,15 +99,63 @@ if (isHome) {
 const faq = data.faq as FaqItem[] | undefined;
 if (faq && faq.length > 0) blocks.push(buildFaqPage(faq));
 
-// Analityka (Cloudflare Web Analytics) NIE jest wstrzykiwana z tego komponentu.
-// Cloudflare dokleja beacon automatycznie na brzegu sieci, dla ruchu
-// rozpoznanego jako przeglądarka - dlatego nie widać go w `dist/`, a mimo to
-// statystyki i Core Web Vitals działają. Dodanie tu drugiego znacznika liczyłoby
-// każdą odsłonę podwójnie. Konfiguracja jest w panelu Cloudflare (Web Analytics),
-// nie w repo.
+// KOREKTA 2026-09-08. Poprzednia wersja tego komentarza twierdziła, że beacon
+// Cloudflare dokleja się automatycznie na brzegu sieci i dlatego nie ma go
+// w `dist/`. Pomiar na kursn8n.pl obalił to założenie dla obu domen na
+// Workers: automatyczne wstrzykiwanie dzieje się w warstwie przepisywania HTML
+// na brzegu, a odpowiedź generuje Worker, więc tę warstwę omija. Do tego konto
+// stało na wariancie RUM "Enable, excluding visitor data in the EU" - beacon nie
+// był wstrzykiwany NIKOMU z Unii. Stąd 22 odsłony tej domeny: to ruch spoza UE.
+// Dlatego snippet jest teraz w kodzie, jawnie, niżej w tym pliku.
 ---
 
 <Default><slot /></Default>
+
+{/*
+  Consent Mode v2 w wariancie zaawansowanym plus kontener GTM.
+
+  KOLEJNOSC WEWNATRZ consentBootstrapScript() JEST WYMOGIEM: sygnaly
+  `consent default` wykonuja sie przed gtm.js, wiec zaden tag Google nie
+  zapisze cookie, dopoki czlowiek nie kliknie w banerze. Odwrotna kolejnosc
+  wywraca cala konstrukcje, a na oko wyglada tak samo - weryfikuj numerami
+  linii w zbudowanym HTML, nie wzrokiem.
+
+  Wariant zaawansowany znaczy, ze kontener laduje sie u kazdego, a przed zgoda
+  leci bezcookie'owy ping (czas, przegladarka, referrer, klik reklamowy). Jest
+  to opisane wprost we wspolnej polityce prywatnosci - opis musi zgadzac sie
+  z zachowaniem.
+
+  Brak <noscript> z iframe GTM jest celowy: bez JavaScriptu nie ma jak zebrac
+  zgody, wiec tag nie ma prawa sie odpalic.
+
+  Kontekst strony (`brand`, `page_type`) wchodzi do warstwy danych w tym samym
+  skrypcie, przed snippetem GTM - inaczej tag konfiguracyjny odpalilby sie bez
+  nich. `brand` jest obowiazkowy, bo wszystkie domeny ekosystemu dziela jedna
+  usluge GA4 i to on je rozdziela w raportach.
+*/}
+<script
+	is:inline
+	set:html={consentBootstrapScript({
+		pageType: pageType(pathname),
+		newsletterEvent: newsletterEvent(pathname),
+	})}
+/>
+
+{/*
+  Cloudflare Web Analytics - drugi tor pomiaru, POZA banerem zgody.
+
+  Nie zapisuje cookies ani pamieci przegladarki i nie rozpoznaje ludzi po IP,
+  wiec art. 399 PKE w ogole sie nie stosuje i nie ma o co pytac. Podstawa to
+  art. 6 ust. 1 lit. f RODO.
+
+  Snippet jest tu recznie, bo automatyczne wstrzykiwanie Cloudflare nie dziala
+  dla stron serwowanych przez Workers - szczegoly i pomiar w komentarzu przy
+  CF_BEACON_TOKEN w src/config/analytics.ts.
+
+  `defer` zamiast `type="module"` z panelu: modul i tak jest odroczony, a defer
+  nie wymaga od przegladarki obslugi modulow dla jednego zewnetrznego skryptu.
+*/}
+<script is:inline defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={`{"token": "${CF_BEACON_TOKEN}"}`}></script>
 
 {/* Strony pomocnicze (potwierdzenia zapisu na newsletter) - patrz `noindex`
     w src/content.config.ts. Muszą też być pominięte w sitemapie, inaczej

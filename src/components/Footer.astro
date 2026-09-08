@@ -28,7 +28,18 @@ const pokazNewsletter =
 	<a href="/zasoby/regulamin/">Regulamin</a>
 	<span aria-hidden="true">·</span>
 	<a href="/zasoby/kontakt/">Kontakt</a>
+	<span aria-hidden="true">·</span>
+	{/* Wycofanie zgody musi byc rownie latwe jak jej udzielenie - art. 7 ust. 3
+	    RODO. Dlatego przycisk stoi w stopce KAZDEJ strony i otwiera dokladnie to
+	    samo okno, ktore czlowiek widzial przy pierwszej wizycie. */}
+	<button type="button" id="lpc-open-consent">Ustawienia cookies</button>
 </nav>
+
+<script is:inline>
+	document.getElementById('lpc-open-consent')?.addEventListener('click', () => {
+		window.dispatchEvent(new CustomEvent('lp:open-consent'));
+	});
+</script>
 <p class="made-with-love">
 	made with ❤️ by <a href="https://aitomate.pl">aitomate.pl</a> - Łukasz Podgórski
 </p>
@@ -49,14 +60,28 @@ const pokazNewsletter =
 		font-size: var(--sl-text-xs);
 		color: var(--sl-color-gray-3);
 	}
-	.stopka-prawna a {
+	.stopka-prawna a,
+	.stopka-prawna button {
 		color: var(--sl-color-gray-2);
 		text-decoration: none;
 	}
 	.stopka-prawna a:hover,
-	.stopka-prawna a:focus-visible {
+	.stopka-prawna a:focus-visible,
+	.stopka-prawna button:hover,
+	.stopka-prawna button:focus-visible {
 		color: var(--sl-color-white);
 		text-decoration: underline;
+	}
+
+	/* Przycisk ma wygladac i zachowywac sie jak sasiednie odnosniki - to jedna
+	   lista informacji prawnych, a nie akcja wyroznionej wagi. Element pozostaje
+	   przyciskiem, bo nie prowadzi pod zaden adres. */
+	.stopka-prawna button {
+		font: inherit;
+		background: none;
+		border: 0;
+		padding: 0;
+		cursor: pointer;
 	}
 
 	.made-with-love {

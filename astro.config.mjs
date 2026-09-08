@@ -51,6 +51,9 @@ export default defineConfig({
 				Footer: './src/components/Footer.astro',
 				Head: './src/components/Head.astro',
 				MarkdownContent: './src/components/MarkdownContent.astro',
+				// Baner zgody siedzi w PageFrame, a nie w Footer, bo strona 404
+				// stopki nie renderuje - a pomiar dziala tam tak samo jak wszedzie.
+				PageFrame: './src/components/PageFrame.astro',
 				// Zamiast "Edytuj tę stronę" - zgłoszenie uwagi. Repozytorium
 				// publiczne jest lustrem: skrypt publikacji przepisuje w nim treść
 				// przy każdym wydaniu, więc edycja pliku po tamtej stronie zostałaby
