@@ -317,6 +317,93 @@ import { NEWSLETTER } from '../config/newsletter';
 			animation: none;
 		}
 	}
+
+	/*
+	  TELEFON. Pierwsza wersja tego komponentu nie miala breakpointu szerokosci
+	  w ogole - pasek dziedziczyl uklad z desktopu, wiec na waskim ekranie tekst
+	  i trzy przyciski zawijaly sie w poszarpany blok.
+
+	  Pomiar tego samego banera przy 390 px (wersja dla domen PHP): "Akceptuje
+	  wszystkie" 173 px i "Tylko niezbedne" 145 px w pierwszym rzedzie,
+	  "Ustawienia" 110 px spychane do drugiego; caly pasek 242 px, czyli 28%
+	  ekranu; przyciski 36 px wysokosci, ponizej progu 44 px dla celu dotykowego
+	  (WCAG 2.5.5 oraz wytyczne Apple i Google).
+
+	  Rozwiazanie: SIATKA dwukolumnowa zamiast zawijanego rzedu. Akceptacja
+	  i odrzucenie stoja obok siebie w kolumnach `1fr 1fr`, wiec maja identyczna
+	  szerokosc NIEZALEZNIE od dlugosci tekstu - mocniejsza gwarancja rownej
+	  wagi niz flex, gdzie kazdy przycisk dostawal szerokosc od swojej tresci.
+	  "Ustawienia" schodzi pod nie na cala szerokosc.
+
+	  Zmierzone po zmianie (390 px): pasek 216 px zamiast 242, oba glowne
+	  przyciski 175x44. Na 320 px tekst zawija sie w dwie linie, ale OBA rosna
+	  tak samo (140x53) i nic nie wychodzi poza ekran.
+
+	  Zestaw jest celowo taki sam jak w `assets/css/consent.css` na domenach
+	  PHP - jeden baner ma wygladac tak samo w calym ekosystemie.
+	*/
+	@media (max-width: 640px) {
+		.lpc-bar {
+			flex-direction: column;
+			align-items: stretch;
+			gap: 0.625rem;
+			/* env() chroni przed paskiem gestow iPhone'a. */
+			padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom, 0px));
+			max-height: 70vh;
+			overflow-y: auto;
+			overscroll-behavior: contain;
+		}
+
+		.lpc-bar-text {
+			flex: none;
+			font-size: var(--sl-text-xs);
+		}
+
+		.lpc-bar-actions {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 0.5rem;
+		}
+
+		.lpc-btn {
+			width: 100%;
+			min-height: 44px;
+			padding-inline: 0.5rem;
+			/* Tekst ma sie zawinac, a nie rozepchnac przycisku poza siatke.
+			   Oba glowne rosna wtedy rowno, bo dziela kolumne 1fr. */
+			white-space: normal;
+		}
+
+		/* Trzecia opcja pod spodem, przez cala szerokosc siatki. */
+		.lpc-bar-actions .lpc-btn-ghost {
+			grid-column: 1 / -1;
+		}
+
+		.lpc-modal {
+			padding: 0.75rem;
+		}
+
+		.lpc-dialog {
+			/* 100dvh zamiast 100vh - pasek adresu na mobilnych przegladarkach
+			   zmienia wysokosc widoku i przy 100vh modal wystaje poza ekran. */
+			max-height: min(85vh, 100dvh - 1.5rem);
+			padding: 1rem;
+			overscroll-behavior: contain;
+		}
+
+		.lpc-dialog-foot {
+			flex-direction: column;
+		}
+
+		.lpc-dialog-foot .lpc-btn {
+			width: 100%;
+		}
+
+		/* Wciecie opisu pod checkboxem zjada na telefonie za duzo szerokosci. */
+		.lpc-group p {
+			margin-left: 0;
+		}
+	}
 </style>
 
 <script>
