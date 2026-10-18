@@ -23,4 +23,4 @@ Dostaniesz wtedy mail z linkiem potwierdzającym - dopiero kliknięcie w niego k
 
 ## Jeśli nie chcesz
 
-Też dobrze. Cały przewodnik czytasz bez logowania, bez zapisu i bez podawania czegokolwiek - wracaj do lektury, kiedy tylko masz ochotę.
+Też dobrze. Cały przewodnik czytasz bez logowania, bez zapisu i bez podawania czegokolwiek - [wracaj do lektury](/podstawy/wstep/), kiedy tylko masz ochotę.

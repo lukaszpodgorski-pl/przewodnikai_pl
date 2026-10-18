@@ -25,4 +25,4 @@ Formularz znajdziesz na [stronie głównej](/) oraz na dole każdego rozdziału.
 
 Jeśli próbowałeś już kilka razy i nadal nie działa, napisz na [kontakt@lukaszpodgorski.pl](mailto:kontakt@lukaszpodgorski.pl) - dopiszę Cię ręcznie i przy okazji sprawdzę, co się zepsuło. To dla mnie użyteczna informacja, więc nie krępuj się.
 
-Cały kurs czytasz bez zapisywania się na cokolwiek - wróć do lektury, kiedy tylko chcesz.
+Cały kurs czytasz bez zapisywania się na cokolwiek - [wróć do lektury](/podstawy/wstep/), kiedy tylko chcesz.

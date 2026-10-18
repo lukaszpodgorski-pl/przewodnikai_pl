@@ -1,0 +1,150 @@
+---
+title: Twoja pierwsza rozmowa z AI
+description: Założysz darmowe konto, wyślesz jeden prompt i jedną dopowiedź. Zaliczenie to dwa komunikaty, nie "idealna odpowiedź". Ćwiczenie zajmie 5-10 minut.
+sidebar:
+  label: 'Pierwsza rozmowa z AI'
+  order: 4
+educationalLevel: Beginner
+teaches:
+  - Jak wybrać chatbota i założyć darmowe konto
+  - Że rozmowa to ciąg, nie jednorazowe pytanie
+  - Co zrobić, gdy pierwsza odpowiedź jest słaba
+about:
+  - name: Chatbot
+    sameAs: https://pl.wikipedia.org/wiki/Chatbot
+  - name: Przetwarzanie języka naturalnego
+    sameAs: https://pl.wikipedia.org/wiki/Przetwarzanie_j%C4%99zyka_naturalnego
+mentions:
+  - name: ChatGPT
+    sameAs: https://en.wikipedia.org/wiki/ChatGPT
+    type: SoftwareApplication
+  - name: Claude
+    sameAs: https://en.wikipedia.org/wiki/Claude_(language_model)
+    type: SoftwareApplication
+faq:
+  - q: Który chatbot na start?
+    a: Ten, do którego jest najbliżej. Jeśli masz prywatne konto Google (Gmail), weź Gemini - logujesz się kontem, które już masz. Jeśli nie, weź ChatGPT albo Claude. ChatGPT i Gemini pokazują szybko rozmowę, obraz i pliki. Gemini jest wygodny przy Gmailu i Dysku. Claude bywa lepszy w długim tekście, bez generatora obrazów. Kryteria wyboru są w Chatbotach, a plany i kwoty w Ile kosztuje AI.
+  - q: Czy muszę płacić, żeby się nauczyć?
+    a: Nie. Darmowy plan wystarczy. Limity wiadomości bywają - wtedy czekasz albo narzędzie schodzi na słabszy model.
+  - q: Co wpisać, jeśli nie mam "zadania z pracy"?
+    a: Wariant A z tej lekcji - wyjaśnienie pojęcia. Potem jedna dopowiedź ("prościej" albo "daj przykład z kuchni"). To nadal zalicza ćwiczenie.
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+![Ikona osoby i ikona AI w dwóch dymkach rozmowy](../../../assets/podstawy/pierwsza-rozmowa-z-ai/pierwsza-rozmowa-z-ai.jpg)
+
+:::note[O tej stronie]
+**Czas:** ok. 7 minut czytania + 5-10 minut przy czacie.
+**Poziom:** początkujący.
+**Wcześniej:** [Jak uczyć się AI](/podstawy/jak-uczyc-sie-ai/) - tam wybierasz swój poziom od 0 do 5. Tu domykasz przejście z poziomu 0 na 1, zaczęte we Wstępie: od pierwszego pytania do "umiem dopytać i krytycznie przeczytać odpowiedź".
+:::
+
+## Na tej stronie wyślesz dwa komunikaty
+
+Po tej lekcji masz konto, jeden <Termin id="prompt">prompt</Termin> i **jedną** dopowiedź w tej samej rozmowie. Dopowiedź to druga wiadomość, w której mówisz modelowi, co poprawić albo doprecyzować. Nie zbierasz magicznych fraz na zapas.
+
+Jedna rzecz do zapamiętania: **to jest rozmowa. Druga wiadomość jest częścią ćwiczenia, nie dodatkiem dla ambitnych.**
+
+<Termin id="chatbot">Chatbot</Termin> to program, z którym piszesz jak na czacie. Najpopularniejsze na start: ChatGPT (OpenAI), Claude (Anthropic), Gemini (Google).
+
+## Krok 1: wybierz jeden chatbot
+
+Na początek wystarczy jedno narzędzie.
+
+| Chatbot | Adres | Na start |
+| --- | --- | --- |
+| **ChatGPT** | [chatgpt.com](https://chatgpt.com) | Rozmowa, często też głos, obrazy, pliki |
+| **Claude** | [claude.ai](https://claude.ai) | Długi tekst i dokumenty; bez generatora obrazów |
+| **Gemini** | [gemini.google.com](https://gemini.google.com) | To samo plus Gmail, Dysk, Dokumenty, jeśli tam masz pocztę |
+
+Nie umiesz wybrać? Jeśli masz prywatne konto Google (Gmail), weź Gemini - logujesz się kontem, które już masz. Jeśli nie, weź ChatGPT albo Claude. Na start różnica między nimi jest mniejsza niż czas, który stracisz na wybieranie.
+
+Limity darmowych planów się zmieniają. Na pierwszych kilkanaście wiadomości zwykle starcza. Wybór narzędzia: Chatboty, kwoty i plany: Ile kosztuje AI, przełączniki: Tryby pracy.
+
+## Krok 2: załóż darmowe konto
+
+Rejestracja na przykładzie ChatGPT:
+
+1. Wejdź na chatgpt.com.
+2. Kliknij "Zarejestruj się" (po angielsku "Sign up").
+3. Wybierz logowanie kontem Google, Apple albo adresem e-mail.
+4. Jeśli przyjdzie mail z kodem albo linkiem - potwierdź.
+5. Gotowe - pole do pisania na środku ekranu to miejsce na Twój prompt.
+
+Płacić nie trzeba. Płatne plany dają wyższe limity i dostęp do mocniejszych modeli, ale do nauki nie są potrzebne - szczegóły w Ile kosztuje AI.
+
+## Krok 3: pierwszy prompt - jeden z trzech
+
+Wybierz **jeden** i skopiuj go. Słowo w nawiasie kwadratowym zamień na swoje, a same nawiasy usuń.
+
+### Wariant A - rozgrzewka
+
+```text
+Wyjaśnij mi, czym jest sztuczna inteligencja. Nie mam wykształcenia technicznego. Użyj jednego przykładu z kuchni albo z jazdy autobusem.
+```
+
+### Wariant B - praca
+
+```text
+Jestem [zawód]. Podaj 5 sposobów użycia AI w tej roli. Przy każdym: jeden konkretny przykład, bez ogólników.
+```
+
+### Wariant C - gotowiec
+
+```text
+Napisz e-mail do klienta: przepraszam za 3 dni opóźnienia dostawy, przyczyna po stronie dostawcy, ton profesjonalny i ciepły. Do 120 słów.
+```
+
+## Krok 4: dopowiedź - to jest ćwiczenie
+
+Model pamięta wszystko, co napisaliście w tej rozmowie - do pewnej długości. W bardzo długich rozmowach zaczyna gubić początek; dlaczego, wyjaśniam w Tokenach. Druga wiadomość może być krótka (słowo w nawiasie kwadratowym zamień na swoje):
+
+```text
+Skróć do pięciu zdań i daj jeden przykład z mojej branży: [branża].
+```
+
+albo: "To nie to. Chcę listę kroków, nie esej."
+
+Frazy, które najczęściej wystarczą: "prościej", "rozwiń punkt 2", "tabela", "skróć do 3 zdań", "podaj źródła albo napisz nie wiem".
+
+## Gdy odpowiedź jest słaba
+
+1. Dopisz, czego brakuje: dla kogo to jest, do czego posłuży, jak długie ma być (np. "To mail do starszej klientki, która nie zna branży").
+2. Powiedz wprost, co poprawić: "za długie", "za oficjalnie", "brakuje ceny".
+3. Jeśli rozmowa poszła w złą stronę, zacznij nową i od razu napisz lepszy pierwszy prompt.
+4. Dopiero na końcu spróbuj innego chatbota.
+
+Dłuższy prompt nie znaczy lepszy. Liczy się, czy jest konkretny.
+
+Pewny ton nie znaczy prawdy. Gdy model zmyśla, a brzmi przekonująco, nazywamy to <Termin id="halucynacje">halucynacją</Termin>. Na razie: nie wklejaj liczb do maila bez sprawdzenia. Procedura sprawdzania jest w [Weryfikacji](/podstawy/weryfikacja-informacji/), a to, czego model nie potrafi, opisuję w [Ograniczeniach](/podstawy/ograniczenia/).
+
+## Prywatność - czego nie wklejać
+
+Nie wklejaj PESEL-u, haseł, danych klientów, tajemnic firmy. Czat to nie sejf. W ustawieniach możesz zabronić dostawcy uczenia modelu na Twoich rozmowach (tzw. wyłączenie treningu). To pomaga, ale rozmowa zwykle i tak zostaje zapisana na jego serwerach, dopóki jej nie usuniesz. W pracy obowiązuje polityka firmy. Lista kategorii: Prywatność.
+
+## Ćwiczenie: 5-10 minut, dwa komunikaty
+
+Jeśli konto już jest z [Wstępu](/podstawy/wstep/) - nie zakładasz drugiego.
+
+1. Wyślij wariant A, B albo C.
+2. Wyślij dopowiedź w tej samej rozmowie (nie zaczynaj nowej).
+3. Nie oceniasz "czy AI jest mądra". Zapisujesz, czy druga wiadomość zmieniła wynik.
+
+**Zaliczenie:** dwa wysłane komunikaty w jednej rozmowie. Możesz zrobić zrzut ekranu albo zapisać na kartce jedno zdanie: "dopowiedź skróciła / zmieniła ton / nic nie zmieniła".
+
+Typowy pierwszy wynik: za ogólnie. Dopowiedź to właśnie narzędzie, nie porażka promptu.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** trzecia wiadomość tylko wtedy, gdy wiesz, czego brakuje. Nie scrolluj "magicznych słów" zamiast pisać.
+
+## Teraz wiesz
+
+- Jedno darmowe konto wystarczy. Szukanie "najlepszego modelu" na starcie to FOMO (lęk, że coś Cię omija).
+- Druga wiadomość należy do ćwiczenia. Model pamięta, co napisaliście w tej rozmowie.
+- Słaba odpowiedź → doprecyzuj albo zacznij nową rozmowę. Liczb nie wklejasz bez sprawdzenia. Danych wrażliwych nie wklejasz wcale.
+
+**Następny krok:** [Mity vs rzeczywistość](/podstawy/mity-vs-rzeczywistosc/) - poznasz cztery najczęstsze mity o AI (praca, świadomość, nieomylność, przejęcie świata) i nauczysz się je rozpoznawać w nagłówkach, które zaraz pojawią się w mediach.
+
+<SlowniczekStrony terminy={["chatbot", "prompt", "halucynacje"]} />

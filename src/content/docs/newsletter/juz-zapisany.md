@@ -17,4 +17,4 @@ Jeśli mimo to od dawna nic nie dostajesz, sprawdź folder ze spamem albo napisz
 
 Chcesz przestać je dostawać? Wystarczy kliknąć "wypisz się" w stopce dowolnej wiadomości ode mnie.
 
-Wróć do kursu albo [zobacz program](/).
+[Wróć do kursu](/podstawy/wstep/) albo [zobacz program](/).

@@ -8,14 +8,14 @@
 # /praktyka/, /etyka/ ani /zasoby/.
 
 # --- Podstawy ---
-/wstep/ /podstawy/ 302
-/wprowadzenie/ /podstawy/ 302
-/jak-uczyc-sie-ai/ /podstawy/ 302
-/pierwsza-rozmowa-z-ai/ /podstawy/ 302
-/mity-vs-rzeczywistosc/ /podstawy/ 302
-/nie-dajmy-sie-zwariowac/ /podstawy/ 302
-/ograniczenia/ /podstawy/ 302
-/weryfikacja-informacji/ /podstawy/ 302
+/wstep/ /podstawy/wstep/ 301
+/wprowadzenie/ /podstawy/czym-jest-ai/ 301
+/jak-uczyc-sie-ai/ /podstawy/jak-uczyc-sie-ai/ 301
+/pierwsza-rozmowa-z-ai/ /podstawy/pierwsza-rozmowa-z-ai/ 301
+/mity-vs-rzeczywistosc/ /podstawy/mity-vs-rzeczywistosc/ 301
+/nie-dajmy-sie-zwariowac/ /podstawy/nie-dajmy-sie-zwariowac/ 301
+/ograniczenia/ /podstawy/ograniczenia/ 301
+/weryfikacja-informacji/ /podstawy/weryfikacja-informacji/ 301
 
 # --- Jak działa AI ---
 /jak-ucza-sie-modele/ /jak-dziala-ai/ 302
@@ -94,14 +94,6 @@
 /narzedzia/serwery-mcp/ /narzedzia/ 302
 /narzedzia/specjalistyczne/ /narzedzia/ 302
 /narzedzia/tryby-pracy-chatbotow/ /narzedzia/ 302
-/podstawy/czym-jest-ai/ /podstawy/ 302
-/podstawy/jak-uczyc-sie-ai/ /podstawy/ 302
-/podstawy/mity-vs-rzeczywistosc/ /podstawy/ 302
-/podstawy/nie-dajmy-sie-zwariowac/ /podstawy/ 302
-/podstawy/ograniczenia/ /podstawy/ 302
-/podstawy/pierwsza-rozmowa-z-ai/ /podstawy/ 302
-/podstawy/weryfikacja-informacji/ /podstawy/ 302
-/podstawy/wstep/ /podstawy/ 302
 /praktyka/ai-i-praca/ /praktyka/ 302
 /praktyka/ai-w-branzach/ /praktyka/ 302
 /praktyka/case-studies/ /praktyka/ 302

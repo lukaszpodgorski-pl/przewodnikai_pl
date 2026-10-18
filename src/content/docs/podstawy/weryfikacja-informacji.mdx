@@ -1,0 +1,213 @@
+---
+title: Weryfikacja informacji
+description: Sprawdzisz jedną odpowiedź AI metodą SIFT - zatrzymasz się, sprawdzisz źródło, znajdziesz lepsze i dotrzesz do oryginału. Ćwiczenie zajmie 5 minut.
+sidebar:
+  order: 8
+educationalLevel: Beginner
+teaches:
+  - Jak stosować metodę SIFT do odpowiedzi AI
+  - Jak rozpoznawać halucynacje i czerwone flagi
+  - Jak pisać prompty, które ułatwiają weryfikację
+about:
+  - name: Fact-checking
+    sameAs: https://en.wikipedia.org/wiki/Fact-checking
+  - name: Sztuczna inteligencja
+    sameAs: https://pl.wikipedia.org/wiki/Sztuczna_inteligencja
+mentions:
+  - name: ChatGPT
+    sameAs: https://en.wikipedia.org/wiki/ChatGPT
+    type: SoftwareApplication
+faq:
+  - q: Czy włączone wyszukiwanie w chatbocie zwalnia z weryfikacji?
+    a: Nie. Model streszcza znalezione strony, a strony bywają błędne albo same wygenerowane przez AI. Link jest po to, żeby w niego kliknąć - nie po to, żeby uznać sprawę za zamkniętą.
+  - q: Co zrobić, gdy po SIFT nie znajduję źródła?
+    a: To już jest wynik. Liczby, cytatu albo raportu, którego nie da się otworzyć, nie używasz w decyzji. Poproś model o inne źródło albo odpuść ten fakt.
+  - q: Czy mogę oprzeć się na badaniu sprzed trzech lat?
+    a: Nie jako na aktualnym stanie. W tym kursie liczba, cena albo "tak jest teraz" musi pochodzić ze źródła nie starszego niż 2 lata. Wyjątek to historia (kiedy coś się wydarzyło) i trwałe metody, np. SIFT.
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+![Lupa nad dokumentem oddzielająca prawdziwe fakty od fałszywych - weryfikacja informacji](../../../assets/podstawy/weryfikacja-informacji/weryfikacja-informacji.jpg)
+
+:::note[O tej stronie]
+**Czas:** ok. 8 minut czytania + 5 minut ćwiczenia.
+**Poziom:** początkujący.
+**Wcześniej:** [Ograniczenia AI](/podstawy/ograniczenia/) - czego model nie potrafi. Tu: co z tym zrobić.
+:::
+
+## Na tej stronie sprawdzisz jedną odpowiedź
+
+Po tej lekcji weźmiesz jedną odpowiedź chatbota i przejdziesz ją metodą SIFT: zatrzymasz się przy czerwonej fladze, sprawdzisz źródło, znajdziesz lepsze i dojdziesz do oryginału. Reszta - listy typów dezinformacji, narzędzia, triki - wisi na tych czterech krokach.
+
+Jedna rzecz do zapamiętania: **pewność modelu nie jest dowodem**.
+
+## Model brzmi pewnie. To nie znaczy, że ma rację
+
+Dostajesz liczbę, nazwisko badacza i tytuł raportu. Brzmi jak zdanie z prezentacji. Kursor miga nad "wklej".
+
+Zatrzymaj się tutaj. Modele językowe nie sprawdzają świata - dobierają kolejne słowa, które _pasują_ do poprzednich. Dlatego zmyślony raport McKinsey brzmi tak samo gładko jak prawdziwy. Tę sytuację nazywamy <Termin id="halucynacje">halucynacją</Termin>: informacja jest nieprawdziwa, a model podaje ją bez sygnału ostrzegawczego.
+
+Dlaczego tak bywa - brak rozumienia, data odcięcia, powielanie uprzedzeń - jest w [Ograniczeniach AI](/podstawy/ograniczenia/). Ta strona nie powtarza tej listy. Uczy procedury, którą odpalasz, zanim liczba trafi do maila, pracy albo decyzji o zdrowiu.
+
+## Liczby, które się starzeją
+
+Poniższe wskaźniki pokazują skalę, nie aktualny ranking modeli. Każdy wiersz to inne zadanie - **nie porównuj ich ze sobą wprost**. Zostawiłem tylko liczby ze źródeł młodszych niż 2 lata, które da się otworzyć. To ten sam test, który za chwilę zastosujesz do odpowiedzi AI.
+
+| Zadanie | Jak często odpowiedź zawierała zmyślenie lub błąd | Źródło |
+| --- | --- | --- |
+| **Streszczanie dokumentów** (streszczenie niezgodne z dokumentem) | 1,8-24,2% zależnie od modelu | [Vectara Hallucination Leaderboard](https://github.com/vectara/hallucination-leaderboard), stan na maj 2026 r. |
+| **Narzędzia prawnicze z wyszukiwaniem w bazie** | 17-33% | [Magesh i in., Journal of Empirical Legal Studies, 2025](https://arxiv.org/abs/2405.20362) |
+
+:::note[Źródła sprawdzone w sierpniu 2026 r.]
+Reguła tej lekcji i całego kursu: liczba podana jako aktualny stan musi pochodzić ze źródła **nie starszego niż 2 lata**. Historia (kiedy coś się wydarzyło) i trwałe metody (SIFT) się nie liczą. Przy kolejnej aktualizacji ruszamy ten blok, nie całą stronę.
+:::
+
+Nawet narzędzia zbudowane specjalnie dla prawników - z wyszukiwaniem we własnej bazie orzeczeń - w recenzowanym badaniu z 2025 roku myliły się w 17-33% zapytań. Lexis+ AI i Ask Practical Law AI powyżej 17%, Westlaw AI-Assisted Research do 33%. Wyspecjalizowane narzędzie to poprawa względem zwykłego chatbota, nie gwarancja.
+
+Dlaczego model brzmi pewnie, gdy zgaduje? [Kalai i in. (OpenAI, 2025)](https://arxiv.org/abs/2509.04664) wskazują mechanizm, nie magię: większość testów nagradza trafioną odpowiedź, a "nie wiem" liczy jak błąd. W takiej punktacji opłaca się blefować.
+
+Krążą po sieci konkretne liczby o skali "AI slop" - masowo produkowanej treści niskiej jakości. Świadomie ich tu nie przytaczam. Publikują je najczęściej firmy sprzedające wykrywacze AI, rzadko z opisaną metodologią. Dwa takie źródła stały wcześniej w tym miejscu i oba zwracają dziś 404. To chyba najlepsza ilustracja tej lekcji.
+
+## SIFT - cztery kroki, których się trzymasz
+
+[SIFT](https://hapgood.us/2019/06/19/sift-the-four-moves/) to procedura Mike'a Caulfielda z 2019 roku: Stop (zatrzymaj się), Investigate the source (sprawdź źródło), Find better coverage (znajdź lepsze źródła), Trace claims (dotrzyj do oryginału). Powstała do sprawdzania stron internetowych. Przy AI działa tak samo, bo problem jest ten sam - przekonujący tekst bez gwarancji, że świat za nim stoi.
+
+Na końcu dodaję jeden krok przydatny tylko przy chatbotach.
+
+### S - Zatrzymaj się
+
+Zanim użyjesz liczby, cytatu albo "zatwierdzonej metody", zatrzymaj się. Szczególnie gdy informacja wywołuje emocje albo zbyt idealnie pasuje do tezy.
+
+Czerwone flagi, przy których się zatrzymujesz:
+
+- liczba zbyt okrągła albo zbyt precyzyjna ("78%", "obniża ciśnienie o 15-20%")
+- źródło ogólnikowe ("według badań", "eksperci twierdzą")
+- nazwa osoby, instytucji albo raportu, która brzmi niemal prawdziwie
+- jednoznaczna odpowiedź na temat, który w rzeczywistości jest sporny
+- fakt z datą późniejszą niż ostatnie dane, na których model się uczył (tzw. data odcięcia), podany tak, jakby model "pamiętał" go z książek
+- źródło starsze niż 2 lata podane jako obraz "na dziś" (raport z 2023 o "planach firm" nie opisuje 2026)
+
+Przy zdrowiu, prawie i pieniądzach zatrzymujesz się zawsze. Tam SIFT nie zastępuje konsultacji z człowiekiem z uprawnieniami - najwyżej pomaga przygotować pytania.
+
+### I - Sprawdź źródło
+
+Czy model podał coś, w co da się kliknąć? Otwórz link. Często prowadzi donikąd albo na inną treść, niż obiecuje tytuł.
+
+Sprawdź, czy publikacja, autor i instytucja w ogóle istnieją. Wpisz nazwisko i tytuł w Google Scholar, [Bibliotece Nauki](https://bibliotekanauki.pl/) albo na stronie uczelni. Brak śladu to wynik, nie etap "poszukam później".
+
+Sprawdź też datę. Jeśli model cytuje badanie jako aktualny stan, a od publikacji minęły ponad 2 lata, to nie jest dowód "na dziś" - nawet gdy link działa i autor istnieje. Wyjątek: fakty historyczne ("kiedy ruszył internet") i metody, które się nie starzeją (SIFT jest z 2019 i nadal jest procedurą, nie statystyką).
+
+### F - Znajdź lepsze źródła
+
+Nie pogłębiaj jednej odpowiedzi. Otwórz drugie okno i szukaj tego samego faktu gdzie indziej - to czytanie w poprzek (lateral reading), nie w dół jednej strony.
+
+Żeby potwierdzić fakt, wystarczą trzy niezależne miejsca, nie trzydzieści:
+
+- oficjalne dane: [GUS](https://stat.gov.pl/), rejestry, strony ministerstw
+- fact-checking: [Demagog](https://demagog.org.pl/), [Konkret24](https://konkret24.tvn24.pl/)
+- recenzowane publikacje: Google Scholar, Biblioteka Nauki
+
+Szukając, pamiętaj, że wyniki wyszukiwania też bywają zaśmiecone. "AI slop" to masowo generowane artykuły bez autora, bez źródeł i z powtarzalnymi frazami ("w dzisiejszym dynamicznym świecie"). Google od 2024 roku traktuje takie masowe treści jako nadużycie w [zasadach dotyczących spamu](https://developers.google.com/search/docs/essentials/spam-policies) ("scaled content abuse"). Podczas huraganu Helene w 2024 roku takie strony wypychały w wynikach nieaktualne informacje o schronieniach - w zagrożeniu życia to nie jest akademicki problem.
+
+Dlatego F to nie "pierwszy wynik Google". To źródło, które da się nazwać.
+
+### T - Dotrzyj do oryginału
+
+Jeśli model cytuje badanie, otwórz to badanie. Sprawdź, czy liczba znaczy to, co sugeruje odpowiedź, i czy nie wypadł kontekst.
+
+Historyczny przykład mieszanki prawdy z fikcją. Załóżmy, że chatbot odpowiada: "pierwszy komercyjny internet w Polsce uruchomił w 1996 roku PolNet, potem wykupiła go Telekomunikacja Polska". PolNet istniał, ale daty i transakcja nie zgadzają się z [archiwum NASK](https://archiwum.nask.pl/pl/aktualnosci/4271,Internet-w-Polsce-ma-30-lat.html). Internet w Polsce ruszył jako sieć akademicka 17 sierpnia 1991 r. W styczniu 1992 miał już 2 tys. użytkowników. Rok 1996 i wykup przez Telekomunikację Polską nie mają w tej osi czasu oparcia. Częściowa prawda jest gorsza niż jawny błąd, bo łatwiej ją przepuścić.
+
+Gdy temat jest specjalistyczny i stawka wysoka, oryginał to czasem rozmowa z człowiekiem, który ten raport czytał - nie kolejna tura z chatbotem.
+
+### Przykład: jeden fakt, cztery kroki
+
+Model pisze: _"Według raportu McKinsey z 2024 roku 78% polskich firm planuje wdrożenie AI w ciągu 2 lat."_
+
+1. **S** - 78% jest konkretne i wysokie. Flaga.
+2. **I** - szukasz raportu McKinsey 2024 o AI w polskich firmach: wpisujesz w wyszukiwarkę "McKinsey 2024 AI Polska" i szukasz wyniku na stronie mckinsey.com. Nie ma takiego dokumentu pod tą tezą. Nawet gdyby był: w 2026 roku dane z 2024 nie są już obrazem "na dziś".
+3. **F** - GUS i PwC podają inne liczby, inną definicję "wdrożenia" i inny rok.
+4. **T** - McKinsey publikował raporty o AI, ale nie z tą liczbą dla Polski.
+
+Wniosek: nie wklejasz 78%. To ilustracja procedury, nie news o McKinsey.
+
+### Jedyna sztuczka spoza klasycznego SIFT: ten sam temat, inny prompt
+
+SIFT powstał do stron. Chatbotowi możesz zadać to samo jeszcze raz - i zobaczyć, czy liczba przeżyje.
+
+Ten trik pomaga przy krokach I i F: jeśli model sam sobie zaprzecza, fakt odpada od razu. Skopiuj i wklej (słowo w nawiasie kwadratowym zamień na swoje):
+
+```text
+Podaj fakty o [TEMAT] wyłącznie ze źródłami, które mogę otworzyć: tytuł, autor, rok i link. Jeśli któregoś faktu nie umiesz oprzeć na takim źródle, pomiń go.
+```
+
+```text
+To samo zagadnienie, ale innymi słowami. Nie powtarzaj poprzedniej odpowiedzi - sprawdź liczby od nowa.
+```
+
+```text
+W poprzedniej odpowiedzi pojawiła się liczba [X]. Skąd pochodzi? Podaj tytuł, autora, rok i link. Jeśli nie znajdziesz źródła, napisz "nie wiem".
+```
+
+Gdy druga odpowiedź rozjeżdża się z pierwszą albo model nie umie podać linku, traktujesz fakt jako niezweryfikowany. Nie jako "prawie prawdziwy".
+
+## Zdrowie, prawo, pieniądze: SIFT tylko odrzuca
+
+SIFT pomaga sprawdzić tekst. Nie podejmuje decyzji za Ciebie.
+
+Poniższy przykład jest **wymyślony na potrzeby tej strony** - takiej publikacji nie ma. Pokazuje, jak wygląda odpowiedź, której nie wolno wcielić w życie nawet po "sprawdzeniu w chacie".
+
+Załóżmy, że chcesz wiedzieć, czy kurkuma obniża ciśnienie. Model odpowiada:
+
+> Według badania dr. Andrzeja Kowalskiego z pewnej warszawskiej uczelni medycznej, spożywanie 50 g sproszkowanej kurkumy dziennie obniża ciśnienie o 15-20% w ciągu tygodnia. Metodę zatwierdził Narodowy Fundusz Zdrowia.
+
+Flagi (krok S): dawka 50 g to kilka łyżek stołowych; 15-20% brzmi jak wynik z tabeli, której nie ma; NFZ nie zatwierdza metod leczenia.
+
+SIFT tu służy do odrzucenia odpowiedzi, nie do samodzielnego leczenia. Przy zdrowiu, prawie i finansach procedura kończy się na "tego nie rozstrzygam z modelem".
+
+## Checklista - SIFT w czterech pytaniach
+
+Użyj tego przy informacji, na której coś wisisz. Cztery pola, dwie minuty:
+
+- [ ] **S** - Czy ta liczba albo cytat brzmi zbyt gładko, żeby przejść dalej bez sprawdzenia?
+- [ ] **I** - Czy jest źródło, które da się otworzyć, i czy ma mniej niż 2 lata, jeśli ma opisywać stan "na dziś"?
+- [ ] **F** - Czy to samo widać w drugim, niezależnym miejscu?
+- [ ] **T** - Czy oryginał naprawdę mówi to, co streścił model?
+
+Przy decyzji o zdrowiu, prawie albo pieniądzach dołóż człowieka z uprawnieniami. SIFT nie jest konsultacją.
+
+:::note[Zasada kciuka]
+Im wyższa stawka, tym głębiej wchodzisz. Mail do zespołu z przybliżonym podziałem zadań? S i I wystarczą. Porada, którą ktoś weźmie dosłownie? Pełne SIFT - a jeśli nie masz na nie czasu, nie przekazuj tej porady dalej.
+:::
+
+## Ćwiczenie: 5 minut, jeden fakt
+
+Nie sprawdzasz "czy AI kłamie w ogóle". Sprawdzasz jedną odpowiedź w dziedzinie, którą znasz - zawód, hobby, lokalne przepisy.
+
+1. Otwórz dowolnego chatbota z [pierwszej rozmowy](/podstawy/pierwsza-rozmowa-z-ai/).
+2. Wklej prompt i podmień nawias.
+
+    ```text
+    Podaj 5 konkretnych faktów o [TWÓJ ZAWÓD ALBO HOBBY] w Polsce w latach 2025-2026. Przy każdym podaj tytuł źródła, autora, rok i działający link.
+    ```
+
+3. Wybierz **jeden** fakt, który brzmi najpewniej - najokrąglejszy procent, najładniejsze nazwisko, najświeższa data.
+4. Przejedź go SIFT-em. Nie musisz weryfikować wszystkich pięciu.
+
+**Zaliczenie:** w ciągu 5 minut masz zapisane, co padło na wybranym fakcie: link działa i źródło zawiera tę liczbę, **albo** link jest martwy, źródło mówi coś innego, autor nie istnieje, albo model nie podał źródła.
+
+Typowy wynik przy pierwszym podejściu: przynajmniej jeden martwy link albo raport, którego nie ma. Jeśli akurat wszystko się zgadza, to też sukces - masz potwierdzony fakt, nie "pewną odpowiedź".
+
+**Jeśli nic nie zgrzyta i zostaje czas:** uszczegółowij temat (jedna ustawa, jedna instytucja, jeden rok) i powtórz. Szersze pytanie modelowi łatwiej zgadywać.
+
+## Teraz wiesz
+
+- Pewność modelu nie jest dowodem. Dowodem jest źródło, które otworzysz.
+- Przy odpowiedzi AI trzymasz się SIFT: zatrzymaj się, sprawdź źródło (w tym datę - aktualny stan ma mniej niż 2 lata), znajdź lepsze, dojdź do oryginału.
+- Drugi prompt na ten sam temat to dodatkowy trik przy chatbotach: jeśli model sam sobie zaprzecza, fakt odpada. Przy zdrowiu, prawie i pieniądzach SIFT służy do odrzucenia odpowiedzi, nie do decyzji.
+
+**Następny krok:** [Jak działa AI](/jak-dziala-ai/) - skoro umiesz sprawdzić wynik, warto zobaczyć, skąd się bierze.
+
+<SlowniczekStrony terminy={["halucynacje", "prompt"]} />

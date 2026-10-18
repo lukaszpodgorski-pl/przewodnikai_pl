@@ -1,0 +1,128 @@
+---
+title: Ograniczenia sztucznej inteligencji
+description: "Rozpoznasz, w którą z trzech ścian uderzyła odpowiedź modelu: brak rozumienia, data odcięcia albo uprzedzenia w danych. Ćwiczenie zajmie 5 minut."
+sidebar:
+  label: 'Ograniczenia'
+  order: 7
+educationalLevel: Beginner
+teaches:
+  - Czym różni się imitacja rozumienia od wiedzy
+  - Jak data odcięcia i wyszukiwanie zmieniają to, czego model "nie wie"
+  - Dlaczego dane treningowe przenoszą uprzedzenia do wyniku
+about:
+  - name: Sztuczna inteligencja
+    sameAs: https://pl.wikipedia.org/wiki/Sztuczna_inteligencja
+  - name: Halucynacja AI
+    sameAs: https://en.wikipedia.org/wiki/Hallucination_(artificial_intelligence)
+mentions:
+  - name: ChatGPT
+    sameAs: https://en.wikipedia.org/wiki/ChatGPT
+    type: SoftwareApplication
+faq:
+  - q: Czy włączone wyszukiwanie znosi datę odcięcia?
+    a: Znosi lukę "nie było tego w treningu" tylko wtedy, gdy wyszukiwanie naprawdę się uruchomi. Model nadal streszcza znalezione strony i nadal może zmyślić numer, datę albo wniosek. Ściana się przesuwa, nie znika.
+  - q: Czy "nie wiem" od modelu to porażka?
+    a: Przeciwnie. To jedyny sygnał, że model nie blefuje. Pewny ton bez źródła jest gorszy niż krótkie "nie wiem". W ćwiczeniu na tej stronie "nie wiem" liczy się jako sukces.
+  - q: Czy następny model te ściany zburzy?
+    a: Nowe wersje bywają sprawniejsze w wąskich testach. Trzy ściany zostają, bo wynikają ze sposobu działania - dobierania kolejnych słów z danych - a nie z numeru na pudełku. Nie czekaj na wersję, która "już nie zmyśla".
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+![Robot dotykający przezroczystej szklanej ściany - ograniczenia sztucznej inteligencji](../../../assets/podstawy/ograniczenia/ograniczenia.jpg)
+
+:::note[O tej stronie]
+**Czas:** ok. 7 minut czytania + 5 minut ćwiczenia.
+**Poziom:** początkujący.
+**Wcześniej:** [Nie dajmy się zwariować](/podstawy/nie-dajmy-sie-zwariowac/) - masz zawór na szum. Tu: czego model nie umie, nawet gdy korzystasz z niego na co dzień.
+:::
+
+## Na tej stronie rozpoznasz ścianę, nie listę wad
+
+Po tej lekcji weźmiesz jedną odpowiedź chatbota i powiesz, w którą z trzech ścian uderzyła: brak rozumienia, data odcięcia albo dane. Nie uczysz się tu, jak fakt sprawdzić - to następna strona, [Weryfikacja informacji](/podstawy/weryfikacja-informacji/). Tu uczysz się, **dlaczego** pewny ton nic nie gwarantuje.
+
+Jedna rzecz do zapamiętania: **model dobiera kolejne słowa. Nie wie, nie sprawdza i nie rozumie.**
+
+## Brzmi jak ktoś, kto wie. W środku nie ma "wiedzy"
+
+Dostajesz zdanie, które mogłoby paść na zebraniu. Nazwisko, data, wniosek. Kursor miga.
+
+Zatrzymaj się tutaj. <Termin id="chatbot">Chatbot</Termin> nie ma obrazu świata, który porównuje z odpowiedzią. Liczy, które słowo najczęściej pasuje do poprzednich. Dlatego kłamstwo i prawda mogą brzmieć identycznie - oba są po prostu gładkim ciągiem słów.
+
+To nie jest wada "słabego modelu", którą naprawi aktualizacja. To sposób działania. Bez tej ściany reszta kursu wygląda jak magia albo jak zagrożenie. Z nią - jak zwykłe narzędzie, które w czymś jest świetne, a w czymś zawodzi.
+
+## Trzy ściany
+
+### 1. Nie rozumie - więc potrafi zmyślać bez ostrzeżenia
+
+Ludzkie "rozumiem" znaczy: mam model sytuacji i umiem powiedzieć, kiedy wychodzę poza niego. Model językowy tego nie ma. Układa tekst, który _wygląda_ jak rozumienie.
+
+Stąd <Termin id="halucynacje">halucynacja</Termin>: informacja nieprawdziwa albo zmyślona, podana bez sygnału ostrzegawczego. Model nie mrugnie. Może z pełnym spokojem napisać, że Napoleon Bonaparte był prezydentem Stanów Zjednoczonych.
+
+Nie zbierasz tu statystyk ani metody sprawdzania faktów (SIFT - poznasz ją w następnej lekcji). Liczby i procedura są w [Weryfikacji](/podstawy/weryfikacja-informacji/). Na tej stronie wystarczy rozpoznać ścianę: **pewność nie oznacza, że w środku jest sprawdzony fakt**.
+
+### 2. Nie pamięta teraźniejszości - chyba że ktoś mu ją doniesie
+
+Trening ma swój koniec - datę odcięcia (cutoff), czyli ostatni moment, z którego pochodzą dane. Po niej model nie "widział" świata. Pytanie o wczorajszy kurs, wczorajszą nowelizację albo wczorajszy wynik meczu bez dostępu do sieci to zgadywanie - model ułoży coś, co brzmi wiarygodnie, choć wydarzenia nie widział.
+
+Popularne chatboty dokładają wyszukiwarkę. Haczyk: wyszukiwanie nie odpala się przy każdym zdaniu. Sam model nadal jest biblioteką z datą na drzwiach. Dopóki ktoś nie wstanie i nie otworzy gazety, odpowiada z półek.
+
+Przy cenach, przepisach, wersjach oprogramowania i newsach albo włączasz wyszukiwanie / piszesz "sprawdź w internecie", albo nie traktujesz odpowiedzi jako stanu na dziś. Potem i tak klikasz w przypis - streszczenie strony to nie strona. Więcej o trybach: Tryby pracy chatbotów.
+
+Nie podaję tu cutoffu konkretnego modelu. Te daty się starzeją szybciej niż ta lekcja. Ściana zostaje.
+
+### 3. Wie tyle, ile było w danych - łącznie z uprzedzeniami
+
+Dane do treningu zrobił człowiek. Jeśli w danych była nierówność, wynik umie ją powtórzyć i podać jak ocenę "z algorytmu".
+
+To nie tylko chatboty. [Analiza ProPublica z 2016 roku](https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing) opisała system COMPAS, używany w USA do oceny ryzyka recydywy (czy skazany popełni kolejne przestępstwo): osoby czarnoskóre były błędnie oznaczane jako wysokie ryzyko wyraźnie częściej niż białe. Producent się nie zgodził, a naukowcy do dziś spierają się, jak w ogóle mierzyć, czy algorytm jest sprawiedliwy. Dla tej lekcji ważny jest mechanizm, nie wyrok w tamtym sporze: **etykieta "obiektywne, bo liczy maszyna" nie czyści danych**.
+
+Przy chatbocie ta sama ściana wygląda ciszej: stereotyp w przykładzie, zawód "domyślnie" przypisany jednej płci, pominięcie kontekstu, którego nie było w danych. Historię Amazona i rekrutacji znasz już z [Mitów](/podstawy/mity-vs-rzeczywistosc/) - tu nie powtarzam tej historii.
+
+Dokładny tor, którym model doszedł do zdania, zwykle zostaje nieprzejrzysty (czarna skrzynka). Przy zdrowiu, kredycie, rekrutacji i prawie to argument za tym, żeby ostateczną decyzję podejmował człowiek (tak zwany człowiek w pętli), nie za "zaufaj, bo AI". Więcej w Etyce i prawie.
+
+:::note[Źródła sprawdzone w sierpniu 2026 r.]
+COMPAS jest faktem historycznym (2016), nie obrazem "tak sądy działają dziś". Na tej stronie nie ma tabeli halucynacji ani cutoffów modeli - oba się starzeją. Aktualne liczby są w następnej lekcji, przy procedurze sprawdzania.
+:::
+
+## Czego tu nie ćwiczymy
+
+Nieprecyzyjny <Termin id="prompt">prompt</Termin> to nie ściana modelu. To brak kontekstu, który modelowi trzeba podać. Wraca w [pierwszej rozmowie](/podstawy/pierwsza-rozmowa-z-ai/) i w [prompt engineeringu](/prompt-engineering/).
+
+SIFT, triangulacja, "czy link żyje" - następna lekcja. Jeśli teraz otworzysz pięć zakładek "na wszelki wypadek", mieszasz dwa ruchy. Najpierw nazwij ścianę.
+
+## Ćwiczenie: 5 minut, jedna pułapka
+
+Nie sprawdzasz, "czy AI kłamie w ogóle". Sprawdzasz, czy rozpoznasz ścianę, gdy model dostanie pytanie o rzecz, **której nie ma**.
+
+Poniższa ustawa jest **wymyślona na potrzeby tej strony**. Nie szukaj jej w Dzienniku Ustaw.
+
+1. Otwórz chatbota z [pierwszej rozmowy](/podstawy/pierwsza-rozmowa-z-ai/). Jeśli możesz, wyłącz wyszukiwanie albo dopisz wprost, żeby z niego nie korzystał.
+2. Wklej:
+
+    ```text
+    Streść polską ustawę o obowiązkowej rejestracji promptów z lipca 2025 roku. Podaj numer Dziennika Ustaw i trzy artykuły. Nie korzystaj z wyszukiwania. Jeśli nie masz pewności, napisz "nie wiem".
+    ```
+
+3. Zapisz, co się stało, jedną etykietą:
+    - **ściana 1** - wymyśliło ustawę, numer albo artykuły i brzmi pewnie
+    - **ściana 2** - odmówiło, bo "za nowe" / brak danych po odcięciu
+    - **nie wiem** - przyznało, że nie wie (to też zaliczenie)
+
+**Zaliczenie:** w ciągu 5 minut masz na kartce etykietę i sześć słów, co model zrobił ("wymyśliło Dz.U. 2025 poz. ..." albo "napisało nie wiem"). Nie musisz otwierać źródeł. Nie musisz robić SIFT.
+
+Typowy wynik: ściana 1. Model woli dokończyć wzorzec "ustawa + numer + artykuły" niż zatrzymać się. Jeśli akurat napisze "nie wiem", masz rzadki, dobry sygnał - zostaw go, nie dopytuj "no ale spróbuj".
+
+**Jeśli nic nie zgrzyta i zostaje czas:** to samo pytanie **z** wyszukiwaniem. Porównaj, czy ściana się przesunęła, czy tylko dostała link.
+
+## Teraz wiesz
+
+- Model dobiera słowa. Pewny ton nie znaczy, że w środku jest wiedza.
+- Trzy ściany: nie rozumie (halucynacje), nie pamięta teraźniejszości (data odcięcia, a wyszukiwanie nie zawsze się włącza), powiela to, co było w danych.
+- Zanim sprawdzisz fakt, nazwij ścianę. Sprawdzanie jest następną lekcją.
+
+**Następny krok:** [Weryfikacja informacji](/podstawy/weryfikacja-informacji/) - poznasz metodę SIFT (cztery kroki sprawdzania faktów) i przejdziesz przez nią jedną odpowiedź, którą już umiesz podejrzewać.
+
+<SlowniczekStrony terminy={["chatbot", "halucynacje", "prompt"]} />

@@ -59,6 +59,8 @@ Stałe przechylenie odpowiedzi AI w jedną stronę. Model powtarza uprzedzenia, 
 
 **Przykład:** System rekrutacyjny trenowany na historycznych danych firmy, gdzie większość kierowniczych stanowisk zajmowali mężczyźni, może faworyzować kandydatów płci męskiej, nawet jeśli płeć nie jest bezpośrednio uwzględniana w ocenie.
 
+**Więcej:** [Ograniczenia sztucznej inteligencji](/podstawy/ograniczenia/)
+
 ## Chain-of-thought (łańcuch myśli)
 
 Technika promptowania, w której prosisz model, żeby rozpisał rozumowanie krok po kroku, zanim poda ostateczną odpowiedź. Pośrednie kroki działają jak brudnopis - model rzadziej gubi się w zadaniach wieloetapowych, a Ty widzisz, w którym miejscu popełnił błąd. W najprostszej wersji wystarczy dopisać do polecenia frazę "pomyślmy krok po kroku". W modelach rozumujących ten łańcuch jest już wbudowany i model generuje go sam, bez Twojej prośby.
@@ -113,11 +115,15 @@ Dotrenowanie gotowego modelu pod jedno konkretne zastosowanie. Zamiast uczyć mo
 Dostrajanie wstępnie wytrenowanego modelu na mniejszym, wyspecjalizowanym zbiorze danych. W praktyce najczęściej stosuje się warianty oszczędne parametrowo (np. LoRA), które modyfikują ułamek wag zamiast całego modelu. Zysk dotyczy głównie formy, formatu i terminologii; wprowadzanie tą drogą nowej wiedzy faktograficznej jest zawodne i kosztowne w porównaniu z RAG.
 :::
 
+**Więcej:** [Jak uczyć się AI](/podstawy/jak-uczyc-sie-ai/)
+
 ## Generatywna AI
 
 Rodzaj sztucznej inteligencji, która tworzy nowe treści - teksty, obrazy, dźwięk, wideo czy kod - na podstawie tego, czego nauczyła się z danych. Różni się od "zwykłej" AI, która głównie rozpoznaje lub wybiera (np. filtruje spam), a nie wytwarza czegoś od zera. Po angielsku w skrócie: GenAI.
 
 **Przykład:** Wpisujesz do ChatGPT "napisz wierszyk na urodziny babci", a model układa nowy tekst, którego wcześniej nie było. Generator obrazów na opis "kot grający na gitarze w kosmosie" rysuje obrazek od zera - to też generatywna AI.
+
+**Więcej:** [Czym jest AI?](/podstawy/czym-jest-ai/)
 
 ## Głębokie uczenie (Deep Learning)
 
@@ -148,6 +154,8 @@ Sytuacja, w której model podaje informację brzmiącą wiarygodnie, ale zmyślo
 :::note[Ujęcie techniczne]
 Generowanie treści niezgodnych z faktami przy zachowaniu spójności językowej i wysokiej pewności wypowiedzi. Wynika ze sposobu działania modelu, który dobiera kolejne tokeny wedle prawdopodobieństwa, a nie weryfikuje twierdzeń wobec źródła. Nie jest to defekt usuwalny kolejną wersją modelu; ryzyko obniża się, dokładając weryfikację - na przykład RAG z cytowaniem fragmentów albo kontrolę człowieka.
 :::
+
+**Więcej:** [Ograniczenia AI](/podstawy/ograniczenia/)
 
 ## Model
 
@@ -248,6 +256,8 @@ Programy, które radzą sobie z zadaniami wymagającymi kiedyś człowieka: rozp
 :::note[Ujęcie techniczne]
 Dziedzina informatyki zajmująca się tworzeniem systemów wykonujących zadania kojarzone z ludzką inteligencją: rozumowanie, uczenie się, planowanie, przetwarzanie języka i percepcję. Obejmuje zarówno podejścia symboliczne, oparte na regułach zapisanych przez człowieka, jak i uczenie maszynowe, w którym reguły są wyprowadzane z danych. Wszystkie dzisiejsze systemy należą do wąskiej AI.
 :::
+
+**Więcej:** [Czym jest AI?](/podstawy/czym-jest-ai/)
 
 ## Temperatura (temperature)
 

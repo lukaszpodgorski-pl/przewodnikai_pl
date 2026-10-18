@@ -1,0 +1,211 @@
+---
+title: Czym jest AI?
+description: Oddzielisz AI od generatywnej AI na trzech przykładach z własnego dnia. Ćwiczenie zajmie 5 minut.
+sidebar:
+  order: 2
+educationalLevel: Beginner
+teaches:
+  - Czym jest sztuczna inteligencja bez żargonu
+  - Różnica między AI a generatywną AI
+  - Że dzisiejsze systemy to wąska AI, nie filmowa ogólna
+about:
+  - name: Sztuczna inteligencja
+    sameAs: https://pl.wikipedia.org/wiki/Sztuczna_inteligencja
+  - name: Generatywna sztuczna inteligencja
+    sameAs: https://pl.wikipedia.org/wiki/Generatywna_sztuczna_inteligencja
+mentions:
+  - name: ChatGPT
+    sameAs: https://en.wikipedia.org/wiki/ChatGPT
+    type: SoftwareApplication
+  - name: Siri
+    sameAs: https://en.wikipedia.org/wiki/Siri
+    type: SoftwareApplication
+  - name: Netflix
+    sameAs: https://en.wikipedia.org/wiki/Netflix
+    type: Organization
+faq:
+  - q: Czy filtr spamu to generatywna AI?
+    a: Zwykle nie. Sortuje i rozpoznaje, nie pisze nowego maila od zera. Generatywna AI wytwarza treść (tekst, obraz, dźwięk, kod), której wcześniej nie było w takiej postaci.
+  - q: Czy ChatGPT "rozumie", o czym pisze?
+    a: Nie w ludzkim sensie. Dobiera słowa, które pasują do wzorców, nie sprawdza faktów w świecie. Więcej o tym, czego model nie potrafi, znajdziesz w [Ograniczeniach](/podstawy/ograniczenia/).
+  - q: Czy wąska AI znaczy "słaba"?
+    a: Nie. Znaczy wyspecjalizowana. Nawigacja, filtr spamu i chatbot są wąskie i jednocześnie bardzo sprawne w swoim zadaniu. Ogólna AI na miarę człowieka we wszystkim naraz nie istnieje.
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+import ZagniezdzoneZbiory from '../../../components/ZagniezdzoneZbiory.astro';
+
+![Mózg z obwodów elektronicznych w kształcie znaku zapytania obok postaci - czym jest sztuczna inteligencja](../../../assets/podstawy/czym-jest-ai/czym-jest-ai.jpg)
+
+:::note[O tej stronie]
+**Czas:** ok. 10 minut czytania + 5 minut ćwiczenia.
+**Poziom:** początkujący.
+**Wcześniej:** [Wstęp](/podstawy/wstep/) - mapa kursu i pierwszy prompt. Tu: co to w ogóle jest.
+:::
+
+## Na tej stronie oddzielisz dwa słowa, które media mieszają
+
+Po tej lekcji weźmiesz trzy rzeczy z własnego dnia i podpiszesz: "AI, ale nie generatywna" albo "generatywna AI". Nie zbierasz historii dziedziny od 1956 roku.
+
+Jedna rzecz do zapamiętania: **każda generatywna AI to AI. Nie każda AI jest generatywna.**
+
+Reszta strony to trzy warstwy pod tym zdaniem: skąd program bierze umiejętność, czym różni się rozpoznawanie od wytwarzania i dlaczego "wąska" nie znaczy "słaba".
+
+## Już z tego korzystasz. Tylko rzadko tak to nazywasz
+
+Sztuczna inteligencja (AI) to programy, które robią rzeczy zwykle kojarzone z ludzką inteligencją: rozpoznają wzorzec, wybierają, przewidują, tłumaczą. Komputer nie ma uczuć. Ma dane i regułę albo model, który z tych danych się uczy.
+
+Nie ma jednej urzędowej definicji AI - jest robocza zgoda co do tego, jakie zadania się do niej zalicza. Granica dodatkowo się przesuwa. Rozpoznawanie tekstu ze skanu było kiedyś sztandarowym problemem AI, dziś to "zwykła funkcja w telefonie". Nazywa się to efektem AI: gdy coś zaczyna działać niezawodnie, przestajemy o tym mówić "sztuczna inteligencja".
+
+Dlatego lista poniżej brzmi nudno, a to wszystko jest AI:
+
+- **Filtr spamu** - przypisuje wiadomości kategorię na podstawie tysięcy wcześniejszych przykładów.
+- **Rekomendacje Netflixa i Spotify** - przewidują, co obejrzysz do końca, i układają kolejność.
+- **Nawigacja** - szacuje czas przejazdu z historii ruchu i danych z tysięcy telefonów.
+- **Galeria zdjęć** - grupuje twarze i wyszukuje "pies", choć nikt tych zdjęć nie opisywał ręcznie.
+- **Autokorekta** - zgaduje, które słowo chcesz napisać.
+- **Bank** - blokuje podejrzaną transakcję, bo odstaje od Twojego zwykłego wzorca.
+
+Gdy Siri albo Gemini odpowiada na pytanie o pogodę, gdy Netflix podsuwa serial, gdy skrzynka odfiltrowuje spam - to AI, często bez żadnego "stwórz mi obraz kota".
+
+## Skąd program bierze umiejętność: albo z reguły, albo z danych
+
+To jest podział, który tłumaczy właściwie wszystko dalej.
+
+**Droga pierwsza: człowiek pisze regułę.** Programista wpisuje warunki. "Jeśli w temacie jest słowo z listy, oznacz jako spam." Działa dokładnie tak długo, jak długo świat wygląda tak, jak w momencie pisania. Spamer zmienia jedną literę i reguła przestaje łapać. Ta gałąź AI istnieje od dekad i nadal działa tam, gdzie zasady są sztywne i znane.
+
+**Droga druga: program wyprowadza regułę z przykładów.** To <Termin id="uczenie-maszynowe">uczenie maszynowe</Termin> (machine learning, ML). Pokazujesz sto tysięcy maili z etykietami "spam" / "nie spam", a program sam dobiera, na co patrzeć i z jaką wagą. Nikt nie zapisuje reguły ręcznie. Reguła jest wynikiem, nie wejściem.
+
+**Odmiana drugiej drogi: <Termin id="uczenie-glebokie">uczenie głębokie</Termin>** (deep learning, DL) - uczenie maszynowe na sieciach neuronowych, czyli układach prostych przeliczeń połączonych w warstwy, luźno inspirowanych neuronami w mózgu. "Głębokie" znaczy po prostu: warstw jest dużo. Szerzej o sieciach piszę w lekcji AI, uczenie maszynowe i sieci neuronowe. Kluczowa różnica praktyczna: radzi sobie z surowymi danymi. Możesz podać piksele, próbki dźwięku albo goły tekst, bez wcześniejszego wskazywania człowiekiem, które cechy są ważne. Sieć wypracowuje je sama, warstwa po warstwie.
+
+Te pojęcia nie są konkurencyjne. Są zagnieżdżone:
+
+<ZagniezdzoneZbiory
+  podpis="Każdy zbiór mieści się w poprzednim. Generatywna AI jest odmianą uczenia głębokiego, uczenie głębokie - odmianą uczenia maszynowego, a wszystkie trzy mieszczą się w AI."
+  poziomy={[
+    {
+      nazwa: 'Sztuczna inteligencja (AI)',
+      opis: 'Systemy regułowe, planowanie, przeszukiwanie.',
+    },
+    {
+      nazwa: 'Uczenie maszynowe (ML)',
+      opis: 'Regresja, drzewa decyzyjne, klasyczne rekomendacje.',
+    },
+    {
+      nazwa: 'Uczenie głębokie (DL)',
+      opis: 'Sieci neuronowe, rozpoznawanie obrazu i mowy.',
+    },
+    {
+      nazwa: 'Generatywna AI',
+      opis: 'Modele językowe, generatory obrazu, dźwięku i wideo.',
+    },
+  ]}
+/>
+
+Dwa słowa z tego rysunku warto rozwinąć.
+
+<Termin id="model">Model</Termin> to plik z liczbami. Fachowo nazywa się je wagami albo parametrami - wyobraź sobie miliardy pokręteł, które trening ustawił w konkretnej pozycji. Duży model językowy ma ich właśnie miliardy. Same w sobie nic nie znaczą; znaczenie ma to, jak przekształcają wejście w wyjście.
+
+<Termin id="trenowanie">Trenowanie</Termin> a używanie to dwa różne momenty. Trenowanie odbywa się raz, trwa tygodnie, kosztuje krocie i wymaga ogromnych zbiorów danych. Używanie - czyli każda Twoja rozmowa - trwa sekundy i kosztuje ułamek tego, co trening. Model podczas rozmowy z Tobą **nie uczy się**. Wagi są zamrożone. Stąd bierze się data odcięcia wiedzy: model zna świat do momentu treningu, chyba że dostanie świeże informacje w oknie rozmowy albo z doklejonej wyszukiwarki.
+
+## Generatywna AI wytwarza. Reszta głównie rozpoznaje albo wybiera
+
+<Termin id="genai">Generatywna sztuczna inteligencja</Termin> (generative AI, GenAI) tworzy treść, której w takiej postaci nie było: tekst, obraz, dźwięk, kod. <Termin id="chatbot">Chatbot</Termin> w rodzaju ChatGPT układa zdania. Generator z opisu "kot z gitarą w kosmosie" składa obraz.
+
+Autokorekta w telefonie zgaduje, które słowo chcesz - to bliżej "zwykłej" AI. Program, który na polecenie pisze opowiadanie od zera - to GenAI.
+
+Dlatego media mówią "AI", a pokazują tylko tę drugą gałąź. To tak, jakby na wszystkie samochody mówić Ferrari. Każde Ferrari jest samochodem. Nie każdy samochód jest Ferrari.
+
+### Czym różni się ocenianie od tworzenia
+
+Różnica nie jest stylistyczna. Dotyczy tego, czego program się nauczył.
+
+- **Program, który _rozpoznaje_** (fachowo: model dyskryminacyjny), nauczył się odpowiadać na jedno pytanie: "do której szuflady to pasuje?". Spam albo nie spam. Pies albo kot.
+- **Program, który _tworzy_** (model generatywny), nauczył się czegoś więcej: jak wyglądają maile, zdania czy zdjęcia psów - jakie bywają, co jest w nich częste, a co rzadkie. Dzięki temu potrafi **ułożyć nowy egzemplarz**, za każdym razem trochę inny.
+
+Praktyczna konsekwencja: z filtra spamu nie wyciągniesz nowego maila - on umie tylko oceniać cudze. Z modelu generatywnego wyciągniesz mail, którego nikt nigdy nie napisał.
+
+### Jak "tworzenie" wygląda od środka
+
+W modelu językowym nie ma momentu natchnienia. Jest pętla.
+
+1. Tekst zostaje pocięty na <Termin id="token">tokeny</Termin> - kawałki zwykle mniejsze niż słowo, bo odmiana i ogonki dzielą wyrazy. Polskie słowo "przewodnikami" model może zobaczyć jako kilka kawałków, a nie jedno słowo. Ile ich wychodzi z Twojego tekstu, sprawdzisz w Tokenach i kontekście.
+2. Model liczy, które tokeny mogłyby być **następne** i jak bardzo prawdopodobny jest każdy z nich.
+3. Jeden token zostaje wybrany, doklejony na koniec, a całość wraca na wejście.
+4. Powtórz kilkaset razy. Wychodzi akapit.
+
+To wyjaśnia dwie rzeczy, które ludzi zaskakują. Po pierwsze, tekst pojawia się słowo po słowie - bo naprawdę tak powstaje. Po drugie, ten sam prompt dwa razy daje różne odpowiedzi: wybór tokenu ma element losowości (jej poziom ustawia się suwakiem zwanym temperaturą). Model nie ma jednej "swojej" odpowiedzi, którą Ci recytuje.
+
+Generatory obrazu działają mechanicznie inaczej - najpopularniejsze zaczynają od czystego szumu i krok po kroku go odszumiają w stronę opisu (to tak zwana dyfuzja). Zasada pozostaje ta sama: model nauczył się, jak wyglądają dane, i potrafi wyprodukować nowy egzemplarz.
+
+## Gdzie ta granica się rozmywa
+
+Etykieta "generatywna" opisuje **zadanie, które program wykonuje w danym momencie**, a nie rodzinę technologiczną. Trzy przykłady, żeby nie wpaść w pułapkę:
+
+- Ten sam duży model językowy poproszony o "oceń, czy ten mail to spam, odpowiedz TAK albo NIE" pełni rolę klasyfikatora. Technologia generatywna, zadanie rozpoznawcze.
+- Autokorekta przewiduje następne słowo - formalnie to **to samo zadanie**, co w modelu językowym. Różnica jest w skali: model w klawiaturze jest tysiące razy mniejszy, patrzy na kilka ostatnich słów i nie poprowadzi spójnego tekstu.
+- Nowoczesne rekomendacje korzystają z sieci neuronowych i działają na podobnej technologii co modele generatywne, choć ich efektem jest lista, nie treść.
+
+Dla ćwiczenia niżej przyjmij prostą zasadę: **patrz na efekt**. Wyszła nowa treść - GenAI. Wyszła ocena, kategoria, ranking albo liczba - to druga gałąź.
+
+## Wąska, nie filmowa
+
+To, z czym masz do czynienia, to <Termin id="waska-ai">wąska AI</Termin>: mistrzostwo w zadaniu, bez ludzkiego rozumienia świata. ChatGPT nie "wie", o czym pisze, w sensie, w jakim wie nauczycielka historii.
+
+"Wąska" nie znaczy "słaba". Model może być zdecydowanie lepszy od człowieka w swoim zadaniu i całkowicie bezradny krok obok. Modele językowe wyglądają na uniwersalne, bo ich dziedziną jest tekst, a tekstem opisuje się prawie wszystko. To nadal jedno zadanie, wykonywane bardzo szeroko.
+
+<Termin id="ogolna-ai">Ogólna AI</Termin> (na miarę człowieka we wszystkim) nie istnieje. Wymagałaby przenoszenia umiejętności między zupełnie różnymi dziedzinami, uczenia się w trakcie działania i spójnego modelu świata. Nie wiemy, czy i kiedy powstanie - badacze nie są zgodni ani co do terminu, ani nawet co do tego, jak ją rozpoznać. Typy szerzej: Typy AI. Mity o buncie: [Mity vs rzeczywistość](/podstawy/mity-vs-rzeczywistosc/).
+
+Brak modelu świata ma bardzo konkretny skutek uboczny, na który natkniesz się w pierwszym tygodniu pracy z chatbotem. Model dba o to, żeby tekst **brzmiał** wiarygodnie, a nie o to, żeby był prawdziwy. Zmyślony przepis prawny, nieistniejący wyrok albo książka, której nikt nie napisał, wyglądają dokładnie tak samo pewnie jak prawdziwe. To tak zwana <Termin id="halucynacje">halucynacja</Termin> - dokładnie wyjaśniam ją w [Ograniczeniach](/podstawy/ograniczenia/). Weryfikacja zostaje po Twojej stronie i to się w tym kursie nie zmieni.
+
+## Jakość wejścia decyduje o jakości wyjścia
+
+Śmieci na wejściu, śmieci na wyjściu. Model nie zna Twojego kontekstu, dopóki mu go nie podasz - nie wie, kim jesteś, do kogo piszesz ani co było ustalone wcześniej. "Napisz maila" i "napisz krótkiego maila do klienta, który drugi raz spóźnia się z płatnością, ton stanowczy, ale bez gróźb" to dwa różne zadania i dwa różne wyniki.
+
+Tego uczy [prompt engineering](/prompt-engineering/) - później. Teraz wystarczy rozróżnienie słów.
+
+## Ćwiczenie: 5 minut, trzy etykiety
+
+Nie recytujesz definicji. Podpisujesz własny dzień.
+
+1. Wypisz trzy rzeczy z ostatnich 24 godzin, w których podejrzewasz AI (telefon, streaming, poczta, mapa, czat, generator obrazu).
+2. Przy każdej dopisz jedną etykietę: **rozpoznaje/wybiera** albo **tworzy treść**.
+3. Jeśli brak pewności - zostaw znak zapytania. Pewność nie jest celem.
+
+Wzór wypełnionego wiersza:
+
+| Co zauważyłem | Co ten program zrobił | Etykieta |
+| --- | --- | --- |
+| Mail wpadł do spamu | przypisał kategorię | rozpoznaje/wybiera |
+| Spotify ułożył playlistę na piątek | uszeregował utwory | rozpoznaje/wybiera |
+| Chatbot napisał wiadomość do szefa | ułożył nowy tekst | tworzy treść |
+
+**Zaliczenie:** trzy wiersze na kartce, każdy z etykietą albo "?". Przynajmniej jeden wiersz inny niż "ChatGPT".
+
+Typowy wynik: dwa rozpoznawania (spam, rekomendacja) i jeden czat. To jest właśnie ta lekcja.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** ten sam podział na jednym nagłówku z newsów - czy tytuł mówi o GenAI, a podpisuje to jako "całe AI"?
+
+## Cztery zdania, które usłyszysz w tym tygodniu, i co z nimi zrobić
+
+- **"AI to ChatGPT."** ChatGPT to jedna aplikacja jednego typu AI. Filtr spamu też jest AI i nikt o nim nie kręci reportaży.
+- **"AI myśli / rozumie / chce."** Skrót językowy, wygodny i mylący. Model liczy prawdopodobieństwa. Nie ma celów, planów ani samopoczucia. Więcej: [Mity vs rzeczywistość](/podstawy/mity-vs-rzeczywistosc/).
+- **"To tylko algorytm."** Każdy program to algorytmy, łącznie z sortowaniem alfabetycznym. Samo słowo "algorytm" niczego nie rozstrzyga.
+- **"Model sprawdził to w internecie."** Domyślnie nie. Odpowiada z tego, co zostało w wagach po treningu - chyba że dana aplikacja ma doklejone wyszukiwanie i widzisz, że z niego skorzystała.
+
+## Teraz wiesz
+
+- AI to program do zadań kojarzonych z inteligencją. Nie magia i nie osoba.
+- Umiejętność bierze się albo z reguły napisanej przez człowieka, albo z wzorców wyciągniętych z danych. Ta druga droga to uczenie maszynowe, a jej najgłębsza odmiana - uczenie głębokie - stoi za dzisiejszą GenAI.
+- Generatywna AI jest podzbiorem: wytwarza treść, bo nauczyła się, jak wyglądają dane danego rodzaju, i potrafi ułożyć nowy egzemplarz. Filtr i rekomendacja zwykle nie.
+- Model po treningu ma zamrożone wagi. W rozmowie z Tobą się nie uczy, a jego wiedza ma datę odcięcia.
+- Dziś jest wąska AI. Filmowa ogólna nie weszła do telefonu.
+- Płynność wypowiedzi nie jest dowodem prawdziwości. Halucynacja brzmi tak samo pewnie jak fakt.
+
+**Chcesz pogłębić:** Typy AI - więcej o podziale na wąską i ogólną AI.
+
+**Następny krok:** [Jak uczyć się AI?](/podstawy/jak-uczyc-sie-ai/) - wybierzesz poziom (0-5) i jedno zadanie na najbliższy tydzień, zamiast "nauczyć się całego AI".
+
+<SlowniczekStrony terminy={["genai", "chatbot"]} />

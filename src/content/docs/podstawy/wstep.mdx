@@ -1,0 +1,98 @@
+---
+title: Wstęp do kursu AI
+description: Zobaczysz mapę całego kursu i wyślesz pierwszy prompt o jednym problemie z pracy. Ćwiczenie zajmie 5 minut.
+sidebar:
+  label: 'Wstęp'
+  order: 1
+educationalLevel: Beginner
+teaches:
+  - Jak ułożony jest ten kurs i w jakiej kolejności czytać
+  - Że praktyka jest przed mechaniką pod spodem
+  - Jak wysłać pierwszy prompt o własnym zadaniu
+about:
+  - name: Sztuczna inteligencja
+    sameAs: https://pl.wikipedia.org/wiki/Sztuczna_inteligencja
+mentions:
+  - name: ChatGPT
+    sameAs: https://en.wikipedia.org/wiki/ChatGPT
+    type: SoftwareApplication
+faq:
+  - q: Czy muszę iść po kolei przez wszystkie sekcje?
+    a: Podstawy - tak, to ciąg. Dalej możesz przeskakiwać, ale bez Weryfikacji łatwo wkleić zmyśloną liczbę. Gotowe ścieżki dla konkretnych ról - na przykład dla nauczyciela, rodzica czy właściciela małej firmy - są skrótem, nie zamiennikiem całego kursu.
+  - q: Czy ten kurs wymaga karty i konta płatnego?
+    a: Nie. Przewodnik jest darmowy. Ćwiczenia da się zrobić na darmowych planach ChatGPT, Claude albo Gemini.
+  - q: Ile zajmuje sama sekcja Podstawy?
+    a: Osiem lekcji, zwykle 6-8 minut czytania na stronę, dwie dłuższe po 10 i 15 minut - razem nieco ponad godzinę. Z ćwiczeniami przy chatbocie licz około 2 godzin, rozłożonych na kilka wieczorów.
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+![Drogowskaz przy ścieżce i wschodzące słońce - początek nauki o AI](../../../assets/podstawy/wstep/wstep.jpg)
+
+:::note[O tej stronie]
+**Czas:** ok. 6 minut czytania + 5 minut ćwiczenia.
+**Poziom:** początkujący.
+**Wcześniej:** nic. To pierwsza lekcja.
+:::
+
+## Na tej stronie wyślesz pierwszy prompt
+
+Po tej lekcji wiesz, w jakiej kolejności ułożony jest kurs, i masz za sobą jedną rozmowę z <Termin id="chatbot">chatbotem</Termin> o **jednym** problemie z Twojego tygodnia. Prompt to po prostu polecenie albo pytanie, które wpisujesz do chatbota. Nie uczysz się tu, czym jest AI - to następna strona.
+
+Jedna rzecz do zapamiętania: **korzystanie jest przed mechaniką.** Sieci neuronowe poczekają.
+
+## Nie musisz rozumieć silnika, żeby wsiąść
+
+Łatwo wpaść w odwrotną kolejność: najpierw tygodnie teorii o tym, jak zbudowane są sieci neuronowe, a dopiero potem pierwsza rozmowa z czatem. To pułapka. Do codziennej pracy wystarczy wiedzieć, co narzędzie potrafi, czego nie, i jak z nim rozmawiać. Pod maskę wrócisz w [Jak działa AI](/jak-dziala-ai/), gdy będzie po co pytać.
+
+W listopadzie 2022 roku pojawił się ChatGPT i po raz pierwszy z takim narzędziem mógł porozmawiać każdy, bez znajomości programowania. Od tamtej daty zmieniło się tempo, nie zasada: nadal wpisujesz zdanie, nadal dostajesz zdanie, nadal sprawdzasz.
+
+## Mapa kursu - dziewięć sekcji
+
+Kurs ma liniowy układ. Każda sekcja opiera się na poprzedniej:
+
+| Etap | Sekcja | Po tej sekcji umiesz |
+| --- | --- | --- |
+| 1 | [Podstawy](/podstawy/) - 8 lekcji | Czym jest AI, czego nie umie, jak sprawdzić odpowiedź |
+| 2 | [Jak działa AI](/jak-dziala-ai/) - 13 lekcji | Skąd się biorą halucynacje, tokeny, RAG, agenci |
+| 3 | [Prompt engineering](/prompt-engineering/) - 10 lekcji | Pisać polecenia, które da się powtórzyć |
+| 4 | [Narzędzia](/narzedzia/) - 9 lekcji | Dobrać chatbota, obraz, koszt |
+| 5 | [Suwerenne AI](/suwerenne-ai/) - 4 lekcje | Polskie i europejskie modele, AI lokalnie |
+| 6 | [AI w praktyce](/praktyka/) - 4 lekcje | Branże, przypadki, rynek pracy |
+| 7 | [Etyka](/etyka/) - 4 lekcje | Dane, prawo, dzieci, granice |
+| 8 | [Claude Code](/claude-code/) - 21 lekcji | Praca z agentem w terminalu (poziom średni) |
+| 9 | [Zasoby](/zasoby/) | Słownik, FAQ, biblioteka - do wracania |
+
+## Ćwiczenie: 5 minut, jeden problem
+
+Nie "wypróbowujesz AI". Wysyłasz jeden <Termin id="prompt">prompt</Termin> o rzeczy, która i tak leży na biurku.
+
+1. Otwórz [ChatGPT](https://chatgpt.com), [Claude](https://claude.ai) albo [Gemini](https://gemini.google.com). Darmowe konto wystarczy. Szczegóły rejestracji są w [pierwszej rozmowie](/podstawy/pierwsza-rozmowa-z-ai/) - jeśli wolisz najpierw instrukcję kliknięcia, idź tam i wróć.
+2. Wklej i podmień nawiasy:
+
+    ```text
+    Jestem [zawód albo rola].
+    Moje największe wyzwanie w tym tygodniu to: [jedno zdanie].
+    Zaproponuj 3 konkretne sposoby, jak użyć AI do tego wyzwania.
+    Dla każdego: co zrobić, przykładowy prompt, czego nie wklejać (dane poufne).
+    ```
+
+3. Przeczytaj odpowiedź. Nie wdrażaj wszystkich trzech. Zapisz na kartce ten, który brzmi jak zadanie, nie jak hasło - czyli taki, który da się zrobić jutro rano. Na przykład "wklej notatkę ze spotkania i poproś o listę zadań", a nie "usprawnij komunikację w zespole".
+
+**Zaliczenie:** w ciągu 5 minut masz wysłany prompt i zapisane jedno z trzech zaproponowanych zastosowań (albo adnotację "żadne nie pasuje - za ogólne"). Nie oceniasz, czy AI "jest dobra". Oceniasz, czy masz jedną rzecz, którą możesz jutro wypróbować.
+
+Typowy wynik: lista ogólników. To też sukces - masz materiał na doprecyzowanie w [pierwszej rozmowie](/podstawy/pierwsza-rozmowa-z-ai/).
+
+**Jeśli nic nie zgrzyta i zostaje czas:** dopytaj jednym zdaniem ("skróć do listy kroków na 15 minut"). To już jest rozmowa, nie jednorazowe pytanie.
+
+## Teraz wiesz
+
+- Kurs ma dziewięć sekcji. Podstawy idą po kolei. Mechanika jest w drugiej sekcji, nie na starcie.
+- Korzystanie jest przed silnikiem. Konto i jeden prompt wystarczą, żeby ruszyć.
+- Odpowiedź z tego ćwiczenia to szkic, nie plan wdrożenia. Sprawdzanie faktów przyjdzie na końcu Podstaw.
+
+**Następny krok:** [Czym jest AI?](/podstawy/czym-jest-ai/) - jednym ruchem oddzielisz "AI" od "generatywnej AI", zanim media zmieszają Ci te dwa słowa.
+
+<SlowniczekStrony terminy={["prompt", "chatbot"]} />

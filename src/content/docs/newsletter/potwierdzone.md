@@ -19,6 +19,6 @@ Piszę tylko wtedy, gdy faktycznie mam co powiedzieć - nie ma tu cotygodniowego
 
 Jeśli trafiłeś tu, zanim zacząłeś czytać kurs, najprościej zacząć od początku:
 
-- Wstęp do kursu - jeśli zaczynasz od zera
+- [Wstęp do kursu](/podstawy/wstep/) - jeśli zaczynasz od zera
 - [Wybierz ścieżkę pod siebie](/sciezki/) - jeśli wolisz materiał ułożony pod Twoją rolę
 - [Program kursu](/) - jeśli chcesz najpierw zobaczyć całość
