@@ -1,6 +1,6 @@
 ---
 title: Komendy i flagi CLI Claude Code
-description: Podstawowe komendy, podkomendy i pełna tabela flag wiersza poleceń - strona do wracania, nie do zapamiętania. Plus tryb restricted i pułapka niekompletnego --help. Ćwiczenie zajmie 5 minut.
+description: Podstawowe komendy, podkomendy i najważniejsze flagi CLI - do wracania, nie do zapamiętania. Plus tryb restricted i luki w --help. Ćwiczenie zajmie 5 minut.
 sidebar:
   label: 'Komendy i flagi CLI'
   order: 4
@@ -48,38 +48,52 @@ claude "explain this project"       # sesja z promptem początkowym
 claude -p "explain this function"   # tryb print (non-interactive), potem wyjście
 cat logs.txt | claude -p "explain"  # potokowanie treści
 claude -c                           # kontynuuj ostatnią rozmowę w tym katalogu
-claude -c -p "Check for type errors" # kontynuacja przez SDK
+claude -c -p "Check for type errors" # kontynuacja w trybie print (skrypty)
 claude -r "auth-refactor" "Finish this PR"  # wznów sesję po ID lub nazwie
 ```
 
 ## Podkomendy CLI
 
-`claude update`, `claude install [version]`, `claude auth login|logout|status`, `claude doctor`, `claude mcp ...`, `claude mcp login|logout <name>`, `claude plugin ...`, `claude agents`, `claude attach <id>`, `claude logs <id>`, `claude stop <id>`, `claude respawn <id>`, `claude rm <id>`, `claude setup-token`, `claude project purge [path]`, `claude gateway`, `claude ultrareview [target]`, **NOWE:** `claude rc` (Remote Control - patrz lekcja o [terminalu, IDE i urządzeniach](/claude-code/terminal-ide-urzadzenia/)).
+Podkomenda to drugie słowo po `claude`, które zamiast rozmowy uruchamia konkretne narzędzie:
+
+- `claude update` - aktualizuje Claude Code do najnowszej wersji.
+- `claude install [version]` - instaluje lub reinstaluje wybraną wersję.
+- `claude auth login|logout|status` - logowanie, wylogowanie i sprawdzenie, na jakie konto jesteś zalogowany.
+- `claude doctor` - diagnostyka instalacji bez uruchamiania sesji.
+- `claude mcp ...` (w tym `claude mcp login|logout <name>`) i `claude plugin ...` - zarządzanie serwerami MCP i pluginami, każde ma swoją lekcję.
+- `claude agents`, `claude attach <id>`, `claude logs <id>`, `claude stop <id>`, `claude respawn <id>`, `claude rm <id>` - podgląd i obsługa sesji, które działają w tle.
+- `claude setup-token` - długoterminowy token do skryptów i CI.
+- `claude purge [path]` - usuwa wszystkie lokalne dane Claude Code dla projektu (stara nazwa `claude project purge` nadal działa).
+- `claude remote-control` (skrót: `claude rc`) - Remote Control, patrz lekcja o [terminalu, IDE i urządzeniach](/claude-code/terminal-ide-urzadzenia/).
+- `claude ultrareview [target]` - pogłębiony przegląd kodu uruchamiany z terminala.
+- `claude gateway` - narzędzie dla administratorów firm, na start możesz je pominąć.
 
 Literówka w podkomendzie nie kończy się błędem bez wyjaśnienia - Claude Code podpowiada najbliższą, na przykład `claude udpate` → "Did you mean claude update?".
 
-## Pełna tabela flag CLI
+## Najważniejsze flagi CLI
+
+Na start wystarczą Ci cztery: `-p`, `-c`, `-r` i `--model`. Resztę sprawdzaj, gdy będzie potrzebna.
 
 | Flaga | Opis |
 | --- | --- |
 | `--print`, `-p` | tryb print (bez interaktywności), do skryptów i SDK |
 | `--continue`, `-c` | wczytaj ostatnią rozmowę w bieżącym katalogu |
 | `--resume`, `-r` | wznów sesję po ID lub nazwie, albo pokaż picker |
-| `--fork-session` | przy wznawianiu utwórz nowe ID zamiast reużyć oryginalne |
+| `--fork-session` | przy wznawianiu zacznij nową, osobną kopię rozmowy (oryginał zostaje nietknięty) |
 | `--model` | model sesji (alias lub pełne ID) |
 | `--fallback-model` | model zapasowy przy przeciążeniu lub niedostępności |
 | `--effort` | poziom rozumowania: `low`, `medium`, `high`, `xhigh`, `max`, `ultracode` |
 | `--output-format` | `text` (domyślnie), `json`, `stream-json` (print mode) |
 | `--input-format` | `text`, `stream-json` (print mode) |
 | `--include-partial-messages` | częściowe zdarzenia streamu (wymaga `--print` i `stream-json`) |
-| `--verbose` | pełne wyjście turn-by-turn |
+| `--verbose` | pokaż pełny przebieg pracy, krok po kroku |
 | `--max-turns` | limit tur agentowych (print mode) |
 | `--max-budget-usd` | limit wydatków USD na wywołania API (print mode) |
 | `--permission-mode` | `default`, `acceptEdits`, `plan`, `auto`, `dontAsk`, `bypassPermissions` (`manual` = alias `default`) |
 | `--dangerously-skip-permissions` | pomiń prompty uprawnień (odpowiednik `bypassPermissions`) |
 | `--allow-dangerously-skip-permissions` | dodaj `bypassPermissions` do cyklu Shift+Tab bez startu w nim |
 | `--allowedTools`, `--allowed-tools` | narzędzia bez promptu (reguły w składni permission) |
-| `--disallowedTools`, `--disallowed-tools` | reguły deny |
+| `--disallowedTools`, `--disallowed-tools` | reguły zakazu - narzędzia lub komendy, których Claude nie może użyć |
 | `--tools` | ogranicz dostępne wbudowane narzędzia (`""`, `"default"`, `"Bash,Edit,Read"`) |
 | `--add-dir` | dodatkowe katalogi robocze do odczytu i edycji |
 | `--mcp-config` | wczytaj serwery MCP z plików lub stringów JSON |
@@ -88,7 +102,7 @@ Literówka w podkomendzie nie kończy się błędem bez wyjaśnienia - Claude Co
 | `--agent` | uruchom całą sesję jako dany subagent |
 | `--append-system-prompt` | dopisz tekst do domyślnego system promptu |
 | `--append-system-prompt-file` | dopisz zawartość pliku do system promptu |
-| `--system-prompt` | zastąp cały system prompt tekstem |
+| `--system-prompt` | zastąp całą instrukcję startową Claude (system prompt, czyli ukryte polecenia, z którymi rusza każda sesja) własnym tekstem |
 | `--system-prompt-file` | zastąp system prompt zawartością pliku |
 | `--append-subagent-system-prompt` | dopisz tekst do promptu każdego subagenta (print mode) |
 | `--settings` | ścieżka do pliku settings JSON lub inline JSON (nadpisuje klucze) |
@@ -102,29 +116,29 @@ Literówka w podkomendzie nie kończy się błędem bez wyjaśnienia - Claude Co
 | `--ide` | połącz automatycznie z IDE przy starcie |
 | `--chrome`, `--no-chrome` | integracja Chrome (automatyzacja przeglądarki) |
 | `--bare` | tryb minimalny: pomija auto-discovery hooks, skills, pluginów, MCP i CLAUDE.md |
-| `--safe-mode` | wyłącz wszystkie customizacje (diagnostyka zepsutej konfiguracji) |
+| `--safe-mode` | wyłącz wszystkie Twoje dodatki (CLAUDE.md, skills, pluginy, hooks, MCP) - do szukania, co psuje konfigurację |
 | `--restricted` | tryb ograniczony - patrz niżej |
 | `--debug`, `--debug-file <path>` | tryb debug, zapis logów debug do pliku |
 | `--json-schema` | walidowane wyjście JSON wg schematu (print mode) |
-| `--replay-user-messages` | re-emisja wiadomości użytkownika ze stdin na stdout |
+| `--replay-user-messages` | dla integracji: odeślij na wyjście wiadomości przyjęte na wejściu |
 | `--disable-slash-commands` | wyłącz wszystkie skills i komendy dla sesji |
 | `--version`, `-v` | wersja |
 
 ## Tryb restricted w szczegółach
 
-**NOWE v2.1.248.** Po starcie `claude --restricted` Claude **nie może uruchamiać komend, wykonywać kodu ani pobierać treści z sieci**. Narzędzia plikowe działają wyłącznie w katalogu roboczym, a settings użytkownika i projektu są ignorowane.
+**Od wersji 2.1.248.** Po starcie `claude --restricted` Claude **nie może uruchamiać komend, wykonywać kodu ani pobierać treści z sieci**. Narzędzia plikowe działają wyłącznie w katalogu roboczym, a ustawienia użytkownika i projektu są ignorowane.
 
-To tryb pod współdzielone maszyny i harnessy ewaluacyjne - wszędzie tam, gdzie chcesz pokazać komuś narzędzie bez oddawania mu maszyny.
+To tryb pod współdzielone maszyny i automatyczne testy narzędzia - wszędzie tam, gdzie chcesz pokazać komuś narzędzie bez oddawania mu maszyny.
 
 :::caution[--help nie jest pełną listą]
-`claude --help` **nie** listuje wszystkich flag. Brak flagi w `--help` nie znaczy, że ona nie istnieje. Kanonicznym źródłem jest [CLI reference w dokumentacji](https://docs.claude.com/en/docs/claude-code/cli-reference).
+`claude --help` **nie** listuje wszystkich flag. Brak flagi w `--help` nie znaczy, że ona nie istnieje. Kanonicznym źródłem jest [CLI reference w dokumentacji](https://code.claude.com/docs/en/cli-reference).
 :::
 
 ## Ćwiczenie: 5 minut
 
-1. Uruchom `claude -p "wypisz nazwy funkcji w tym pliku" --output-format json < ścieżka/do/pliku`.
+1. Uruchom `claude -p "wypisz nazwy funkcji w pliku app.js" --output-format json`. Zamień `app.js` na nazwę dowolnego pliku z Twojego projektu - Claude sam go przeczyta.
 2. Obejrzyj strukturę JSON w odpowiedzi.
-3. Znajdź pola `session_id`, koszt i wynik.
+3. Znajdź pola `session_id` (identyfikator sesji), `total_cost_usd` (szacowany koszt) i `result` (odpowiedź).
 
 **Zaliczenie:** masz w terminalu JSON, w którym potrafisz wskazać identyfikator sesji i koszt. To jest dokładnie to, co Twój skrypt albo pipeline CI będzie parsował.
 
@@ -133,7 +147,7 @@ To tryb pod współdzielone maszyny i harnessy ewaluacyjne - wszędzie tam, gdzi
 ## Teraz wiesz
 
 - `-p` zamienia Claude Code w narzędzie skryptowalne, `-c` i `-r` wracają do rozmowy.
-- Flagi dzielą się na trzy rodziny: model i rozumowanie, uprawnienia, format wejścia i wyjścia.
+- Najczęściej sięgniesz po flagi z trzech grup: model i rozumowanie, uprawnienia, format wejścia i wyjścia.
 - `--help` bywa niepełne, więc kanonem jest dokumentacja, nie terminal.
 
 **Następny krok:** [Interfejs i skróty klawiszowe](/claude-code/interfejs-i-skroty/) - to, co dzieje się już w środku sesji, od `Esc` po wklejanie obrazów.

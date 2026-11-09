@@ -306,8 +306,8 @@
 /*
  * Kolory tekstu na hoverze (tu i przy .minimal nizej) biora
  * --sl-color-accent-high, nie -text-accent. W motywie jasnym -text-accent to
- * #2a6fa8, ktore na tle --sl-color-accent-low (#dcebf8) daje 4,4:1 - ledwie
- * ponad progiem WCAG AA. -accent-high (#06243f) daje tam 13,0:1, a w motywie ciemnym
+ * #2a6fa8, ktore na tle --sl-color-accent-low (#dcebf8) daje 4,39:1 - ponizej
+ * progu WCAG AA (4,5:1), dlatego tej pary nie uzywamy. -accent-high (#06243f) daje tam 13,0:1, a w motywie ciemnym
  * (#7fbde8 na #14283a) 7,4:1, czyli realny zapas na obu motywach.
  */
 .hero .actions .sl-link-button.secondary:is(:hover, :focus-visible) {

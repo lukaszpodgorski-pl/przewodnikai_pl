@@ -1,6 +1,6 @@
 ---
 title: Skills i plugins w Claude Code
-description: Skill to folder z plikiem SKILL.md ładowany progresywnie, plugin pakuje skills, subagentów, hooki i serwery MCP. Kryterium wyboru między skillem a subagentem. Ćwiczenie zajmie 10 minut.
+description: Skills i plugins w Claude Code - SKILL.md ładowany progresywnie, plugin ze skills, subagentami, hookami i MCP. Skill a subagent. Ćwiczenie zajmie 10 minut.
 sidebar:
   label: 'Skills i plugins'
   order: 14
@@ -41,7 +41,7 @@ import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 
 ## Agent Skills
 
-Skill to folder z plikiem `SKILL.md` - frontmatter plus treść. Działa na zasadzie **progressive disclosure**, w trzech poziomach:
+Skill to instrukcja dla Claude zapisana w pliku `SKILL.md` w osobnym folderze - na przykład "jak piszemy commity w tym projekcie". Plik zaczyna się od frontmattera (kilku linijek ustawień między liniami `---`, m.in. nazwy i opisu), a pod nim jest zwykła treść. Skill ładuje się stopniowo (_progressive disclosure_), w trzech poziomach:
 
 1. Zawsze załadowane są tylko `name` i `description` - kilkadziesiąt tokenów.
 2. Pełna treść `SKILL.md` ładuje się, gdy Claude uzna skill za istotny albo gdy wpiszesz `/skill-name`.
@@ -57,25 +57,27 @@ Używaj formatu Mermaid. Zaznacz granice usług, kierunek przepływu danych,
 zależności zewnętrzne.
 ```
 
-Lokalizacje: `.claude/skills/` dla projektu, `~/.claude/skills/` dla użytkownika. Frontmatter: `name`, `description`, `allowed-tools`, plus `disable-model-invocation`.
+Skill projektu zapisujesz w `.claude/skills/<nazwa>/SKILL.md`, a skill dla siebie, działający we wszystkich projektach - w `~/.claude/skills/<nazwa>/SKILL.md`. Najważniejsze pola frontmattera: `description` (po nim Claude poznaje, kiedy użyć skilla - to jedyne zalecane pole), `name`, `allowed-tools` (narzędzia, których Claude może użyć bez pytania o zgodę) i `disable-model-invocation: true` (skill uruchomisz tylko Ty, ukośnikiem).
+
+Skill jest jednocześnie komendą: `.claude/skills/deploy/SKILL.md` wywołasz jako `/deploy`. Dawne własne komendy z `.claude/commands/` zostały ze skillami scalone - zobacz lekcję [Własne slash commands](/claude-code/wlasne-komendy/).
 
 Skills to domyślna jednostka reużywalnej wiedzy działająca **w głównym <Termin id="okno-kontekstowe">kontekście</Termin>** - w odróżnieniu od [subagentów](/claude-code/subagenci/), którzy mają kontekst osobny. To jest właściwe kryterium wyboru między jednym a drugim.
 
 ## Plugins i marketplace'y
 
-Plugin pakuje skills, subagentów, hooks i serwery MCP. Marketplace to katalog pluginów.
+Plugin to paczka, która instaluje naraz kilka rozszerzeń: skills, subagentów, hooki i serwery MCP. Marketplace to katalog pluginów - repozytorium z listą paczek i adresami, skąd je pobrać. Oficjalny marketplace Anthropic (`claude-plugins-official`) Claude Code dodaje sam przy pierwszej sesji w terminalu. Plugin działa z Twoimi uprawnieniami, więc instaluj tylko z zaufanych źródeł.
 
 ```text
 /plugin                                  # menu pluginów
-/plugin marketplace add anthropics/claude-plugins-official
+/plugin marketplace add owner/repo       # tylko dla innych marketplace'ów
 /plugin install code-review@claude-plugins-official
-/reload-plugins                          # aktywacja bez restartu
+/reload-plugins                          # po instalacji z shella, bez restartu
 ```
 
-Z shella: `claude plugin install <name>@<marketplace>`, `claude plugin list`. Sesyjnie: `--plugin-dir ./my-plugin`, `--plugin-url https://.../plugin.zip`. Placeholdery: `${CLAUDE_PLUGIN_ROOT}`, `${CLAUDE_PLUGIN_DATA}`.
+Od wersji 2.1.268 zmiany zrobione w menu `/plugin` działają od razu po jego zamknięciu, bez `/reload-plugins` ([lista zmian](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md)). Z shella zainstalujesz plugin komendą `claude plugin install <name>@<marketplace>`, a listę zainstalowanych zobaczysz przez `claude plugin list`. Autorom pluginów przydadzą się flagi `--plugin-dir ./my-plugin` (wczytuje plugin z folderu na jedną sesję) i `--plugin-url` (pobiera plugin w archiwum `.zip` z adresu URL).
 
 :::caution[Obszar eksperymentalny]
-Ekosystem skills i pluginów rozwija się bardzo szybko - składnia i pola frontmattera mogą się zmieniać. Weryfikuj w [dokumentacji Agent Skills](https://docs.claude.com/en/docs/agents-and-tools/agent-skills/overview).
+Ekosystem skills i pluginów rozwija się bardzo szybko - składnia i pola frontmattera mogą się zmieniać. Weryfikuj w [dokumentacji Agent Skills](https://code.claude.com/docs/en/skills).
 :::
 
 ## Ćwiczenie: 10 minut

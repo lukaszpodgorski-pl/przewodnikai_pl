@@ -1,6 +1,6 @@
 ---
 title: Terminal, IDE i urządzenia
-description: Konfiguracja terminala i powiadomień, wtyczki do VS Code i JetBrains, tmux i wiele instancji, oraz przenoszenie sesji między terminalem, aplikacją desktop i telefonem. Ćwiczenie zajmie 5 minut.
+description: Terminal, IDE i urządzenia w Claude Code - konfiguracja terminala, VS Code i JetBrains, tmux, sesje na desktopie i telefonie. Ćwiczenie zajmie 5 minut.
 sidebar:
   label: 'Terminal, IDE, urządzenia'
   order: 16
@@ -30,7 +30,7 @@ faq:
   - q: Jak przenieść rozpoczętą sesję z terminala na desktop?
     a: 'Komendą /desktop. W drugą stronę działa /resume w aplikacji desktop - otwiera picker sesji terminalowych pogrupowanych po dniach, z folderem, gałęzią i podglądem miejsca, w którym skończyłeś.'
   - q: Czy mogę uruchomić zadanie na komputerze, będąc poza domem?
-    a: 'Tak, przez Remote Control. Maszyna z uruchomionym claude rc pojawia się jako karta urządzenia w aplikacji mobilnej. Wybierasz katalog i startujesz sesję na tej maszynie, z jej plikami i narzędziami.'
+    a: 'Tak, przez Remote Control. Przed wyjściem uruchamiasz na komputerze claude remote-control (skrót: claude rc), a potem otwierasz sesję w aplikacji Claude na telefonie - przez kod QR albo z listy w zakładce Code. Sesja działa na Twoim komputerze, z jego plikami i narzędziami.'
 status: gotowe
 ---
 
@@ -44,31 +44,41 @@ import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 
 ## Konfiguracja terminala
 
-`/terminal-setup` instaluje binding `Shift+Enter` w VS Code, Cursor, iTerm2, Zed i Alacritty.
+`/terminal-setup` ustawia `Shift+Enter` jako nową linię w VS Code, Cursor, Devin Desktop, Zed i Alacritty starszym niż 0.16. W Ghostty, Kitty, iTerm2, WezTerm, Warp, Terminal.app i Windows Terminal `Shift+Enter` działa od razu. W każdym terminalu nową linię wstawisz też przez `Ctrl+J`.
 
-Na macOS ustaw Option jako Meta: w iTerm2 Settings → Profiles → Keys → Left/Right Option = "Esc+", w Terminal.app "Use Option as Meta Key". Windows Terminal wspiera `Shift+Enter` natywnie.
+Na macOS ustaw Option jako Meta, żeby działały skróty z klawiszem Option: w iTerm2 Settings → Profiles → Keys → Left/Right Option = "Esc+", w Terminal.app "Use Option as Meta Key".
 
-**Powiadomienia** realizujesz hookiem `Notification` plus `terminalSequence` (patrz [lekcja o hookach](/claude-code/hooks/)), a `FORCE_HYPERLINK` włącza klikalne linki do pull requestów.
+**Powiadomienia:** w Ghostty, Kitty i iTerm2 Claude Code sam wysyła powiadomienie systemowe, gdy skończy zadanie albo czeka na Twoją zgodę. W innych terminalach ustaw w settings `"preferredNotifChannel": "terminal_bell"` (dźwięk terminala) albo skonfiguruj hook `Notification` (patrz [lekcja o hookach](/claude-code/hooks/)). `FORCE_HYPERLINK=1` włącza klikalne linki, gdy terminal je obsługuje, a Claude Code tego nie wykrył.
 
 ## IDE
 
-Tryb `/ide` zarządza integracją i pokazuje status, a `--ide` łączy automatycznie przy starcie.
+Komenda `/ide` zarządza integracją i pokazuje status, a `--ide` łączy automatycznie przy starcie.
 
 Rozszerzenie **VS Code** ma własny panel czatu i Focus view, jest też plugin **JetBrains**. Obie to nakładki na ten sam silnik - piszą do `~/.claude/`.
 
 ## tmux i wiele instancji
 
-tmux działa normalnie, pamiętaj tylko o podwójnym `Ctrl+B` przez prefiks tmux. Tryb `--teammate-mode tmux` obsługuje agent teams.
+tmux (program, który dzieli jedno okno terminala na kilka i utrzymuje sesje po zamknięciu okna) wymaga trzech linii w `~/.tmux.conf`. Bez nich `Shift+Enter` wysyła wiadomość zamiast łamać linię, a powiadomienia nie docierają:
 
-Równolegle możesz pracować przez osobne terminale i worktree, background agents (`claude --bg`, `claude agents`, `claude attach <id>`) oraz agent teams (eksperymentalne, `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS`).
+```bash
+set -g allow-passthrough on
+set -s extended-keys on
+set -as terminal-features 'xterm*:extkeys'
+```
+
+Kilka zadań naraz poprowadzisz na trzy sposoby:
+
+- **osobne terminale i worktree** - worktree to dodatkowa kopia robocza tego samego repozytorium w osobnym katalogu, więc dwie sesje nie edytują tych samych plików;
+- **sesje w tle** (`claude --bg`; lista: `claude agents`; powrót do sesji: `claude attach <id>`) - Claude pracuje, a Ty masz wolny terminal;
+- **agent teams** - zespół współpracujących agentów, funkcja eksperymentalna włączana zmienną `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`. Z tmux współpracuje przez tryb `--teammate-mode tmux`.
 
 ## Terminal, desktop i telefon
 
-**NOWE.** Trzy kierunki przenoszenia sesji:
+Trzy kierunki przenoszenia sesji:
 
-- **`/desktop`** - z terminala do aplikacji desktop. Przydatne, gdy chcesz zobaczyć diffy i podgląd na żywo obok siebie.
+- **`/desktop`** - z terminala do aplikacji desktop (wymaga macOS albo Windows x64 i subskrypcji Claude). Przydatne, gdy chcesz zobaczyć diffy i podgląd na żywo obok siebie.
 - **`/resume` w aplikacji desktop** - kierunek odwrotny. Otwiera picker sesji terminalowych pogrupowanych po dniach, z folderem i gałęzią oraz podglądem miejsca, w którym skończyłeś. Działa też dla sesji już zamkniętych i kontynuuje ten sam transkrypt.
-- **Remote Control** - maszyna z uruchomionym **`claude rc`** pojawia się jako karta urządzenia na górze zakładki Code w aplikacji mobilnej. Wybierasz katalog i startujesz sesję **na tej maszynie**, z jej plikami, serwerami MCP i narzędziami. Sensowne, gdy chcesz odpalić zadanie, będąc z dala od biurka.
+- **Remote Control** - uruchom na komputerze **`claude remote-control`** (skrót: `claude rc`). Terminal pokaże adres sesji, a spacja wyświetli kod QR. Zeskanuj go telefonem albo otwórz aplikację Claude, stuknij **Code** i znajdź sesję na liście - sesje Remote Control mają ikonę komputera. Claude pracuje dalej **na Twoim komputerze**, z jego plikami, serwerami MCP i narzędziami. Sensowne, gdy chcesz prowadzić zadanie, będąc z dala od biurka. Działa na planach Pro, Max, Ultra, Team i Enterprise, nie z kluczem API ([dokumentacja Remote Control](https://code.claude.com/docs/en/remote-control)).
 
 Wymaga aktualizacji do najnowszej wersji po obu stronach. Nazwa z `/rename` i kolor z `/color` są wtedy widoczne także na claude.ai/code.
 
@@ -76,9 +86,9 @@ Wymaga aktualizacji do najnowszej wersji po obu stronach. Nazwa z `/rename` i ko
 
 1. Uruchom `/terminal-setup`.
 2. Uruchom `/ide` i sprawdź status integracji.
-3. Odpal `claude rc` na maszynie roboczej i wystartuj sesję z telefonu w katalogu testowego repozytorium.
+3. Odpal `claude remote-control` (skrót: `claude rc`) w katalogu testowego repozytorium i otwórz sesję w aplikacji Claude na telefonie - przez kod QR albo z listy w zakładce Code.
 
-**Zaliczenie:** `Shift+Enter` łamie linię w Twoim edytorze, a na telefonie widzisz kartę swojego komputera. Punkt trzeci jest opcjonalny, jeśli nie masz aplikacji mobilnej.
+**Zaliczenie:** `Shift+Enter` łamie linię w Twoim edytorze, a w aplikacji na telefonie widzisz swoją sesję na liście. Punkt trzeci jest opcjonalny, jeśli nie masz aplikacji mobilnej.
 
 **Jeśli nic nie zgrzyta i zostaje czas:** nazwij sesję przez `/rename`, nadaj jej kolor przez `/color` i sprawdź, czy oba zostały po przeniesieniu na desktop.
 

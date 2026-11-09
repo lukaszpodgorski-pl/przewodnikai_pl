@@ -6,6 +6,22 @@ sidebar:
   order: 6
   hidden: true
 educationalLevel: Beginner
+teaches:
+  - Zasady korzystania z serwisu przewodnikai.pl
+  - Jak działa zapis na newsletter i rezygnacja z niego
+  - Jak zgłosić reklamację
+about:
+  - name: Regulamin
+    sameAs: https://pl.wikipedia.org/wiki/Regulamin
+  - name: Newsletter
+    sameAs: https://pl.wikipedia.org/wiki/Newsletter
+faq:
+  - q: Czy muszę akceptować regulamin, żeby czytać serwis?
+    a: Nie. Wszystkie treści są otwarte - bez konta, bez logowania i bez podawania danych. Regulamin akceptujesz dopiero wtedy, gdy zapisujesz się na newsletter.
+  - q: Jak wypisać się z newslettera?
+    a: Kliknij link wypisu w stopce dowolnej otrzymanej wiadomości albo napisz na kontakt@lukaszpodgorski.pl. Nie musisz podawać przyczyny. Adres znika z listy niezwłocznie, najpóźniej w ciągu 30 dni.
+  - q: Jak złożyć reklamację?
+    a: Napisz na kontakt@lukaszpodgorski.pl albo wyślij list na adres aitomate Łukasz Podgórski, al. Jerozolimskie 148, 02-326 Warszawa. Podaj dane kontaktowe, opis problemu i oczekiwane rozstrzygnięcie. Odpowiedź dostaniesz w ciągu 14 dni.
 status: zastane
 ---
 
@@ -85,3 +101,5 @@ Regulamin określa zasady korzystania z serwisu przewodnikai.pl oraz z newslette
 1. W sprawach nieuregulowanych Regulaminem zastosowanie mają przepisy prawa polskiego, w szczególności Kodeksu cywilnego, RODO oraz ustawy o świadczeniu usług drogą elektroniczną.
 2. Spory rozstrzygane są w pierwszej kolejności polubownie, a w razie braku porozumienia przez sąd właściwy miejscowo dla siedziby Usługodawcy. Konsument może też skorzystać z pozasądowych sposobów rozpatrywania reklamacji i dochodzenia roszczeń.
 3. Regulamin jest dostępny na stronie przewodnikai.pl w formie umożliwiającej jego pobranie, utrwalenie i wydrukowanie.
+
+Pytania o Regulamin albo o newsletter? Napisz przez [stronę kontaktu](/zasoby/kontakt/). Pozostałe materiały pomocnicze znajdziesz w sekcji [Zasoby](/zasoby/).

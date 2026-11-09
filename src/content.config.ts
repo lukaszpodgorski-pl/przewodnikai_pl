@@ -26,6 +26,13 @@ export const collections = {
 					)
 					.optional(),
 				faq: z.array(z.object({ q: z.string(), a: z.string() })).optional(),
+				// Data pierwszej publikacji artykułu (`datePublished` w TechArticle).
+				// Opcjonalna: bez niej Head.astro bierze datę pierwszego commita pliku
+				// w gicie (scripts/sitemap-lastmod.mjs, `firstCommitDates`). Wpisz ją
+				// ręcznie, gdy git nie zna prawdziwej daty - np. dla artykułów sprzed
+				// commita `e9253dc` (init 2026-08-26), których wcześniejsza historia
+				// leży poza gałęzią main. Musi być <= dateModified (verify-geo).
+				datePublished: z.coerce.date().optional(),
 				// Ukrywa wygenerowaną sekcję "Częste pytania" w treści strony, przy
 				// zachowaniu bloku FAQPage w JSON-LD (Head.astro nie sprawdza tej
 				// flagi). Ustaw, gdy artykuł sam w sobie jest FAQ - pytania stoją

@@ -8,7 +8,7 @@ Wskazówki dla agentów AI (Claude Code i pokrewnych) pracujących w tym repozyt
 
 [przewodnikai.pl](https://przewodnikai.pl) - otwarta baza wiedzy o AI po polsku, zbudowana na **Astro 7 + Starlight**, hostowana na **Cloudflare Workers** (static assets, konfiguracja w `wrangler.jsonc`).
 
-**To repozytorium treści, nie aplikacji.** 78 artykułów w `src/content/docs/`, kilka własnych komponentów, zero logiki biznesowej. Większość zadań to edycja Markdowna.
+**To repozytorium treści, nie aplikacji.** 105 stron w `src/content/docs/` (w tym 78 artykułów, reszta to strony zbiorcze, ścieżki i newsletter), kilka własnych komponentów, zero logiki biznesowej. Większość zadań to edycja Markdowna.
 
 ### Dwa repozytoria - przeczytaj to przed pierwszym commitem
 
@@ -16,10 +16,10 @@ Od 2026-08-26 projekt ma dwa repozytoria i **jednokierunkowy** sync między nimi
 
 | Gdzie | Rola | Adres |
 | --- | --- | --- |
-| **Gitea** (lokalna) | źródło prawdy - kod, cała treść, także wycięta | `http://localhost:3000/lukasz/przewodnikai_pl.git` |
+| **GitLab** (self-hosted) | źródło prawdy - kod, cała treść, także wycięta | `http://gitlab.lan/lukasz/przewodnikai_pl.git` |
 | **GitHub** | lustro publiczne - tylko treść dopuszczona do publikacji | `lukaszpodgorski-pl/przewodnikai_pl` |
 
-Katalog roboczy ma `origin` ustawiony na **Giteę**. Tu commitujesz i tu pushujesz.
+Katalog roboczy ma `origin` ustawiony na **GitLab**. Tu commitujesz i tu pushujesz.
 GitHub dostaje treść wyłącznie przez `npm run publish` - **nigdy nie edytuj go
 ręcznie**, następna publikacja nadpisze zmiany. Cloudflare buduje z GitHuba.
 
@@ -27,11 +27,21 @@ ręcznie**, następna publikacja nadpisze zmiany. Cloudflare buduje z GitHuba.
 
 Serwis jest w trakcie przeglądu artykuł po artykule. Powód: duża część treści
 powstała z dużym udziałem AI i właściciel nie publikuje jej pod swoim nazwiskiem
-przed sprawdzeniem. **Wszystkie 56 lekcji pierwotnego kursu jest wyciętych
-z produkcji.** Publicznie stoi 42 strony: strona główna, dziesięć stron
-zbiorczych (dziewięć sekcji plus ścieżki), cała sekcja `claude-code`
-(21 lekcji, materiał autorski właściciela), `zasoby/kontakt`, `zasoby/o-mnie`,
-`zasoby/regulamin` i siedem stron newslettera.
+przed sprawdzeniem. Według `npm run status` przejrzanych jest 32 ze 105 stron,
+publicznie stoi 52, wyciętych z produkcji jest 53.
+
+Co jest dziś przejrzane (`gotowe`):
+
+- `claude-code` - 22/22, cała sekcja (materiał autorski właściciela),
+- `podstawy` - 8 lekcji; strona zbiorcza sekcji ma status `zastane`,
+- `zasoby` - `biblioteka` i `slownik-pojec`.
+
+Publicznie stoją poza tym strona główna, strony zbiorcze pozostałych sekcji
+i ścieżek, `zasoby/kontakt`, `zasoby/o-mnie`, `zasoby/regulamin` i siedem stron
+newslettera (status `zastane`). Lekcje pozostałych sekcji są wycięte.
+
+Audyt merytoryczny wszystkich sekcji (przebieg 2026-10-18) został scalony
+do `main` 2026-11-09 (commit `bb105e5`).
 
 Steruje tym pole `status` we frontmatterze (`src/content.config.ts`):
 
@@ -98,7 +108,7 @@ npm run build
 npx --yes markdownlint-cli2 "src/content/**/*.md" "*.md"
 ```
 
-`npm run build` jest pełnym sprawdzeniem treści - wykrywa złamane linki wewnętrzne, błędy frontmattera (schemat Zod) i błędy MDX. Transformacje publikacyjne mają własne testy (`npm run test:publish`, 11 przypadków).
+`npm run build` jest pełnym sprawdzeniem treści - wykrywa złamane linki wewnętrzne, błędy frontmattera (schemat Zod) i błędy MDX. Transformacje publikacyjne mają własne testy (`npm run test:publish`, 17 przypadków).
 
 Serwer deweloperski uruchamiaj w tle: `astro dev --background`; zarządzanie: `astro dev stop`, `astro dev status`, `astro dev logs`.
 
@@ -174,7 +184,7 @@ w praktyce przy `npm run publish -- --push`. Cloudflare Workers Builds ma
 ustawioną gałąź produkcyjną `main`. Konfiguracja siedzi w panelu Cloudflare,
 więc nie da się jej wyczytać z repo; `wrangler.jsonc` opisuje tylko route'y.
 
-Praca w źródle prawdy (Gitea) **nie wdraża niczego** - commit i push tam są
+Praca w źródle prawdy (GitLab) **nie wdraża niczego** - commit i push tam są
 bezpieczne. Na produkcję wychodzi wyłącznie to, co przepuścisz przez skrypt
 publikacji, a ten sam odmówi wysyłki, jeśli build albo `verify:geo` nie przejdą.
 
@@ -209,9 +219,14 @@ Markdown:
 
 ## Stan projektu
 
-`TODO.md` jest aktualną listą otwartych zadań i decyzji właściciela (Cloudflare Pages, analityka, cutover DNS, JSON-LD, Mermaid, formularz kontaktowy, newsletter, dwa interaktywne widgety pominięte przy migracji). Przeczytaj go przed proponowaniem nowej funkcjonalności - część rzeczy jest świadomie odłożona.
+Otwarte zadania i decyzje właściciela trzymają dwa pliki:
 
-**Uwaga:** `TODO.md` i katalog `docs/` są w `.gitignore` - istnieją tylko lokalnie u właściciela i nie ma ich w publicznym repo. Jeśli pracujesz z klona, po prostu ich nie zobaczysz.
+- `TODO_AGENTS.md` - lista zadań do rozdzielenia na agentów, z zasadami wspólnymi, kolejnością i plikami każdego zadania,
+- `TODO_AUDYT_INT.md` - wyniki audytu merytorycznego: stan skanu, znaleziska według priorytetu i decyzje słownikowe.
+
+Przeczytaj je przed proponowaniem nowej funkcjonalności - część rzeczy jest świadomie odłożona.
+
+**Uwaga:** `TODO_AGENTS.md`, `TODO_AUDYT_INT.md` i katalog `docs/` są w `.gitignore` - istnieją tylko lokalnie u właściciela i nie ma ich w publicznym repo. Jeśli pracujesz z klona, po prostu ich nie zobaczysz.
 
 ## Dokumentacja
 

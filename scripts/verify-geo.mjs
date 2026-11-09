@@ -332,6 +332,45 @@ check('każdy artykuł ma TechArticle', () => {
 	assert(bad.length === 0, `bez TechArticle: ${bad.map((p) => p.url).join(', ')}`);
 	return `${articles.length}/${articles.length}`;
 });
+// datePublished (Z22): frontmatter albo pierwszy commit pliku, patrz
+// firstCommitDates w scripts/sitemap-lastmod.mjs. Skrypt biegnie lokalnie,
+// w `npm run publish` (.publish/ z pełną historią lustra) i w CI
+// z `fetch-depth: 0`, więc pole musi być wszędzie. Format: pełne ISO 8601
+// z datą i czasem, tak jak dateModified (toISOString).
+const ISO_8601 = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[+-]\d{2}:\d{2})$/;
+function techArticleOf(html) {
+	for (const block of jsonLdBlocks(html)) {
+		const nodes = Array.isArray(block['@graph']) ? block['@graph'] : [block];
+		const node = nodes.find((n) => n['@type'] === 'TechArticle');
+		if (node) return node;
+	}
+	return undefined;
+}
+check('każdy TechArticle ma datePublished (ISO 8601) nie późniejsze niż dateModified', () => {
+	const bez = [];
+	const zlyFormat = [];
+	const odwrotnie = [];
+	for (const p of articles) {
+		const node = techArticleOf(p.html);
+		if (!node) continue; // brak TechArticle zgłasza asercja wyżej
+		const { datePublished, dateModified } = node;
+		if (!datePublished) {
+			bez.push(p.url);
+			continue;
+		}
+		if (!ISO_8601.test(datePublished) || Number.isNaN(Date.parse(datePublished))) {
+			zlyFormat.push(`${p.url} (${datePublished})`);
+			continue;
+		}
+		if (dateModified && Date.parse(datePublished) > Date.parse(dateModified)) {
+			odwrotnie.push(`${p.url} (${datePublished} > ${dateModified})`);
+		}
+	}
+	assert(bez.length === 0, `bez datePublished: ${bez.join(', ')}`);
+	assert(zlyFormat.length === 0, `datePublished poza ISO 8601: ${zlyFormat.join(', ')}`);
+	assert(odwrotnie.length === 0, `datePublished po dateModified: ${odwrotnie.join(', ')}`);
+	return `${articles.length}/${articles.length}`;
+});
 check('żadna strona zbiorcza (sekcja/ścieżka) nie ma TechArticle', () => {
 	const zbiorcze = [...sekcje, ...sciezki];
 	const bad = zbiorcze.filter((p) => typesIn(p.html).has('TechArticle'));

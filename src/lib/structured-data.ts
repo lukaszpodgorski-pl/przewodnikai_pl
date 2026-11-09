@@ -46,6 +46,7 @@ export interface BasicInput {
 }
 
 export interface ArticleInput extends BasicInput {
+	datePublished?: Date;
 	dateModified?: Date;
 	educationalLevel?: string;
 	teaches?: string[];
@@ -135,6 +136,7 @@ export function buildArticle(input: ArticleInput) {
 		{
 			description: input.description,
 			image: input.image,
+			datePublished: input.datePublished?.toISOString(),
 			dateModified: input.dateModified?.toISOString(),
 			educationalLevel: input.educationalLevel,
 			teaches: input.teaches,

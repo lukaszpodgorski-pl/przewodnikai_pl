@@ -1,6 +1,6 @@
 ---
 title: Biblioteka zasobów AI - sprawdzone kursy, społeczności i newsy
-description: Sprawdzone zasoby do nauki AI - oficjalne kursy i przewodniki Anthropic i OpenAI, polska społeczność SpeakLeash oraz wybrane źródła newsów o sztucznej inteligencji.
+description: Biblioteka zasobów AI - oficjalne kursy i przewodniki Anthropic i OpenAI, polska społeczność SpeakLeash i sprawdzone źródła newsów o AI.
 sidebar:
   label: 'Biblioteka'
   order: 3
@@ -34,7 +34,7 @@ faq:
   - q: Nie znam angielskiego - czy te materiały są dla mnie?
     a: 'Częściowo tak. Przewodniki ChatGPT dla nauczycieli, rodziców oraz nauki i medycyny mają oficjalne polskie wersje. Resztę możesz czytać z pomocą AI: wklej fragment do Claude''a lub ChatGPT i poproś o wyjaśnienie po polsku.'
   - q: Który model AI najlepiej radzi sobie z językiem polskim?
-    a: Sprawdzisz to w rankingach społeczności SpeakLeash, np. Polish EQ-Bench na Hugging Face - porównują one na bieżąco, jak dobrze poszczególne modele rozumieją język polski i jego niuanse.
+    a: Sprawdzisz to w rankingach społeczności SpeakLeash, np. Open PL LLM Leaderboard na Hugging Face - porównuje on, jak modele AI radzą sobie z zadaniami w języku polskim.
 status: gotowe
 ---
 
@@ -50,10 +50,10 @@ Najlepsze kursy o AI powstają dziś po angielsku i nie ma co udawać, że jest 
 
 Sam pracuję głównie z Claude'em, więc ta część jest najobszerniejsza. Dobra wiadomość: choć materiały dotyczą jednego narzędzia, większość umiejętności - formułowanie poleceń, delegowanie zadań, ocenianie wyników - przenosi się na każdy inny model.
 
-- **[AI Fluency: Framework & Foundations](https://www.anthropic.com/learn/claude-for-you)** - darmowy kurs Anthropic stworzony we współpracy z wykładowcami akademickimi. Kilkanaście krótkich modułów o tym, jak mądrze delegować zadania AI, pisać skuteczne polecenia i krytycznie oceniać odpowiedzi. Ma też warianty dla nauczycieli i studentów. Od niego radzę zacząć.
-- **[Przykłady zastosowań](https://claude.com/resources/use-cases)** - katalog konkretnych przykładów użycia Claude'a z filtrami po dziedzinie (edukacja, finanse, prawo, marketing) i funkcjach. Zaglądaj tu po inspirację, gdy zastanawiasz się "co jeszcze mogę z tym zrobić".
-- **[Tutoriale](https://claude.com/resources/tutorials)** - praktyczne poradniki tekstowe i lekcje wideo: od obsługi poszczególnych funkcji po zastosowania branżowe. Naturalny krok drugi po kursie AI Fluency.
-- **[Anthropic Academy](https://www.anthropic.com/learn)** - portal edukacyjny zbierający wszystkie ścieżki w jednym miejscu: do użytku osobistego, do pracy i dla programistów. Część kursów kończy się certyfikatem.
+- **[AI Fluency: Framework and foundations](https://academy.claude.com/collections/claude-for-you)** - darmowy kurs Anthropic stworzony we współpracy z wykładowcami akademickimi. Kilkanaście krótkich lekcji o tym, jak mądrze delegować zadania AI, pisać skuteczne polecenia i krytycznie oceniać odpowiedzi. Ma też warianty dla nauczycieli i studentów. Od niego radzę zacząć.
+- **[Przykłady zastosowań](https://academy.claude.com/use-cases)** - katalog konkretnych przykładów użycia Claude'a z filtrami po dziedzinie (edukacja, finanse, prawo, marketing i inne). Zaglądaj tu po inspirację, gdy zastanawiasz się "co jeszcze mogę z tym zrobić".
+- **[Tutoriale](https://academy.claude.com/tutorials)** - praktyczne poradniki tekstowe i lekcje wideo: od obsługi poszczególnych funkcji po zastosowania branżowe. Naturalny krok drugi po kursie AI Fluency.
+- **[Claude Academy](https://academy.claude.com/)** - portal edukacyjny Anthropic, który zbiera wszystkie kursy i poradniki w jednym miejscu: od podstaw pracy z AI po materiały dla programistów.
 
 ## Nauka z ChatGPT (OpenAI)
 
@@ -66,21 +66,21 @@ OpenAI poszło inną drogą: zamiast jednego kursu przygotowało przewodniki pod
 - **[Dla rodziców](https://chatgpt.com/pl-PL/parent-resources/)** (po polsku) - jak działa ChatGPT, jak ustawić kontrolę rodzicielską na koncie nastolatka i jak rozmawiać z dzieckiem o AI. Jeśli masz dzieci, zacznij właśnie tutaj.
 
 :::tip[Korzystasz z innego narzędzia?]
-Anthropic i OpenAI nie są wyjątkami - każdy większy dostawca prowadzi własne centrum nauki. Zanim sięgniesz po kurs z przypadkowej strony, sprawdź oficjalne materiały twórców narzędzia, którego używasz: są darmowe i zawsze aktualne.
+Anthropic i OpenAI nie są wyjątkami - każdy większy dostawca prowadzi własne centrum nauki. Zanim sięgniesz po kurs z przypadkowej strony, sprawdź oficjalne materiały twórców narzędzia, którego używasz: są darmowe i zwykle najbardziej aktualne.
 :::
 
 ## Polska scena AI: SpeakLeash i Bielik
 
-**[SpeakLeash](https://speakleash.org/)** (znany też jako Spichlerz) to polska fundacja open-source, która buduje zbiór polskich tekstów do trenowania AI i rozwija rodzinę polskich modeli **Bielik**. To żywa społeczność - setki osób, które po godzinach rozwijają polskie AI. O tym, jak wybrać model według trzech kryteriów - kto udostępnia jego wagi (czyli wyuczone parametry), gdzie trafiają Twoje dane i jaka instytucja za nim stoi - oraz jak go wypróbować, piszę w Bielik i polskie modele AI.
+**[SpeakLeash](https://speakleash.org/)** (znany też jako Spichlerz) to polska fundacja open-source, która buduje zbiór polskich tekstów do trenowania AI i rozwija rodzinę polskich modeli **Bielik**. To żywa społeczność - setki osób, które po godzinach rozwijają polskie AI. Na co patrzeć przy wyborze modelu? Na trzy rzeczy: kto udostępnia jego wagi (czyli wyuczone parametry), gdzie trafiają Twoje dane i jaka instytucja za nim stoi. Piszę o tym w sekcji [Suwerenne AI](/suwerenne-ai/).
 
 - **[Discord SpeakLeash](https://discord.com/invite/ZJwCMrxwT7)** - główne miejsce spotkań społeczności. Możesz tylko czytać, a możesz też realnie pomóc w rozwoju polskiego AI - nie trzeba umieć programować.
-- **[Polish EQ-Bench](https://huggingface.co/spaces/speakleash/polish_eq-bench)** - prowadzony przez SpeakLeash ranking (leaderboard) sprawdzający, jak dobrze modele AI rozumieją emocje i niuanse w języku polskim. Praktyczna odpowiedź na pytanie "który model najlepiej mówi po polsku".
+- **[Open PL LLM Leaderboard](https://huggingface.co/spaces/speakleash/open_pl_llm_leaderboard)** - prowadzony przez SpeakLeash ranking (leaderboard) porównujący, jak modele AI radzą sobie z zadaniami w języku polskim. Praktyczna odpowiedź na pytanie "który model najlepiej mówi po polsku".
 
 ## Newsy o AI
 
 Dwa źródła, które sam czytam - różnią się poziomem trudności:
 
-- **[AlphaSignal](https://alphasignal.ai/)** - zwięzły codzienny przegląd branży, raczej dla osób, które chcą wejść głębiej w warstwę narzędziową. Liczbę subskrybentów sprawdzisz na stronie produktu - tu jej nie cytuję.
+- **[AlphaSignal](https://alphasignal.ai/)** - zwięzły przegląd nowości z branży AI, pisany z myślą o programistach i inżynierach. Dobry wybór, jeśli chcesz wejść głębiej w technikę.
 - **[Singularity Hub](https://singularityhub.com/category/artificial-intelligence/)** - popularnonaukowy serwis o technologiach przyszłości. Artykuły o przełomach w AI pisane przystępnie, bez żargonu - dobre miejsce, jeśli dopiero zaczynasz śledzić temat.
 
 Radzę zacząć od jednego źródła. Jeden newsletter w skrzynce to nauka, pięć to szum, który po dwóch tygodniach zaczniesz ignorować.
@@ -89,7 +89,7 @@ Radzę zacząć od jednego źródła. Jeden newsletter w skrzynce to nauka, pię
 
 Jeśli ta strona Cię przytłacza, oto kolejność, którą sam bym wybrał na start:
 
-1. Przerób kurs [AI Fluency](https://www.anthropic.com/learn/claude-for-you) - da Ci fundament niezależny od narzędzia.
+1. Przerób kurs [AI Fluency](https://academy.claude.com/collections/claude-for-you) - da Ci fundament niezależny od narzędzia.
 2. Przejrzyj przewodnik OpenAI dla swojej roli (student, nauczyciel, rodzic) - zobaczysz gotowe zastosowania w swoim kontekście.
 3. Dołącz do [Discorda SpeakLeash](https://discord.com/invite/ZJwCMrxwT7), jeśli chcesz być bliżej polskiej społeczności.
 4. Zapisz się na jedno źródło newsów - i na tym poprzestań.
@@ -100,5 +100,5 @@ Jeśli ta strona Cię przytłacza, oto kolejność, którą sam bym wybrał na s
 - Jak z pomocą AI korzystać z anglojęzycznych materiałów bez płynnej znajomości angielskiego
 - Czym jest SpeakLeash i gdzie sprawdzić, który model najlepiej radzi sobie z językiem polskim
 
-**Zobacz też:** Prompt Engineering - przerobisz tam jeden słaby prompt na konkretny, a potem resztę sekcji.
+**Zobacz też:** [Prompt Engineering](/prompt-engineering/) - sekcja o tym, jak pisać polecenia, z których AI zrobi dokładnie to, o co prosisz.
 :::

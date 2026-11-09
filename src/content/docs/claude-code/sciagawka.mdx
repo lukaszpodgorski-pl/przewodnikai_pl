@@ -1,6 +1,6 @@
 ---
 title: Ściągawka Claude Code
-description: Komendy CLI, slash commands, skróty klawiszowe, ścieżki plików konfiguracyjnych i modele - wszystko na jednej stronie. Na końcu ćwiczenie końcowe całej sekcji. Ćwiczenie zajmie 30 minut.
+description: Komendy CLI, slash commands, skróty klawiszowe, ścieżki plików konfiguracyjnych i modele na jednej stronie. Plus ćwiczenie końcowe sekcji (30 minut).
 sidebar:
   label: 'Ściągawka'
   order: 21
@@ -24,9 +24,9 @@ faq:
   - q: Gdzie leżą ustawienia Claude Code?
     a: 'W trzech miejscach naraz: ~/.claude/settings.json dla użytkownika, .claude/settings.json w repozytorium dla zespołu i .claude/settings.local.json dla ustawień prywatnych, które trafiają do gitignore. Do tego managed-settings.json po stronie organizacji.'
   - q: Gdzie Claude trzyma pamięć?
-    a: 'Pamięć, którą piszesz Ty, leży w plikach CLAUDE.md - w katalogu domowym, w repozytorium i w wersji lokalnej. Pamięć, którą Claude pisze sam, leży w ~/.claude/projects/ w podkatalogu memory, a pamięć subagentów w .claude/agent-memory/.'
-  - q: Które modele są dostępne w sierpniu 2026?
-    a: 'Aliasy sonnet, opus, haiku, fable, best i opusplan. Pełne identyfikatory to claude-opus-5, claude-sonnet-5, claude-fable-5 i claude-haiku-4-5-20251001. Domyślny model to Opus 5 na planie Max i w API, a Sonnet 5 na planie Pro.'
+    a: 'Pamięć, którą piszesz Ty, leży w plikach CLAUDE.md - w katalogu domowym, w repozytorium i w wersji lokalnej. Pamięć, którą Claude pisze sam, leży w ~/.claude/projects/ w podkatalogu memory, a pamięć subagentów zależnie od zakresu w ~/.claude/agent-memory/ (user), .claude/agent-memory/ (project) albo .claude/agent-memory-local/ (local).'
+  - q: Które modele są dostępne w listopadzie 2026?
+    a: 'Aliasy sonnet, opus, haiku, fable, best i opusplan. W Anthropic API wskazują na Sonnet 5.5, Opus 5.5, Haiku 5.5 i Fable 5.1, a pełne identyfikatory to claude-sonnet-5-5, claude-opus-5-5, claude-haiku-5-5 i claude-fable-5-1. Domyślny model to Opus 5.5 na planach Pro, Max, Ultra, Team, Enterprise i w API.'
 status: gotowe
 ---
 
@@ -49,7 +49,7 @@ claude -r "id" "prompt"     # wznów sesję
 claude --model opus         # wybór modelu
 claude -w feature           # git worktree
 claude --bg "task"          # background agent
-claude rc                   # Remote Control (start sesji z telefonu)
+claude remote-control       # Remote Control, skrót: claude rc
 claude update / doctor / install
 claude mcp add|list|remove|get|login|logout
 claude plugin install <name>@<marketplace>
@@ -62,8 +62,8 @@ claude setup-token          # token do CI
 ```text
 /help /clear /compact /context /config /model /effort
 /init /memory /agents /mcp /permissions /hooks
-/review /code-review /security-review /diff /simplify
-/status /usage /cost /doctor /debug /bug /feedback
+/code-review (/review) /security-review /diff /simplify
+/status /usage (/cost) /doctor /debug /bug /feedback
 /resume /rewind /branch /fork /subtask /export /statusline
 /rename /color /desktop /cd /loop /claude-api
 /plan /ide /install-github-app     (/vim → /config Editor mode)
@@ -91,18 +91,20 @@ Alt+P model    Alt+T thinking      Alt+O       fast mode
 managed-settings.json                   # enterprise
 ~/.claude/CLAUDE.md · ./CLAUDE.md · ./CLAUDE.local.md   # pamięć
 .claude/rules/*.md                      # reguły (opcjonalnie paths:)
-.claude/commands/  ~/.claude/commands/  # własne slash commands
+.claude/commands/  ~/.claude/commands/  # własne komendy (starszy format, scalony ze skills)
 .claude/agents/    ~/.claude/agents/    # subagenci
-.claude/agent-memory/                   # pamięć subagentów
+~/.claude/agent-memory/                 # pamięć subagentów: zakres user
+.claude/agent-memory/                   # pamięć subagentów: zakres project
+.claude/agent-memory-local/             # pamięć subagentów: zakres local
 .claude/skills/    ~/.claude/skills/    # skills (SKILL.md)
 .mcp.json                               # MCP (project scope)
 ~/.claude.json                          # MCP local/user + stan
 ~/.claude/projects/<project>/memory/    # auto memory
 ```
 
-## Modele (sierpień 2026)
+## Modele (listopad 2026)
 
-Aliasy: `sonnet`, `opus`, `haiku`, `fable`, `best`, `opusplan`. Pełne ID: `claude-opus-5`, `claude-sonnet-5`, `claude-fable-5`, `claude-haiku-4-5-20251001`. Domyślny: Opus 5 na Max i API, Sonnet 5 na Pro.
+Aliasy: `sonnet`, `opus`, `haiku`, `fable`, `best`, `opusplan`. W Anthropic API wskazują na Sonnet 5.5, Opus 5.5, Haiku 5.5 i Fable 5.1 - pełne ID: `claude-sonnet-5-5`, `claude-opus-5-5`, `claude-haiku-5-5`, `claude-fable-5-1`. Na Bedrock i Google Cloud `sonnet` to wciąż Sonnet 4.5. Domyślny: Opus 5.5 na Pro, Max, Ultra, Team, Enterprise i w API; Sonnet 4.5 na Microsoft Foundry ([konfiguracja modeli](https://code.claude.com/docs/en/model-config)).
 
 ## Ćwiczenie końcowe: 30 minut
 
@@ -114,7 +116,7 @@ Zbuduj własny starter kit. Pięć elementów, po jednym z każdej ważnej lekcj
 4. Jeden hook auto-formatujący po edycji.
 5. Jeden serwer MCP w `.mcp.json`.
 
-Potem przejdź pełny cykl Explore → Plan → Code → Commit i zweryfikuj wynik przez `/code-review` oraz adwersaryjnego subagenta.
+Potem przejdź pełny cykl Explore → Plan → Code → Commit i zweryfikuj wynik przez `/code-review` oraz subagenta, którego zadaniem jest szukać błędów w Twoim rozwiązaniu.
 
 **Zaliczenie:** wszystkie pięć elementów działa naraz w jednym projekcie, a cykl kończy się commitem, którego nie musiałeś poprawiać ręcznie. To jest Twoja konfiguracja startowa do każdego następnego repozytorium.
 

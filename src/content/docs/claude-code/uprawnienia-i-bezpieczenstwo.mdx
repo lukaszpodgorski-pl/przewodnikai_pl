@@ -1,6 +1,6 @@
 ---
 title: Uprawnienia i bezpieczeństwo w Claude Code
-description: Sześć trybów uprawnień, reguły allow, ask i deny, precedencja plików settings oraz zasady bezpiecznej pracy z agentem. Najważniejsza lekcja w tej sekcji. Ćwiczenie zajmie 10 minut.
+description: Uprawnienia i bezpieczeństwo w Claude Code - sześć trybów, reguły allow, ask i deny, precedencja settings i bezpieczna praca. Ćwiczenie zajmie 10 minut.
 sidebar:
   label: 'Uprawnienia i bezpieczeństwo'
   order: 10
@@ -46,16 +46,16 @@ To najważniejsza lekcja w tej sekcji. Wszystko inne da się nadrobić, ale źle
 
 Przełączasz je przez `Shift+Tab`, flagę `--permission-mode` albo `defaultMode` w settings.
 
-- `default` (etykieta **Manual**) - pyta przed edycją i komendami, odczyt bez pytania.
-- `acceptEdits` - automatycznie akceptuje edycje plików i bezpieczne operacje na plikach w katalogu roboczym.
-- `plan` - tylko odczyt. Claude bada i przedstawia plan, nic nie zmienia (komendy eksploracji nadal mogą pytać).
-- `auto` - klasyfikator w tle decyduje o większości promptów. Pro, Max i Team startują domyślnie właśnie tu.
-- `dontAsk` - nigdy nie pyta. Działają tylko preaprobowane narzędzia, reszta jest odrzucana.
-- `bypassPermissions` - pomija prompty, to samo co `--dangerously-skip-permissions`.
+- `default` (etykieta **Manual**) - pyta przed edycją i komendami, odczyt bez pytania. Wybierz go, gdy chcesz sam zatwierdzać każdą akcję.
+- `acceptEdits` - automatycznie akceptuje edycje plików i bezpieczne operacje na plikach w katalogu roboczym. Dobry, gdy na bieżąco przeglądasz zmiany w kodzie.
+- `plan` - tylko odczyt. Claude bada i przedstawia plan, nic nie zmienia (komendy eksploracji nadal mogą pytać). Od niego zacznij, zanim cokolwiek zmienisz w nieznanym projekcie.
+- `auto` - zamiast Ciebie większość próśb o zgodę ocenia drugi model AI (klasyfikator), który przepuszcza bezpieczne akcje i zatrzymuje ryzykowne. Od wersji 2.1.283 sesje w terminalu i VS Code startują tu domyślnie, na każdym planie. Sprawdza się przy dłuższych zadaniach.
+- `dontAsk` - nigdy nie pyta. Działają tylko narzędzia zatwierdzone z góry, reszta jest odrzucana. Przydaje się w skryptach i automatach.
+- `bypassPermissions` - pomija wszystkie prośby o zgodę, to samo co `--dangerously-skip-permissions`. Tylko w izolowanym kontenerze lub maszynie wirtualnej.
 
 ## Reguły allow, ask i deny
 
-Kolejność ewaluacji: **deny → ask → allow**, pierwsze trafienie wygrywa. Specyficzność nie zmienia kolejności, a deny wygrywa zawsze.
+Claude Code najpierw sprawdza reguły `deny` (zakaz), potem `ask` (zawsze pytaj), na końcu `allow` (zgoda). Decyduje pierwsza pasująca reguła w tej kolejności. Przykład: jeśli zakażesz `Bash(aws *)`, a pozwolisz na `Bash(aws s3 ls)`, komenda `aws s3 ls` i tak zostanie zablokowana - szczegółowa zgoda nie robi wyjątku od ogólnego zakazu.
 
 ```json
 {
@@ -69,15 +69,21 @@ Kolejność ewaluacji: **deny → ask → allow**, pierwsze trafienie wygrywa. S
 }
 ```
 
-**Składnia reguł** to `Tool(specifier)`. Bash używa wildcardów - spacja plus `*` to granica słowa, a złożone komendy wymagają dopasowania każdej podkomendy. Read i Edit przyjmują ścieżki w stylu gitignore. Pobieranie z sieci: `WebFetch(domain:example.com)`. MCP: `mcp__server__tool`.
+**Składnia reguł** to `Narzędzie(co dokładnie)`. Gwiazdka `*` oznacza "cokolwiek dalej": `Bash(npm test *)` pasuje do `npm test` i `npm test --watch` (zapis `npm test:*` działa tak samo). Jeśli Claude łączy kilka komend w jedną (np. `git status && npm test`), reguła musi pasować do każdej z nich. Dla `Read` i `Edit` podajesz ścieżki: `./src/**` to cały katalog src z podkatalogami. Pobieranie z sieci: `WebFetch(domain:example.com)`. MCP: `mcp__server__tool`.
 
-## Pliki settings.json i precedencja
+## Który plik settings.json wygrywa
 
-Od najwyższej: **managed (enterprise) → CLI (`--settings`) → local (`.claude/settings.local.json`) → project (`.claude/settings.json`) → user (`~/.claude/settings.json`)**.
+Ustawienia z wyższego poziomu nadpisują te same ustawienia z niższego. Od najważniejszego:
+
+1. Ustawienia firmowe (managed) - nadpisują wszystko.
+2. Plik podany przy starcie flagą `--settings`.
+3. Twój prywatny plik projektu `.claude/settings.local.json`.
+4. Wspólny plik projektu `.claude/settings.json`.
+5. Twój plik globalny `~/.claude/settings.json` (na Windows: `C:\Users\<Twoja nazwa>\.claude\settings.json`).
 
 Managed na macOS leży w `/Library/Application Support/ClaudeCode/managed-settings.json`. Interaktywnie zarządzasz tym przez `/permissions`.
 
-**NOWE v2.1.246: zakładka Auto mode w `/permissions`.** Listuje wszystkie reguły `allow`, `soft_deny` i `hard_deny`, których używa klasyfikator trybu `auto`. Dodajesz i zmieniasz je tam, zamiast ręcznie edytować JSON. To pierwszy moment, w którym tryb `auto` przestaje być czarną skrzynką - przejrzyj go, zanim zaczniesz w nim pracować na serio.
+**Od wersji 2.1.246: zakładka Auto mode w `/permissions`.** Listuje reguły, według których klasyfikator trybu `auto` przepuszcza albo zatrzymuje akcje. Dodajesz i zmieniasz je tam, zamiast ręcznie edytować JSON. To pierwszy moment, w którym tryb `auto` przestaje być czarną skrzynką - przejrzyj go, zanim zaczniesz w nim pracować na serio.
 
 ## Bezpieczeństwo
 
@@ -87,7 +93,7 @@ Managed na macOS leży w `/Library/Application Support/ClaudeCode/managed-settin
 
 **Prompt injection.** Serwery MCP i treści z sieci mogą zawierać wrogie instrukcje. Claude Code skanuje wyjścia subagentów i chroni przed wstrzyknięciami, ale to nie zastępuje ograniczania narzędzi. Trzymaj `deny` na `.env` i sekretach.
 
-**Sandboxing i izolacja sieci.** `/sandbox` na wspieranych platformach, sandbox na macOS, WSL2 dla sandboxingu na Windows, kontenery dla trybu bypass. Administratorzy mogą wyłączyć bypass przez `disableBypassPermissionsMode`.
+**Sandboxing i izolacja sieci.** Sandbox to zamknięta piaskownica: komendy uruchamiane przez Claude nie widzą reszty dysku ani dowolnych stron w sieci. Włączysz go komendą `/sandbox` na macOS, Linuksie i w WSL2 (Linux działający wewnątrz Windows). Tryb bypass uruchamiaj wyłącznie w kontenerze. Administratorzy mogą wyłączyć bypass przez `disableBypassPermissionsMode`.
 
 Ścieżki chronione (`.git`, `.claude`, `.vscode`, `.idea`, `.husky` i podobne) oraz `rm` i `rmdir` na krytycznych ścieżkach nie są automatycznie akceptowane w żadnym trybie poza bypass.
 

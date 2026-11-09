@@ -1,6 +1,6 @@
 ---
 title: CLAUDE.md i pamięć projektu
-description: Cztery poziomy pliku CLAUDE.md, importy, reguły w .claude/rules, AGENTS.md i auto memory. Zapisujesz reguły raz zamiast powtarzać je w każdej rozmowie. Ćwiczenie zajmie 10 minut.
+description: CLAUDE.md i pamięć projektu - cztery poziomy plików, importy, reguły w .claude/rules, AGENTS.md i auto memory. Ćwiczenie zajmie 10 minut.
 sidebar:
   label: 'CLAUDE.md i pamięć'
   order: 8
@@ -20,9 +20,9 @@ mentions:
     type: SoftwareApplication
 faq:
   - q: Który plik CLAUDE.md wygrywa, gdy reguły się kłócą?
-    a: 'Bardziej specyficzny. Kolejność ładowania idzie od najszerszego zakresu: polityka organizacji, plik użytkownika, plik projektu, plik lokalny. Polityki organizacji nie da się wykluczyć.'
+    a: 'Żaden nie wygrywa automatycznie. Pliki się sumują, nie nadpisują: Claude czyta je wszystkie, od polityki organizacji przez plik użytkownika i plik projektu po plik lokalny. Przy sprzecznych regułach może wybrać dowolną, więc sprzeczności usuwaj.'
   - q: Czy Claude Code czyta AGENTS.md?
-    a: 'Nie czyta go bezpośrednio. Czyta CLAUDE.md. Jeśli trzymasz instrukcje w AGENTS.md, zaimportuj go wewnątrz CLAUDE.md przez małpę i nazwę pliku, albo zrób symlink poleceniem ln -s AGENTS.md CLAUDE.md.'
+    a: 'Tak, jeśli w projekcie ani w katalogach nad nim nie ma pliku CLAUDE.md, .claude/CLAUDE.md ani CLAUDE.local.md. Gdy masz oba, Claude czyta tylko CLAUDE.md - dopisz w nim wtedy linię @AGENTS.md.'
   - q: Jak długi powinien być CLAUDE.md?
     a: 'Celuj poniżej 200 linii na plik. Każda linia zajmuje miejsce w oknie kontekstu przy każdej sesji, więc wpisuj tylko to, co inaczej tłumaczyłbyś za każdym razem: komendy build i test, konwencje, układ katalogów.'
 status: gotowe
@@ -50,7 +50,7 @@ Pliki ładowane są w tej kolejności, od najszerszego zakresu:
 | Project | `./CLAUDE.md` albo `./.claude/CLAUDE.md` | zespół (git) |
 | Local | `./CLAUDE.local.md` (dodaj do `.gitignore`) | tylko Ty, ten projekt |
 
-Bardziej specyficzne instrukcje mają wyższy priorytet. Pliki w katalogach _nad_ katalogiem roboczym ładują się przy starcie, a pliki w podkatalogach - na żądanie, gdy Claude sięgnie po pliki z tych podkatalogów. Managed policy nie da się wykluczyć.
+Pliki się sumują, nie nadpisują - Claude dostaje je wszystkie naraz, w kolejności z tabeli, więc plik bliższy Twojemu projektowi czyta na końcu. Jeśli dwie reguły sobie przeczą, Claude może wybrać dowolną, dlatego sprzeczności usuwaj, zamiast liczyć na kolejność. Pliki w katalogach _nad_ katalogiem roboczym ładują się przy starcie, a pliki w podkatalogach - na żądanie, gdy Claude sięgnie po pliki z tych podkatalogów. Managed policy nie da się wykluczyć.
 
 ## Importy
 
@@ -66,11 +66,11 @@ See @README for project overview and @package.json for available npm commands.
 
 ## AGENTS.md
 
-Claude Code czyta CLAUDE.md, **nie** AGENTS.md. Rozwiązanie: `@AGENTS.md` wewnątrz CLAUDE.md albo symlink (`ln -s AGENTS.md CLAUDE.md`).
+Od wersji 2.1.277 Claude Code czyta AGENTS.md sam, jeśli w projekcie ani w katalogach nad nim nie ma pliku CLAUDE.md, `.claude/CLAUDE.md` ani CLAUDE.local.md. Gdy masz oba pliki, Claude czyta tylko CLAUDE.md - wtedy dopisz w nim linię `@AGENTS.md`, a treść AGENTS.md zostanie dołączona. Które pliki się ładują, zmienisz w `/config`, w ustawieniu **Project instructions**.
 
 ## Reguły w `.claude/rules/`
 
-Modularne pliki `.md` ładowane obok CLAUDE.md. Mogą być ograniczone do ścieżek przez frontmatter `paths:` (glob), więc ładują się tylko przy pracy z pasującymi plikami.
+Do katalogu `.claude/rules/` możesz wrzucić kilka mniejszych plików z regułami - Claude wczytuje je razem z CLAUDE.md. Na górze takiego pliku możesz dodać pole `paths:` (we frontmatterze, czyli bloku ustawień między liniami `---`) ze wzorcem ścieżek. Wzorzec `src/api/**/*.ts` oznacza "każdy plik .ts w katalogu src/api i jego podkatalogach". Taka reguła wczytuje się dopiero wtedy, gdy Claude pracuje z pasującym plikiem.
 
 ```markdown
 ---
@@ -87,7 +87,7 @@ To dobra odpowiedź na rosnący CLAUDE.md: zamiast jednego pliku, który zawsze 
 
 `/init` generuje startowy CLAUDE.md (`CLAUDE_CODE_NEW_INIT=1` włącza tryb interaktywny). `/memory` edytuje pliki.
 
-Możesz też poprosić Claude "dodaj to do CLAUDE.md" albo powiedzieć "zapamiętaj, że...", co trafia do auto memory. Znak `#` na początku promptu również szybko dopisuje do pamięci.
+Możesz też poprosić Claude "dodaj to do CLAUDE.md" albo powiedzieć "zapamiętaj, że...", co trafia do auto memory.
 
 ## Auto memory
 
@@ -103,7 +103,7 @@ Rzeczy typu "to musi się wykonać w danym momencie" rób **hookiem**, nie wpise
 
 ## Ćwiczenie: 10 minut
 
-1. Dodaj do projektowego `CLAUDE.md` trzy reguły: komendę testów, konwencję nazewnictwa i katalog handlerów.
+1. Dodaj do projektowego `CLAUDE.md` trzy reguły: komendę uruchamiającą testy, zasadę nazywania plików i katalog, w którym leży główny kod.
 2. Uruchom `/context`.
 3. Potwierdź, że plik widnieje pod "Memory files".
 
@@ -113,7 +113,7 @@ Rzeczy typu "to musi się wykonać w danym momencie" rób **hookiem**, nie wpise
 
 ## Teraz wiesz
 
-- Pamięć ma cztery poziomy, a bardziej specyficzny wygrywa z ogólniejszym.
+- Pamięć ma cztery poziomy, które Claude czyta razem - sprzeczne reguły usuwaj, bo żadna nie wygrywa automatycznie.
 - Reguły w `.claude/rules/` ładują się warunkowo i oszczędzają kontekst.
 - CLAUDE.md sugeruje, hook wymusza - to nie są zamienniki.
 

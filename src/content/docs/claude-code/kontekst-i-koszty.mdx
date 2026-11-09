@@ -1,6 +1,6 @@
 ---
 title: Zarządzanie kontekstem i koszty
-description: Okno kontekstu to najważniejszy zasób w pracy z agentem. Różnica między compact a clear, cache promptów, dobór modelu i budżet rozumowania. Ćwiczenie zajmie 5 minut.
+description: Zarządzanie kontekstem i koszty w Claude Code - compact a clear, cache promptów, dobór modelu i budżet rozumowania. Ćwiczenie zajmie 5 minut.
 sidebar:
   label: 'Kontekst i koszty'
   order: 18
@@ -18,8 +18,6 @@ mentions:
   - name: Anthropic
     sameAs: https://en.wikipedia.org/wiki/Anthropic
     type: Organization
-  - name: OAuth
-    sameAs: https://en.wikipedia.org/wiki/OAuth
 faq:
   - q: Czym różni się /compact od /clear?
     a: '/compact podsumowuje dotychczasową rozmowę i zwalnia miejsce, zachowując wątek. /clear startuje czystą rozmowę, ale zachowuje pamięć z pliku CLAUDE.md. Compact wybierasz w środku zadania, clear między zadaniami.'
@@ -39,7 +37,7 @@ import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 **Wcześniej:** umiesz zbudować automat. Tu: pilnujesz, żeby nie kosztował więcej, niż daje.
 :::
 
-<Termin id="okno-kontekstowe">Okno kontekstu</Termin> ma od 200 tys. tokenów (Haiku 4.5) do 1 mln (Opus, Sonnet i Fable 5 z aliasami `[1m]`). Gdy się zapełnia, jakość spada - to najważniejszy zasób, którym zarządzasz.
+<Termin id="okno-kontekstowe">Okno kontekstu</Termin>, czyli wszystko, co Claude "widzi" naraz w rozmowie, liczy się w tokenach (kawałkach tekstu, mniej więcej 3-4 znaki). Aktualne modele - Opus, Sonnet, Haiku 5.5 i Fable - mają okno 1 mln tokenów, bez dopisywania `[1m]`; 200 tys. zostaje tylko starszy Haiku 4.5. Gdy okno się zapełnia, najstarsze fragmenty przestają być widoczne albo zostają streszczone, a jakość spada - to najważniejszy zasób, którym zarządzasz.
 
 ## `/compact` kontra `/clear`
 
@@ -47,23 +45,25 @@ import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 
 **Auto-compact** uruchamia się sam przy zapełnieniu. Sterują nim `/autocompact`, `--autocompact` i `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE`.
 
-`/context` pokazuje, co zajmuje okno: memory files, narzędzia MCP, historię.
+`/context` pokazuje, co zajmuje okno: pliki pamięci (Memory files), narzędzia MCP, historię. `/usage` pokazuje, ile zużyłeś w tej sesji i ile zostało z limitu planu.
 
-**Oszczędzanie tokenów** sprowadza się do pięciu nawyków: częste `/clear` między zadaniami, subagenci do operacji o dużym wyjściu (logi, testy), `--bare` w skryptach, ograniczanie liczby serwerów MCP (pomaga Tool Search) i zwięzły CLAUDE.md.
+**Oszczędzanie tokenów** sprowadza się do pięciu nawyków: częste `/clear` między zadaniami, subagenci do operacji o dużym wyjściu (logi, testy), flaga `--bare` w skryptach (Claude pomija wtedy wczytywanie CLAUDE.md, wtyczek i serwerów MCP), wyłączanie w `/mcp` serwerów, których nie używasz, i zwięzły CLAUDE.md.
 
 ## Prompt caching
 
-Ponowne użycie cache obniża koszty. Przełączanie modelu unieważnia cache - Claude Code o tym ostrzega. Fork sesji dzieli cache z rodzicem.
+Przy każdej wiadomości Claude Code wysyła modelowi całą dotychczasową rozmowę. Cache (pamięć podręczna) sprawia, że powtórzony początek rozmowy jest przetwarzany taniej. Na subskrypcji (Pro, Max) cache żyje godzinę, a po przejściu na dodatkowe kredyty (usage credits) - 5 minut. Na kluczu API i u dostawców chmurowych domyślnie żyje 5 minut. Pierwsza wiadomość po dłuższej przerwie przetwarza wszystko od nowa.
 
-**NOWE v2.1.243: `promptCacheTtl`.** Na kluczu API albo providerze chmurowym ustaw `promptCacheTtl`, żeby cache głównej rozmowy żył **60 minut zamiast 5**. Powrót po przerwie nie startuje wtedy z zimnego cache - realna oszczędność przy pracy w blokach z przerwami.
+Przełączanie modelu unieważnia cache - Claude Code o tym ostrzega. Rozwidlenie sesji (fork, czyli jej kopia, w której próbujesz innej drogi) dzieli cache z sesją, z której powstało.
 
-**NOWE v2.1.248.** Naprawiono cogodzinny miss cache: po odświeżeniu tokenu OAuth definicje narzędzi były renderowane od nowa i następna tura mijała się z cache, mniej więcej raz na godzinę. Długie sesje trzymają teraz cache przez refresh.
+**Od wersji 2.1.243: `promptCacheTtl`.** Dotyczy tylko klucza API i chmur (AWS, Google, Microsoft). Ustaw `promptCacheTtl`, żeby cache głównej rozmowy żył **60 minut zamiast 5**. Powrót po przerwie nie startuje wtedy z zimnego cache - realna oszczędność przy pracy w blokach z przerwami.
 
 ## Model i budżet rozumowania
 
 Haiku do prostych i szybkich rzeczy, Sonnet do codziennego kodowania, Opus do złożonego rozumowania, Fable do najtrudniejszych zadań. Alias `opusplan` daje Opus w plan mode i Sonnet w wykonaniu.
 
-**Thinking.** `Option+T` albo `Alt+T` przełącza extended thinking. Słowa "think", "think harder" i "ultrathink" w prompcie zwiększają budżet rozumowania. `MAX_THINKING_TOKENS` (minimum 1000, na przykład 31999) steruje budżetem, a `--effort` i `/effort` poziomem (`low` do `max`, plus `ultracode`).
+**Rozumowanie (thinking).** Aktualne modele same decydują, jak długo "myślą" przed odpowiedzią. Ty sterujesz poziomem wysiłku: `/effort` albo flagą `--effort` (od `low` do `max`). Słowo "ultrathink" w poleceniu prosi o głębsze przemyślenie tylko tej jednej odpowiedzi; inne słowa, jak "think" czy "think harder", są zwykłym tekstem. Przy prostych zadaniach niższy poziom oszczędza tokeny.
+
+`Option+T` albo `Alt+T` przełącza rozszerzone rozumowanie (extended thinking), ale na Opus, Sonnet i Haiku 5.5 oraz na Fable go nie wyłączysz - te modele zawsze myślą. Zmienna `MAX_THINKING_TOKENS` (minimum 1 024) ustala stały budżet tylko na starszych modelach; nowsze ją ignorują. `ultracode` to osobne ustawienie w `/effort` (Claude organizuje wtedy większe zadania w wieloetapowe przebiegi), a nie kolejny poziom wysiłku.
 
 ## Ćwiczenie: 5 minut
 

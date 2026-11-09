@@ -1,6 +1,6 @@
 ---
 title: Jak działa AI
-description: Mechanika AI bez matematyki i bez tabeli modeli na dziś. Trzynaście lekcji - każda z ćwiczeniem na 5 minut.
+description: Jak działa AI - bez matematyki, na przykładach z życia. Trzynaście lekcji, każda z ćwiczeniem na 5 minut.
 sidebar:
   hidden: true
 about:
@@ -23,7 +23,7 @@ faq:
   - q: Czy w tej sekcji jest matematyka?
     a: Nie ma wzorów. Pojęcia takie jak embedding czy funkcja straty tłumaczę przez analogie i przykłady, nie przez notację. Jeśli chcesz wejść głębiej w matematykę, w sekcji Zasoby znajdziesz odesłania do materiałów, które to robią.
   - q: Po co mi wiedza o tokenach i oknie kontekstowym?
-    a: "Bo od tokenów zależy, ile tekstu model bierze pod uwagę naraz i ile kosztuje wywołanie API. To też najczęstsza przyczyna, dla której AI gubi początek długiej rozmowy. Cennik otwierasz u dostawcy - drabina planów jest w Ile kosztuje AI."
+    a: "Bo od tokenów zależy, ile tekstu model bierze pod uwagę naraz i ile kosztuje korzystanie z modelu przez API (dostęp do modelu dla programistów, bez okna czatu). To też najczęstsza przyczyna, dla której AI gubi początek długiej rozmowy. Cennik otwierasz u dostawcy - zestawienie planów jest w Ile kosztuje AI."
 status: zastane
 ---
 
@@ -44,7 +44,7 @@ Po sekcji [Podstawy](/podstawy/) wiesz już, czym AI jest i potrafisz z nią roz
 
 Zaczynamy od uporządkowania trzech pojęć, które w rozmowach potocznych używane są zamiennie, a znaczą co innego: sztuczna inteligencja, uczenie maszynowe i sieci neuronowe. Potem przechodzimy do tego, jak model w ogóle się uczy - skąd bierze wiedzę i co to znaczy, że "został wytrenowany". Zaraz potem porządkujemy typy AI - wąską, ogólną i superinteligencję - i pokazujemy, że dziś istnieje tylko ta pierwsza. Następnie zajmujemy się modelami językowymi, czyli tą rodziną AI, z którą masz do czynienia, gdy piszesz do chatbota.
 
-Dalej robi się konkretniej. Modele rozumujące tłumaczą, co naprawdę robi przycisk "myślenia" w chatbocie. Tokeny i okno kontekstowe wyjaśniają, dlaczego model gubi wątek w długiej rozmowie. Embeddingi pokazują, w jaki sposób maszyna reprezentuje znaczenie słów, a RAG - jak dzięki temu chatbot potrafi odpowiadać na podstawie Twoich dokumentów, a nie tylko z pamięci. Parametry - temperature, top-p i reszta - to pokrętła, którymi da się sterować zachowaniem modelu. Rozumienie danych uczy zadawać zbiorowi danych proste pytania, zanim uwierzysz wykresowi czy statystyce. Na koniec cofamy się o krok: dlaczego ten boom nastąpił akurat teraz, czym są agenci AI i jak wygląda mapa systemów AI.
+Dalej robi się konkretniej. Modele rozumujące tłumaczą, co naprawdę robi przycisk "myślenia" w chatbocie. Tokeny i okno kontekstowe wyjaśniają, dlaczego model gubi wątek w długiej rozmowie. Embeddingi pokazują, w jaki sposób maszyna reprezentuje znaczenie słów, a RAG - jak dzięki temu chatbot potrafi odpowiadać na podstawie Twoich dokumentów, a nie tylko z pamięci. Ustawienia losowania - temperatura i top-p - to pokrętła, którymi da się sterować tym, jak bardzo przewidywalne są odpowiedzi modelu. Rozumienie danych uczy zadawać zbiorowi danych proste pytania, zanim uwierzysz wykresowi czy statystyce. Na koniec cofamy się o krok: dlaczego ten boom nastąpił akurat teraz, czym są agenci AI i jak wygląda mapa systemów AI.
 
 ## Dla kogo to jest
 
@@ -85,7 +85,7 @@ Nie ma tu instrukcji obsługi konkretnych narzędzi ani technik pisania promptó
 	<Card title="RAG - AI na Twoich dokumentach">
 		Najpierw cytat z Twojego tekstu, potem odpowiedź. Ćwiczenie: 5 minut. (w przygotowaniu)
 	</Card>
-	<Card title="Parametry modeli AI">
+	<Card title="Ustawienia losowania: temperatura i top-p">
 		Na trzech próbach zobaczysz, jak szeroko model losuje kolejne słowa, i nauczysz się zawężać ten wybór, gdy zależy Ci na jednej, przewidywalnej odpowiedzi. Ćwiczenie: 5 minut. (w przygotowaniu)
 	</Card>
 	<Card title="Rozumienie danych dla nieprogramistów">

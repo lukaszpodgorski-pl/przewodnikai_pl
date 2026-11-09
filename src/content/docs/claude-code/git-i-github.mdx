@@ -1,6 +1,6 @@
 ---
 title: Praca z Gitem i GitHubem w Claude Code
-description: Commity, pull requesty, konflikty, przegląd kodu, gh CLI, GitHub Actions i git worktrees. Siedem typowych workflow, które zdejmują z Ciebie mechaniczną robotę. Ćwiczenie zajmie 10 minut.
+description: Praca z Gitem i GitHubem w Claude Code - commity, pull requesty, konflikty, przegląd kodu, gh CLI, GitHub Actions i worktrees. Ćwiczenie zajmie 10 minut.
 sidebar:
   label: 'Git i GitHub'
   order: 15
@@ -25,7 +25,7 @@ mentions:
     sameAs: https://en.wikipedia.org/wiki/Continuous_integration
 faq:
   - q: Czy do pracy z GitHubem potrzebuję czegoś poza Claude Code?
-    a: 'Tak, narzędzia gh CLI. Jest wymagane do statusu pull requesta w stopce i do wielu operacji na GitHubie. Uwierzytelnisz je poleceniem gh auth login. Odpowiednikiem dla GitLaba jest glab.'
+    a: 'Mocno zalecane jest gh CLI, oficjalne narzędzie GitHuba do terminala. Bez niego Claude może korzystać z API GitHuba, ale niezalogowane zapytania często trafiają na limity. Do /install-github-app gh jest potrzebne. Zalogujesz je poleceniem gh auth login. Odpowiednikiem dla GitLaba jest glab.'
   - q: Jak często commitować, pracując z agentem?
     a: Często - co zadanie albo co godzinę. Częste commity dają Ci punkty, do których możesz wrócić, a przy pracy z agentem to najtańsze zabezpieczenie przed zmianą, która poszła w złą stronę.
   - q: Jak pracować nad kilkoma rzeczami równolegle?
@@ -46,10 +46,10 @@ Claude Code świetnie radzi sobie z gitem. Siedem typowych workflow:
 - **Commity** - poproś "zrób commit z opisową wiadomością", albo użyj własnej komendy `/commit` z lekcji o [własnych komendach](/claude-code/wlasne-komendy/). Commituj często: co zadanie albo co godzinę.
 - **Pull requesty** - "utwórz PR z tytułem i podsumowaniem w trzech punktach". Claude użyje `gh` CLI.
 - **Konflikty** - "rozwiąż konflikty merge w tych plikach". Claude czyta i proponuje rozwiązanie.
-- **Przegląd** - `/code-review` (alias `/review`) znajduje bugi i cleanup w bieżącym diffie. `--fix` aplikuje poprawki, `--comment` dodaje komentarze do PR, `ultra` uruchamia głęboki review w chmurze. `/security-review` szuka podatności.
-- **`gh` CLI** - wymagany do statusu PR w stopce i wielu operacji GitHub. Uwierzytelnij przez `gh auth login`. Odpowiednik dla GitLaba to `glab`.
-- **GitHub Actions** - `/install-github-app` instaluje aplikację Claude GitHub i konfiguruje workflow. Potem tagujesz `@claude` w komentarzach PR i issue, żeby Claude działał w CI.
-- **Git worktrees** - `claude -w feature-auth` daje izolowany worktree do równoległych sesji, `--tmux` tworzy panel tmux, a subagent z `isolation: worktree` dostaje izolowaną kopię repozytorium.
+- **Przegląd** - `/code-review` (alias `/review`) szuka błędów w Twoich zmianach, czyli w diffie (zestawieniu linii dodanych i usuniętych), a zależnie od poziomu także miejsc do uproszczenia. Poziom podajesz po nazwie komendy: przy `low` dostajesz tylko uwagi, których narzędzie jest najbardziej pewne, od `medium` do `max` przegląd obejmuje coraz więcej, a `ultra` uruchamia głębszy przegląd w chmurze. `--fix` od razu nanosi poprawki, `--comment` dodaje uwagi jako komentarze do pull requesta. `/security-review` szuka luk bezpieczeństwa.
+- **`gh` CLI** - oficjalne narzędzie GitHuba do pracy w terminalu, mocno zalecane. Bez niego Claude może korzystać z API GitHuba, ale niezalogowane zapytania często trafiają na limity. Zaloguj się poleceniem `gh auth login`. Odpowiednik dla GitLaba to `glab`.
+- **GitHub Actions** - `/install-github-app` instaluje aplikację Claude na GitHubie i przygotowuje plik automatyzacji (workflow). Potrzebujesz do tego zalogowanego `gh` i uprawnień administratora repozytorium. Po zatwierdzeniu wystarczy napisać `@claude` w komentarzu do pull requesta albo zgłoszenia (issue), a Claude odpowie i wykona zadanie na serwerach GitHuba.
+- **Git worktrees** - worktree to druga kopia robocza tego samego repozytorium w osobnym katalogu, na własnej gałęzi. `claude -w feature-auth` uruchamia Claude w takiej kopii, więc równoległe sesje nie nadpisują sobie plików. Dodatkowo `--tmux` tworzy dla niej sesję tmux (programu, który dzieli terminal na kilka okien), a subagent z ustawieniem `isolation: worktree` dostaje własną kopię repozytorium.
 
 ## Ćwiczenie: 10 minut
 
@@ -64,7 +64,7 @@ Claude Code świetnie radzi sobie z gitem. Siedem typowych workflow:
 ## Teraz wiesz
 
 - Commity, pull requesty i konflikty to zadania, które oddajesz w całości.
-- `gh` CLI jest wymagane, a nie opcjonalne, jeśli pracujesz z GitHubem.
+- `gh` CLI warto zainstalować od razu: bez niego Claude szybciej trafia na limity GitHuba, a `/install-github-app` go wymaga.
 - Worktree to sposób na kilka równoległych sesji bez deptania sobie po gałęziach.
 
 **Następny krok:** [Terminal, IDE i urządzenia](/claude-code/terminal-ide-urzadzenia/) - konfiguracja terminala, wtyczki do edytorów i przenoszenie sesji między urządzeniami.

@@ -19,11 +19,11 @@ mentions:
     type: SoftwareApplication
 faq:
   - q: Czym właściwie jest prompt engineering?
-    a: To umiejętność formułowania poleceń dla modelu AI tak, żeby odpowiadał tym, czego naprawdę potrzebujesz. Nazwa brzmi technicznie, ale w praktyce jest bliżej precyzyjnego pisania niż programowania - chodzi o jasne określenie zadania, kontekstu, formatu odpowiedzi i roli, w jakiej model ma wystąpić.
+    a: To umiejętność formułowania poleceń dla modelu AI tak, żeby odpowiadał tym, czego naprawdę potrzebujesz. Nazwa brzmi technicznie, ale w praktyce jest bliżej precyzyjnego pisania niż programowania - chodzi o jasne określenie roli, w jakiej model ma wystąpić, zadania, ograniczeń i formatu odpowiedzi.
   - q: Czy prompt engineering ma sens, skoro modele są coraz lepsze?
     a: Modele rzeczywiście coraz lepiej radzą sobie z niedopowiedzeniami, ale to nie rozwiązuje problemu. Jeśli nie wiesz dokładnie, czego chcesz, żaden model tego nie ustali. Umiejętność precyzyjnego opisania zadania zostaje przydatna niezależnie od wersji modelu.
   - q: Czy techniki z tej sekcji działają w każdym chatbocie?
-    a: "Podstawy - rola, kontekst, przykłady, format - działają w każdym czacie. Techniki z nazwami (zero-shot, chain-of-thought) nie są tu katalogiem do wkuwania: dokładniejszą drabinę masz w lekcjach Techniki i Rozumowanie. Ćwiczenie zawsze jest na własnym zadaniu."
+    a: Tak. Podstawy - rola, zadanie, ograniczenia, format - działają w każdym czacie. Techniki z nazwami, takie jak zero-shot (polecenie bez przykładów) czy chain-of-thought (prośba o rozpisanie kroków), też, ale nie musisz ich wkuwać. Kiedy po którą sięgnąć, pokazuję w lekcjach Techniki i Rozumowanie. Ćwiczenie zawsze robisz na własnym zadaniu.
 status: zastane
 ---
 
@@ -44,9 +44,9 @@ To najbardziej praktyczna sekcja całego przewodnika. Wiesz już, czym AI jest i
 
 Różnica między osobą, która "próbowała ChatGPT i nie było rewelacyjnie", a osobą, dla której AI jest prawdziwym narzędziem pracy, prawie nigdy nie leży w wersji modelu. Leży w tym, jak sformułowane jest polecenie. Ta sekcja rozkłada to na czynniki pierwsze.
 
-Zaczynamy od jednego słabego promptu i czterech luk do wypełnienia: rola, kontekst, zadanie, format. Potem dokładamy kolejny poziom tylko wtedy, gdy poprzedni nie wystarcza - nie wkuwasz katalogu nazw. Gdy zadanie ma kilka kroków, rozbijasz je na osobne polecenia, zamiast chować błąd w jednym poleceniu, które ma zrobić wszystko naraz. Dalej uczysz się wymuszać na modelu gotowy szablon pól zamiast prosić "opisz ładnie", a na końcu bierzesz pod uwagę całą rozmowę, którą model widzi, nie tylko ostatnie zdanie.
+Zaczynamy od jednego słabego promptu i czterech pól do wypełnienia: rola, zadanie, ograniczenia, format. Potem dokładamy kolejny poziom tylko wtedy, gdy poprzedni nie wystarcza - nie wkuwasz katalogu nazw. Gdy zadanie ma kilka kroków, rozbijasz je na osobne polecenia, zamiast chować błąd w jednym poleceniu, które ma zrobić wszystko naraz. Dalej uczysz się wymuszać na modelu gotowy szablon pól zamiast prosić "opisz ładnie", a na końcu bierzesz pod uwagę całą rozmowę, którą model widzi, nie tylko ostatnie zdanie.
 
-Ostatnie trzy artykuły to zastosowania. Automatyzacja pokazuje, jak łączyć prompty w łańcuchy. Programowanie - jak korzystać z AI przy kodzie, także bez pisania programów na co dzień. Najlepsze praktyki zbierają typowe błędy i tematy bezpieczeństwa, w tym prompt injection. Na końcu baza: jeden starter do przerobienia, nie katalog do skopiowania w ciemno.
+Ostatnie trzy artykuły to zastosowania. Automatyzacja pokazuje, jak łączyć prompty w łańcuchy. Programowanie - jak korzystać z AI przy kodzie, także bez pisania programów na co dzień. Najlepsze praktyki uczą oddzielać Twoje polecenie od wklejonego cudzego tekstu, który może próbować przejąć zadanie (tzw. prompt injection). Na końcu baza: jeden starter do przerobienia, nie katalog do skopiowania w ciemno.
 
 ## Dla kogo to jest
 
@@ -54,7 +54,7 @@ Dla każdego, kto korzysta z chatbota częściej niż okazjonalnie i ma poczucie
 
 ## W jakiej kolejności czytać
 
-Pierwsze cztery po kolei, to fundament. Potem możesz wybierać według potrzeb: automatyzacja i programowanie są niezależne od siebie. "Najlepsze praktyki" warto przeczytać niezależnie od wszystkiego innego - to skrót przez błędy, które inni popełnili przed Tobą.
+Pierwsze cztery po kolei, to fundament. Potem możesz wybierać według potrzeb: automatyzacja i programowanie są niezależne od siebie. "Najlepsze praktyki" warto przeczytać niezależnie od reszty - to jeden nawyk, który chroni Cię za każdym razem, gdy wklejasz do czatu cudzy tekst.
 
 ## Czego nie ma w tej sekcji
 
@@ -67,7 +67,7 @@ Nie ma tu przeglądu narzędzi ani porównania chatbotów - to sekcja [Narzędzi
 		Przerabiasz jeden ogólnikowy prompt na wersję z rolą, budżetem i formatem odpowiedzi. Ćwiczenie: 5 minut. (w przygotowaniu)
 	</Card>
   <Card title="Podstawy promptowania">
-		Wypełniasz cztery luki w prompcie - rolę, zadanie, ograniczenia, format - na własnym zadaniu z tego tygodnia. Ćwiczenie: 5 minut. (w przygotowaniu)
+		Wypełniasz cztery pola w prompcie - rolę, zadanie, ograniczenia, format - na własnym zadaniu z tego tygodnia. Ćwiczenie: 5 minut. (w przygotowaniu)
 	</Card>
   <Card title="Techniki promptowania">
 		Wysyłasz to samo zadanie raz bez rozpisanych kroków, raz z nimi, i porównujesz wyniki. Ćwiczenie: 5 minut. (w przygotowaniu)
@@ -91,7 +91,7 @@ Nie ma tu przeglądu narzędzi ani porównania chatbotów - to sekcja [Narzędzi
 		Sprawdzasz, czy wklejony cudzy tekst przejął polecenie, czy zostało tylko materiałem do tłumaczenia. Ćwiczenie: 5 minut. (w przygotowaniu)
 	</Card>
   <Card title="Baza promptów">
-		Bierzesz gotowy szablon promptu, wypełniasz w nim trzy luki własnymi danymi i wycinasz jedno zbędne zdanie. Ćwiczenie: 5 minut. (w przygotowaniu)
+		Bierzesz gotowy szablon promptu, wypełniasz w nim trzy pola własnymi danymi i wycinasz jedno zbędne zdanie. Ćwiczenie: 5 minut. (w przygotowaniu)
 	</Card>
 </CardGrid>
 

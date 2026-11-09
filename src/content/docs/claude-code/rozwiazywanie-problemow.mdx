@@ -1,6 +1,6 @@
 ---
 title: Rozwiązywanie problemów w Claude Code
-description: Tabela objaw, diagnoza, komenda naprawcza - od command not found po wysokie zużycie tokenów. Plus zgłaszanie bugów i lista znanych, naprawionych awarii. Ćwiczenie zajmie 5 minut.
+description: Rozwiązywanie problemów w Claude Code - objaw, diagnoza i naprawa, od command not found po zużycie tokenów. Plus zgłaszanie bugów. Ćwiczenie zajmie 5 minut.
 sidebar:
   label: 'Rozwiązywanie problemów'
   order: 20
@@ -41,15 +41,15 @@ import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 
 | Problem | Diagnoza i naprawa |
 | --- | --- |
-| `command not found` po instalacji | PATH nieodświeżony → zrestartuj terminal, potem `which -a claude` |
+| `command not found` po instalacji | Terminal jeszcze nie wie, gdzie leży program (nieodświeżona zmienna PATH, czyli lista katalogów, w których system szuka poleceń). Zamknij i otwórz terminal, potem sprawdź `which -a claude` (macOS, Linux) albo `where.exe claude` (Windows) |
 | Dwie instalacje albo stara wersja | `which -a claude` lub `where.exe claude`; po migracji `npm uninstall -g @anthropic-ai/claude-code` plus `hash -r` |
-| Błędy npm `EACCES` | nie używaj sudo; napraw katalog globalny npm albo przejdź na natywny installer |
+| Błędy npm `EACCES` (brak uprawnień do katalogu) | nie używaj `sudo`; napraw katalog globalny npm albo przejdź na oficjalny instalator Claude Code zamiast npm |
 | Błędy logowania albo nieoczekiwane koszty | `/status` pokazuje aktywną metodę; ustawiony `ANTHROPIC_API_KEY` wygrywa nad subskrypcją - usuń go ze środowiska |
-| Wysokie zużycie tokenów | `/context`, częste `/clear` i `/compact`, subagenci, tańszy model, `--bare` |
-| Spowolnienia, wysokie CPU albo RAM | `/heapdump` (dołączaj tylko `-diagnostics.json`), zmniejsz kontekst |
+| Wysokie zużycie tokenów | `/context` pokazuje, co zajmuje miejsce; częste `/clear` i `/compact`, subagenci, tańszy model |
+| Spowolnienia, wysokie CPU albo RAM | `/heapdump` zapisuje raport pamięci - do zgłoszenia dołączaj tylko plik `-diagnostics.json`, bo drugi zawiera całą rozmowę i dane logowania; zmniejsz kontekst |
 | WSL: wolne operacje na plikach | trzymaj repozytorium w systemie plików Linuksa, nie na `/mnt/c/...` |
 | "Claude nie widzi plików" | dodaj katalog przez `/add-dir` albo `--add-dir`; sprawdź `/context` → Memory files i katalog roboczy |
-| Problemy z uprawnieniami | `/permissions`; sprawdź precedencję deny → ask → allow i źródło reguły |
+| Problemy z uprawnieniami | `/permissions` pokazuje reguły i to, skąd pochodzą. Reguła blokująca (deny) wygrywa z pytaniem (ask), a pytanie z pozwoleniem (allow) |
 | Zepsuta konfiguracja | `claude --safe-mode` wyłącza customizacje, potem `claude doctor` |
 | Ogólna diagnostyka | `claude doctor` z shella, `/doctor` w sesji (potrafi naprawić), `/debug` |
 | JetBrains albo VS Code nie łączy | `/ide`, restart IDE i rozszerzenia; sprawdź, czy CLI jest na PATH |
@@ -58,7 +58,7 @@ import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 
 `/bug` (alias `/share`) dołącza kontekst sesji za Twoją zgodą. Jest też `/feedback` oraz issues w repozytorium [anthropics/claude-code](https://github.com/anthropics/claude-code).
 
-**NOWE v2.1.247.** Gdy coś w sesji się wywali, Claude sam redaguje zgłoszenie z wypełnionymi szczegółami. Przeglądasz je w `/feedback` i decydujesz, czy wysłać. Wyłączysz w `/config`.
+**Od wersji 2.1.247**, gdy coś w sesji się wywali, Claude sam redaguje zgłoszenie z wypełnionymi szczegółami. Przeglądasz je w `/feedback` i decydujesz, czy wysłać. Wyłączysz w `/config`.
 
 :::caution[Nie kasuj ~/.claude jako pierwszego kroku]
 Katalog `~/.claude` zawiera settings i stan. Skasowanie go usuwa konfigurację, serwery MCP i historię - a rzadko jest tym, co naprawia problem.
@@ -66,7 +66,7 @@ Katalog `~/.claude` zawiera settings i stan. Skasowanie go usuwa konfigurację, 
 
 ## Znane, naprawione awarie
 
-Warto je znać, jeśli trafisz na starszą wersję:
+Warto je znać, jeśli trafisz na starszą wersję. Rozwiązanie każdej to aktualizacja poleceniem `claude update`:
 
 - Crash przy starcie na dystrybucjach z glibc 2.44 (Arch, CachyOS, Fedora Rawhide) w v2.1.242 i v2.1.243 → naprawione w **v2.1.245**.
 - Sesje desktopowe znikające po 30 dniach: czyszczenie transkryptów usuwało sesje, które aplikacja desktop wciąż pokazywała → naprawione w **v2.1.248**.

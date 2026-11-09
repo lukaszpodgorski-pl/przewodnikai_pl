@@ -1,6 +1,10 @@
-const VERSION = 'v1';
+const VERSION = 'v2';
 const CACHE = `offline-${VERSION}`;
-const OFFLINE_URL = '/offline.html';
+// Bez rozszerzenia .html: Cloudflare (static assets) przekierowuje /offline.html
+// na /offline kodem 307. Odpowiedz po przekierowaniu zapisana w cache przegladarka
+// odrzuca jako odpowiedz na nawigacje (blad sieci zamiast strony offline).
+// v1 -> v2: wymiana zawartosci cache po tej poprawce (2026-11-09).
+const OFFLINE_URL = '/offline';
 
 self.addEventListener('install', (event) => {
   event.waitUntil(

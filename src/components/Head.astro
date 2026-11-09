@@ -16,6 +16,7 @@ import { SECTION_LABELS } from '../config/sections';
 import { consentBootstrapScript } from '../lib/consent';
 import { newsletterEvent, pageType } from '../lib/page-context';
 import { CF_BEACON_TOKEN, ostrzezJesliZastepcze } from '../config/analytics';
+import { firstCommitDates } from '../../scripts/sitemap-lastmod.mjs';
 
 ostrzezJesliZastepcze();
 
@@ -76,12 +77,24 @@ if (isHome) {
 	);
 	blocks.push(buildBreadcrumbs(pathname, data.title));
 } else if (isArticle) {
+	// datePublished: pole frontmattera, potem data pierwszego commita pliku
+	// (scripts/sitemap-lastmod.mjs). Plik jeszcze bez commita przy pełnej
+	// historii - nowa strona w `.publish/` przed commitem publikacyjnym - jest
+	// publikowany właśnie teraz, więc dostaje czas builda. W płytkim klonie
+	// (Cloudflare) pole zostaje puste: data z płytkiego okna byłaby datą
+	// ostatniej publikacji, nie pierwszej.
+	const pierwsze = firstCommitDates();
+	const zGita = pierwsze.daty.get(pathname);
+	const datePublished =
+		data.datePublished ??
+		(zGita ? new Date(zGita) : pierwsze.pelnaHistoria ? new Date() : undefined);
 	blocks.push(
 		buildArticle({
 			pathname,
 			title: data.title,
 			description: data.description,
 			image: ogImage,
+			datePublished,
 			dateModified: route.lastUpdated,
 			educationalLevel: data.educationalLevel,
 			teaches: data.teaches,

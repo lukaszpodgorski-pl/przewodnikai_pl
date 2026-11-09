@@ -2,7 +2,7 @@
 /**
  * Publikacja do publicznego repozytorium.
  *
- * Zrodlo prawdy (Gitea) zawiera cala tresc. Publiczne repo (GitHub) dostaje
+ * Zrodlo prawdy (GitLab) zawiera cala tresc. Publiczne repo (GitHub) dostaje
  * wylacznie strony o statusie `zastane` albo `gotowe`. Strony `szkic` sa
  * wycinane, a skrypt naprawia wszystkie slady po nich, zeby publiczna wersja
  * nie miala martwych odnosnikow:
@@ -38,7 +38,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const KORZEN = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const KATALOG_PUBLIKACJI = join(KORZEN, '.publish');
-// Publiczne repozytorium - cel publikacji. Zrodlo prawdy (Gitea) jest
+// Publiczne repozytorium - cel publikacji. Zrodlo prawdy (GitLab) jest
 // remote'em `origin` glownego repo i z tym adresem nie ma nic wspolnego.
 const REPO_PUBLICZNE = 'https://github.com/lukaszpodgorski-pl/przewodnikai_pl.git';
 const KATALOG_TRESCI = 'src/content/docs';
@@ -554,7 +554,7 @@ function wyslij({ publikowane, wyciete }) {
 
 	const komunikat =
 		`publikacja: ${publikowane.length} stron\n` +
-		'\nWygenerowane przez `npm run publish` ze zrodla prawdy (Gitea),\n' +
+		'\nWygenerowane przez `npm run publish` ze zrodla prawdy (GitLab),\n' +
 		`commit zrodlowy ${zrodlowy}. Nie edytuj tego repozytorium recznie -\n` +
 		'nastepna publikacja nadpisze zmiany. Uwagi: zakladka Issues.\n' +
 		opisWycietych;

@@ -23,19 +23,17 @@ const SRC_DOCS = join('src', 'content', 'docs');
 const REDIRECTS = join('public', '_redirects');
 const RAPORT = 'TODO_AUDYT_INT.md';
 
-// Sekcje merytoryczne w kolejności ścieżki nauki. Musi być zgodne z
-// src/config/sections.ts - tamten plik to TypeScript, którego zwykły node nie
-// zaimportuje, a rozjazd wykrywa asercja `sekcjeZgodneZKonfiguracja()` niżej.
-const SEKCJE = [
-	'podstawy',
-	'jak-dziala-ai',
-	'prompt-engineering',
-	'narzedzia',
-	'suwerenne-ai',
-	'praktyka',
-	'etyka',
-	'zasoby',
-];
+// Sekcje merytoryczne w kolejności ścieżki nauki, czytane wprost ze źródła
+// prawdy - src/config/sections.ts. To TypeScript, którego zwykły node nie
+// zaimportuje, więc slugi wyciągamy regexem (bez nowej zależności).
+// Kolejność ma znaczenie: ostatnia sekcja to meta ścieżki (SEKCJA_KONCOWA),
+// a cała lista ustala porządek tabeli A w raporcie.
+const SECTIONS_TS = join('src', 'config', 'sections.ts');
+const SEKCJE = [...readFileSync(SECTIONS_TS, 'utf8').matchAll(/slug:\s*'([^']+)'/g)].map((m) => m[1]);
+if (SEKCJE.length === 0) {
+	console.error(`Nie znaleziono żadnego slugu sekcji w ${SECTIONS_TS} - sprawdź format pliku.`);
+	process.exit(1);
+}
 
 // Katalogi spoza ścieżki nauki: ścieżki tematyczne (splash, poza sidebarem)
 // i strony obsługi newslettera (noindex, cele przekierowań z Sendy).
@@ -574,8 +572,8 @@ for (const s of strony) {
 	}
 }
 
-// Kontrola spójności skryptu z konfiguracją Astro - lista SEKCJI powyżej jest
-// kopią src/config/sections.ts i musi się z nią zgadzać.
+// Kontrola spójności konfiguracji z dyskiem - każdy katalog treści (poza
+// POZA_SCIEZKA) musi być sekcją z src/config/sections.ts i odwrotnie.
 const katalogiSekcji = readdirSync(SRC_DOCS)
 	.filter((n) => !n.startsWith('_') && statSync(join(SRC_DOCS, n)).isDirectory())
 	.filter((n) => !POZA_SCIEZKA.includes(n))
@@ -649,7 +647,7 @@ L.push(`| Ustalenia skanu: P1 / P2 / P3 | ${dane.statystyki.P1} / ${dane.statyst
 L.push('');
 if (rozjazdSekcji.length) {
 	L.push(`:::caution`);
-	L.push(`Lista sekcji w \`docs-audyt/skanuj.mjs\` rozjechała się z \`src/config/sections.ts\`: ${rozjazdSekcji.join(', ')}`);
+	L.push(`Katalogi w \`src/content/docs/\` rozjechały się z \`src/config/sections.ts\`: ${rozjazdSekcji.join(', ')}`);
 	L.push(`:::`);
 	L.push('');
 }
@@ -710,12 +708,26 @@ if (nazewnictwo.length) {
 	L.push('');
 }
 
-L.push('## C. Ustalenia merytoryczne (subagenty)');
-L.push('');
-L.push('_Do wypełnienia w fazie B-E audytu. Format pozycji opisuje `docs-audyt/procedura.md`._');
-L.push('');
-
-writeFileSync(RAPORT, L.join('\n'), 'utf8');
+// Sekcja C jest ręczna (ustalenia subagentów i decyzje właściciela). Przy
+// regeneracji zostaje nietknięta: wszystko od pierwszego nagłówka `## C.` do
+// końca istniejącego pliku przechodzi 1:1. Pusty szablon tylko przy pierwszym
+// skanie, gdy pliku albo sekcji C jeszcze nie ma.
+let czescC = null;
+if (existsSync(RAPORT)) {
+	const stary = readFileSync(RAPORT, 'utf8');
+	const m = stary.match(/^## C\./m);
+	if (m) czescC = stary.slice(m.index);
+}
+if (czescC !== null) {
+	// L kończy się pustym elementem, więc join daje jeden `\n` - drugi robi pustą linię przed `## C.`.
+	writeFileSync(RAPORT, L.join('\n') + '\n' + czescC, 'utf8');
+} else {
+	L.push('## C. Ustalenia merytoryczne (subagenty)');
+	L.push('');
+	L.push('_Do wypełnienia w fazie B-E audytu. Format pozycji opisuje `docs-audyt/procedura.md`._');
+	L.push('');
+	writeFileSync(RAPORT, L.join('\n'), 'utf8');
+}
 
 console.log(`Zeskanowano ${dane.statystyki.stron} stron (${dane.statystyki.artykulow} artykułów).`);
 console.log(`Linki wewnętrzne: ${dane.statystyki.wystapienLinkow} wystąpień -> ${dane.statystyki.unikalnychCeli} celów.`);

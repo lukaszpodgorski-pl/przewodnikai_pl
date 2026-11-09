@@ -12,6 +12,13 @@ teaches:
 about:
   - name: Sztuczna inteligencja
     sameAs: https://pl.wikipedia.org/wiki/Sztuczna_inteligencja
+faq:
+  - q: Czy muszę czytać ramkę "Ujęcie techniczne" przy każdym haśle?
+    a: Nie. To wersja precyzyjna, z terminologią, przydatna przy czytaniu dokumentacji albo rozmowie z kimś z branży. Wszystko, co potrzebne, jest już w definicji i przykładzie nad ramką.
+  - q: Czym są halucynacje AI?
+    a: To informacja, która brzmi wiarygodnie, ale jest zmyślona. Model układa najbardziej prawdopodobny ciąg dalszy, a kiedy czegoś nie wie, "prawdopodobne" przestaje znaczyć "prawdziwe". Halucynacja brzmi tak samo pewnie jak dobra odpowiedź.
+  - q: Czym generatywna AI różni się od "zwykłej" AI?
+    a: Generatywna AI tworzy nowe treści - tekst, obraz, dźwięk, wideo czy kod. "Zwykła" AI głównie rozpoznaje albo wybiera, na przykład filtruje spam.
 status: gotowe
 ---
 

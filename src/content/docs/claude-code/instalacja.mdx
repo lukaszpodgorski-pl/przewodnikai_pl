@@ -26,7 +26,7 @@ mentions:
     type: SoftwareApplication
 faq:
   - q: Którą metodę instalacji wybrać?
-    a: Natywny installer. Nie wymaga Node.js i aktualizuje się sam w tle. Homebrew, WinGet i menedżery pakietów Linuksa wymagają ręcznej aktualizacji, a instalacja przez npm jest dziś rozwiązaniem przestarzałym.
+    a: Natywny installer. Nie wymaga Node.js i aktualizuje się sam w tle. Homebrew, WinGet i menedżery pakietów Linuksa domyślnie wymagają ręcznej aktualizacji, a instalacja przez npm jest dziś rozwiązaniem przestarzałym.
   - q: Windows natywnie czy w WSL2?
     a: Natywnie do projektów windowsowych. WSL2 do pełnej zgodności z Linuksem i do sandboxingu. W WSL uruchamiasz instalator linuksowy wewnątrz WSL, nie binarkę Windows, a repozytorium trzymasz w systemie plików Linuksa, bo praca na /mnt/c jest zauważalnie wolniejsza.
   - q: Po instalacji terminal pisze "command not found". Co teraz?
@@ -44,13 +44,13 @@ import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 
 ## Wymagania
 
-macOS 13.0+, Windows 10 1809+ albo Server 2019+, Ubuntu 20.04+, Debian 10+, Alpine 3.19+. Do tego 4 GB+ RAM, procesor x64 lub ARM64, połączenie z internetem i shell: Bash, Zsh, PowerShell albo CMD.
+macOS 13.0+, Windows 10 1809+ albo Server 2019+, Ubuntu 20.04+, Debian 10+, Alpine 3.19+. Do tego 4 GB+ RAM, procesor x64 lub ARM64, połączenie z internetem i powłoka terminala (shell): Bash, Zsh, PowerShell albo CMD.
 
-GPU nie jest potrzebne - model liczy się po stronie Anthropic, nie u Ciebie. `ripgrep` zwykle jest dołączony.
+GPU nie jest potrzebne - model liczy się po stronie Anthropic, nie u Ciebie. `ripgrep` (program do szybkiego przeszukiwania plików) zwykle jest dołączony.
 
 ## Metoda 1 - natywny installer (zalecana)
 
-Bez Node.js, z automatyczną aktualizacją.
+Bez Node.js (środowiska do uruchamiania programów w JavaScripcie), z automatyczną aktualizacją.
 
 ```bash
 # macOS, Linux, WSL:
@@ -69,7 +69,7 @@ curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del in
 
 Natywne instalacje aktualizują się w tle. Binarka trafia do `~/.local/bin/claude` (symlink do `~/.local/share/claude/versions/`). Instalacja konkretnej wersji: `curl -fsSL https://claude.ai/install.sh | bash -s 2.1.89` albo `stable`.
 
-**NOWE v2.1.243.** Binarka jest pakowana zstd: pobranie i auto-update to ok. **75 MB zamiast 340 MB** (mierzone na Linux x64). Kod ładuje się na żądanie zamiast cały naraz, co oszczędza ok. **40-70 MB RAM w każdej sesji**.
+**Od wersji 2.1.243** binarka jest skompresowana (format zstd): pobranie i auto-update to ok. **75 MB zamiast 340 MB** (mierzone na Linux x64). Kod ładuje się na żądanie zamiast cały naraz, co oszczędza ok. **40-70 MB RAM w każdej sesji**.
 
 ## Metoda 2 - Homebrew (macOS, Linux)
 
@@ -78,7 +78,7 @@ brew install --cask claude-code          # kanał stable (~tydzień opóźnienia
 brew install --cask claude-code@latest   # kanał latest
 ```
 
-Homebrew **nie** aktualizuje automatycznie: `brew upgrade claude-code`.
+Homebrew domyślnie **nie** aktualizuje automatycznie: `brew upgrade claude-code` (albo `brew upgrade claude-code@latest`, jeśli wybrałeś kanał latest). Na Homebrew i WinGet możesz to zmienić zmienną `CLAUDE_CODE_PACKAGE_MANAGER_AUTO_UPDATE=1` - wtedy Claude Code sam uruchamia aktualizację w tle ([dokumentacja instalacji](https://code.claude.com/docs/en/setup#auto-updates)).
 
 ## Metoda 3 - WinGet (Windows)
 
@@ -89,7 +89,7 @@ winget upgrade Anthropic.ClaudeCode   # manualny update
 
 ## Metoda 4 - menedżery pakietów Linux (apt, dnf, apk)
 
-Dostępne są podpisane repozytoria. Klucz podpisujący ma fingerprint `31DDDE24DDFAB679F42D7BD2BAA929FF1A7ECACE` - dokumentacja mówi wprost, że taki właśnie odcisk powinien wypisać `gpg`. Brak lub zły klucz daje błąd przy `apt update`: `NO_PUBKEY BAA929FF1A7ECACE`. Aktualizacja przebiega przez normalny system pakietów.
+Dostępne są podpisane repozytoria dla apt (Debian, Ubuntu), dnf (Fedora, RHEL) i apk (Alpine). Konfiguracja to kilka komend z `sudo` - skopiuj je z [dokumentacji instalacji](https://code.claude.com/docs/en/setup#install-with-linux-package-managers). Klucz podpisujący ma fingerprint `31DDDE24DDFAB679F42D7BD2BAA929FF1A7ECACE` - dokumentacja mówi wprost, że taki właśnie odcisk powinien wypisać `gpg`. Brak lub zły klucz daje błąd przy `apt update`: `NO_PUBKEY BAA929FF1A7ECACE`. Aktualizacja przebiega przez normalny system pakietów.
 
 ## Metoda 5 - npm (legacy)
 
@@ -106,7 +106,7 @@ Wymaga **Node.js 22+** (od v2.1.198). Na starszym Node pojawi się ostrzeżenie 
 
 ## Windows: natywny czy WSL2
 
-- **Native Windows** - dla projektów Windows. Opcjonalnie zainstaluj **Git for Windows**, co włącza narzędzie Bash przez Git Bash; bez niego działa narzędzie PowerShell. Ścieżkę Git Bash ustawisz w settings przez `CLAUDE_CODE_GIT_BASH_PATH`.
+- **Native Windows** - dla projektów Windows. Opcjonalnie zainstaluj **Git for Windows** - Claude będzie wtedy uruchamiał komendy w Git Bash, a bez niego używa PowerShella. Ścieżkę Git Bash ustawisz w settings przez `CLAUDE_CODE_GIT_BASH_PATH`.
 - **WSL2** - zalecane dla pełnej zgodności z Linuksem i sandboxingu. Uruchom instalator Linux _wewnątrz_ WSL (nie instaluj binarki Windows do WSL). Trzymaj repo w systemie plików Linuksa - operacje na `/mnt/c/...` są zauważalnie wolniejsze.
 - **Alpine i musl:** `apk add bash curl libgcc libstdc++ ripgrep`, potem ustaw `USE_BUILTIN_RIPGREP=0`.
 
@@ -119,7 +119,7 @@ claude update              # manualny update natywnej instalacji
 claude install stable      # instalacja/reinstalacja kanału lub wersji
 ```
 
-**Migracja z npm na natywną:** w sesji `/migrate-installer`, albo z shella `claude install`. Najczęstszy problem po migracji to stara binarka npm "zasłaniająca" natywną na PATH:
+**Migracja z npm na natywną:** uruchom natywny installer (metoda 1) albo z shella `claude install`, a potem odinstaluj pakiet npm ([rozwiązywanie problemów z instalacją](https://code.claude.com/docs/en/troubleshoot-install)). Najczęstszy problem po migracji to stara binarka npm "zasłaniająca" natywną na PATH:
 
 ```bash
 npm uninstall -g @anthropic-ai/claude-code
@@ -142,9 +142,15 @@ rm -f ~/.local/bin/claude
 rm -rf ~/.local/share/claude
 ```
 
-Konfigurację usuwa `rm -rf ~/.claude` plus `rm ~/.claude.json`. Uwaga: to kasuje settings, MCP i historię. Wyłączenie auto-update: `DISABLE_AUTOUPDATER=1` w sekcji `env` w settings.json.
+```powershell
+# Windows PowerShell:
+Remove-Item -Path "$env:USERPROFILE\.local\bin\claude.exe" -Force
+Remove-Item -Path "$env:USERPROFILE\.local\share\claude" -Recurse -Force
+```
 
-**NOWE v2.1.245.** Wersje v2.1.242 i v2.1.243 wywalały się przy starcie na dystrybucjach z glibc 2.44 (Arch, CachyOS, Fedora Rawhide). Jeśli utknąłeś na jednej z nich, to jest powód - napraw aktualizacją do v2.1.245 lub nowszej.
+Konfigurację usuwa `rm -rf ~/.claude` plus `rm ~/.claude.json`. Uwaga: to kasuje settings, MCP i historię. Rozszerzenie VS Code, wtyczka JetBrains i aplikacja desktop też zapisują do `~/.claude/` - jeśli ich nie odinstalujesz, katalog pojawi się znowu. Wyłączenie auto-update: `DISABLE_AUTOUPDATER=1` w sekcji `env` w settings.json.
+
+Wersje v2.1.242 i v2.1.243 wywalały się przy starcie na dystrybucjach z glibc 2.44 (Arch, CachyOS, Fedora Rawhide). Naprawiono to **od wersji 2.1.245** - jeśli utknąłeś na starszej, zaktualizuj.
 
 ## Ćwiczenie: 10 minut
 
@@ -162,6 +168,6 @@ Konfigurację usuwa `rm -rf ~/.claude` plus `rm ~/.claude.json`. Uwaga: to kasuj
 - Na Windowsie decyzja natywnie czy WSL2 zapada raz i wpływa na wydajność.
 - `claude doctor` jest pierwszą komendą przy każdym problemie z instalacją.
 
-**Następny krok:** [Logowanie i plany](/claude-code/logowanie-i-plany/) - subskrypcja czy klucz API, i dlaczego jedna zmienna środowiskowa potrafi po cichu przestawić Cię na rozliczenie za zużycie.
+**Następny krok:** [Logowanie i plany](/claude-code/logowanie-i-plany/) - subskrypcja czy klucz API, i dlaczego jedna zmienna środowiskowa potrafi przestawić Cię na rozliczenie za zużycie.
 
 <SlowniczekStrony terminy={["agent-ai"]} />

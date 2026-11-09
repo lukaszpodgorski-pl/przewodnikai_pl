@@ -1,6 +1,6 @@
 ---
 title: Tryb headless, automatyzacja i CI
-description: Claude Code bez interfejsu - w skryptach, potokach i pipeline. Formaty wyjścia, ustawienia pod CI, wznawianie sesji w skryptach oraz Agent SDK. Ćwiczenie zajmie 10 minut.
+description: Tryb headless, automatyzacja i CI - Claude Code bez interfejsu w skryptach i pipeline. Formaty wyjścia, ustawienia CI i Agent SDK. Ćwiczenie zajmie 10 minut.
 sidebar:
   label: 'Tryb headless i CI'
   order: 17
@@ -27,9 +27,9 @@ faq:
   - q: Który format wyjścia wybrać do skryptu?
     a: 'JSON, jeśli chcesz jeden obiekt z metadanymi - kosztem, czasem, liczbą tur i identyfikatorem sesji. Stream-json, jeśli potrzebujesz strumienia NDJSON w czasie rzeczywistym; wymaga wtedy flagi verbose.'
   - q: Jak nie zablokować pipeline na pytaniu o zgodę?
-    a: 'Ustaw z góry dozwolone narzędzia flagą allowedTools albo przełącz tryb uprawnień na dontAsk. Dodatkowo flaga bare daje szybsze i powtarzalne uruchomienia, bo pomija automatyczne wykrywanie hooków, skills i MCP.'
+    a: 'Ustaw z góry dozwolone narzędzia flagą allowedTools albo przełącz tryb uprawnień na dontAsk. Dodatkowo flaga bare daje szybsze i powtarzalne uruchomienia, bo pomija automatyczne wykrywanie hooków, skills i MCP. Uwaga: bare nie używa logowania subskrypcją, wymaga klucza ANTHROPIC_API_KEY.'
   - q: Kiedy używać Agent SDK zamiast headless CLI?
-    a: 'Do CI i skryptów używaj headless CLI. SDK bierz wtedy, gdy osadzasz pętlę agentową we własnym programie. Uwaga na rozliczenie: od 15 czerwca 2026 headless SDK na planach subskrypcyjnych czerpie z osobnej tygodniowej puli tokenów.'
+    a: 'Do CI i skryptów używaj headless CLI. SDK bierz wtedy, gdy osadzasz pętlę agentową we własnym programie. Na planach subskrypcyjnych obie drogi korzystają z tych samych limitów co reszta subskrypcji - zapowiadaną na 15 czerwca 2026 zmianę rozliczenia wstrzymano.'
 status: gotowe
 ---
 
@@ -42,7 +42,9 @@ import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 **Wcześniej:** pracujesz z agentem ręcznie. Tu: wpinasz go w automat.
 :::
 
-Podstawa to `claude -p "prompt"` - uruchamia pełną pętlę <Termin id="agent-ai">agentową</Termin> bez interfejsu i kończy działanie.
+Podstawa to `claude -p "prompt"` - uruchamia pełną pętlę <Termin id="agent-ai">agentową</Termin> (Claude sam planuje kroki, używa narzędzi i sprawdza wyniki, aż skończy), ale bez okna rozmowy: wypisuje wynik i kończy działanie. Dzięki temu możesz go wpiąć w skrypt albo w CI (ciągłą integrację, ang. _continuous integration_ - automat, który po każdej zmianie w repozytorium sam uruchamia testy i inne sprawdzenia).
+
+Przykłady na tej stronie są w składni basha (macOS, Linux, WSL albo Git Bash na Windows).
 
 ```bash
 claude -p "przeanalizuj błędy testów" --output-format json --max-budget-usd 2.00
@@ -54,11 +56,11 @@ claude -p --output-format stream-json "First task" | \
   claude -p --input-format stream-json --output-format stream-json "Process results"
 ```
 
-**Formaty wyjścia.** `text` domyślnie. `json` daje jeden obiekt z metadanymi: koszt, czas, liczba tur, `session_id`. `stream-json` to NDJSON w czasie rzeczywistym i wymaga `--verbose`. Flaga `--json-schema '{...}'` wymusza walidowane wyjście według schematu.
+**Formaty wyjścia.** `text` domyślnie. `json` daje jeden obiekt z metadanymi: koszt, czas, liczba tur, `session_id`. `stream-json` wypisuje na bieżąco wiele obiektów JSON, po jednym w linii (format NDJSON), i wymaga `--verbose`. Flaga `--json-schema '{...}'` wymusza walidowane wyjście według schematu.
 
-**Do CI** używaj `--allowedTools` albo `--permission-mode dontAsk`, żeby nie blokować się na promptach, oraz `--bare` dla reprodukowalnych, szybkich uruchomień (pomija auto-discovery; docelowo ma być domyślne dla `-p`).
+**Do CI** używaj `--allowedTools` albo `--permission-mode dontAsk`, żeby nie blokować się na promptach, oraz `--bare` dla szybkich i powtarzalnych uruchomień: Claude Code pomija wtedy automatyczne wczytywanie hooków, skills, pluginów, serwerów MCP i CLAUDE.md (docelowo ma to być domyślne dla `-p`). Uwaga: ten tryb nie używa logowania subskrypcją. Wymaga klucza `ANTHROPIC_API_KEY` z Claude Console, czyli rozliczenia przez API (dostęp do modelu dla programistów, bez okna czatu).
 
-Kody wyjścia: 0 to sukces, 1 to błąd. Dodatkowo sprawdzaj `is_error` w JSON - to nie jest to samo.
+Kody wyjścia: 0 to sukces, każda inna wartość to błąd. Dodatkowo sprawdzaj `is_error` w JSON - to nie jest to samo.
 
 **Sesje w skryptach:**
 
@@ -69,28 +71,28 @@ claude -p "..." --resume "$session_id"
 
 ## Agent SDK
 
-Ten sam silnik jako biblioteka. Pakiety: `claude-agent-sdk` dla Pythona (dołącza CLI) i `@anthropic-ai/claude-agent-sdk` dla TypeScriptu.
+Ten sam silnik jako biblioteka. Pakiety: `claude-agent-sdk` dla Pythona i `@anthropic-ai/claude-agent-sdk` dla TypeScriptu. Oba zawierają Claude Code, więc zwykle nie trzeba go instalować osobno.
 
 ```typescript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
 for await (const message of query({
   prompt: "Napraw błąd logowania",
-  options: { model: "claude-sonnet-5", maxTurns: 5 }
+  options: { model: "claude-sonnet-5-5", maxTurns: 5 }
 })) {
   console.log(message);
 }
 ```
 
 :::caution[Rozliczenie headless SDK]
-Od 15 czerwca 2026 headless SDK na planach subskrypcyjnych czerpie z osobnej tygodniowej puli tokenów. Ciężkie użycie lepiej rozliczać przez API. Do CI i CD używaj headless CLI (`claude -p`), a SDK wtedy, gdy osadzasz pętlę we własnym programie.
+Agent SDK i `claude -p` na planach subskrypcyjnych korzystają z tych samych limitów co reszta subskrypcji. Zapowiadaną na 15 czerwca 2026 zmianę rozliczenia wstrzymano. Od 7 października 2026 plany Max, Ultra i Team mają dodatkowo miesięczne kredyty API. Obejmują one Agent SDK i `claude -p` tylko wtedy, gdy używasz ich z kluczem API z podpiętej organizacji Console - po zalogowaniu planem nic się nie zmienia ([Claude Help Center](https://support.claude.com/en/articles/15036540)). Do CI i CD używaj headless CLI (`claude -p`), a SDK wtedy, gdy osadzasz pętlę we własnym programie.
 :::
 
 ## Ćwiczenie: 10 minut
 
 1. Napisz jednolinijkowiec: `git diff | claude -p "Wypisz potencjalne bugi jako listę" --output-format json`.
-2. Sparsuj wynik przez `jq`.
-3. Wyciągnij z odpowiedzi `session_id` i koszt.
+2. Zainstaluj `jq` - małe narzędzie do wyciągania pól z JSON-a (do pobrania z jqlang.org).
+3. Wyciągnij z odpowiedzi `session_id` i koszt: dopisz na końcu jednolinijkowca `| jq -r '.session_id, .total_cost_usd'`.
 
 **Zaliczenie:** masz działający potok, który przyjmuje diff i zwraca strukturę danych. To jest szkielet każdej automatyzacji, którą zbudujesz później.
 
@@ -100,7 +102,7 @@ Od 15 czerwca 2026 headless SDK na planach subskrypcyjnych czerpie z osobnej tyg
 
 - `-p` to pełny agent bez interfejsu, gotowy do wpięcia w skrypt albo pipeline.
 - W CI ustawiasz uprawnienia z góry i sprawdzasz `is_error`, nie tylko kod wyjścia.
-- CLI do automatyzacji, SDK do osadzania - a rozliczenie tych dwóch dróg jest inne.
+- CLI do automatyzacji, SDK do osadzania we własnym programie.
 
 **Następny krok:** [Kontekst i koszty](/claude-code/kontekst-i-koszty/) - najważniejszy zasób w tej pracy i sposoby, żeby go nie przepalać.
 

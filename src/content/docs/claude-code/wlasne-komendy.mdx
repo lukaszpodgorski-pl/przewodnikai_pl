@@ -1,6 +1,6 @@
 ---
 title: Własne slash commands w Claude Code
-description: Powtarzalny prompt zamieniasz w komendę zapisaną jako plik Markdown. Frontmatter, argumenty, wstawianie wyniku shella i pięć gotowych przykładów do skopiowania. Ćwiczenie zajmie 10 minut.
+description: Własne slash commands w Claude Code - powtarzalny prompt jako plik Markdown. Frontmatter, argumenty, wynik shella i pięć przykładów. Ćwiczenie zajmie 10 minut.
 sidebar:
   label: 'Własne komendy'
   order: 7
@@ -25,7 +25,7 @@ faq:
   - q: Gdzie zapisać własną komendę?
     a: 'W katalogu .claude/commands/ wewnątrz projektu, jeśli ma być współdzielona przez repozytorium, albo w ~/.claude/commands/, jeśli ma działać we wszystkich projektach. Nazwa pliku staje się nazwą komendy.'
   - q: Jak przekazać komendzie argumenty?
-    a: 'Zmienna $ARGUMENTS wstawia cały tekst po nazwie komendy, a $1, $2 i kolejne wstawiają argumenty pozycyjne. Podpowiedź dla użytkownika ustawiasz polem argument-hint we frontmatterze.'
+    a: 'Zmienna $ARGUMENTS wstawia cały tekst po nazwie komendy, a $0, $1 i kolejne wstawiają argumenty pozycyjne liczone od zera - $0 to pierwszy argument, $1 drugi. Podpowiedź dla użytkownika ustawiasz polem argument-hint we frontmatterze.'
   - q: Czy Claude może sam wywołać moją komendę?
     a: 'Domyślnie tak. Jeśli komenda ma efekty uboczne, na przykład commituje albo wdraża, ustaw disable-model-invocation na true - wtedy uruchomisz ją tylko Ty.'
 status: gotowe
@@ -44,9 +44,13 @@ Własne komendy to zwykłe pliki `.md`:
 - **Projektowe:** `.claude/commands/` - współdzielone przez git.
 - **Użytkownika:** `~/.claude/commands/` - dostępne we wszystkich projektach.
 
-Nazwa pliku staje się nazwą komendy (`deploy.md` → `/deploy`). Podkatalogi tworzą namespacing.
+Nazwa pliku staje się nazwą komendy (`deploy.md` → `/deploy`).
+
+Własne komendy zostały scalone ze [skillami](/claude-code/skills-i-plugins/). Pliki w `.claude/commands/` nadal działają - to starszy, prostszy format - a jeśli komenda i skill mają tę samą nazwę, wygrywa skill.
 
 ## Frontmatter
+
+Frontmatter to kilka linijek ustawień na samej górze pliku, między dwiema liniami `---`. Wszystkie pola są opcjonalne - plik bez frontmattera też działa.
 
 ```markdown
 ---
@@ -56,18 +60,20 @@ allowed-tools: Bash(git add:*), Bash(git commit:*)
 model: haiku
 disable-model-invocation: false
 ---
-Treść promptu. $ARGUMENTS = wszystko po nazwie; $1, $2 = pozycyjne.
+Treść promptu. $ARGUMENTS = wszystko po nazwie; $0, $1 = pozycyjne (od zera).
 Wstaw plik przez @ścieżka; uruchom bash i wstaw wynik przez !`komenda`.
 ```
 
-- `$ARGUMENTS` - cały tekst. `$1`, `$2` i kolejne - argumenty pozycyjne.
-- `` !`komenda` `` - wykona bash i wstawi wynik (wymaga `allowed-tools`).
+- `$ARGUMENTS` - cały tekst po nazwie komendy. `$0`, `$1` i kolejne - argumenty pozycyjne liczone od zera: `$0` to pierwszy, `$1` drugi.
+- `` !`komenda` `` - uruchomi komendę w terminalu jeszcze przed wysłaniem promptu i wstawi jej wynik, więc Claude dostaje gotowe dane (wymaga `allowed-tools`).
+- `allowed-tools` - narzędzia, których Claude użyje w tej komendzie bez pytania Cię o zgodę. `Bash(git add:*)` oznacza każdą komendę zaczynającą się od `git add`.
+- `model` - model użyty dla tej komendy, np. `haiku`. Ustawienie działa do końca bieżącej odpowiedzi i nie zmienia Twojej domyślnej konfiguracji.
 - `@ścieżka` - wstawia zawartość pliku.
 - `disable-model-invocation: true` - tylko Ty możesz uruchomić komendę. Warto dla komend z efektami ubocznymi, jak `/commit` czy `/deploy`.
 
 ## Przykład 1: `/commit`
 
-Plik `.claude/commands/commit.md`:
+Conventional Commits to popularna konwencja opisów commitów z przedrostkiem typu zmiany, np. `feat:` albo `fix:`. Plik `.claude/commands/commit.md`:
 
 ```markdown
 ---
@@ -91,7 +97,7 @@ description: Napraw issue z GitHub
 argument-hint: <issue-number> [priority]
 allowed-tools: Bash(gh issue:*), Read, Edit
 ---
-Napraw issue #$1 z priorytetem $2. Najpierw pobierz szczegóły przez `gh issue view $1`,
+Napraw issue #$0 z priorytetem $1. Najpierw pobierz szczegóły przez `gh issue view $0`,
 przeczytaj CONTRIBUTING.md, potem zaproponuj plan i wprowadź poprawkę.
 ```
 
@@ -129,7 +135,7 @@ description: Przegląd PR pod kątem jakości
 allowed-tools: Read, Grep, Glob, Bash(git diff:*)
 model: opus
 ---
-Przejrzyj zmiany w PR #$1: poprawność, bezpieczeństwo, wydajność, pokrycie testami.
+Przejrzyj zmiany w PR #$0: poprawność, bezpieczeństwo, wydajność, pokrycie testami.
 ```
 
 ## Ćwiczenie: 10 minut
@@ -140,7 +146,7 @@ Przejrzyj zmiany w PR #$1: poprawność, bezpieczeństwo, wydajność, pokrycie 
 
 **Zaliczenie:** komenda `/ship` pojawia się na liście po wpisaniu `/` i uruchamia się. Masz pierwszy własny skrót do powtarzalnej pracy.
 
-**Jeśli nic nie zgrzyta i zostaje czas:** dopisz do niej frontmatter z `description` i `allowed-tools`, potem porównaj, jak wygląda w `/help` przed i po.
+**Jeśli nic nie zgrzyta i zostaje czas:** dopisz do niej frontmatter z `description`, `allowed-tools` i `disable-model-invocation: true` - komenda robi commit, więc powinna ruszać tylko na Twoje polecenie. Potem porównaj, jak wygląda w `/help` przed i po.
 
 ## Teraz wiesz
 
