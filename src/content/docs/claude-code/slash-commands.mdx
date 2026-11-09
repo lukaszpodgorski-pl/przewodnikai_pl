@@ -36,7 +36,7 @@ import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 :::note[O tej stronie]
 **Czas:** ok. 7 minut czytania + 5 minut ćwiczenia.
 **Poziom:** średni, po [interfejsie i skrótach](/claude-code/interfejs-i-skroty/).
-**Wcześniej:** sterujesz sesją z klawiatury. Tu: poznajesz komendy, które robią całą resztę.
+**Wcześniej:** [Interfejs i skróty](/claude-code/interfejs-i-skroty/) - sterujesz sesją z klawiatury. **Teraz:** poznajesz komendy, które robią całą resztę.
 :::
 
 Wpisz `/`, żeby zobaczyć dostępne komendy. Dostępność zależy od planu i platformy - nie wszystko z tej listy zobaczysz u siebie.
@@ -48,7 +48,7 @@ Wpisz `/`, żeby zobaczyć dostępne komendy. Dostępność zależy od planu i p
 - `/config` (alias `/settings`) - ustawienia. Przyjmuje też `klucz=wartość`.
 - `/permissions` (alias `/allowed-tools`) - reguły, na co Claude może sobie pozwolić bez pytania.
 - `/mcp` - połączenia z serwerami MCP.
-- `/hooks` - podgląd skonfigurowanych hooks.
+- `/hooks` - podgląd skonfigurowanych hooków.
 - `/agents` - od v2.1.198 tylko przypomina, że [subagentów](/claude-code/subagenci/) tworzysz, prosząc Claude albo edytując `.claude/agents/`.
 - `/statusline` - konfiguracja paska stanu pod polem promptu.
 - `/output-style` - zmiana stylu odpowiedzi.
@@ -61,9 +61,9 @@ Wpisz `/`, żeby zobaczyć dostępne komendy. Dostępność zależy od planu i p
 ## Modele i kontekst
 
 - `/model` - zmienia model i zapisuje go jako domyślny. Jeśli chcesz zmienić model tylko w tej sesji, w liście wyboru naciśnij `s`.
-- `/effort` - poziom rozumowania: od `low` do `max`, plus `ultracode` i `auto`.
+- `/effort` - poziom wysiłku: od `low` do `max`, plus `ultracode` i `auto`.
 - `/fast` - tryb szybki (fast mode).
-- `/context` - pokazuje, co zajmuje <Termin id="okno-kontekstowe">okno kontekstu</Termin>.
+- `/context` - pokazuje, co zajmuje <Termin id="okno-kontekstowe">okno kontekstowe</Termin>.
 - `/compact [instrukcje]` - streszcza dotychczasową rozmowę, żeby zwolnić miejsce.
 - `/clear` (aliasy `/new`, `/reset`) - nowa rozmowa z pustym kontekstem, pamięć projektu zostaje.
 - `/autocompact` - ustawia, przy jakim zapełnieniu okna rozmowa streszcza się sama.
@@ -120,7 +120,7 @@ Prompty MCP pojawiają się jako `/servername:promptname (MCP)` albo `/mcp__serv
 
 **Rozróżnianie wielu sesji.** `/rename` nadaje sesji nazwę, `/color` zmienia kolor paska promptu. To banalne, ale przy kilku otwartych terminalach ratuje życie. Nazwa i kolor **zostają przy `--resume`**, a z włączonym Remote Control są widoczne także na claude.ai/code.
 
-**Od wersji 2.1.246 `/cd` zachowuje się inaczej.** Po przeniesieniu sesji do innego katalogu settings, hooks, serwery MCP, skills i agents nowego projektu ładują się **od razu**. Wcześniej dopiero przy `--resume`.
+**Od wersji 2.1.246 `/cd` zachowuje się inaczej.** Po przeniesieniu sesji do innego katalogu settings, hooki, serwery MCP, skille i subagenci nowego projektu ładują się **od razu**. Wcześniej dopiero przy `--resume`.
 
 **Od v2.1.247: `/claude-api cost-optimize`.** Skill `/claude-api` podsuwa Claude dokumentację Claude API, a podkomenda `cost-optimize` sprawdza, na co idą wydatki w projekcie, który woła Claude API. Potem proponuje oszczędności po jednej zmianie naraz - caching, batching, effort, wybór modelu.
 
@@ -130,7 +130,7 @@ Prompty MCP pojawiają się jako `/servername:promptname (MCP)` albo `/mcp__serv
 2. Uruchom `/memory` i obejrzyj wygenerowany `CLAUDE.md`.
 3. Zakończ komendą `/context` i zobacz, ile miejsca zajął ten plik.
 
-**Zaliczenie:** masz w projekcie wygenerowany `CLAUDE.md` i wiesz, jaki procent okna kontekstu zajmuje. To pierwsze zetknięcie z kosztem pamięci projektu.
+**Zaliczenie:** masz w projekcie wygenerowany `CLAUDE.md` i wiesz, jaki procent okna kontekstowego zajmuje. To pierwsze zetknięcie z kosztem pamięci projektu.
 
 **Jeśli nic nie zgrzyta i zostaje czas:** uruchom `/rename` i nazwij sesję. Potem zamknij ją i wróć przez `claude --resume` - nazwa będzie na liście.
 

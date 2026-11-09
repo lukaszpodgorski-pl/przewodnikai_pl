@@ -37,12 +37,12 @@ import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 :::note[O tej stronie]
 **Czas:** ok. 8 minut czytania + 10 minut ćwiczenia.
 **Poziom:** średni, po [subagentach](/claude-code/subagenci/).
-**Wcześniej:** wiesz, jak prosić agenta o coś w CLAUDE.md. Teraz nauczysz się wymuszać rzeczy, których agent nie może pominąć.
+**Wcześniej:** [Subagenci](/claude-code/subagenci/) - wiesz, jak prosić agenta o coś w CLAUDE.md. **Teraz:** nauczysz się wymuszać rzeczy, których agent nie może pominąć.
 :::
 
 Hook to Twoja komenda albo skrypt, który Claude Code uruchamia sam w określonym momencie pracy - na przykład tuż przed użyciem narzędzia albo zaraz po edycji pliku. Zamiast skryptu może to być też wywołanie adresu HTTP, narzędzia MCP, prompt albo agent. Hooki zapisujesz w pliku `settings.json`; można je też dołączyć do definicji skilli, subagentów i pluginów.
 
-Jedna rzecz do zapamiętania: **CLAUDE.md prosi, hook wymusza.**
+W skrócie: **CLAUDE.md prosi, hook wymusza.**
 
 ## Zdarzenia
 
@@ -121,7 +121,7 @@ jq -nc --arg seq "$seq" '{terminalSequence: $seq}'
 
 Sekwencja 777 działa m.in. w Ghostty, Warp i urxvt. W Windows Terminal i iTerm2 zamień `777;notify;%s;%s` na `9;%s` (wtedy bez tytułu).
 
-Konfigurację przejrzysz przez `/hooks`. Hooks działają też wewnątrz subagentów.
+Konfigurację przejrzysz przez `/hooks`. Hooki działają też wewnątrz subagentów.
 
 :::danger[Hook to Twój kod z Twoimi uprawnieniami]
 Hook uruchamia arbitralny kod z Twoimi uprawnieniami. Pliki projektowe wymagają zaufania folderu (workspace trust), ale przed uruchomieniem cudzego repozytorium przeczytaj, co jego hooki właściwie robią.
@@ -137,7 +137,7 @@ Przykłady są w składni basha. Na Windowsie uruchom je w Git Bash (instaluje s
 2. Poproś Claude o odczyt pliku `.env`.
 3. Sprawdź, że operacja została zablokowana wraz z Twoim komunikatem. Jeśli Claude spróbuje obejść blokadę komendą w terminalu (np. `cat .env`), odmów - ten hook pilnuje tylko narzędzi Read, Edit i Write.
 
-**Zaliczenie:** Claude nie odczytał `.env`, a w terminalu widzisz tekst, który sam wpisałeś do skryptu. Masz gwarancję zamiast sugestii.
+**Zaliczenie:** Claude nie odczytał `.env`, a w terminalu widzisz tekst, który sam wpisujesz do skryptu. Masz gwarancję zamiast sugestii.
 
 **Jeśli nic nie zgrzyta i zostaje czas:** porównaj to z regułą `deny` z lekcji o uprawnieniach. Obie blokują, ale hook daje Ci własny komunikat i możliwość logowania prób.
 

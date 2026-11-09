@@ -13,11 +13,11 @@ Twój adres **nie trafił** na listę, bo w formularzu nie było zaznaczonej zgo
 
 ## Dlaczego pytam o zgodę osobno
 
-Bo inaczej nie umiałbym udowodnić, że jej udzieliłeś. RODO wymaga nie tylko tego, żeby zgoda była, ale też żeby dało się ją wykazać - a pole zaznaczone z góry albo ukryte przed człowiekiem niczego nie wykazuje. Wolę mieć jedno kliknięcie więcej i czyste sumienie.
+Bo inaczej nie umiałbym udowodnić, że zgoda pochodzi od Ciebie. RODO wymaga nie tylko tego, żeby zgoda była, ale też żeby dało się ją wykazać - a pole zaznaczone z góry albo ukryte przed człowiekiem niczego nie wykazuje. Wolę mieć jedno kliknięcie więcej i czyste sumienie.
 
 ## Jeśli chcesz dostawać powiadomienia
 
-Wróć do formularza i zaznacz pole ze zgodą przed wysłaniem. Formularz jest na [stronie głównej](/) i na dole każdego rozdziału.
+Wróć do formularza i zaznacz pole ze zgodą przed wysłaniem. Formularz jest na [stronie głównej](/) i na dole każdej lekcji.
 
 Dostaniesz wtedy mail z linkiem potwierdzającym - dopiero kliknięcie w niego kończy zapis.
 

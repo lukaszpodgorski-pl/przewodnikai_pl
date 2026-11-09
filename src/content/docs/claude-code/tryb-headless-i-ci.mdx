@@ -27,7 +27,7 @@ faq:
   - q: Który format wyjścia wybrać do skryptu?
     a: 'JSON, jeśli chcesz jeden obiekt z metadanymi - kosztem, czasem, liczbą tur i identyfikatorem sesji. Stream-json, jeśli potrzebujesz strumienia NDJSON w czasie rzeczywistym; wymaga wtedy flagi verbose.'
   - q: Jak nie zablokować pipeline na pytaniu o zgodę?
-    a: 'Ustaw z góry dozwolone narzędzia flagą allowedTools albo przełącz tryb uprawnień na dontAsk. Dodatkowo flaga bare daje szybsze i powtarzalne uruchomienia, bo pomija automatyczne wykrywanie hooków, skills i MCP. Uwaga: bare nie używa logowania subskrypcją, wymaga klucza ANTHROPIC_API_KEY.'
+    a: 'Ustaw z góry dozwolone narzędzia flagą allowedTools albo przełącz tryb uprawnień na dontAsk. Dodatkowo flaga bare daje szybsze i powtarzalne uruchomienia, bo pomija automatyczne wykrywanie hooków, skilli i MCP. Uwaga: bare nie używa logowania subskrypcją, wymaga klucza ANTHROPIC_API_KEY.'
   - q: Kiedy używać Agent SDK zamiast headless CLI?
     a: 'Do CI i skryptów używaj headless CLI. SDK bierz wtedy, gdy osadzasz pętlę agentową we własnym programie. Na planach subskrypcyjnych obie drogi korzystają z tych samych limitów co reszta subskrypcji - zapowiadaną na 15 czerwca 2026 zmianę rozliczenia wstrzymano.'
 status: gotowe
@@ -39,7 +39,7 @@ import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 :::note[O tej stronie]
 **Czas:** ok. 7 minut czytania + 10 minut ćwiczenia.
 **Poziom:** średni, po [terminalu i IDE](/claude-code/terminal-ide-urzadzenia/).
-**Wcześniej:** pracujesz z agentem ręcznie. Tu: wpinasz go w automat.
+**Wcześniej:** [Terminal, IDE, urządzenia](/claude-code/terminal-ide-urzadzenia/) - pracujesz z agentem ręcznie. **Teraz:** wpinasz go w automat.
 :::
 
 Podstawa to `claude -p "prompt"` - uruchamia pełną pętlę <Termin id="agent-ai">agentową</Termin> (Claude sam przechodzi kroki: zaplanuj → użyj narzędzia → sprawdź wynik → wybierz następny krok, aż skończy), ale bez okna rozmowy: wypisuje wynik i kończy działanie. Dzięki temu możesz go wpiąć w skrypt albo w CI (ciągłą integrację, ang. _continuous integration_ - automat, który po każdej zmianie w repozytorium sam uruchamia testy i inne sprawdzenia).
@@ -58,7 +58,7 @@ claude -p --output-format stream-json "pierwsze zadanie" | \
 
 **Formaty wyjścia.** `text` domyślnie. `json` daje jeden obiekt z metadanymi: koszt, czas, liczba tur, `session_id`. `stream-json` wypisuje na bieżąco wiele obiektów JSON, po jednym w linii (format NDJSON), i wymaga `--verbose`. Flaga `--json-schema '{...}'` wymusza walidowane wyjście według schematu.
 
-**Do CI** używaj `--allowedTools` albo `--permission-mode dontAsk`, żeby nie blokować się na promptach, oraz `--bare` dla szybkich i powtarzalnych uruchomień: Claude Code pomija wtedy automatyczne wczytywanie hooków, skills, pluginów, serwerów MCP i CLAUDE.md (docelowo ma to być domyślne dla `-p`). Uwaga: ten tryb nie używa logowania subskrypcją. Wymaga klucza `ANTHROPIC_API_KEY` z Claude Console, czyli rozliczenia przez API (dostęp do modelu dla programistów, bez okna czatu).
+**Do CI** używaj `--allowedTools` albo `--permission-mode dontAsk`, żeby nie blokować się na promptach, oraz `--bare` dla szybkich i powtarzalnych uruchomień: Claude Code pomija wtedy automatyczne wczytywanie hooków, skilli, pluginów, serwerów MCP i CLAUDE.md (docelowo ma to być domyślne dla `-p`). Uwaga: ten tryb nie używa logowania subskrypcją. Wymaga klucza `ANTHROPIC_API_KEY` z Claude Console, czyli rozliczenia przez API (dostęp do modelu dla programistów, bez okna czatu).
 
 Kody wyjścia: 0 to sukces, każda inna wartość to błąd. Dodatkowo sprawdzaj `is_error` w JSON - to nie jest to samo.
 

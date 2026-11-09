@@ -1,6 +1,6 @@
 ---
 title: Zgoda potwierdzona
-description: Potwierdziłeś odnowienie zgody na otrzymywanie powiadomień o nowych i zaktualizowanych materiałach w Przewodniku AI.
+description: Potwierdzone odnowienie zgody na otrzymywanie powiadomień o nowych i zaktualizowanych materiałach w Przewodniku AI.
 template: splash
 noindex: true
 pagefind: false
@@ -13,12 +13,12 @@ Dziękuję. Twoja zgoda jest zapisana i zostajesz na liście.
 
 ## Po co była ta prośba
 
-Twój adres trafił na listę dawno temu i nie miałem przy nim porządnego dowodu, że tę zgodę faktycznie wyraziłeś - a RODO wymaga, żebym umiał ją udowodnić, nie tylko twierdzić, że była. Zamiast po cichu wysyłać dalej, wolałem zapytać wprost.
+Twój adres trafił na listę dawno temu i nie miałem przy nim porządnego dowodu, że ta zgoda faktycznie pochodzi od Ciebie - a RODO wymaga, żebym umiał ją udowodnić, nie tylko twierdzić, że była. Zamiast po cichu wysyłać dalej, wolałem zapytać wprost.
 
-Teraz jest to uporządkowane: przy Twoim adresie siedzi data i potwierdzenie, że sam o to poprosiłeś.
+Teraz jest to uporządkowane: przy Twoim adresie siedzi data i potwierdzenie, że prośba wyszła od Ciebie.
 
 ## Co się zmienia
 
-Nic. Dostajesz to samo, co wcześniej: wiadomość wtedy, gdy pojawi się nowy rozdział albo gdy istotnie zmieni się któryś z tych, które już przeczytałeś. Przewodnik jest żywy - rozdziały o modelach starzeją się w kwartałach.
+Nic. Dostajesz to samo, co wcześniej: wiadomość wtedy, gdy pojawi się nowa lekcja albo gdy istotnie zmieni się któraś z tych, które już znasz. Przewodnik jest żywy - lekcje o modelach starzeją się w kwartałach.
 
 Wypisujesz się jednym kliknięciem w stopce dowolnej wiadomości albo pisząc na [kontakt@lukaszpodgorski.pl](mailto:kontakt@lukaszpodgorski.pl).

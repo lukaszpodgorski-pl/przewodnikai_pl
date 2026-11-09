@@ -31,8 +31,8 @@ import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 
 :::note[O tej stronie]
 **Czas:** ok. 15 minut czytania + 5 minut ćwiczenia.
-**Poziom:** początkujący. Fragmenty o API, RAG i agentach (poziom 3 i wyżej) są opisowe - nie musisz ich umieć, żeby ruszyć dalej.
-**Wcześniej:** [Czym jest AI?](/podstawy/czym-jest-ai/) - AI vs GenAI. Pojęcia potrzebne do poziomów 0-2 tłumaczę na miejscu; opisy wyższych poziomów są dla orientacji.
+**Poziom:** początkujący, po lekcji [Czym jest AI?](/podstawy/czym-jest-ai/). Fragmenty o API, RAG i agentach (poziom 3 i wyżej) są opisowe - nie musisz ich umieć, żeby ruszyć dalej.
+**Wcześniej:** [Czym jest AI?](/podstawy/czym-jest-ai/) - odróżniasz AI od generatywnej AI. **Teraz:** wybierasz swój poziom. Pojęcia potrzebne do poziomów 0-2 tłumaczę na miejscu; opisy wyższych poziomów są dla orientacji.
 :::
 
 ## Na tej stronie wybierzesz poziom, nie "całe AI"
@@ -84,7 +84,7 @@ Poniżej każdy stopień w tym samym układzie: co realnie potrafisz, co musisz 
 
 **Co musisz rozumieć:** że część decyzji **o Tobie** podejmują systemy statystyczne - w rekrutacji, w bankowości, w moderacji treści. Poziom 0 nie jest niewiedzą o technologii, tylko niewiedzą o tym, że jest się jej stroną.
 
-**Sprawdzian:** potrafisz wskazać trzy miejsca z ostatniej doby, w których zadziałał model, a Ty tego nie nazwałeś.
+**Sprawdzian:** potrafisz wskazać trzy miejsca z ostatniej doby, w których zadziałał model, a Ty nie nazywasz tego po imieniu.
 
 **Typowy błąd:** wstyd. "Za późno, nie rozumiem tego". Ten przewodnik istnieje po to, żeby wyjść z 0 bez wstydu.
 
@@ -108,7 +108,7 @@ Poniżej każdy stopień w tym samym układzie: co realnie potrafisz, co musisz 
 
 **Typowy błąd:** traktowanie czatu jak wyszukiwarki i przenoszenie liczb do dokumentu bez sprawdzenia.
 
-**Ruch w górę:** regularność, nie maraton. Trzy razy w tygodniu jedno realne zadanie, każde z weryfikacją.
+**Ruch w górę:** regularność, nie maraton. Trzy razy w tygodniu jedno realne zadanie, każde z weryfikacją - na jedno okienko wystarczy kwadrans.
 
 ---
 
@@ -118,14 +118,14 @@ Poniżej każdy stopień w tym samym układzie: co realnie potrafisz, co musisz 
 
 **Co musisz rozumieć:**
 
-- **Kontekst to wszystko, co jest w tej rozmowie.** Model nie pamięta Cię z wczoraj (o ile nie włączyłeś pamięci) i nie widzi pliku, którego nie pokazałeś. Rozmowa mieści się w **oknie kontekstowym** o skończonym rozmiarze. Gdy się zapełni, najstarsze fragmenty przestają być widoczne albo zostają streszczone. Wniosek: gdy rozmowa się rozjeżdża, zacznij nową i wklej podsumowanie ustaleń.
+- **Kontekst to wszystko, co jest w tej rozmowie.** Model nie pamięta Cię z wczoraj (chyba że masz włączoną funkcję pamięci - wtedy aplikacja dokleja do rozmowy notatki o Tobie) i nie widzi pliku, którego mu nie pokazujesz. Rozmowa mieści się w **oknie kontekstowym** o skończonym rozmiarze. Gdy się zapełni, najstarsze fragmenty przestają być widoczne albo zostają streszczone. Wniosek: gdy rozmowa się rozjeżdża, zacznij nową i wklej podsumowanie ustaleń.
 - **Dobry <Termin id="prompt">prompt</Termin> ma strukturę**, nie magiczne słowa: cztery pola - rola, zadanie, ograniczenia (tu mieszczą się odbiorca i długość), format. Do tego Twój materiał (notatka, dane) i, jeśli trzeba, jeden przykład.
 - **Przykład bije opis.** Jeden do trzech przykładów "wejście → oczekiwane wyjście" (tzw. few-shot) poprawia zgodność formatu bardziej niż dwa akapity instrukcji.
 - **Największy skok jakości daje własny materiał.** Wklejona notatka, transkrypcja, cennik, poprzedni raport. Model przestaje zgadywać Twoją rzeczywistość.
 
 **Narzędzia:** ten sam chatbot plus mechanizmy zapisywania promptów - własne instrukcje (custom instructions) i Projekty w Claude, dostępne także na koncie darmowym. Własne GPT w ChatGPT można dziś tworzyć tylko w przestrzeniach Business, Enterprise i Edu; na koncie osobistym korzystasz z gotowych, nie tworzysz nowych. To są **reużywalne prompty**, a nie nowa technologia, dlatego są tutaj, a nie na starcie.
 
-**Sprawdzian:** masz co najmniej jeden zapisany prompt, którego użyłeś powtórnie, i potrafisz powiedzieć, dlaczego druga wersja jest lepsza od pierwszej.
+**Sprawdzian:** masz co najmniej jeden zapisany prompt, który wykorzystujesz powtórnie, i potrafisz powiedzieć, dlaczego druga wersja jest lepsza od pierwszej.
 
 **Typowy błąd:** kolekcjonowanie list "100 najlepszych promptów" zamiast dopracowania trzech własnych.
 
@@ -216,7 +216,7 @@ Zostawiam ten stopień na mapie, żeby było widać, gdzie kończy się ten kurs
 | Wdrożenie narzędzi w zespole i szkolenie ludzi | 4 |
 | Badanie architektur modeli, praca w ML | 5 |
 
-Do tego rachunek uczciwy wobec kalendarza: jeśli masz **trzy godziny tygodniowo**, realnym celem na kwartał jest 2, ewentualnie wejście w 3 - nie 5. Mapa nie jest zobowiązaniem.
+Do tego rachunek uczciwy wobec kalendarza: jeśli masz **trzy godziny tygodniowo** - czyli dużo więcej niż minimalne trzy kwadranse - realnym celem na kwartał jest 2, ewentualnie wejście w 3 - nie 5. Mapa nie jest zobowiązaniem.
 
 ## FOMO nie jest ścieżką nauki
 
@@ -229,13 +229,13 @@ Jeden autor nie wystarczy na zawsze - stąd biblioteka w [Zasobach](/zasoby/bibl
 Nie "planujesz karierę". Wybierasz stopień.
 
 1. **Napisz jedno zdanie "po co"** - konkretny efekt, nie hasło. Nie "chcę ogarnąć AI", tylko "chcę skrócić pisanie ofert z 90 do 30 minut".
-2. **Zakreśl numer 0-5, który jest prawdziwy dziś**, nie ten, który brzmi dumnie. Jeśli nigdy nie wysłałeś promptu - to 0 albo 1, nie 2. Użyj sprawdzianów z opisów stopni: jeśli nie zaliczasz sprawdzianu, jesteś niżej.
+2. **Zakreśl numer 0-5, który jest prawdziwy dziś**, nie ten, który brzmi dumnie. Jeśli nie masz za sobą ani jednego promptu - to 0 albo 1, nie 2. Użyj sprawdzianów z opisów stopni: jeśli nie zaliczasz sprawdzianu, jesteś niżej.
 3. **Napisz jednym zdaniem zadanie na 7 dni**, które rusza **o jeden** stopień w górę albo utrwala obecny. Przykład kształtu: _"Poziom 1. Trzy razy w tym tygodniu streszczenie notatki ze spotkania, liczby sprawdzam."_
 4. **Skonfrontuj z kalendarzem.** Jeśli cel to 5, a tydzień ma 3 godziny wolnego - zejdź do 2.
 
 **Zaliczenie:** kartka z jednym zdaniem "po co", numerem i jednym zadaniem na 7 dni. Brak listy dwunastu kursów.
 
-Typowy błąd: zawyżanie numeru. Jeśli nie zaliczasz sprawdzianu swojego poziomu, zejdź o stopień niżej, zrób zadanie i wróć do numeru za miesiąc.
+**Typowy wynik:** zawyżony numer. Jeśli nie zaliczasz sprawdzianu swojego poziomu, zejdź o stopień niżej, zrób zadanie i wróć do numeru za miesiąc.
 
 **Jeśli nic nie zgrzyta i zostaje czas:** skreśl z listy "do nauczenia" jedną rzecz, która należy do poziomu o dwa stopnie wyżej niż Twój. Na nią przyjdzie czas później.
 

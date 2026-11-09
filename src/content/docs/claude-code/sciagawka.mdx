@@ -35,7 +35,7 @@ import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 :::note[O tej stronie]
 **Czas:** ok. 4 minuty czytania + 30 minut ćwiczenia końcowego.
 **Poziom:** średni, ostatnia lekcja sekcji.
-**Wcześniej:** przeszedłeś całą sekcję. Tu: wszystko na jednej stronie i jedno duże ćwiczenie.
+**Wcześniej:** [Rozwiązywanie problemów](/claude-code/rozwiazywanie-problemow/) - masz za sobą całą sekcję. **Teraz:** masz wszystko na jednej stronie i jedno duże ćwiczenie.
 :::
 
 ## Komendy CLI
@@ -91,12 +91,12 @@ Alt+P model    Alt+T thinking      Alt+O       fast mode
 managed-settings.json                   # enterprise
 ~/.claude/CLAUDE.md · ./CLAUDE.md lub ./.claude/CLAUDE.md · ./CLAUDE.local.md   # pamięć (+ managed policy)
 .claude/rules/*.md                      # reguły (opcjonalnie paths:)
-.claude/commands/  ~/.claude/commands/  # własne komendy (starszy format, scalony ze skills)
+.claude/commands/  ~/.claude/commands/  # własne komendy (starszy format, scalony ze skillami)
 .claude/agents/    ~/.claude/agents/    # subagenci
 ~/.claude/agent-memory/                 # pamięć subagentów: zakres user
 .claude/agent-memory/                   # pamięć subagentów: zakres project
 .claude/agent-memory-local/             # pamięć subagentów: zakres local
-.claude/skills/    ~/.claude/skills/    # skills (SKILL.md)
+.claude/skills/    ~/.claude/skills/    # skille (SKILL.md)
 .mcp.json                               # MCP (project scope)
 ~/.claude.json                          # MCP local/user + stan
 ~/.claude/projects/<project>/memory/    # auto memory
@@ -119,7 +119,7 @@ Zbuduj własny starter kit. Sześć elementów, po jednym z każdej ważnej lekc
 
 Potem przejdź pełny cykl Explore → Plan → Code → Commit i zweryfikuj wynik przez `/code-review` oraz subagenta, którego zadaniem jest szukać błędów w Twoim rozwiązaniu.
 
-**Zaliczenie:** wszystkie sześć elementów działa naraz w jednym projekcie, a cykl kończy się commitem, którego nie musiałeś poprawiać ręcznie. To jest Twoja konfiguracja startowa do każdego następnego repozytorium.
+**Zaliczenie:** wszystkie sześć elementów działa naraz w jednym projekcie, a cykl kończy się commitem, którego nie trzeba poprawiać ręcznie. To jest Twoja konfiguracja startowa do każdego następnego repozytorium.
 
 **Jeśli nic nie zgrzyta i zostaje czas:** spakuj to wszystko jako plugin i sprawdź, czy da się zainstalować w drugim projekcie jedną komendą.
 

@@ -11,7 +11,7 @@ status: zastane
 
 ## Już się znamy
 
-Ten adres jest u mnie na liście, więc nie musisz robić nic więcej - powiadomienia o nowych i zaktualizowanych rozdziałach będą przychodzić tak jak dotąd.
+Ten adres jest u mnie na liście, więc nie musisz robić nic więcej - powiadomienia o nowych i zaktualizowanych lekcjach będą przychodzić tak jak dotąd.
 
 Jeśli mimo to od dawna nic nie dostajesz, sprawdź folder ze spamem albo napisz na [kontakt@lukaszpodgorski.pl](mailto:kontakt@lukaszpodgorski.pl). Zdarza się, że dostawcy poczty chowają takie wiadomości w nieoczekiwanych miejscach.
 

@@ -11,14 +11,13 @@ status: zastane
 
 ## Gotowe - jesteś na liście
 
-Dziękuję. Od teraz dam Ci znać, kiedy pojawi się nowy rozdział albo gdy zaktualizuję istniejący.
+Dziękuję. Od teraz dam Ci znać, kiedy pojawi się nowa lekcja albo gdy zaktualizuję istniejącą.
 
 Piszę tylko wtedy, gdy faktycznie mam co powiedzieć - nie ma tu cotygodniowego wysyłania na siłę. Z każdej wiadomości wypiszesz się jednym kliknięciem, a Twój adres nie trafi do nikogo poza mną.
 
 ## Od czego zacząć
 
-Jeśli trafiłeś tu, zanim zacząłeś czytać kurs, najprościej zacząć od początku:
+Jeśli kurs jest jeszcze przed Tobą, najprościej zacząć od początku:
 
 - [Wstęp do kursu](/podstawy/wstep/) - jeśli zaczynasz od zera
-- [Wybierz ścieżkę pod siebie](/sciezki/) - jeśli wolisz materiał ułożony pod Twoją rolę
 - [Program kursu](/) - jeśli chcesz najpierw zobaczyć całość

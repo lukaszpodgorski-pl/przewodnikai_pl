@@ -12,6 +12,14 @@
  *   3. <LinkCard> do wycietej strony -> <Card> z dopiskiem "w przygotowaniu",
  *   4. adres wycietej strony -> regula 302 na strone zbiorcza sekcji.
  *
+ * Do tego droga czytelnika, dopoki czesc sekcji jest pusta (D01, D03):
+ *
+ *   5. strona glowna dostaje ramke "Co jest gotowe dzis" nad programem kursu,
+ *   6. "Nastepny krok" do pustej sekcji -> tekst zastepczy z lista sekcji
+ *      gotowych dzis (generowana ze stanu, nie wpisana na sztywno),
+ *   7. liczba lekcji pustej sekcji w tabeli -> "w przebudowie",
+ *   8. przycisk i pozycja listy prowadzace na puste sciezki nauki znikaja.
+ *
  * Regula 302, nie 301 i nie 410: adres wroci po przegladzie redakcyjnym.
  * 301 kazalby wyszukiwarce zapomniec URL na stale.
  *
@@ -42,6 +50,8 @@ const KATALOG_PUBLIKACJI = join(KORZEN, '.publish');
 // remote'em `origin` glownego repo i z tym adresem nie ma nic wspolnego.
 const REPO_PUBLICZNE = 'https://github.com/lukaszpodgorski-pl/przewodnikai_pl.git';
 const KATALOG_TRESCI = 'src/content/docs';
+// Lista sekcji kursu w kolejnosci sciezki nauki - ta sama, z ktorej idzie menu.
+const PLIK_SEKCJI = 'src/config/sections.ts';
 // Zrodlo stalych regul 301 (stare plaskie adresy). Edytowane recznie.
 // Skrypt dopisuje do kopii w .publish/ sekcje regul 302 dla stron wycietych -
 // oryginal w repo pozostaje nietkniety.
@@ -81,6 +91,31 @@ const WYKLUCZONE_Z_PUBLIKACJI = new Set([
 	'.github/dependabot.yml',
 ]);
 
+/**
+ * Sekcje, ktore nie sa czescia kursu - nie trafiaja na liste "gotowe dzis",
+ * choc sa publikowane (Zasoby to slownik, biblioteka i kontakt, nie lekcje).
+ */
+const SEKCJE_POZA_KURSEM = new Set(['zasoby']);
+
+/**
+ * Dopisek przy sekcji na liscie "gotowe dzis". Decyzja D01 = A z dopiskiem B:
+ * czytelnik, ktory konczy Podstawy, musi wiedziec, ze Claude Code to inny
+ * poziom i praca w terminalu, zanim tam kliknie.
+ */
+const DOPISEK_SEKCJI = {
+	podstawy: 'dla początkujących',
+	'claude-code': 'poziom średni, wymaga terminala',
+};
+
+/**
+ * Adresy, do ktorych odeslania (przycisk na stronie glownej, pozycja listy)
+ * znikaja z publikacji, dopoki sekcja pod tym adresem jest pusta. Decyzja D03
+ * = B: sciezki nauki chowamy do czasu ich przegladu (Z14.8). Zrodlo zostaje
+ * nietkniete - gdy pierwsza sciezka dostanie status `gotowe`, przycisk wraca
+ * sam.
+ */
+const UKRYJ_ODESLANIA_DO_PUSTYCH = new Set(['/sciezki/']);
+
 const flagi = new Set(process.argv.slice(2));
 const CZY_PUSH = flagi.has('--push');
 const CZY_BUILD = !flagi.has('--bez-buildu');
@@ -115,6 +150,13 @@ function urlSekcji(url) {
 function czytajStatus(tresc) {
 	const dopasowanie = tresc.match(/^status:\s*(\S+)\s*$/m);
 	return dopasowanie ? dopasowanie[1] : 'szkic';
+}
+
+/** `{ slug: 'podstawy', label: 'Podstawy' }` z sections.ts -> [{ slug, label }] */
+function czytajSekcje(zrodlo) {
+	return [...zrodlo.matchAll(/\{\s*slug:\s*'([^']+)',\s*label:\s*'([^']+)'\s*\}/g)].map(
+		([, slug, label]) => ({ slug, label }),
+	);
 }
 
 function czytajTytul(tresc) {
@@ -161,6 +203,32 @@ function podmienKarty(tresc, czyWyciety) {
 	);
 }
 
+/** 1 lekcja, 2-4 lekcje, 5-21 lekcji, 22-24 lekcje, 12-14 lekcji. */
+function odmianaLekcji(n) {
+	if (n === 1) return 'lekcja';
+	const jednosci = n % 10;
+	const dziesiatki = n % 100;
+	if (jednosci >= 2 && jednosci <= 4 && (dziesiatki < 12 || dziesiatki > 14)) return 'lekcje';
+	return 'lekcji';
+}
+
+/**
+ * "[Podstawy](/podstawy/) (8 lekcji, dla poczatkujacych) i [Claude Code](...)
+ * (21 lekcji, poziom sredni, wymaga terminala)". Sekcja czesciowo gotowa
+ * dostaje "3 z 10 lekcji" - lista nie obiecuje wiecej, niz da sie przeczytac.
+ */
+function listaGotowych(gotowe) {
+	const pozycje = gotowe.map(({ url, nazwa, dostepne, wszystkie, dopisek }) => {
+		const liczba =
+			dostepne === wszystkie
+				? `${dostepne} ${odmianaLekcji(dostepne)}`
+				: `${dostepne} z ${wszystkie} ${odmianaLekcji(wszystkie)}`;
+		return `[${nazwa}](${url}) (${dopisek ? `${liczba}, ${dopisek}` : liczba})`;
+	});
+	if (pozycje.length <= 1) return pozycje.join('');
+	return `${pozycje.slice(0, -1).join(', ')} i ${pozycje[pozycje.length - 1]}`;
+}
+
 /**
  * "Nastepny krok" prowadzacy do wycietej strony. Bez tego lancuch nauki
  * urywa sie w prozni albo - po transformacji odnosnikow - zostaje zdanie
@@ -169,17 +237,50 @@ function podmienKarty(tresc, czyWyciety) {
  * Lapie oba warianty: "**Nastepny krok:**" w artykulach i "**Zacznij tutaj:**"
  * na stronach zbiorczych; etykieta z dopasowania zostaje w wyniku.
  *
- * `urlStrony` to adres przetwarzanej strony. Gdy wyciety cel lezy w sekcji,
- * ktorej strona zbiorcza jest ta sama strona, odeslanie "do przegladu sekcji"
- * prowadziloby do siebie samej - wtedy idzie tekst tymczasowy ze strona glowna
- * (docelowe brzmienie po decyzji D01, zadanie Z37).
+ * `urlStrony` to adres przetwarzanej strony. `stan` (opcjonalny) to wiedza
+ * o calej publikacji: `pusteSekcje` (Set adresow stron zbiorczych bez
+ * dostepnej lekcji), `gotowe` (sekcje kursu z dostepnymi lekcjami, w kolejnosci
+ * sciezki), `nazwySekcji` (Map adres -> nazwa z menu).
+ *
+ * Cel w pustej sekcji (sama strona zbiorcza albo lekcja w niej) to slepa
+ * uliczka, nawet jesli strona zbiorcza jest publikowana - tam czeka tylko
+ * ramka "w przebudowie". Wtedy idzie tekst zastepczy wg D01 = A:
+ *   - na stronie zbiorczej tej pustej sekcji: lista sekcji gotowych dzis,
+ *   - gdzie indziej: slownik albo biblioteka, plus sekcje gotowe poza
+ *     biezaca (czytelnik konczacy Podstawy nie dostaje Podstaw jeszcze raz).
  */
-function podmienNastepnyKrok(tresc, czyWyciety, urlStrony = null) {
+function podmienNastepnyKrok(tresc, czyWyciety, urlStrony = null, stan = null) {
 	return tresc.replace(
-		/\*\*(Następny krok|Zacznij tutaj):\*\*\s*\[([^\]]+)\]\(([^)]+)\)[^\n]*/g,
+		/\*\*(Następny krok|Zacznij tutaj):\*\*\s*\[([^\]]+)\]\(([^)]+)\)[^\r\n]*/g,
 		(calosc, naglowek, etykieta, url) => {
+			const sekcja = urlSekcji(url.split('#')[0].split('?')[0]);
+
+			if (stan?.pusteSekcje?.has(sekcja)) {
+				const gotowe = stan.gotowe ?? [];
+				const slownik = czyWyciety('/zasoby/slownik-pojec/')
+					? null
+					: '[słownik pojęć](/zasoby/slownik-pojec/)';
+				const biblioteka = czyWyciety('/zasoby/biblioteka/')
+					? null
+					: '[bibliotekę zasobów](/zasoby/biblioteka/)';
+
+				if (urlStrony && sekcja === urlStrony) {
+					const czytaj = gotowe.length ? ` Dziś możesz czytać: ${listaGotowych(gotowe)}.` : '';
+					const trudne = slownik ? ` Trudne słowa wyjaśnia ${slownik}.` : '';
+					return `**${naglowek}:** lekcje tej sekcji wracają po przeglądzie.${czytaj}${trudne}`;
+				}
+
+				const nazwa = stan.nazwySekcji?.get(sekcja);
+				const opis = nazwa ? `sekcja "${nazwa}" jest w przebudowie` : 'ta sekcja jest w przebudowie';
+				const zasoby = [slownik, biblioteka].filter(Boolean);
+				const sprawdz = zasoby.length ? ` Do tego czasu sprawdź ${zasoby.join(' albo ')}.` : '';
+				const biezaca = urlStrony ? urlSekcji(urlStrony) : null;
+				const inne = gotowe.filter((g) => g.url !== biezaca);
+				const dalej = inne.length ? ` Dziś możesz też przejść do: ${listaGotowych(inne)}.` : '';
+				return `**${naglowek}:** ${opis}.${sprawdz}${dalej}`;
+			}
+
 			if (!czyWyciety(url)) return calosc;
-			const sekcja = urlSekcji(url);
 			if (urlStrony && sekcja === urlStrony) {
 				return `**${naglowek}:** pierwsza lekcja tej sekcji jest w przygotowaniu - na [stronie głównej](/) zobaczysz, co jest gotowe dziś.`;
 			}
@@ -228,7 +329,7 @@ function odlinkujOdnosniki(tresc, czyWyciety) {
 function dodajZapowiedzSekcji(tresc) {
 	const zapowiedz = [
 		':::note[Ta sekcja jest w przebudowie]',
-		'Przechodzę przez te teksty artykuł po artykule i poprawiam to, co się nie broni.',
+		'Przechodzę przez te teksty lekcja po lekcji i poprawiam to, co się nie broni.',
 		'Lekcje wracają tutaj pojedynczo, w miarę jak kończę przegląd - pod tymi samymi',
 		'adresami co wcześniej. Poniżej lista tego, co się w tej sekcji pojawi.',
 		':::',
@@ -258,26 +359,123 @@ function dodajZapowiedzSekcji(tresc) {
 }
 
 /**
+ * Ramka "Co jest gotowe dzis" na stronie glownej, tuz nad "## Program kursu"
+ * (S003, D01 = A). Bez niej wszystkie dziewiec kart programu wyglada tak
+ * samo i czytelnik nie wie, ktore sekcje da sie dzis czytac.
+ *
+ * Brak naglowka = tresc bez zmian; main() wykrywa to i przerywa publikacje,
+ * zeby ramka nie zniknela po cichu po zmianie naglowka w zrodle.
+ */
+const NAGLOWEK_PROGRAMU = /^## Program kursu\s*$/m;
+
+function dodajRamkeGotowe(tresc, gotowe) {
+	if (!gotowe.length) return tresc;
+	const dopasowanie = tresc.match(NAGLOWEK_PROGRAMU);
+	if (!dopasowanie) return tresc;
+	const nl = tresc.includes('\r\n') ? '\r\n' : '\n';
+	const ramka = [
+		':::note[Co jest gotowe dziś]',
+		`Przechodzę przez przewodnik lekcja po lekcji. Dziś możesz czytać: ${listaGotowych(gotowe)}. Pozostałe sekcje wracają pojedynczo - zapisz się na powiadomienia niżej, a dam Ci znać.`,
+		':::',
+		'',
+		'',
+	].join(nl);
+	return tresc.slice(0, dopasowanie.index) + ramka + tresc.slice(dopasowanie.index);
+}
+
+/**
+ * Wiersz tabeli "| 2 | [Jak dziala AI](/jak-dziala-ai/) - 13 lekcji | ..."
+ * dla pustej sekcji -> "- w przebudowie" (S005, `wstep`). Liczba obiecuje
+ * lekcje, ktorych w publicznej wersji nie ma; po powrocie sekcji wraca sama.
+ */
+function oznaczPusteWTabeli(tresc, pusteSekcje) {
+	return tresc.replace(/^\|[^\r\n]*$/gm, (wiersz) =>
+		wiersz.replace(
+			/(\[[^\]]+\]\((\/[^/)\s]+\/)\)) - \d+ lekcj[a-z]*/g,
+			(calosc, odnosnik, url) => (pusteSekcje.has(url) ? `${odnosnik} - w przebudowie` : calosc),
+		),
+	);
+}
+
+/**
+ * Odeslania do ukrytych adresow (D03 = B, S012):
+ *   - akcja hero we frontmatterze (`- text: ...` z `link: <adres>`) znika cala,
+ *   - pozycja listy zaczynajaca sie od odnosnika pod ten adres znika cala.
+ * Odnosnik w srodku zdania zostaje - adres dziala, tylko nie reklamujemy go.
+ */
+function ukryjOdeslania(tresc, ukryte) {
+	if (!ukryte.size) return tresc;
+
+	let wynik = tresc;
+	const frontmatter = wynik.match(/^---\r?\n[\s\S]*?\r?\n---\r?\n/);
+	if (frontmatter) {
+		const linie = frontmatter[0].split(/(?<=\n)/);
+		const nowe = [];
+		for (let i = 0; i < linie.length; i++) {
+			const akcja = linie[i].match(/^(\s*)- text:/);
+			if (!akcja) {
+				nowe.push(linie[i]);
+				continue;
+			}
+			const wciecie = akcja[1].length;
+			let koniec = i + 1;
+			while (koniec < linie.length) {
+				const wlasne = linie[koniec].match(/^( *)\S/);
+				if (!wlasne || wlasne[1].length <= wciecie) break;
+				koniec++;
+			}
+			const blok = linie.slice(i, koniec);
+			const link = blok.join('').match(/^\s*link:\s*(\S+)\s*$/m);
+			if (!(link && ukryte.has(link[1]))) nowe.push(...blok);
+			i = koniec - 1;
+		}
+		wynik = nowe.join('') + wynik.slice(frontmatter[0].length);
+	}
+
+	return wynik.replace(/^[ \t]*- \[[^\]]+\]\(([^)\s]+)\)[^\r\n]*(\r?\n|$)/gm, (calosc, url) =>
+		ukryte.has(url.split('#')[0]) ? '' : calosc,
+	);
+}
+
+/**
  * Kolejnosc ma znaczenie: "Nastepny krok" i "Wiecej" musza pojsc PRZED
  * odlinkowaniem, bo inaczej odlinkowanie zjada odnosnik w tych blokach
  * i zostaje zdanie zapowiadajace lekcje, ktorej nie ma na stronie.
  */
-function transformuj(tresc, czyWyciety, { pustaSekcja = false, url = null } = {}) {
+function transformuj(
+	tresc,
+	czyWyciety,
+	{ pustaSekcja = false, url = null, stan = null } = {},
+) {
 	let wynik = podmienKarty(tresc, czyWyciety);
-	wynik = podmienNastepnyKrok(wynik, czyWyciety, url);
+	wynik = podmienNastepnyKrok(wynik, czyWyciety, url, stan);
 	wynik = usunMartweWiecej(wynik, czyWyciety);
 	wynik = odlinkujOdnosniki(wynik, czyWyciety);
 	if (pustaSekcja) wynik = dodajZapowiedzSekcji(wynik);
+	if (stan) {
+		if (url === '/' && stan.pusteSekcje.size) wynik = dodajRamkeGotowe(wynik, stan.gotowe);
+		wynik = oznaczPusteWTabeli(wynik, stan.pusteSekcje);
+		wynik = ukryjOdeslania(
+			wynik,
+			new Set([...UKRYJ_ODESLANIA_DO_PUSTYCH].filter((u) => stan.pusteSekcje.has(u))),
+		);
+	}
 	return wynik;
 }
 
 // Eksport na potrzeby testow (scripts/lib/publish.test.mjs).
 export {
+	czytajSekcje,
+	dodajRamkeGotowe,
+	listaGotowych,
 	odlinkujOdnosniki,
+	odmianaLekcji,
+	oznaczPusteWTabeli,
 	plikNaUrl,
 	podmienKarty,
 	podmienNastepnyKrok,
 	transformuj,
+	ukryjOdeslania,
 	urlSekcji,
 	usunMartweWiecej,
 	WYKLUCZONE_Z_PUBLIKACJI,
@@ -396,7 +594,8 @@ function main() {
 	for (const wpis of [...publikowane, ...wyciete]) {
 		const sekcja = urlSekcji(wpis.url);
 		if (sekcja === wpis.url || wpis.url === '/') continue; // strona zbiorcza
-		const licznik = artykulowWSekcji.get(sekcja) ?? { dostepne: 0 };
+		const licznik = artykulowWSekcji.get(sekcja) ?? { dostepne: 0, wszystkie: 0 };
+		licznik.wszystkie++;
 		if (!wycieteUrls.has(wpis.url)) licznik.dostepne++;
 		artykulowWSekcji.set(sekcja, licznik);
 	}
@@ -406,6 +605,25 @@ function main() {
 			.map(([sekcja]) => sekcja),
 	);
 
+	// Sekcje kursu, ktore da sie dzis czytac - w kolejnosci sciezki nauki.
+	// Z nich powstaje ramka na stronie glownej i tekst zastepczy na slepych
+	// uliczkach (D01 = A).
+	const sekcje = czytajSekcje(readFileSync(join(KORZEN, PLIK_SEKCJI), 'utf8'));
+	if (!sekcje.length) przerwij(`nie udalo sie odczytac listy sekcji z ${PLIK_SEKCJI}.`);
+	const gotowe = sekcje
+		.filter(({ slug }) => !SEKCJE_POZA_KURSEM.has(slug))
+		.map(({ slug, label }) => {
+			const url = `/${slug}/`;
+			const licznik = artykulowWSekcji.get(url) ?? { dostepne: 0, wszystkie: 0 };
+			return { url, nazwa: label, ...licznik, dopisek: DOPISEK_SEKCJI[slug] ?? null };
+		})
+		.filter((s) => s.dostepne > 0);
+	const stan = {
+		pusteSekcje,
+		gotowe,
+		nazwySekcji: new Map(sekcje.map(({ slug, label }) => [`/${slug}/`, label])),
+	};
+
 	let zmienionych = 0;
 	for (const wpis of publikowane) {
 		const cel = join(KATALOG_PUBLIKACJI, wpis.sciezka);
@@ -413,9 +631,25 @@ function main() {
 		const nowa = transformuj(wpis.zawartosc, czyWyciety, {
 			pustaSekcja: pusteSekcje.has(wpis.url),
 			url: wpis.url,
+			stan,
 		});
+		if (
+			wpis.url === '/' &&
+			pusteSekcje.size &&
+			gotowe.length &&
+			!nowa.includes('[Co jest gotowe dziś]')
+		) {
+			przerwij(
+				'strona glowna nie dostala ramki "Co jest gotowe dzis" - w index.mdx\n' +
+					'  brakuje naglowka "## Program kursu", nad ktorym ramka ma stanac.',
+			);
+		}
 		if (nowa !== wpis.zawartosc) zmienionych++;
 		writeFileSync(cel, nowa, 'utf8');
+	}
+	if (gotowe.length) {
+		const opis = gotowe.map((g) => `${g.nazwa} ${g.dostepne}/${g.wszystkie}`).join(', ');
+		console.log(`  Sekcje gotowe dzis: ${opis}`);
 	}
 	if (pusteSekcje.size) {
 		console.log(`  Sekcji z zapowiedzia przebudowy: ${pusteSekcje.size}`);

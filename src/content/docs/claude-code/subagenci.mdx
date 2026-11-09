@@ -1,12 +1,12 @@
 ---
 title: Subagenci w Claude Code
-description: Subagenci w Claude Code - asystent w osobnym oknie kontekstu. Format pliku, pamięć, delegacja, równoległość, przykłady. Ćwiczenie zajmie 10 minut.
+description: Subagenci w Claude Code - asystent w osobnym oknie kontekstowym. Format pliku, pamięć, delegacja, równoległość, przykłady. Ćwiczenie zajmie 10 minut.
 sidebar:
   label: 'Subagenci'
   order: 11
 educationalLevel: Intermediate
 teaches:
-  - Po co wydzielać zadanie do osobnego okna kontekstu
+  - Po co wydzielać zadanie do osobnego okna kontekstowego
   - Jak zdefiniować subagenta plikiem Markdown
   - Jak działa pamięć subagenta i dlaczego warto wprost poprosić go o jej prowadzenie
 about:
@@ -22,7 +22,7 @@ mentions:
     sameAs: https://en.wikipedia.org/wiki/Model_Context_Protocol
 faq:
   - q: Po co w ogóle używać subagentów?
-    a: 'Głównie po to, żeby chronić główne okno kontekstu. Subagent pracuje w osobnym oknie i zwraca tylko podsumowanie. Przy okazji dostajesz wymuszone ograniczenie narzędzi, specjalizację i kontrolę kosztów, bo do lekkich zadań możesz przypisać tańszy model.'
+    a: 'Głównie po to, żeby chronić główne okno kontekstowe. Subagent pracuje w osobnym oknie i zwraca tylko podsumowanie. Przy okazji dostajesz wymuszone ograniczenie narzędzi, specjalizację i kontrolę kosztów, bo do lekkich zadań możesz przypisać tańszy model.'
   - q: Czy subagent pamięta coś między sesjami?
     a: 'Tak, jeśli dodasz mu pole memory ustawione na project, user albo local. Dostaje wtedy własny katalog na notatki i instrukcje, jak z niego korzystać. Warto też w system prompcie wprost poprosić go, żeby pamięć aktualizował - wtedy robi to regularnie.'
   - q: Ilu subagentów może pracować naraz?
@@ -36,10 +36,10 @@ import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 :::note[O tej stronie]
 **Czas:** ok. 10 minut czytania + 10 minut ćwiczenia.
 **Poziom:** średni, po [uprawnieniach](/claude-code/uprawnienia-i-bezpieczenstwo/).
-**Wcześniej:** wiesz, czego agentowi wolno. Teraz nauczysz się dzielić pracę między kilku wyspecjalizowanych pomocników.
+**Wcześniej:** [Uprawnienia i bezpieczeństwo](/claude-code/uprawnienia-i-bezpieczenstwo/) - wiesz, czego agentowi wolno. **Teraz:** nauczysz się dzielić pracę między kilku wyspecjalizowanych pomocników.
 :::
 
-Subagent to wyspecjalizowany asystent, który pracuje w **osobnym <Termin id="okno-kontekstowe">oknie kontekstu</Termin>** (czyli we własnej rozmowie, niezależnej od Twojej - nie widzi tego, co pisaliście wcześniej). Ma własny system prompt (stałą instrukcję, kim jest i jak ma działać), zestaw narzędzi, uprawnienia i opcjonalnie własny model. Do Ciebie wraca tylko jego podsumowanie, więc Twoja rozmowa się nie zapycha. Wyjątkiem jest `/subtask`, który przekazuje pomocnikowi całą rozmowę ([lista komend](https://code.claude.com/docs/en/commands)).
+<Termin id="subagent">Subagent</Termin> to wyspecjalizowany asystent, który pracuje w **osobnym <Termin id="okno-kontekstowe">oknie kontekstowym</Termin>** (czyli we własnej rozmowie, niezależnej od Twojej - nie widzi tego, co pisaliście wcześniej). Ma własny system prompt (stałą instrukcję, kim jest i jak ma działać), zestaw narzędzi, uprawnienia i opcjonalnie własny model. Do Ciebie wraca tylko jego podsumowanie, więc Twoja rozmowa się nie zapycha. Wyjątkiem jest `/subtask`, który przekazuje pomocnikowi całą rozmowę ([lista komend](https://code.claude.com/docs/en/commands)).
 
 Zyskujesz pięć rzeczy: izolację kontekstu, wymuszanie ograniczeń narzędzi, reużywalność, specjalizację i kontrolę kosztów - na przykład Haiku do lekkich zadań.
 
@@ -182,10 +182,10 @@ Raportuj wg severity z konkretną lokalizacją.
 
 ## Teraz wiesz
 
-- Subagent to osobne okno kontekstu, a jego głównym zadaniem jest chronić Twoje.
+- Subagent to osobne okno kontekstowe, a jego głównym zadaniem jest chronić Twoje.
 - Definicja to plik Markdown z frontmatterem, gdzie `description` decyduje o delegacji.
 - Pamięć subagenta włączasz polem `memory`, a poleceniem w system prompcie warto dopilnować, żeby faktycznie ją prowadził.
 
 **Następny krok:** [Hooks](/claude-code/hooks/) - kiedy wpis w CLAUDE.md to za mało i potrzebujesz gwarancji, że coś się wykona.
 
-<SlowniczekStrony terminy={["agent-ai", "okno-kontekstowe"]} />
+<SlowniczekStrony terminy={["subagent", "agent-ai", "okno-kontekstowe"]} />

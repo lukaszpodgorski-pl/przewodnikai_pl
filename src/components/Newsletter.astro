@@ -29,7 +29,7 @@ const { wariant = 'sekcja' } = Astro.props;
 const zwijany = wariant === 'pasek';
 const Kontener = zwijany ? 'details' : Fragment;
 
-const naglowek = zwijany ? 'Nowy rozdział? Dam Ci znać - bez spamu.' : 'Nie przegap nowych materiałów';
+const naglowek = zwijany ? 'Nowa lekcja? Dam Ci znać - bez spamu.' : 'Nie przegap nowych materiałów';
 ---
 
 {/* data-pagefind-ignore jest konieczne: stopka Starlight lezy WEWNATRZ
@@ -57,7 +57,7 @@ const naglowek = zwijany ? 'Nowy rozdział? Dam Ci znać - bez spamu.' : 'Nie pr
 				<div class="tekst">
 					<h2 id="newsletter-naglowek">{naglowek}</h2>
 					<p class="opis">
-						Zapisz się, a dam Ci znać, kiedy pojawi się nowy rozdział albo gdy zaktualizuję istniejący. Bez
+						Zapisz się, a dam Ci znać, kiedy pojawi się nowa lekcja albo gdy zaktualizuję istniejącą. Bez
 						spamu.
 					</p>
 				</div>

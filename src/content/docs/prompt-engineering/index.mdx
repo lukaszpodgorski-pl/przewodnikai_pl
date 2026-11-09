@@ -23,7 +23,7 @@ faq:
   - q: Czy prompt engineering ma sens, skoro modele są coraz lepsze?
     a: Modele rzeczywiście coraz lepiej radzą sobie z niedopowiedzeniami, ale to nie rozwiązuje problemu. Jeśli nie wiesz dokładnie, czego chcesz, żaden model tego nie ustali. Umiejętność precyzyjnego opisania zadania zostaje przydatna niezależnie od wersji modelu.
   - q: Czy techniki z tej sekcji działają w każdym chatbocie?
-    a: Tak. Podstawy - rola, zadanie, ograniczenia, format - działają w każdym czacie. Techniki z nazwami, takie jak zero-shot (polecenie bez przykładów) czy chain-of-thought (prośba o rozpisanie kroków), też, ale nie musisz ich wkuwać. Kiedy po którą sięgnąć, pokazuję w lekcjach Techniki i Rozumowanie. Ćwiczenie zawsze robisz na własnym zadaniu.
+    a: Tak. Podstawy - rola, zadanie, ograniczenia, format - działają w każdym czacie. Techniki z nazwami, takie jak zero-shot (polecenie bez przykładów) czy chain-of-thought (prośba o rozpisanie kroków), też, ale nie musisz ich wkuwać. Kiedy po którą sięgnąć, pokazuję w lekcjach "Techniki promptowania" i "Rozumowanie w promptach". Ćwiczenie zawsze robisz na własnym zadaniu.
 status: zastane
 ---
 
@@ -31,7 +31,7 @@ import { CardGrid, LinkCard, Card } from '@astrojs/starlight/components';
 
 
 :::note[Ta sekcja jest w przebudowie]
-Przechodzę przez te teksty artykuł po artykule i poprawiam to, co się nie broni.
+Przechodzę przez te teksty lekcja po lekcji i poprawiam to, co się nie broni.
 Lekcje wracają tutaj pojedynczo, w miarę jak kończę przegląd - pod tymi samymi
 adresami co wcześniej. Poniżej lista tego, co się w tej sekcji pojawi.
 :::
@@ -46,21 +46,21 @@ Różnica między osobą, która "próbowała ChatGPT i nie było rewelacyjnie",
 
 Zaczynamy od jednego słabego promptu i czterech pól do wypełnienia: rola, zadanie, ograniczenia, format. Potem dokładamy kolejny poziom tylko wtedy, gdy poprzedni nie wystarcza - nie wkuwasz katalogu nazw. Gdy zadanie ma kilka kroków, rozbijasz je na osobne polecenia, zamiast chować błąd w jednym poleceniu, które ma zrobić wszystko naraz. Dalej uczysz się wymuszać na modelu gotowy szablon pól zamiast prosić "opisz ładnie", a na końcu bierzesz pod uwagę całą rozmowę, którą model widzi, nie tylko ostatnie zdanie.
 
-Ostatnie cztery artykuły to zastosowania. Automatyzacja pokazuje, jak łączyć prompty w łańcuchy. Programowanie - jak korzystać z AI przy kodzie, także bez pisania programów na co dzień. Najlepsze praktyki uczą oddzielać Twoje polecenie od wklejonego cudzego tekstu, który może próbować przejąć zadanie (tzw. prompt injection). Na końcu baza: jeden starter do przerobienia, nie katalog do skopiowania w ciemno.
+Ostatnie cztery lekcje to zastosowania. Automatyzacja pokazuje, jak łączyć prompty w łańcuchy. Programowanie - jak korzystać z AI przy kodzie, także bez pisania programów na co dzień. "Cudzy tekst w prompcie" uczy oddzielać Twoje polecenie od wklejonego cudzego tekstu, który może próbować przejąć zadanie (tzw. prompt injection). Na końcu baza: jeden starter do przerobienia, nie katalog do skopiowania w ciemno.
 
 ## Dla kogo to jest
 
-Dla każdego, kto korzysta z chatbota częściej niż okazjonalnie i ma poczucie, że wyciska z niego mniej, niż dałoby się wycisnąć. Nie potrzebujesz umieć programować - artykuł o programowaniu też jest napisany z myślą o osobach nietechnicznych.
+Dla każdego, kto korzysta z chatbota częściej niż okazjonalnie i ma poczucie, że wyciska z niego mniej, niż dałoby się wycisnąć. Nie potrzebujesz umieć programować - lekcja o programowaniu też jest napisana z myślą o osobach nietechnicznych.
 
 ## W jakiej kolejności czytać
 
-Pierwsze cztery po kolei, to fundament. Potem możesz wybierać według potrzeb: automatyzacja i programowanie są niezależne od siebie. "Najlepsze praktyki" warto przeczytać niezależnie od reszty - to jeden nawyk, który chroni Cię za każdym razem, gdy wklejasz do czatu cudzy tekst.
+Pierwsze cztery po kolei, to fundament. Potem możesz wybierać według potrzeb: automatyzacja i programowanie są niezależne od siebie. "Cudzy tekst w prompcie" warto przeczytać niezależnie od reszty - to jeden nawyk, który chroni Cię za każdym razem, gdy wklejasz do czatu cudzy tekst.
 
 ## Czego nie ma w tej sekcji
 
 Nie ma tu przeglądu narzędzi ani porównania chatbotów - to sekcja [Narzędzia AI](/narzedzia/). Nie ma też mechaniki modeli; jeśli chcesz wiedzieć, dlaczego dana technika działa, wróć do [Jak działa AI](/jak-dziala-ai/).
 
-## Artykuły w tej sekcji
+## Lekcje w tej sekcji
 
 <CardGrid>
   <Card title="Wprowadzenie do inżynierii promptów">
@@ -72,7 +72,7 @@ Nie ma tu przeglądu narzędzi ani porównania chatbotów - to sekcja [Narzędzi
   <Card title="Techniki promptowania">
 		Wysyłasz to samo zadanie raz bez rozpisanych kroków, raz z nimi, i porównujesz wyniki. Ćwiczenie: 5 minut. (w przygotowaniu)
 	</Card>
-  <Card title="Techniki rozumowania AI">
+  <Card title="Rozumowanie w promptach">
 		Porównujesz jedno polecenie, które ma zrobić wszystko naraz, z dwoma osobnymi promptami - najpierw lista ograniczeń, potem decyzja. Ćwiczenie: 5 minut. (w przygotowaniu)
 	</Card>
   <Card title="Strukturyzacja danych w promptach">
@@ -87,7 +87,7 @@ Nie ma tu przeglądu narzędzi ani porównania chatbotów - to sekcja [Narzędzi
   <Card title="Programowanie z AI">
 		Zlecasz modelowi jedną funkcję i sprawdzasz w kodzie, przez ile faktycznie dzieli wynik. Ćwiczenie: 5 minut. (w przygotowaniu)
 	</Card>
-  <Card title="Najlepsze praktyki">
+  <Card title="Cudzy tekst w prompcie">
 		Sprawdzasz, czy wklejony cudzy tekst przejął polecenie, czy zostało tylko materiałem do tłumaczenia. Ćwiczenie: 5 minut. (w przygotowaniu)
 	</Card>
   <Card title="Baza promptów">
@@ -96,5 +96,5 @@ Nie ma tu przeglądu narzędzi ani porównania chatbotów - to sekcja [Narzędzi
 </CardGrid>
 
 :::note[Następny krok]
-**Zacznij tutaj:** pierwsza lekcja tej sekcji jest w przygotowaniu - na [stronie głównej](/) zobaczysz, co jest gotowe dziś.
+**Zacznij tutaj:** lekcje tej sekcji wracają po przeglądzie. Dziś możesz czytać: [Podstawy](/podstawy/) (8 lekcji, dla początkujących) i [Claude Code](/claude-code/) (21 lekcji, poziom średni, wymaga terminala). Trudne słowa wyjaśnia [słownik pojęć](/zasoby/slownik-pojec/).
 :::

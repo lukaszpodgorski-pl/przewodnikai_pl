@@ -23,7 +23,7 @@ mentions:
     type: SoftwareApplication
 faq:
   - q: Od czego zacząć diagnozę dowolnego problemu?
-    a: 'Od claude doctor w shellu albo /doctor w sesji - ta druga potrafi część rzeczy naprawić. Jeśli podejrzewasz zepsutą konfigurację, uruchom claude --safe-mode, który wyłącza wszystkie Twoje dodatki (CLAUDE.md, skills, pluginy, hooks, MCP).'
+    a: 'Od claude doctor w shellu albo /doctor w sesji - ta druga potrafi część rzeczy naprawić. Jeśli podejrzewasz zepsutą konfigurację, uruchom claude --safe-mode, który wyłącza wszystkie Twoje dodatki (CLAUDE.md, skille, pluginy, hooki, MCP).'
   - q: Claude nie widzi moich plików. Co zrobić?
     a: 'Dodaj katalog przez /add-dir albo flagę add-dir przy starcie. Potem sprawdź w /context sekcję Memory files oraz katalog roboczy - najczęściej problem leży w tym drugim.'
   - q: Czy skasowanie katalogu ~/.claude naprawia problemy?
@@ -36,7 +36,7 @@ import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 :::note[O tej stronie]
 **Czas:** ok. 6 minut czytania + 5 minut ćwiczenia.
 **Poziom:** średni, po [najlepszych praktykach](/claude-code/najlepsze-praktyki/).
-**Wcześniej:** wszystko działa. Tu: strona, do której wracasz, gdy przestanie.
+**Wcześniej:** [Najlepsze praktyki](/claude-code/najlepsze-praktyki/) - wszystko działa. **Teraz:** poznajesz stronę, do której wracasz, gdy przestanie.
 :::
 
 | Problem | Diagnoza i naprawa |
@@ -50,7 +50,7 @@ import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 | WSL: wolne operacje na plikach | trzymaj repozytorium w systemie plików Linuksa, nie na `/mnt/c/...` |
 | "Claude nie widzi plików" | dodaj katalog przez `/add-dir` albo `--add-dir`; sprawdź `/context` → Memory files i katalog roboczy |
 | Problemy z uprawnieniami | `/permissions` pokazuje reguły i to, skąd pochodzą. Reguła blokująca (deny) wygrywa z pytaniem (ask), a pytanie z pozwoleniem (allow) |
-| Zepsuta konfiguracja | `claude --safe-mode` wyłącza Twoje dodatki (CLAUDE.md, skills, pluginy, hooks, MCP), potem `claude doctor` |
+| Zepsuta konfiguracja | `claude --safe-mode` wyłącza Twoje dodatki (CLAUDE.md, skille, pluginy, hooki, MCP), potem `claude doctor` |
 | Ogólna diagnostyka | `claude doctor` z shella, `/doctor` w sesji (potrafi naprawić), `/debug` |
 | JetBrains albo VS Code nie łączy | `/ide`, restart IDE i rozszerzenia; sprawdź, czy CLI jest na PATH |
 
@@ -80,7 +80,7 @@ Warto je znać, jeśli trafisz na starszą wersję. Rozwiązanie każdej to aktu
 
 **Zaliczenie:** masz jedną konkretną poprawkę do zrobienia. Nie musisz jej wdrażać od razu - chodzi o to, żebyś wiedział, gdzie patrzeć, zanim coś się zepsuje.
 
-**Jeśli nic nie zgrzyta i zostaje czas:** uruchom `claude --safe-mode` i porównaj `/context` z tym, co widziałeś wcześniej. Zobaczysz, ile z Twojego kontekstu pochodzi z Twoich dodatków.
+**Jeśli nic nie zgrzyta i zostaje czas:** uruchom `claude --safe-mode` i porównaj `/context` z tym, co pokazywał wcześniej. Zobaczysz, ile z Twojego kontekstu pochodzi z Twoich dodatków.
 
 ## Teraz wiesz
 

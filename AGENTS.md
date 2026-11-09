@@ -108,7 +108,7 @@ npm run build
 npx --yes markdownlint-cli2 "src/content/**/*.md" "*.md"
 ```
 
-`npm run build` jest pełnym sprawdzeniem treści - wykrywa złamane linki wewnętrzne, błędy frontmattera (schemat Zod) i błędy MDX. Transformacje publikacyjne mają własne testy (`npm run test:publish`, 18 przypadków).
+`npm run build` jest pełnym sprawdzeniem treści - wykrywa złamane linki wewnętrzne, błędy frontmattera (schemat Zod) i błędy MDX. Transformacje publikacyjne mają własne testy (`npm run test:publish`, 37 przypadków).
 
 Serwer deweloperski uruchamiaj w tle: `astro dev --background`; zarządzanie: `astro dev stop`, `astro dev status`, `astro dev logs`.
 

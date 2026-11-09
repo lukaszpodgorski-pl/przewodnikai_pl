@@ -25,7 +25,7 @@ faq:
 status: zastane
 ---
 
-Ostatnia aktualizacja: 26.08.2026.
+Ostatnia aktualizacja: 09.11.2026.
 
 Regulamin określa zasady korzystania z serwisu przewodnikai.pl oraz z newslettera. Do czytania serwisu nie musisz go akceptować ani zakładać konta. Zapisując się na newsletter, akceptujesz postanowienia poniższego dokumentu.
 
@@ -54,10 +54,9 @@ Regulamin określa zasady korzystania z serwisu przewodnikai.pl oraz z newslette
 
 ## §4. Prawa własności intelektualnej
 
-1. Treści serwisu - teksty, grafiki, układ i kod - podlegają ochronie prawa autorskiego.
-2. Wolno cytować fragmenty materiałów w zakresie dozwolonego użytku, ze wskazaniem autora i odnośnikiem do strony źródłowej.
-3. Zwielokrotnianie całości materiałów, ich rozpowszechnianie lub wykorzystanie komercyjne wymaga zgody Usługodawcy.
-4. Nazwy i znaki towarowe podmiotów trzecich występujące w materiałach należą do ich właścicieli i są używane wyłącznie w celach informacyjnych.
+1. Treści merytoryczne serwisu (teksty lekcji i grafiki, o ile podpis nie mówi inaczej) są udostępniane na licencji [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.pl): możesz je kopiować, zmieniać i rozpowszechniać, także komercyjnie, z podaniem autorstwa ("Przewodnik AI, przewodnikai.pl, Łukasz Podgórski") i na tej samej licencji.
+2. Układ strony i kod podlegają osobnym zasadom opisanym w [repozytorium](https://github.com/lukaszpodgorski-pl/przewodnikai_pl).
+3. Nazwy i znaki towarowe podmiotów trzecich występujące w materiałach należą do ich właścicieli i są używane wyłącznie w celach informacyjnych.
 
 ## §5. Newsletter
 

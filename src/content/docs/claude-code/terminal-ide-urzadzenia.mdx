@@ -25,10 +25,10 @@ mentions:
     sameAs: https://en.wikipedia.org/wiki/Tmux
     type: SoftwareApplication
 faq:
-  - q: Czy wtyczka do VS Code to inne narzędzie niż CLI?
-    a: 'Nie. Rozszerzenia do VS Code i JetBrains są nakładkami na ten sam silnik i piszą do tego samego katalogu ~/.claude/. Wtyczka do VS Code ma dodatkowo własny panel czatu i widok Focus.'
+  - q: Czy rozszerzenie VS Code to inne narzędzie niż CLI?
+    a: 'Nie. Rozszerzenie VS Code i plugin JetBrains są nakładkami na ten sam silnik i piszą do tego samego katalogu ~/.claude/. Rozszerzenie VS Code ma dodatkowo własny panel czatu i widok Focus.'
   - q: Jak przenieść rozpoczętą sesję z terminala na desktop?
-    a: 'Komendą /desktop. W drugą stronę działa /resume w aplikacji desktop - otwiera picker sesji terminalowych pogrupowanych po dniach, z folderem, gałęzią i podglądem miejsca, w którym skończyłeś.'
+    a: 'Komendą /desktop. W drugą stronę działa /resume w aplikacji desktop - otwiera picker sesji terminalowych pogrupowanych po dniach, z folderem, gałęzią i podglądem miejsca, w którym praca się zatrzymała.'
   - q: Czy mogę uruchomić zadanie na komputerze, będąc poza domem?
     a: 'Tak, przez Remote Control. Przed wyjściem uruchamiasz na komputerze claude remote-control (skrót: claude rc), a potem otwierasz sesję w aplikacji Claude na telefonie - przez kod QR albo z listy w zakładce Code. Sesja działa na Twoim komputerze, z jego plikami i narzędziami.'
 status: gotowe
@@ -39,7 +39,7 @@ import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 :::note[O tej stronie]
 **Czas:** ok. 6 minut czytania + 5 minut ćwiczenia.
 **Poziom:** średni, po [pracy z Gitem](/claude-code/git-i-github/).
-**Wcześniej:** pracujesz w jednym terminalu. Tu: rozkładasz pracę na kilka miejsc naraz.
+**Wcześniej:** [Git i GitHub](/claude-code/git-i-github/) - pracujesz w jednym terminalu. **Teraz:** rozkładasz pracę na kilka miejsc naraz.
 :::
 
 ## Konfiguracja terminala
@@ -77,7 +77,7 @@ Kilka zadań naraz poprowadzisz na trzy sposoby:
 Trzy kierunki przenoszenia sesji:
 
 - **`/desktop`** - z terminala do aplikacji desktop (wymaga macOS albo Windows x64 i subskrypcji Claude). Przydatne, gdy chcesz zobaczyć diffy i podgląd na żywo obok siebie.
-- **`/resume` w aplikacji desktop** - kierunek odwrotny. Otwiera picker sesji terminalowych pogrupowanych po dniach, z folderem i gałęzią oraz podglądem miejsca, w którym skończyłeś. Działa też dla sesji już zamkniętych i kontynuuje ten sam transkrypt.
+- **`/resume` w aplikacji desktop** - kierunek odwrotny. Otwiera picker sesji terminalowych pogrupowanych po dniach, z folderem i gałęzią oraz podglądem miejsca, w którym praca się zatrzymała. Działa też dla sesji już zamkniętych i kontynuuje ten sam transkrypt.
 - **Remote Control** - uruchom na komputerze **`claude remote-control`** (skrót: `claude rc`). Terminal pokaże adres sesji, a spacja wyświetli kod QR. Zeskanuj go telefonem albo otwórz aplikację Claude, stuknij **Code** i znajdź sesję na liście - sesje Remote Control mają ikonę komputera. Claude pracuje dalej **na Twoim komputerze**, z jego plikami, serwerami MCP i narzędziami. Sensowne, gdy chcesz prowadzić zadanie, będąc z dala od biurka. Działa na planach Pro, Max, Ultra, Team i Enterprise, nie z kluczem API ([dokumentacja Remote Control](https://code.claude.com/docs/en/remote-control)).
 
 Wymaga aktualizacji do najnowszej wersji po obu stronach. Nazwa z `/rename` i kolor z `/color` są wtedy widoczne także na claude.ai/code.
@@ -95,7 +95,7 @@ Wymaga aktualizacji do najnowszej wersji po obu stronach. Nazwa z `/rename` i ko
 ## Teraz wiesz
 
 - `/terminal-setup` załatwia większość drobiazgów, które inaczej irytują codziennie.
-- Wtyczka IDE i CLI to jeden silnik, nie dwa różne narzędzia.
+- Rozszerzenie edytora i CLI to jeden silnik, nie dwa różne narzędzia.
 - Sesja nie jest przywiązana do terminala - przenosisz ją na desktop i sterujesz z telefonu.
 
 **Następny krok:** [Tryb headless, automatyzacja i CI](/claude-code/tryb-headless-i-ci/) - Claude Code bez interfejsu, w skryptach i w pipeline.

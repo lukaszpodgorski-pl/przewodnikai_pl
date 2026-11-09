@@ -21,8 +21,8 @@ Nie udało się dokończyć zapisu. Najczęściej znaczy to, że Twój adres **n
 
 ## Spróbuj ponownie
 
-Formularz znajdziesz na [stronie głównej](/) oraz na dole każdego rozdziału.
+Formularz znajdziesz na [stronie głównej](/) oraz na dole każdej lekcji.
 
-Jeśli próbowałeś już kilka razy i nadal nie działa, napisz na [kontakt@lukaszpodgorski.pl](mailto:kontakt@lukaszpodgorski.pl) - dopiszę Cię ręcznie i przy okazji sprawdzę, co się zepsuło. To dla mnie użyteczna informacja, więc nie krępuj się.
+Jeśli to już kolejna próba i nadal nie działa, napisz na [kontakt@lukaszpodgorski.pl](mailto:kontakt@lukaszpodgorski.pl) - dopiszę Cię ręcznie i przy okazji sprawdzę, co się zepsuło. To dla mnie użyteczna informacja, więc nie krępuj się.
 
 Cały kurs czytasz bez zapisywania się na cokolwiek - [wróć do lektury](/podstawy/wstep/), kiedy tylko chcesz.

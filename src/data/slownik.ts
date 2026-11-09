@@ -44,13 +44,13 @@ export const SLOWNIK: Record<string, Pojecie> = {
 	},
 	'uczenie-maszynowe': {
 		termin: 'Uczenie maszynowe',
-		anchor: 'uczenie-maszynowe-machine-learning',
+		anchor: 'uczenie-maszynowe-ang-machine-learning',
 		krotka:
 			'Sposób tworzenia AI, w którym program uczy się z danych i przykładów, zamiast być krok po kroku zaprogramowany.',
 	},
 	halucynacje: {
 		termin: 'Halucynacje AI',
-		anchor: 'halucynacje-ai',
+		anchor: 'halucynacje-ai-ang-hallucinations',
 		krotka:
 			'Sytuacja, gdy AI z pełnym przekonaniem podaje informację, która brzmi wiarygodnie, ale jest zmyślona.',
 	},
@@ -68,7 +68,7 @@ export const SLOWNIK: Record<string, Pojecie> = {
 	},
 	'okno-kontekstowe': {
 		termin: 'Okno kontekstowe',
-		anchor: 'okno-kontekstowe',
+		anchor: 'okno-kontekstowe-ang-context-window',
 		krotka:
 			'Maksymalna ilość tekstu, którą model AI "widzi" naraz - gdy rozmowa ją przekroczy, najstarsze fragmenty przestają być widoczne albo zostają streszczone.',
 	},
@@ -98,19 +98,19 @@ export const SLOWNIK: Record<string, Pojecie> = {
 	},
 	temperatura: {
 		termin: 'Temperatura',
-		anchor: 'temperatura-temperature',
+		anchor: 'temperatura-ang-temperature',
 		krotka:
 			'Ustawienie losowania - niska wartość daje odpowiedzi powtarzalne i zachowawcze, wysoka bardziej kreatywne, ale mniej przewidywalne.',
 	},
 	'zero-shot': {
 		termin: 'Zero-shot',
-		anchor: 'zero-shot-bez-przykładów',
+		anchor: 'zero-shot',
 		krotka:
 			'Zadanie polecenia bez pokazywania modelowi ani jednego przykładu - liczy się sama instrukcja i wiedza, którą model wyniósł z treningu.',
 	},
 	'chain-of-thought': {
 		termin: 'Chain-of-thought',
-		anchor: 'chain-of-thought-łańcuch-myśli',
+		anchor: 'chain-of-thought',
 		krotka:
 			'Technika promptowania, w której prosisz model o rozpisanie rozumowania krok po kroku, zanim poda ostateczną odpowiedź.',
 	},
@@ -122,13 +122,13 @@ export const SLOWNIK: Record<string, Pojecie> = {
 	},
 	trenowanie: {
 		termin: 'Trenowanie',
-		anchor: 'trenowanie-trening',
+		anchor: 'trenowanie-ang-training',
 		krotka:
 			'Jednorazowy proces, w którym model dopasowuje swoje wagi do ogromnych zbiorów danych - potem wagi są zamrożone i w rozmowie z tobą model już się nie uczy.',
 	},
 	'uczenie-glebokie': {
 		termin: 'Głębokie uczenie',
-		anchor: 'głębokie-uczenie-deep-learning',
+		anchor: 'głębokie-uczenie-ang-deep-learning',
 		krotka:
 			'Uczenie maszynowe na sieciach neuronowych o wielu warstwach - radzi sobie z surowymi danymi, bo cechy ważne dla zadania wypracowuje samo, bez podpowiedzi człowieka.',
 	},
@@ -143,5 +143,41 @@ export const SLOWNIK: Record<string, Pojecie> = {
 		anchor: 'ogólna-ai-agi',
 		krotka:
 			'Hipotetyczny system dorównujący człowiekowi w dowolnej dziedzinie - przenoszący umiejętności między zadaniami i uczący się w trakcie działania; dziś nie istnieje.',
+	},
+	mcp: {
+		termin: 'MCP',
+		anchor: 'mcp-model-context-protocol',
+		krotka:
+			'Otwarty standard podłączania narzędzi do asystenta AI - przez serwery MCP asystent sięga, za Twoją zgodą, do kalendarza, plików czy bazy danych.',
+	},
+	api: {
+		termin: 'API',
+		anchor: 'api-application-programming-interface',
+		krotka:
+			'Sposób, w jaki programy rozmawiają ze sobą - przy AI to dostęp do modelu dla programistów i aplikacji, bez okna czatu, zwykle płatny za zużyte tokeny.',
+	},
+	embedding: {
+		termin: 'Embedding',
+		anchor: 'embedding',
+		krotka:
+			'Zapis znaczenia tekstu jako ciągu liczb - teksty o podobnym znaczeniu dostają podobne liczby, więc maszyna może je porównywać.',
+	},
+	sift: {
+		termin: 'SIFT',
+		anchor: 'sift',
+		krotka:
+			'Metoda sprawdzania informacji w czterech krokach: zatrzymaj się, sprawdź źródło, znajdź lepsze źródła, dotrzyj do oryginału.',
+	},
+	'prompt-injection': {
+		termin: 'Prompt injection',
+		anchor: 'prompt-injection',
+		krotka:
+			'Polecenie ukryte w cudzym tekście (stronie, mailu, dokumencie), które model może wziąć za Twoje i wykonać.',
+	},
+	subagent: {
+		termin: 'Subagent',
+		anchor: 'subagent',
+		krotka:
+			'Pomocnik agenta AI, który dostaje jedno zadanie, wykonuje je w osobnym oknie kontekstowym i oddaje tylko podsumowanie.',
 	},
 };

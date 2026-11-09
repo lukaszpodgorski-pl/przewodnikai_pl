@@ -1,6 +1,6 @@
 ---
 title: Skills i plugins w Claude Code
-description: Skills i plugins w Claude Code - SKILL.md ładowany progresywnie, plugin ze skills, subagentami, hookami i MCP. Skill a subagent. Ćwiczenie zajmie 10 minut.
+description: Skills i plugins w Claude Code - SKILL.md ładowany progresywnie, plugin ze skillami, subagentami, hookami i MCP. Skill a subagent. Ćwiczenie zajmie 10 minut.
 sidebar:
   label: 'Skills i plugins'
   order: 14
@@ -12,7 +12,7 @@ teaches:
 about:
   - name: Claude
     sameAs: https://en.wikipedia.org/wiki/Claude_(language_model)
-  - name: Wtyczka
+  - name: Plugin
     sameAs: https://en.wikipedia.org/wiki/Plug-in_(computing)
 mentions:
   - name: Anthropic
@@ -22,11 +22,11 @@ mentions:
     sameAs: https://en.wikipedia.org/wiki/Markdown
 faq:
   - q: Czym skill różni się od subagenta?
-    a: Miejscem pracy. Skill działa w głównym oknie kontekstu i dokłada do niego wiedzę. Subagent pracuje w osobnym oknie i zwraca tylko podsumowanie. To jest właściwe kryterium wyboru między jednym a drugim.
+    a: Miejscem pracy. Skill działa w głównym oknie kontekstowym i dokłada do niego wiedzę. Subagent pracuje w osobnym oknie i zwraca tylko podsumowanie. To jest właściwe kryterium wyboru między jednym a drugim.
   - q: Czy skill zajmuje kontekst, nawet gdy go nie używam?
     a: 'Prawie nie. Zawsze załadowane są tylko nazwa i opis, czyli kilkadziesiąt tokenów. Pełna treść wchodzi dopiero wtedy, gdy Claude uzna skill za istotny albo gdy wywołasz go ukośnikiem.'
   - q: Co dokładnie pakuje plugin?
-    a: Skills, subagentów, hooki i serwery MCP w jednej paczce. Marketplace to katalog takich paczek, z którego instalujesz je jedną komendą.
+    a: Skille, subagentów, hooki i serwery MCP w jednej paczce. Marketplace to katalog takich paczek, z którego instalujesz je jedną komendą.
 status: gotowe
 ---
 
@@ -36,7 +36,7 @@ import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 :::note[O tej stronie]
 **Czas:** ok. 6 minut czytania + 10 minut ćwiczenia.
 **Poziom:** średni, po [MCP](/claude-code/mcp/).
-**Wcześniej:** umiesz podłączyć narzędzia. Tu: dokładasz wiedzę i gotowe paczki.
+**Wcześniej:** [MCP](/claude-code/mcp/) - umiesz podłączyć narzędzia. **Teraz:** dokładasz wiedzę i gotowe paczki.
 :::
 
 ## Agent Skills
@@ -61,11 +61,11 @@ Skill projektu zapisujesz w `.claude/skills/<nazwa>/SKILL.md`, a skill dla siebi
 
 Skill jest jednocześnie komendą: `.claude/skills/deploy/SKILL.md` wywołasz jako `/deploy`. Dawne własne komendy z `.claude/commands/` zostały ze skillami scalone - zobacz lekcję [Własne slash commands](/claude-code/wlasne-komendy/).
 
-Skills to domyślna jednostka reużywalnej wiedzy działająca **w głównym <Termin id="okno-kontekstowe">kontekście</Termin>** - w odróżnieniu od [subagentów](/claude-code/subagenci/), którzy mają kontekst osobny. To jest właściwe kryterium wyboru między jednym a drugim.
+Skille to domyślna jednostka reużywalnej wiedzy działająca **w głównym <Termin id="okno-kontekstowe">kontekście</Termin>** - w odróżnieniu od [subagentów](/claude-code/subagenci/), którzy mają kontekst osobny. To jest właściwe kryterium wyboru między jednym a drugim.
 
 ## Plugins i marketplace'y
 
-Plugin to paczka, która instaluje naraz kilka rozszerzeń: skills, subagentów, hooki i serwery MCP. Marketplace to katalog pluginów - repozytorium z listą paczek i adresami, skąd je pobrać. Oficjalny marketplace Anthropic (`claude-plugins-official`) Claude Code dodaje sam przy pierwszej sesji w terminalu. Plugin działa z Twoimi uprawnieniami, więc instaluj tylko z zaufanych źródeł.
+Plugin to paczka, która instaluje naraz kilka rozszerzeń: skille, subagentów, hooki i serwery MCP. Marketplace to katalog pluginów - repozytorium z listą paczek i adresami, skąd je pobrać. Oficjalny marketplace Anthropic (`claude-plugins-official`) Claude Code dodaje sam przy pierwszej sesji w terminalu. Plugin działa z Twoimi uprawnieniami, więc instaluj tylko z zaufanych źródeł.
 
 ```text
 /plugin                                  # menu pluginów
@@ -77,7 +77,7 @@ Plugin to paczka, która instaluje naraz kilka rozszerzeń: skills, subagentów,
 Od wersji 2.1.268 zmiany zrobione w menu `/plugin` działają od razu po jego zamknięciu, bez `/reload-plugins` ([lista zmian](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md)). Z shella zainstalujesz plugin komendą `claude plugin install <name>@<marketplace>`, a listę zainstalowanych zobaczysz przez `claude plugin list`. Autorom pluginów przydadzą się flagi `--plugin-dir ./my-plugin` (wczytuje plugin z folderu na jedną sesję) i `--plugin-url` (pobiera plugin w archiwum `.zip` z adresu URL).
 
 :::caution[Obszar eksperymentalny]
-Ekosystem skills i pluginów rozwija się bardzo szybko - składnia i pola frontmattera mogą się zmieniać. Weryfikuj w [dokumentacji Agent Skills](https://code.claude.com/docs/en/skills).
+Ekosystem skilli i pluginów rozwija się bardzo szybko - składnia i pola frontmattera mogą się zmieniać. Weryfikuj w [dokumentacji Agent Skills](https://code.claude.com/docs/en/skills).
 :::
 
 ## Ćwiczenie: 10 minut

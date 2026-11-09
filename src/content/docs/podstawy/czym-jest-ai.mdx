@@ -41,8 +41,8 @@ import ZagniezdzoneZbiory from '../../../components/ZagniezdzoneZbiory.astro';
 
 :::note[O tej stronie]
 **Czas:** ok. 10 minut czytania + 5 minut ćwiczenia.
-**Poziom:** początkujący.
-**Wcześniej:** [Wstęp](/podstawy/wstep/) - mapa kursu i pierwszy prompt. Tu: co to w ogóle jest.
+**Poziom:** początkujący, po [Wstępie](/podstawy/wstep/).
+**Wcześniej:** [Wstęp](/podstawy/wstep/) - masz mapę kursu i za sobą pierwszy prompt. **Teraz:** sprawdzasz, czym AI w ogóle jest.
 :::
 
 ## Na tej stronie oddzielisz dwa słowa, które media mieszają
@@ -78,12 +78,12 @@ To jest podział, który tłumaczy właściwie wszystko dalej.
 
 **Droga druga: program wyprowadza regułę z przykładów.** To <Termin id="uczenie-maszynowe">uczenie maszynowe</Termin> (machine learning, ML). Pokazujesz sto tysięcy maili z etykietami "spam" / "nie spam", a program sam dobiera, na co patrzeć i z jaką wagą. Nikt nie zapisuje reguły ręcznie. Reguła jest wynikiem, nie wejściem.
 
-**Odmiana drugiej drogi: <Termin id="uczenie-glebokie">uczenie głębokie</Termin>** (deep learning, DL) - uczenie maszynowe na sieciach neuronowych, czyli układach prostych przeliczeń połączonych w warstwy, luźno inspirowanych neuronami w mózgu. "Głębokie" znaczy po prostu: warstw jest dużo. Szerzej o sieciach piszę w lekcji AI, uczenie maszynowe i sieci neuronowe. Kluczowa różnica praktyczna: radzi sobie z surowymi danymi. Możesz podać piksele, próbki dźwięku albo goły tekst, bez wcześniejszego wskazywania człowiekiem, które cechy są ważne. Sieć wypracowuje je sama, warstwa po warstwie.
+**Odmiana drugiej drogi: <Termin id="uczenie-glebokie">uczenie głębokie</Termin>** (deep learning, DL) - uczenie maszynowe na sieciach neuronowych, czyli układach prostych przeliczeń połączonych w warstwy, luźno inspirowanych neuronami w mózgu. "Głębokie" znaczy po prostu: warstw jest dużo. Do sieci neuronowych wrócę w sekcji [Jak działa AI](/jak-dziala-ai/). Kluczowa różnica praktyczna: radzi sobie z surowymi danymi. Możesz podać piksele, próbki dźwięku albo goły tekst, bez wcześniejszego wskazywania człowiekiem, które cechy są ważne. Sieć wypracowuje je sama, warstwa po warstwie.
 
 Te pojęcia nie są konkurencyjne. Są zagnieżdżone:
 
 <ZagniezdzoneZbiory
-  podpis="Każdy zbiór mieści się w poprzednim. Generatywna AI jest odmianą uczenia głębokiego, uczenie głębokie - odmianą uczenia maszynowego, a wszystkie trzy mieszczą się w AI."
+  podpis="Każdy zbiór mieści się w poprzednim. Generatywna AI jest odmianą uczenia głębokiego, uczenie głębokie - odmianą uczenia maszynowego, a wszystkie trzy mieszczą się w AI. Sieci neuronowe są budulcem uczenia głębokiego."
   poziomy={[
     {
       nazwa: 'Sztuczna inteligencja (AI)',
@@ -108,7 +108,7 @@ Dwa słowa z tego rysunku warto rozwinąć.
 
 <Termin id="model">Model</Termin> to plik z liczbami. Fachowo nazywa się je wagami albo parametrami - wyobraź sobie miliardy pokręteł, które trening ustawił w konkretnej pozycji. Duży model językowy ma ich właśnie miliardy. Same w sobie nic nie znaczą; znaczenie ma to, jak przekształcają wejście w wyjście.
 
-<Termin id="trenowanie">Trenowanie</Termin> a używanie to dwa różne momenty. Trenowanie odbywa się raz, trwa tygodnie, kosztuje krocie i wymaga ogromnych zbiorów danych. Używanie - czyli każda Twoja rozmowa - trwa sekundy i kosztuje ułamek tego, co trening. Model podczas rozmowy z Tobą **nie uczy się**. Wagi są zamrożone. Stąd bierze się data odcięcia wiedzy: model zna świat do momentu treningu, chyba że dostanie świeże informacje w oknie rozmowy albo z doklejonej wyszukiwarki.
+<Termin id="trenowanie">Trenowanie</Termin> a używanie to dwa różne momenty. Trenowanie odbywa się raz, trwa tygodnie, kosztuje krocie i wymaga ogromnych zbiorów danych. Używanie - czyli każda Twoja rozmowa - trwa sekundy i kosztuje ułamek tego, co trening. Model podczas rozmowy z Tobą **nie uczy się**. Wagi są zamrożone. Funkcja "pamięci" w niektórych czatach to notatki doklejane do rozmowy, a nie zmiana wag. Stąd bierze się data odcięcia wiedzy: model zna świat do momentu treningu, chyba że dostanie świeże informacje w oknie rozmowy albo z doklejonej wyszukiwarki.
 
 ## Generatywna AI wytwarza. Reszta głównie rozpoznaje albo wybiera
 
@@ -131,7 +131,7 @@ Praktyczna konsekwencja: z filtra spamu nie wyciągniesz nowego maila - on umie 
 
 W modelu językowym nie ma momentu natchnienia. Jest pętla.
 
-1. Tekst zostaje pocięty na <Termin id="token">tokeny</Termin> - kawałki zwykle mniejsze niż słowo, bo odmiana i ogonki dzielą wyrazy. Polskie słowo "przewodnikami" model może zobaczyć jako kilka kawałków, a nie jedno słowo. Ile ich wychodzi z Twojego tekstu, sprawdzisz w Tokenach i kontekście.
+1. Tekst zostaje pocięty na <Termin id="token">tokeny</Termin> - kawałki zwykle mniejsze niż słowo, bo odmiana i ogonki dzielą wyrazy. Polskie słowo "przewodnikami" model może zobaczyć jako kilka kawałków, a nie jedno słowo. Do liczenia tokenów w Twoim tekście wrócę w sekcji [Jak działa AI](/jak-dziala-ai/).
 2. Model liczy, które tokeny mogłyby być **następne** i jak bardzo prawdopodobny jest każdy z nich.
 3. Jeden token zostaje wybrany, doklejony na koniec, a całość wraca na wejście.
 4. Powtórz kilkaset razy. Wychodzi akapit.
@@ -156,7 +156,7 @@ To, z czym masz do czynienia, to <Termin id="waska-ai">wąska AI</Termin>: mistr
 
 "Wąska" nie znaczy "słaba". Model może być zdecydowanie lepszy od człowieka w swoim zadaniu i całkowicie bezradny krok obok. Modele językowe wyglądają na uniwersalne, bo ich dziedziną jest tekst, a tekstem opisuje się prawie wszystko. To nadal jedno zadanie, wykonywane bardzo szeroko.
 
-<Termin id="ogolna-ai">Ogólna AI</Termin> (na miarę człowieka we wszystkim) nie istnieje. Wymagałaby przenoszenia umiejętności między zupełnie różnymi dziedzinami, uczenia się w trakcie działania i spójnego modelu świata. Nie wiemy, czy i kiedy powstanie - badacze nie są zgodni ani co do terminu, ani nawet co do tego, jak ją rozpoznać. Typy szerzej: Typy AI. Mity o buncie: [Mity vs rzeczywistość](/podstawy/mity-vs-rzeczywistosc/).
+<Termin id="ogolna-ai">Ogólna AI</Termin> (na miarę człowieka we wszystkim) nie istnieje. Wymagałaby przenoszenia umiejętności między zupełnie różnymi dziedzinami, uczenia się w trakcie działania i spójnego modelu świata. Nie wiemy, czy i kiedy powstanie - badacze nie są zgodni ani co do terminu, ani nawet co do tego, jak ją rozpoznać. Do typów AI wrócę w sekcji [Jak działa AI](/jak-dziala-ai/). Mity o buncie: [Mity vs rzeczywistość](/podstawy/mity-vs-rzeczywistosc/).
 
 Brak modelu świata ma bardzo konkretny skutek uboczny, na który natkniesz się w pierwszym tygodniu pracy z chatbotem. Model dba o to, żeby tekst **brzmiał** wiarygodnie, a nie o to, żeby był prawdziwy. Zmyślony przepis prawny, nieistniejący wyrok albo książka, której nikt nie napisał, wyglądają dokładnie tak samo pewnie jak prawdziwe. To tak zwana <Termin id="halucynacje">halucynacja</Termin> - wrócimy do niej w [Ograniczeniach](/podstawy/ograniczenia/) i [Weryfikacji](/podstawy/weryfikacja-informacji/). Weryfikacja zostaje po Twojej stronie i to się w tym kursie nie zmieni.
 
@@ -184,7 +184,7 @@ Wzór wypełnionego wiersza:
 
 **Zaliczenie:** trzy wiersze na kartce, każdy z etykietą albo "?". Przynajmniej jeden wiersz inny niż "ChatGPT".
 
-Typowy wynik: dwa rozpoznawania (spam, rekomendacja) i jeden czat. To jest właśnie ta lekcja.
+**Typowy wynik:** dwa rozpoznawania (spam, rekomendacja) i jeden czat. To jest właśnie ta lekcja.
 
 **Jeśli nic nie zgrzyta i zostaje czas:** ten sam podział na jednym nagłówku z newsów - czy tytuł mówi o GenAI, a podpisuje to jako "całe AI"?
 
@@ -203,8 +203,6 @@ Typowy wynik: dwa rozpoznawania (spam, rekomendacja) i jeden czat. To jest wła�
 - Model po treningu ma zamrożone wagi. W rozmowie z Tobą się nie uczy, a jego wiedza ma datę odcięcia.
 - Dziś jest wąska AI. Filmowa ogólna nie weszła do telefonu.
 - Płynność wypowiedzi nie jest dowodem prawdziwości. Halucynacja brzmi tak samo pewnie jak fakt.
-
-**Chcesz pogłębić:** Typy AI - więcej o podziale na wąską i ogólną AI.
 
 **Następny krok:** [Jak uczyć się AI?](/podstawy/jak-uczyc-sie-ai/) - wybierzesz poziom (0-5) i jedno zadanie na najbliższy tydzień, zamiast "nauczyć się całego AI".
 

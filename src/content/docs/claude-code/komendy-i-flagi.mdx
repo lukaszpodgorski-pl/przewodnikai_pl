@@ -35,12 +35,12 @@ import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 :::note[O tej stronie]
 **Czas:** ok. 9 minut czytania + 5 minut ćwiczenia.
 **Poziom:** średni, po [logowaniu](/claude-code/logowanie-i-plany/).
-**Wcześniej:** masz zalogowaną instalację. Tu: poznajesz wszystkie pokrętła, zanim zaczniesz nimi kręcić.
+**Wcześniej:** [Logowanie i plany](/claude-code/logowanie-i-plany/) - masz zalogowaną instalację. **Teraz:** poznajesz wszystkie pokrętła, zanim zaczniesz nimi kręcić.
 :::
 
 To najbardziej referencyjna strona w tej sekcji. Nie ucz się jej na pamięć - wracaj do niej, gdy będziesz czegoś szukać.
 
-Część flag dotyczy rzeczy z dalszych lekcji - subagentów, hooks, MCP, skills. Jeśli nazwa nic Ci nie mówi, pomiń ją. Wrócisz tu po lekcji o [skills i plugins](/claude-code/skills-i-plugins/) i wtedy cała tabela będzie czytelna.
+Część flag dotyczy rzeczy z dalszych lekcji - subagentów, hooków, MCP, skilli. Jeśli nazwa nic Ci nie mówi, pomiń ją. Wrócisz tu po lekcji o [skills i plugins](/claude-code/skills-i-plugins/) i wtedy cała tabela będzie czytelna.
 
 ## Podstawowe komendy
 
@@ -84,7 +84,7 @@ Na start wystarczą Ci cztery: `-p`, `-c`, `-r` i `--model`. Resztę sprawdzaj, 
 | `--fork-session` | przy wznawianiu zacznij nową, osobną kopię rozmowy (oryginał zostaje nietknięty) |
 | `--model` | model sesji (alias lub pełne ID) |
 | `--fallback-model` | model zapasowy przy przeciążeniu lub niedostępności |
-| `--effort` | poziom rozumowania: `low`, `medium`, `high`, `xhigh`, `max`; osobno `ultracode` - to nie kolejny poziom, tylko osobne ustawienie do wieloetapowych przebiegów (`--effort ultracode` włącza je i ustawia poziom `xhigh`, patrz [Kontekst i koszty](/claude-code/kontekst-i-koszty/)) |
+| `--effort` | poziom wysiłku: `low`, `medium`, `high`, `xhigh`, `max`; osobno `ultracode` - to nie kolejny poziom, tylko osobne ustawienie do wieloetapowych przebiegów (`--effort ultracode` włącza je i ustawia poziom `xhigh`, patrz [Kontekst i koszty](/claude-code/kontekst-i-koszty/)) |
 | `--output-format` | `text` (domyślnie), `json`, `stream-json` (print mode) |
 | `--input-format` | `text`, `stream-json` (print mode) |
 | `--include-partial-messages` | częściowe zdarzenia streamu (wymaga `--print` i `stream-json`) |
@@ -117,13 +117,13 @@ Na start wystarczą Ci cztery: `-p`, `-c`, `-r` i `--model`. Resztę sprawdzaj, 
 | `--exec` | uruchom komendę shell jako background job (z `--bg`) |
 | `--ide` | połącz automatycznie z IDE przy starcie |
 | `--chrome`, `--no-chrome` | integracja Chrome (automatyzacja przeglądarki) |
-| `--bare` | tryb minimalny: pomija auto-discovery hooks, skills, pluginów, MCP i CLAUDE.md - do skryptów i CI |
-| `--safe-mode` | wyłącz wszystkie Twoje dodatki (CLAUDE.md, skills, pluginy, hooks, MCP) - do szukania, co psuje konfigurację |
+| `--bare` | tryb minimalny: pomija auto-discovery hooków, skilli, pluginów, MCP i CLAUDE.md - do skryptów i CI |
+| `--safe-mode` | wyłącz wszystkie Twoje dodatki (CLAUDE.md, skille, pluginy, hooki, MCP) - do szukania, co psuje konfigurację |
 | `--restricted` | tryb ograniczony - patrz niżej |
 | `--debug`, `--debug-file <path>` | tryb debug, zapis logów debug do pliku |
 | `--json-schema` | walidowane wyjście JSON wg schematu (print mode) |
 | `--replay-user-messages` | dla integracji: odeślij na wyjście wiadomości przyjęte na wejściu |
-| `--disable-slash-commands` | wyłącz wszystkie skills i komendy dla sesji |
+| `--disable-slash-commands` | wyłącz wszystkie skille i komendy dla sesji |
 | `--version`, `-v` | wersja |
 
 ## Tryb restricted w szczegółach
@@ -149,7 +149,7 @@ To tryb pod współdzielone maszyny i automatyczne testy narzędzia - wszędzie 
 ## Teraz wiesz
 
 - `-p` zamienia Claude Code w narzędzie skryptowalne, `-c` i `-r` wracają do rozmowy.
-- Najczęściej sięgniesz po flagi z trzech grup: model i rozumowanie, uprawnienia, format wejścia i wyjścia.
+- Najczęściej sięgniesz po flagi z trzech grup: model i poziom wysiłku, uprawnienia, format wejścia i wyjścia.
 - `--help` bywa niepełne, więc kanonem jest dokumentacja, nie terminal.
 
 **Następny krok:** [Interfejs i skróty klawiszowe](/claude-code/interfejs-i-skroty/) - to, co dzieje się już w środku sesji, od `Esc` po wklejanie obrazów.

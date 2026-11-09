@@ -24,7 +24,7 @@ faq:
   - q: Czym Claude Code różni się od Claude w przeglądarce?
     a: Zakresem działania. W przeglądarce dostajesz tekst, który sam kopiujesz. Claude Code jest programem terminalowym - czyta i edytuje pliki na Twoim dysku, uruchamia komendy shell, tworzy commity i otwiera pull requesty.
   - q: Czy rozszerzenie do VS Code to co innego niż Claude Code?
-    a: Nie. Wtyczki do VS Code i JetBrains to nakładki na ten sam silnik. Rdzeniem jest CLI, więc wszystko z tego kursu działa również pod wtyczką.
+    a: Nie. Rozszerzenie VS Code i plugin JetBrains to nakładki na ten sam silnik. Rdzeniem jest CLI, więc wszystko z tego kursu działa również w edytorze.
   - q: Który model jest domyślny?
     a: Na planach Pro, Max, Ultra, Team, Enterprise i przy rozliczeniu przez API domyślny jest Opus 5.5. Na Microsoft Foundry - Sonnet 4.5. Fable nie jest domyślny nigdzie - włączasz go komendą "/model fable".
 status: gotowe
@@ -36,7 +36,7 @@ import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 :::note[O tej stronie]
 **Czas:** ok. 6 minut czytania + 5 minut ćwiczenia.
 **Poziom:** średni, początek sekcji.
-**Wcześniej:** wiesz, czym jest chatbot. Tu: co się zmienia, gdy model dostaje dostęp do Twojego dysku.
+**Wcześniej:** [Podstawy](/podstawy/) - wiesz, czym jest chatbot. **Teraz:** sprawdzasz, co się zmienia, gdy model dostaje dostęp do Twojego dysku.
 :::
 
 ## Program, nie okno czatu
@@ -45,7 +45,7 @@ Claude Code to program Anthropic, który działa w terminalu - oknie, w którym 
 
 Claude Code nie tylko odpowiada, ale też wykonuje realne działania na Twoim komputerze. Czyta i edytuje pliki, uruchamia komendy w terminalu, zapisuje zmiany w historii projektu (commity w Gicie) i otwiera prośby o włączenie zmian (pull requesty, w skrócie PR-y). Łączy się też z zewnętrznymi usługami przez MCP (Model Context Protocol - standard podłączania narzędzi do AI).
 
-Jedna rzecz do zapamiętania: **czat proponuje, Claude Code robi.** Cała reszta tej sekcji, a zwłaszcza lekcja o uprawnieniach, wynika z tego jednego zdania.
+W skrócie: **czat proponuje, Claude Code robi.** Cała reszta tej sekcji, a zwłaszcza lekcja o uprawnieniach, wynika z tego jednego zdania.
 
 ## Czym różni się od innych sposobów korzystania z Claude
 
@@ -58,7 +58,7 @@ Jedna rzecz do zapamiętania: **czat proponuje, Claude Code robi.** Cała reszta
 
 Claude dostaje Twoje polecenie i układa plan. Potem sięga po narzędzia - na przykład Read (czytanie pliku), Edit (edycja) albo Bash (uruchomienie komendy) - i sprawdza, co z tego wyszło. Na tej podstawie wybiera następny krok i powtarza to, aż zadanie jest gotowe. W skrócie: zaplanuj → użyj narzędzia → sprawdź wynik → wybierz następny krok.
 
-Kluczowym zasobem jest <Termin id="okno-kontekstowe">okno kontekstu</Termin>, czyli ilość tekstu, którą model widzi naraz w jednej rozmowie, liczona w <Termin id="token">tokenach</Termin> (kawałkach tekstu, zwykle fragmentach słów): Twoje polecenia, przeczytane pliki i wyniki komend. Gdy się zapełnia, najstarsze fragmenty przestają być widoczne albo zostają streszczone, a jakość pracy spada - dlatego zarządzanie kontekstem dostało w tym kursie [osobną lekcję](/claude-code/kontekst-i-koszty/).
+Kluczowym zasobem jest <Termin id="okno-kontekstowe">okno kontekstowe</Termin>, czyli ilość tekstu, którą model widzi naraz w jednej rozmowie, liczona w <Termin id="token">tokenach</Termin> (kawałkach tekstu, zwykle fragmentach słów): Twoje polecenia, przeczytane pliki i wyniki komend. Gdy się zapełnia, najstarsze fragmenty przestają być widoczne albo zostają streszczone, a jakość pracy spada - dlatego zarządzanie kontekstem dostało w tym kursie [osobną lekcję](/claude-code/kontekst-i-koszty/).
 
 ## Modele (stan listopad 2026)
 

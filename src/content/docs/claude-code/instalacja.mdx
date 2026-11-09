@@ -39,7 +39,7 @@ import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 :::note[O tej stronie]
 **Czas:** ok. 8 minut czytania + 10 minut ćwiczenia.
 **Poziom:** średni, po [Czym jest Claude Code](/claude-code/czym-jest-claude-code/).
-**Wcześniej:** wiesz, co robi to narzędzie. Tu: postawisz je u siebie.
+**Wcześniej:** [Czym jest Claude Code](/claude-code/czym-jest-claude-code/) - wiesz, co robi to narzędzie. **Teraz:** postawisz je u siebie.
 :::
 
 :::tip[Jeśli zaczynasz]
@@ -82,7 +82,7 @@ brew install --cask claude-code          # kanał stable (~tydzień opóźnienia
 brew install --cask claude-code@latest   # kanał latest
 ```
 
-Homebrew domyślnie **nie** aktualizuje automatycznie: `brew upgrade claude-code` (albo `brew upgrade claude-code@latest`, jeśli wybrałeś kanał latest). Na Homebrew i WinGet możesz to zmienić zmienną `CLAUDE_CODE_PACKAGE_MANAGER_AUTO_UPDATE=1` - wtedy Claude Code sam uruchamia aktualizację w tle ([dokumentacja instalacji](https://code.claude.com/docs/en/setup#auto-updates)).
+Homebrew domyślnie **nie** aktualizuje automatycznie: `brew upgrade claude-code` (albo `brew upgrade claude-code@latest`, jeśli wybierasz kanał latest). Na Homebrew i WinGet możesz to zmienić zmienną `CLAUDE_CODE_PACKAGE_MANAGER_AUTO_UPDATE=1` - wtedy Claude Code sam uruchamia aktualizację w tle ([dokumentacja instalacji](https://code.claude.com/docs/en/setup#auto-updates)).
 
 ## Metoda 3 - WinGet (Windows)
 
@@ -152,9 +152,9 @@ Remove-Item -Path "$env:USERPROFILE\.local\bin\claude.exe" -Force
 Remove-Item -Path "$env:USERPROFILE\.local\share\claude" -Recurse -Force
 ```
 
-Konfigurację usuwa `rm -rf ~/.claude` plus `rm ~/.claude.json`. Uwaga: to kasuje settings, MCP i historię. Rozszerzenie VS Code, wtyczka JetBrains i aplikacja desktop też zapisują do `~/.claude/` - jeśli ich nie odinstalujesz, katalog pojawi się znowu. Wyłączenie auto-update: `DISABLE_AUTOUPDATER=1` w sekcji `env` w settings.json.
+Konfigurację usuwa `rm -rf ~/.claude` plus `rm ~/.claude.json`. Uwaga: to kasuje settings, MCP i historię. Rozszerzenie VS Code, plugin JetBrains i aplikacja desktop też zapisują do `~/.claude/` - jeśli ich nie odinstalujesz, katalog pojawi się znowu. Wyłączenie auto-update: `DISABLE_AUTOUPDATER=1` w sekcji `env` w settings.json.
 
-Wersje v2.1.242 i v2.1.243 wywalały się przy starcie na dystrybucjach z glibc 2.44 (Arch, CachyOS, Fedora Rawhide). Naprawiono to **od wersji 2.1.245** - jeśli utknąłeś na starszej, zaktualizuj.
+Wersje v2.1.242 i v2.1.243 wywalały się przy starcie na dystrybucjach z glibc 2.44 (Arch, CachyOS, Fedora Rawhide). Naprawiono to **od wersji 2.1.245** - jeśli masz starszą, zaktualizuj.
 
 ## Ćwiczenie: 10 minut
 
