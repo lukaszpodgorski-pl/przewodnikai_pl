@@ -50,15 +50,15 @@ Jedna rzecz do zapamiętania: **czat proponuje, Claude Code robi.** Cała reszta
 ## Czym różni się od innych sposobów korzystania z Claude
 
 - **Claude.ai i aplikacja mobilna** - okno czatu: Claude pisze odpowiedź, a Ty decydujesz, co z nią zrobić. Claude Code sam _działa_ w Twoim projekcie.
-- **Aplikacja desktop** - ma zakładki Chat, Cowork i Code. W zakładce Code działa Claude Code, tylko z graficznym interfejsem zamiast terminala.
+- **Aplikacja desktop** - obok czatu ma zakładkę Code, w której działa Claude Code z graficznym interfejsem zamiast terminala. Cowork, dawniej osobna zakładka do dłuższych zadań, od września 2026 jest stopniowo łączony z czatem w jedną rozmowę ([zapowiedź Anthropic](https://claude.com/blog/cowork-is-now-claude)).
 - **Rozszerzenia do edytorów kodu (VS Code, JetBrains)** - nakładki na ten sam silnik Claude Code. Rdzeniem jest program terminalowy.
 - **Proste programy, które tylko wysyłają pytania do API** - Claude Code to coś więcej: pełny <Termin id="agent-ai">agent</Termin>, czyli program, który sam wybiera narzędzia i wykonuje kolejne kroki. Ma przy tym pamięć projektu i system uprawnień.
 
 ## Agentowa pętla
 
-Claude dostaje Twoje polecenie i układa plan. Potem sięga po narzędzia - na przykład Read (czytanie pliku), Edit (edycja) albo Bash (uruchomienie komendy) - i sprawdza, co z tego wyszło. Na tej podstawie wybiera następny krok i powtarza to, aż zadanie jest gotowe.
+Claude dostaje Twoje polecenie i układa plan. Potem sięga po narzędzia - na przykład Read (czytanie pliku), Edit (edycja) albo Bash (uruchomienie komendy) - i sprawdza, co z tego wyszło. Na tej podstawie wybiera następny krok i powtarza to, aż zadanie jest gotowe. W skrócie: zaplanuj → użyj narzędzia → sprawdź wynik → wybierz następny krok.
 
-Kluczowym zasobem jest <Termin id="okno-kontekstowe">okno kontekstu</Termin>, czyli ilość tekstu, którą model widzi naraz w jednej rozmowie: Twoje polecenia, przeczytane pliki i wyniki komend. Gdy się zapełnia, najstarsze fragmenty przestają być widoczne albo zostają streszczone, a jakość pracy spada - dlatego zarządzanie kontekstem dostało w tym kursie [osobną lekcję](/claude-code/kontekst-i-koszty/).
+Kluczowym zasobem jest <Termin id="okno-kontekstowe">okno kontekstu</Termin>, czyli ilość tekstu, którą model widzi naraz w jednej rozmowie, liczona w <Termin id="token">tokenach</Termin> (kawałkach tekstu, zwykle fragmentach słów): Twoje polecenia, przeczytane pliki i wyniki komend. Gdy się zapełnia, najstarsze fragmenty przestają być widoczne albo zostają streszczone, a jakość pracy spada - dlatego zarządzanie kontekstem dostało w tym kursie [osobną lekcję](/claude-code/kontekst-i-koszty/).
 
 ## Modele (stan listopad 2026)
 
@@ -85,9 +85,9 @@ Opus 5.5 wymaga Claude Code v2.1.280 lub nowszego, Sonnet 5.5 - v2.1.284. U dost
 ## Teraz wiesz
 
 - Claude Code to program, który zmienia pliki, a nie czat, który podpowiada.
-- Pętla to plan → narzędzie → obserwacja → następny krok, aż do końca zadania.
+- Pętla to zaplanuj → użyj narzędzia → sprawdź wynik → wybierz następny krok, aż do końca zadania.
 - Model zmieniasz sam, a domyślny zależy od tego, przez kogo korzystasz z Claude: bezpośrednio przez Anthropic czy przez chmurę Amazon, Google albo Microsoft.
 
 **Następny krok:** [Wymagania i instalacja](/claude-code/instalacja/) - pięć metod instalacji, a przy Windowsie dodatkowo decyzja natywnie czy w WSL2.
 
-<SlowniczekStrony terminy={["agent-ai", "okno-kontekstowe"]} />
+<SlowniczekStrony terminy={["agent-ai", "okno-kontekstowe", "token"]} />

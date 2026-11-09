@@ -91,7 +91,7 @@ Managed na macOS leży w `/Library/Application Support/ClaudeCode/managed-settin
 **Nigdy** na maszynie z produkcyjnymi poświadczeniami, **nigdy** w nieznanym repozytorium i **nigdy** interaktywnie, jeśli chcesz recenzować zmiany. Tylko w **izolowanych** środowiskach: kontener, maszyna wirtualna, efemeryczne CI.
 :::
 
-**Prompt injection.** Serwery MCP i treści z sieci mogą zawierać wrogie instrukcje. Claude Code skanuje wyjścia subagentów i chroni przed wstrzyknięciami, ale to nie zastępuje ograniczania narzędzi. Trzymaj `deny` na `.env` i sekretach.
+**Prompt injection** (wstrzyknięcie polecenia: ukryte w cudzym tekście polecenie, które model może wziąć za Twoje). Serwery MCP i treści z sieci mogą zawierać wrogie instrukcje. Claude Code skanuje wyjścia subagentów i chroni przed wstrzyknięciami, ale to nie zastępuje ograniczania narzędzi. Trzymaj `deny` na `.env` i sekretach.
 
 **Sandboxing i izolacja sieci.** Sandbox to zamknięta piaskownica: komendy uruchamiane przez Claude nie widzą reszty dysku ani dowolnych stron w sieci. Włączysz go komendą `/sandbox` na macOS, Linuksie i w WSL2 (Linux działający wewnątrz Windows). Tryb bypass uruchamiaj wyłącznie w kontenerze. Administratorzy mogą wyłączyć bypass przez `disableBypassPermissionsMode`.
 

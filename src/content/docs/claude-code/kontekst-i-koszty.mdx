@@ -37,7 +37,7 @@ import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 **Wcześniej:** umiesz zbudować automat. Tu: pilnujesz, żeby nie kosztował więcej, niż daje.
 :::
 
-<Termin id="okno-kontekstowe">Okno kontekstu</Termin>, czyli wszystko, co Claude "widzi" naraz w rozmowie, liczy się w tokenach (kawałkach tekstu, mniej więcej 3-4 znaki). Aktualne modele - Opus, Sonnet, Haiku 5.5 i Fable - mają okno 1 mln tokenów, bez dopisywania `[1m]`; 200 tys. zostaje tylko starszy Haiku 4.5. Gdy okno się zapełnia, najstarsze fragmenty przestają być widoczne albo zostają streszczone, a jakość spada - to najważniejszy zasób, którym zarządzasz.
+<Termin id="okno-kontekstowe">Okno kontekstu</Termin>, czyli wszystko, co Claude "widzi" naraz w rozmowie, liczy się w tokenach (kawałkach tekstu - zwykle fragmentach słów; po angielsku średnio 3-4 znaki, po polsku zwykle mniej). Aktualne modele - Opus, Sonnet, Haiku 5.5 i Fable - mają okno 1 mln tokenów, bez dopisywania `[1m]`; 200 tys. zostaje tylko starszy Haiku 4.5. Gdy okno się zapełnia, najstarsze fragmenty przestają być widoczne albo zostają streszczone, a jakość spada - to najważniejszy zasób, którym zarządzasz.
 
 ## `/compact` kontra `/clear`
 
@@ -47,13 +47,13 @@ import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 
 `/context` pokazuje, co zajmuje okno: pliki pamięci (Memory files), narzędzia MCP, historię. `/usage` pokazuje, ile zużyłeś w tej sesji i ile zostało z limitu planu.
 
-**Oszczędzanie tokenów** sprowadza się do pięciu nawyków: częste `/clear` między zadaniami, subagenci do operacji o dużym wyjściu (logi, testy), flaga `--bare` w skryptach (Claude pomija wtedy wczytywanie CLAUDE.md, wtyczek i serwerów MCP), wyłączanie w `/mcp` serwerów, których nie używasz, i zwięzły CLAUDE.md.
+**Oszczędzanie tokenów** sprowadza się do pięciu nawyków: częste `/clear` między zadaniami, subagenci do operacji o dużym wyjściu (logi, testy), flaga `--bare` w skryptach (Claude pomija wtedy wczytywanie CLAUDE.md, wtyczek i serwerów MCP; uwaga: wymaga klucza API, czyli rozliczenia za zużycie - patrz [Tryb headless](/claude-code/tryb-headless-i-ci/)), wyłączanie w `/mcp` serwerów, których nie używasz, i zwięzły CLAUDE.md.
 
 ## Prompt caching
 
 Przy każdej wiadomości Claude Code wysyła modelowi całą dotychczasową rozmowę. Cache (pamięć podręczna) sprawia, że powtórzony początek rozmowy jest przetwarzany taniej. Na subskrypcji (Pro, Max) cache żyje godzinę, a po przejściu na dodatkowe kredyty (usage credits) - 5 minut. Na kluczu API i u dostawców chmurowych domyślnie żyje 5 minut. Pierwsza wiadomość po dłuższej przerwie przetwarza wszystko od nowa.
 
-Przełączanie modelu unieważnia cache - Claude Code o tym ostrzega. Rozwidlenie sesji (fork, czyli jej kopia, w której próbujesz innej drogi) dzieli cache z sesją, z której powstało.
+Przełączanie modelu unieważnia cache - Claude Code o tym ostrzega. Kopia sesji (fork - np. `/fork` albo `--fork-session`, patrz [Slash commands](/claude-code/slash-commands/)) dzieli cache z sesją, z której powstała.
 
 **Od wersji 2.1.243: `promptCacheTtl`.** Dotyczy tylko klucza API i chmur (AWS, Google, Microsoft). Ustaw `promptCacheTtl`, żeby cache głównej rozmowy żył **60 minut zamiast 5**. Powrót po przerwie nie startuje wtedy z zimnego cache - realna oszczędność przy pracy w blokach z przerwami.
 

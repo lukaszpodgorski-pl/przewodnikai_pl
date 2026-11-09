@@ -41,7 +41,7 @@ import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 
 ## Agent Skills
 
-Skill to instrukcja dla Claude zapisana w pliku `SKILL.md` w osobnym folderze - na przykład "jak piszemy commity w tym projekcie". Plik zaczyna się od frontmattera (kilku linijek ustawień między liniami `---`, m.in. nazwy i opisu), a pod nim jest zwykła treść. Skill ładuje się stopniowo (_progressive disclosure_), w trzech poziomach:
+Skill to instrukcja dla Claude zapisana w pliku `SKILL.md` w osobnym folderze - na przykład "jak piszemy commity w tym projekcie". Plik zaczyna się od frontmattera (bloku ustawień, m.in. nazwy i opisu - patrz [Własne komendy](/claude-code/wlasne-komendy/)), a pod nim jest zwykła treść. Skill ładuje się stopniowo (_progressive disclosure_), w trzech poziomach:
 
 1. Zawsze załadowane są tylko `name` i `description` - kilkadziesiąt tokenów.
 2. Pełna treść `SKILL.md` ładuje się, gdy Claude uzna skill za istotny albo gdy wpiszesz `/skill-name`.

@@ -31,7 +31,7 @@ export default defineConfig({
 		starlight({
 			title: 'Przewodnik AI',
 			description:
-				'Otwarta, społecznościowa baza wiedzy o sztucznej inteligencji po polsku. Kurs AI od podstaw - bez żargonu, z ćwiczeniem na każdej lekcji.',
+				'Otwarta, społecznościowa baza wiedzy o sztucznej inteligencji po polsku. Kurs AI od podstaw - bez żargonu, z krótkim ćwiczeniem po każdej lekcji.',
 			customCss: ['./src/styles/custom.css'],
 			// Bloki kodu na tej stronie to w większości prompty - zwykłe zdania
 			// po polsku, często dłuższe niż kolumna tekstu. Expressive Code

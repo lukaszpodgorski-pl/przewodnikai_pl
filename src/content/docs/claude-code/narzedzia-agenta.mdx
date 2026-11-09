@@ -30,7 +30,6 @@ faq:
 status: gotowe
 ---
 
-import Termin from '../../../components/Termin.astro';
 import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 
 :::note[O tej stronie]
@@ -41,7 +40,7 @@ import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 
 Narzędzie to konkretna czynność, którą Claude może wykonać na Twoim komputerze - przeczytać plik (`Read`), poprawić go (`Edit`), uruchomić komendę w terminalu (`Bash`, `PowerShell`), wyszukać tekst w plikach (`Grep`) albo pobrać stronę (`WebFetch`). Nazw nie musisz znać na pamięć - zobaczysz je w okienku z pytaniem o zgodę.
 
-Kolumna "Wymaga zgody" dotyczy trybu Manual (Claude pyta przed każdą ryzykowną akcją, więcej w [następnej lekcji](/claude-code/uprawnienia-i-bezpieczenstwo/)) i ścieżek w katalogu roboczym.
+Kolumna "Wymaga zgody" dotyczy trybu Manual (Claude pyta przed każdą ryzykowną akcją, więcej w [następnej lekcji](/claude-code/uprawnienia-i-bezpieczenstwo/)) i ścieżek w katalogu roboczym. Domyślnie Claude Code startuje w trybie auto, w którym większość tych pytań rozstrzyga za Ciebie osobny model - w ćwiczeniu przełączysz się na Manual.
 
 | Narzędzie | Wymaga zgody | Narzędzie | Wymaga zgody |
 | --- | --- | --- | --- |
@@ -72,7 +71,7 @@ Cztery uwagi, które łatwo przeoczyć:
 - `Read`, `Grep` i `Glob` mimo "Nie" pytają o ścieżki **poza** katalogiem roboczym i katalogami dodatkowymi.
 - `Grep` i `Glob` są domyślnie dostępne tylko na Windowsie. Na macOS, Linuksie i w WSL Claude szuka komendami `find` i `grep` przez `Bash` - to odczytowe komendy, więc też nie pytają o zgodę ([lista narzędzi](https://code.claude.com/docs/en/tools-reference#glob-tool-behavior)).
 - Narzędzia do listy zadań (`TaskCreate`, `TaskList`, `TodoWrite`) działają domyślnie tylko na starszych modelach (Opus 4.7, Sonnet 4.6, Haiku 4.5 i wcześniejszych). Na nowszych Claude śledzi postęp bez spisanej listy, a narzędzia włączysz zmienną `CLAUDE_CODE_ENABLE_TODO_TOOLS=1`.
-- `Agent` to narzędzie delegowania do <Termin id="agent-ai">subagentów</Termin>. Dawna nazwa `Task` działa jako alias.
+- `Agent` to narzędzie delegowania do subagentów (pomocników, którym Claude zleca część zadania - więcej w [lekcji o subagentach](/claude-code/subagenci/)). Dawna nazwa `Task` działa jako alias.
 
 ## Poziomy uprawnień
 

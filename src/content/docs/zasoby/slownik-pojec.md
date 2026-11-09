@@ -154,7 +154,7 @@ Specjalistyczny procesor pierwotnie zaprojektowany do renderowania grafiki, któ
 
 ## Halucynacje AI
 
-Sytuacja, w której model podaje informację brzmiącą wiarygodnie, ale zmyśloną. To nie jest kłamstwo ani awaria. Model zawsze układa najbardziej prawdopodobny ciąg dalszy, a kiedy czegoś nie wie, "prawdopodobne" przestaje znaczyć "prawdziwe". Najgroźniejsze jest to, że halucynacja wygląda tak samo jak dobra odpowiedź - tym samym pewnym tonem.
+Sytuacja, w której model podaje informację brzmiącą wiarygodnie, ale zmyśloną. To nie jest kłamstwo ani awaria. Model układa prawdopodobny ciąg dalszy, a kiedy czegoś nie wie, "prawdopodobne" przestaje znaczyć "prawdziwe". Najgroźniejsze jest to, że halucynacja wygląda tak samo jak dobra odpowiedź - tym samym pewnym tonem.
 
 **Przykład:** Prosisz o źródła do artykułu i dostajesz listę książek z autorami, tytułami i latami wydania. Wszystko wygląda porządnie, ale dwóch z tych pozycji nigdy nie wydano - model ułożył tytuły, które brzmią jak prawdziwe.
 
@@ -184,7 +184,7 @@ Model wytrenowany na ogromnej ilości tekstu, którego jedyne zadanie brzmi: prz
 
 Model AI, którego wagi (czyli wyuczone parametry) producent udostępnia do pobrania - możesz uruchomić go na własnym komputerze lub serwerze, bez wysyłania danych do chmury dostawcy. Open-weight nie zawsze znaczy w pełni open source: licencje bywają różne, od bardzo liberalnej Apache 2.0 (np. Bielik, rodzina Mistral 3) po licencje z ograniczeniami komercyjnymi. Przeciwieństwem są modele zamknięte, dostępne wyłącznie przez API lub aplikację producenta.
 
-**Przykład:** Bielik i małe modele Ministral 3 (3, 8 i 14 mld parametrów) to modele open-weight - możesz pobrać je za darmo i uruchomić w aplikacji LM Studio na własnym komputerze. Flagowy Mistral Large 3 też ma otwarte wagi, ale przy 675 mld parametrów potrzebuje już serwera z kilkoma kartami graficznymi.
+**Przykład:** Bielik i małe modele Ministral 3 (3, 8 i 14 mld parametrów) to modele open-weight - możesz pobrać je za darmo i uruchomić w aplikacji LM Studio na własnym komputerze. Mistral Large 3 (grudzień 2025 r.) też ma otwarte wagi, ale przy 675 mld parametrów potrzebuje już serwera z kilkoma kartami graficznymi.
 
 ## Ogólna AI (AGI)
 
@@ -194,7 +194,7 @@ Hipotetyczny system AI dorównujący człowiekowi w dowolnej dziedzinie intelekt
 
 ## Okno kontekstowe
 
-Maksymalna ilość tekstu (liczona w tokenach), którą model AI może jednocześnie "widzieć" - obejmuje Twoje pytania, wcześniejsze odpowiedzi i załączone dokumenty. Gdy rozmowa przekroczy ten limit, model traci dostęp do najstarszych fragmentów.
+Maksymalna ilość tekstu (liczona w tokenach), którą model AI może jednocześnie "widzieć" - obejmuje Twoje pytania, wcześniejsze odpowiedzi i załączone dokumenty. Gdy rozmowa przekroczy ten limit, najstarsze fragmenty przestają być widoczne albo zostają streszczone - zależnie od aplikacji.
 
 **Przykład:** Wklejasz do chatbota długi raport i zadajesz pytania. Jeśli raport mieści się w oknie kontekstowym, model odpowiada z uwzględnieniem całości; jeśli nie - odpowiedzi dotyczą tylko tej części, którą model wciąż "widzi".
 
@@ -206,9 +206,9 @@ To, co wpisujesz modelowi: pytanie, polecenie, wklejony tekst albo wszystko nara
 
 ## Prompt engineering
 
-Umiejętność formułowania poleceń tak, żeby model odpowiadał tak, jak potrzebujesz. Sprowadza się do trzech rzeczy: powiedzieć wprost, o co Ci chodzi, dodać kontekst i określić, w jakiej formie chcesz dostać wynik. To nie jest wiedza tajemna ani osobny zawód - to głównie precyzja, a uczysz się jej na własnych rozmowach.
+Umiejętność formułowania poleceń tak, żeby model odpowiadał tak, jak potrzebujesz. W tym przewodniku sprowadza się do czterech pól: rola (kim model ma być), zadanie (co ma zrobić), ograniczenia (czego się trzymać) i format (w jakiej formie oddać wynik). To nie jest wiedza tajemna ani osobny zawód - to głównie precyzja, a uczysz się jej na własnych rozmowach.
 
-**Przykład:** Zamiast pytać "Jak zostać programistą?", inżynieria promptów sugeruje bardziej precyzyjne podejście: "Jestem 30-letnim nauczycielem z podstawową znajomością HTML i CSS. Chcę zostać front-end developerem w ciągu roku, ucząc się 10 godzin tygodniowo. Stwórz dla mnie 3-miesięczny plan nauki, uwzględniający konkretne zasoby i projekty praktyczne."
+**Przykład:** Zamiast pytać "Jak zostać programistą?", wypełniasz cztery pola. Rola: "Jesteś doradcą zawodowym, który zna branżę IT". Zadanie: "Ułóż mi 3-miesięczny plan nauki front-endu z konkretnymi materiałami i projektami do zrobienia". Ograniczenia: "Jestem 30-letnim nauczycielem, znam podstawy HTML i CSS, mam 10 godzin tygodniowo i chcę zmienić zawód w ciągu roku". Format: "Tabela: tydzień, temat, materiał, projekt".
 
 ## Przetwarzanie języka naturalnego (NLP)
 
@@ -256,7 +256,7 @@ Zdolność państwa, firmy lub pojedynczej osoby do korzystania z technologii cy
 
 ## Sztuczna inteligencja (AI)
 
-Programy, które radzą sobie z zadaniami wymagającymi kiedyś człowieka: rozpoznają obraz, przetwarzają zdanie, wyciągają wnioski z danych, uczą się na przykładach. Różnica wobec zwykłego programu jest jedna i zasadnicza - nikt nie napisał AI reguły na każdy przypadek, ona wyciąga reguły sama z tego, co jej pokazano. Nazwą "sztuczna inteligencja" określa się i samą technologię, i dziedzinę nauki, która się nią zajmuje.
+Programy, które radzą sobie z zadaniami wymagającymi kiedyś człowieka: rozpoznają obraz, przetwarzają zdanie, wyciągają wnioski z danych, uczą się na przykładach. Program albo wyciąga reguły z przykładów (to uczenie maszynowe), albo działa według reguł napisanych przez człowieka - jedno i drugie mieści się w AI. Dzisiejsze chatboty należą do tej pierwszej grupy. Nazwą "sztuczna inteligencja" określa się i samą technologię, i dziedzinę nauki, która się nią zajmuje.
 
 **Przykład:** Telefon rozpoznaje Twoją twarz i się odblokowuje, poczta wrzuca reklamy do spamu, nawigacja przewiduje korek, a chatbot pisze odpowiedź na e-mail. Żaden z tych programów nie dostał listy reguł na każdą sytuację - wszystkie nauczyły się z przykładów.
 
@@ -268,7 +268,7 @@ Dziedzina informatyki zajmująca się tworzeniem systemów wykonujących zadania
 
 ## Temperatura (temperature)
 
-Parametr sterujący losowością odpowiedzi modelu. Model w każdym kroku wybiera kolejny token z listy kandydatów - niska temperatura każe mu trzymać się najbardziej prawdopodobnego, wysoka pozwala sięgać po mniej oczywiste. Niżej na skali odpowiedzi są powtarzalne i zachowawcze, wyżej - bardziej kreatywne, ale i bardziej podatne na błędy. W zwykłych chatbotach temperatura jest ustawiona z góry; regulujesz ją przez API albo w narzędziach dla zaawansowanych.
+Ustawienie losowania, które steruje tym, jak przewidywalne są odpowiedzi modelu. W dokumentacji API nazywa się je parametrem - to co innego niż parametry (wagi) ustawione w treningu. Model w każdym kroku wybiera kolejny token z listy kandydatów - niska temperatura każe mu trzymać się najbardziej prawdopodobnego, wysoka pozwala sięgać po mniej oczywiste. Niżej na skali odpowiedzi są powtarzalne i zachowawcze, wyżej - bardziej kreatywne, ale i bardziej podatne na błędy. W zwykłych chatbotach temperatura jest ustawiona z góry; regulujesz ją przez API albo w narzędziach dla zaawansowanych.
 
 **Przykład:** Prosisz o hasło reklamowe przy niskiej temperaturze i za każdym razem dostajesz niemal to samo, bezpieczne zdanie. Podnosisz ją - propozycje robią się zaskakujące i różnorodne, ale część z nich jest całkowicie nietrafiona.
 
@@ -278,15 +278,15 @@ Temperatura skaluje rozkład prawdopodobieństwa przed losowaniem kolejnego toke
 
 ## Token
 
-Podstawowa jednostka tekstu, na jaką model dzieli to, co czyta i co pisze - zwykle fragment słowa, całe krótkie słowo albo znak interpunkcyjny. Tokeny są walutą modeli językowych: w nich mierzy się okno kontekstowe i w nich naliczane są opłaty za korzystanie z API. Polszczyzna dzieli się na tokeny mniej ekonomicznie niż angielski - ten sam tekst po polsku zajmuje ich zauważalnie więcej. Ile dokładnie, zależy od modelu i najlepiej to zmierzyć, zamiast przyjmować z pamięci.
+Podstawowa jednostka tekstu - kawałek, na jaki model dzieli to, co czyta i co pisze: zwykle kawałek słowa, całe krótkie słowo albo znak interpunkcyjny. Tokeny są walutą modeli językowych: w nich mierzy się okno kontekstowe i w nich naliczane są opłaty za korzystanie z API. Polszczyzna dzieli się na tokeny mniej ekonomicznie niż angielski - ten sam tekst po polsku zajmuje ich zauważalnie więcej. Ile dokładnie, zależy od modelu i najlepiej to zmierzyć, zamiast przyjmować z pamięci.
+
+Samo dzielenie tekstu na tokeny nazywa się tokenizacją - np. "Lubię jeść jabłka" może zostać pocięte na "Lubi", "ę", " jeść", " jabł", "ka" (podział zależy od konkretnego modelu).
 
 **Przykład:** Wklejasz do chatbota dokument, który ma 10 tysięcy słów. Dla modelu to kilkanaście do dwudziestu kilku tysięcy tokenów - i to ta liczba, a nie liczba stron, decyduje, czy tekst zmieści się w oknie kontekstowym i ile zapłacisz za jego przetworzenie.
 
 ## Tokenizacja
 
-Proces dzielenia tekstu na mniejsze jednostki zwane tokenami, które mogą być przetwarzane przez modele językowe. Tokeny to najczęściej słowa, części słów lub symbole, które stanowią podstawową jednostkę analizy.
-
-**Przykład:** Zdanie "Lubię jeść jabłka" mogłoby zostać podzielone na tokeny: "Lubi", "ę", " jeść", " jabł", "ka" (podział zależy od konkretnego tokenizera).
+Dzielenie tekstu na tokeny, czyli kawałki, w których model czyta i pisze - opis i przykład znajdziesz w haśle [Token](#token).
 
 ## Transfer learning
 

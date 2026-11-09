@@ -58,7 +58,7 @@ Rozszerzenie **VS Code** ma własny panel czatu i Focus view, jest też plugin *
 
 ## tmux i wiele instancji
 
-tmux (program, który dzieli jedno okno terminala na kilka i utrzymuje sesje po zamknięciu okna) wymaga trzech linii w `~/.tmux.conf`. Bez nich `Shift+Enter` wysyła wiadomość zamiast łamać linię, a powiadomienia nie docierają:
+tmux (program do dzielenia terminala na okna, patrz [Interfejs i skróty](/claude-code/interfejs-i-skroty/)) utrzymuje też sesje po zamknięciu okna. Wymaga trzech linii w `~/.tmux.conf`. Bez nich `Shift+Enter` wysyła wiadomość zamiast łamać linię, a powiadomienia nie docierają:
 
 ```bash
 set -g allow-passthrough on
@@ -68,8 +68,8 @@ set -as terminal-features 'xterm*:extkeys'
 
 Kilka zadań naraz poprowadzisz na trzy sposoby:
 
-- **osobne terminale i worktree** - worktree to dodatkowa kopia robocza tego samego repozytorium w osobnym katalogu, więc dwie sesje nie edytują tych samych plików;
-- **sesje w tle** (`claude --bg`; lista: `claude agents`; powrót do sesji: `claude attach <id>`) - Claude pracuje, a Ty masz wolny terminal;
+- **osobne terminale i worktree** (osobna kopia robocza repozytorium, patrz [Git i GitHub](/claude-code/git-i-github/)) - dwie sesje nie edytują tych samych plików;
+- **sesje w tle** (`claude --bg`; lista: `claude agents` - mimo nazwy to lista sesji w tle, nie subagentów z [lekcji 11](/claude-code/subagenci/); powrót do sesji: `claude attach <id>`) - Claude pracuje, a Ty masz wolny terminal;
 - **agent teams** - zespół współpracujących agentów, funkcja eksperymentalna włączana zmienną `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`. Z tmux współpracuje przez tryb `--teammate-mode tmux`.
 
 ## Terminal, desktop i telefon

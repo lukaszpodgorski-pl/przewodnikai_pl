@@ -19,6 +19,6 @@ Zajrzyj do folderu ze spamem albo do zakładki "Oferty". Jeśli po kilku minutac
 
 ## Dlaczego proszę o potwierdzenie
 
-Dzięki temu mam pewność, że to naprawdę Ty, a nie ktoś, kto wpisał Twój adres bez Twojej wiedzy. To ta sama zasada, o której piszę w rozdziale o prywatności i danych - nie chcę robić nikomu tego, przed czym sam ostrzegam.
+Dzięki temu mam pewność, że to naprawdę Ty, a nie ktoś, kto wpisał Twój adres bez Twojej wiedzy. Nikt nie trafi na listę cudzymi rękami.
 
 Tymczasem możesz [wrócić do kursu](/podstawy/wstep/) albo [przejrzeć program](/).

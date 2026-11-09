@@ -94,11 +94,10 @@ Jeśli ta strona Cię przytłacza, oto kolejność, którą sam bym wybrał na s
 3. Dołącz do [Discorda SpeakLeash](https://discord.com/invite/ZJwCMrxwT7), jeśli chcesz być bliżej polskiej społeczności.
 4. Zapisz się na jedno źródło newsów - i na tym poprzestań.
 
-:::note[Teraz wiesz]
+## Teraz wiesz
 
 - Gdzie znaleźć darmowe, oficjalne kursy i przewodniki od twórców Claude'a i ChatGPT - w tym te dostępne po polsku
 - Jak z pomocą AI korzystać z anglojęzycznych materiałów bez płynnej znajomości angielskiego
 - Czym jest SpeakLeash i gdzie sprawdzić, który model najlepiej radzi sobie z językiem polskim
 
-**Zobacz też:** [Prompt Engineering](/prompt-engineering/) - sekcja o tym, jak pisać polecenia, z których AI zrobi dokładnie to, o co prosisz.
-:::
+**Zobacz też:** [Weryfikacja informacji](/podstawy/weryfikacja-informacji/) - jak sprawdzić odpowiedź AI w czterech krokach, zanim komuś ją przekażesz.

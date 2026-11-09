@@ -31,7 +31,6 @@ faq:
 status: gotowe
 ---
 
-import Termin from '../../../components/Termin.astro';
 import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 
 :::note[O tej stronie]
@@ -40,11 +39,11 @@ import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 **Wcześniej:** znasz wszystkie mechanizmy. Tu: układasz je w sposób pracy.
 :::
 
-**1. Explore → Plan → Code → Commit.** Najpierw niech Claude przeczyta właściwe pliki i napisze plan ("nie pisz jeszcze kodu"), potem implementuje, weryfikuje i commituje. Wbudowani subagenci Explore i Plan startują bez plików CLAUDE.md i bez stanu repozytorium, żeby badanie kodu było szybkie i tanie ([dokumentacja subagentów](https://code.claude.com/docs/en/sub-agents)). Te fazy są też najcenniejsze.
+**1. Explore → Plan → Code → Commit.** Najpierw niech Claude przeczyta właściwe pliki i napisze plan ("nie pisz jeszcze kodu"), potem implementuje, weryfikuje i commituje. Fazy badania i planowania są najcenniejsze - to w nich wygrywa się zadanie. Claude może je zlecić wbudowanym subagentom o tych samych nazwach, Explore i Plan, które startują bez plików CLAUDE.md i bez stanu repozytorium, żeby badanie kodu było szybkie i tanie ([dokumentacja subagentów](https://code.claude.com/docs/en/sub-agents)).
 
 **2. Weryfikacja to najwyższa dźwignia.** Dokumentacja radzi: daj Claude sprawdzian, który sam uruchomi - testy, build albo zrzut ekranu do porównania. To różnica między sesją, której musisz pilnować, a taką, od której możesz odejść. Bez tego kod "wygląda dobrze", ale bywa błędny.
 
-**3. Najpierw testy (TDD, ang. _test-driven development_).** Napisz testy, które opisują, jak kod ma działać, i zacommituj je. Potem niech Claude pisze kod, aż wszystkie testy przejdą ("na zielono"). Claude bywa skłonny zmieniać testy zamiast kodu - zacommitowanie testów temu zapobiega. **Nie zabraniaj Claude edycji plików w trakcie pracy**: sprawdzaj wynik automatycznie po każdej zmianie (hook `PostToolUse`) albo przed commitem (pre-commit).
+**3. Najpierw testy (TDD, ang. _test-driven development_).** Napisz testy, które opisują, jak kod ma działać, i zacommituj je. Potem niech Claude pisze kod, aż wszystkie testy przejdą ("na zielono"). Claude bywa skłonny zmieniać testy zamiast kodu - zacommitowanie testów temu zapobiega. Zamiast pilnować Claude zakazami w poleceniu, sprawdzaj wynik automatycznie: hookiem `PostToolUse` po każdej zmianie (lekcja o [hookach](/claude-code/hooks/)) albo skryptem pre-commit (automatem Gita, który sprawdza zmiany tuż przed zapisaniem commita).
 
 **4. Plan mode** (`Shift+Tab` do `plan` albo `/plan`) do eksploracji nieznanego lub dużego repozytorium. Dla małych zadań pomiń planowanie: przy oczywistym zakresie i drobnej poprawce - literówka, dodanie logu, zmiana nazwy zmiennej - poproś po prostu o zmianę.
 
@@ -54,7 +53,7 @@ import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 
 **7. Higiena sesji.** Między niezwiązanymi zadaniami czyść kontekst przez `/clear`. Do przerwanej pracy wracasz przez `claude --continue` (ostatnia sesja) albo `claude --resume` (lista sesji). Do eksperymentu użyj `/branch` (odgałęzienie rozmowy, oryginał zostaje) albo `/fork` (kopia rozmowy, która pracuje w tle).
 
-**8. Adwersaryjny przegląd subagentem.** Zanim spojrzysz na PR napisany przez Claude, poproś o <Termin id="agent-ai">subagenta</Termin>, który _zaatakuje_ zmianę pod kątem poprawności i prostoty, a potem spisze przyjęte założenia i decyzje projektowe wraz z uzasadnieniem w osobnym dokumencie.
+**8. Adwersaryjny przegląd subagentem.** Zanim spojrzysz na PR napisany przez Claude, poproś o [subagenta](/claude-code/subagenci/), który _zaatakuje_ zmianę pod kątem poprawności i prostoty, a potem spisze przyjęte założenia i decyzje projektowe wraz z uzasadnieniem w osobnym dokumencie.
 
 Subagent nie widział rozmowy, więc nie dzieli ślepych plam sesji głównej. Ten dokument mówi Ci, gdzie patrzeć, zamiast zmuszać do czytania całego diffa na zimno. _(praktyka Dicksona Tsaia, Claude Code w Anthropic)_
 
@@ -81,7 +80,7 @@ Twardy warunek: raport **nie zaczyna żadnej nowej pracy**. _(praktyka Richarda 
 
 ## Teraz wiesz
 
-- Explore i Plan są najcenniejsze - to tam wygrywa się zadanie. Wbudowani subagenci tych faz startują bez CLAUDE.md, więc badanie kodu jest szybkie i tanie.
+- Badanie i plan są najcenniejsze - to tam wygrywa się zadanie. Wbudowani subagenci Explore i Plan, którym Claude może je zlecić, startują bez CLAUDE.md, więc badanie kodu jest szybkie i tanie.
 - Bez sposobu weryfikacji agent nie wie, czy skończył, a Ty nie wiesz, czy działa.
 - Świeże spojrzenie subagenta jest wartościowe właśnie dlatego, że nie zna rozmowy.
 

@@ -165,14 +165,25 @@ function podmienKarty(tresc, czyWyciety) {
  * "Nastepny krok" prowadzacy do wycietej strony. Bez tego lancuch nauki
  * urywa sie w prozni albo - po transformacji odnosnikow - zostaje zdanie
  * zapowiadajace lekcje, ktorej nie ma.
+ *
+ * Lapie oba warianty: "**Nastepny krok:**" w artykulach i "**Zacznij tutaj:**"
+ * na stronach zbiorczych; etykieta z dopasowania zostaje w wyniku.
+ *
+ * `urlStrony` to adres przetwarzanej strony. Gdy wyciety cel lezy w sekcji,
+ * ktorej strona zbiorcza jest ta sama strona, odeslanie "do przegladu sekcji"
+ * prowadziloby do siebie samej - wtedy idzie tekst tymczasowy ze strona glowna
+ * (docelowe brzmienie po decyzji D01, zadanie Z37).
  */
-function podmienNastepnyKrok(tresc, czyWyciety) {
+function podmienNastepnyKrok(tresc, czyWyciety, urlStrony = null) {
 	return tresc.replace(
-		/\*\*Następny krok:\*\*\s*\[([^\]]+)\]\(([^)]+)\)[^\n]*/g,
-		(calosc, etykieta, url) => {
+		/\*\*(Następny krok|Zacznij tutaj):\*\*\s*\[([^\]]+)\]\(([^)]+)\)[^\n]*/g,
+		(calosc, naglowek, etykieta, url) => {
 			if (!czyWyciety(url)) return calosc;
 			const sekcja = urlSekcji(url);
-			return `**Następny krok:** lekcja "${etykieta}" jest w przygotowaniu - wróć do [przeglądu sekcji](${sekcja}), żeby zobaczyć, co już jest gotowe.`;
+			if (urlStrony && sekcja === urlStrony) {
+				return `**${naglowek}:** pierwsza lekcja tej sekcji jest w przygotowaniu - na [stronie głównej](/) zobaczysz, co jest gotowe dziś.`;
+			}
+			return `**${naglowek}:** lekcja "${etykieta}" jest w przygotowaniu - wróć do [przeglądu sekcji](${sekcja}), żeby zobaczyć, co już jest gotowe.`;
 		},
 	);
 }
@@ -251,9 +262,9 @@ function dodajZapowiedzSekcji(tresc) {
  * odlinkowaniem, bo inaczej odlinkowanie zjada odnosnik w tych blokach
  * i zostaje zdanie zapowiadajace lekcje, ktorej nie ma na stronie.
  */
-function transformuj(tresc, czyWyciety, { pustaSekcja = false } = {}) {
+function transformuj(tresc, czyWyciety, { pustaSekcja = false, url = null } = {}) {
 	let wynik = podmienKarty(tresc, czyWyciety);
-	wynik = podmienNastepnyKrok(wynik, czyWyciety);
+	wynik = podmienNastepnyKrok(wynik, czyWyciety, url);
 	wynik = usunMartweWiecej(wynik, czyWyciety);
 	wynik = odlinkujOdnosniki(wynik, czyWyciety);
 	if (pustaSekcja) wynik = dodajZapowiedzSekcji(wynik);
@@ -401,6 +412,7 @@ function main() {
 		mkdirSync(dirname(cel), { recursive: true });
 		const nowa = transformuj(wpis.zawartosc, czyWyciety, {
 			pustaSekcja: pusteSekcje.has(wpis.url),
+			url: wpis.url,
 		});
 		if (nowa !== wpis.zawartosc) zmienionych++;
 		writeFileSync(cel, nowa, 'utf8');

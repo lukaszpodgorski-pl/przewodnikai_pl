@@ -40,16 +40,18 @@ import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 
 To najbardziej referencyjna strona w tej sekcji. Nie ucz się jej na pamięć - wracaj do niej, gdy będziesz czegoś szukać.
 
+Część flag dotyczy rzeczy z dalszych lekcji - subagentów, hooks, MCP, skills. Jeśli nazwa nic Ci nie mówi, pomiń ją. Wrócisz tu po lekcji o [skills i plugins](/claude-code/skills-i-plugins/) i wtedy cała tabela będzie czytelna.
+
 ## Podstawowe komendy
 
 ```bash
-claude                              # sesja interaktywna
-claude "explain this project"       # sesja z promptem początkowym
-claude -p "explain this function"   # tryb print (non-interactive), potem wyjście
-cat logs.txt | claude -p "explain"  # potokowanie treści
-claude -c                           # kontynuuj ostatnią rozmowę w tym katalogu
-claude -c -p "Check for type errors" # kontynuacja w trybie print (skrypty)
-claude -r "auth-refactor" "Finish this PR"  # wznów sesję po ID lub nazwie
+claude                                    # sesja interaktywna
+claude "wyjaśnij ten projekt"             # sesja z promptem początkowym
+claude -p "wyjaśnij tę funkcję"           # tryb print (non-interactive), potem wyjście
+cat logs.txt | claude -p "wyjaśnij"       # potokowanie treści
+claude -c                                 # kontynuuj ostatnią rozmowę w tym katalogu
+claude -c -p "sprawdź błędy typów"        # kontynuacja w trybie print (skrypty)
+claude -r "auth-refactor" "dokończ ten PR"  # wznów sesję po ID lub nazwie
 ```
 
 ## Podkomendy CLI
@@ -82,7 +84,7 @@ Na start wystarczą Ci cztery: `-p`, `-c`, `-r` i `--model`. Resztę sprawdzaj, 
 | `--fork-session` | przy wznawianiu zacznij nową, osobną kopię rozmowy (oryginał zostaje nietknięty) |
 | `--model` | model sesji (alias lub pełne ID) |
 | `--fallback-model` | model zapasowy przy przeciążeniu lub niedostępności |
-| `--effort` | poziom rozumowania: `low`, `medium`, `high`, `xhigh`, `max`, `ultracode` |
+| `--effort` | poziom rozumowania: `low`, `medium`, `high`, `xhigh`, `max`; osobno `ultracode` - to nie kolejny poziom, tylko osobne ustawienie do wieloetapowych przebiegów (`--effort ultracode` włącza je i ustawia poziom `xhigh`, patrz [Kontekst i koszty](/claude-code/kontekst-i-koszty/)) |
 | `--output-format` | `text` (domyślnie), `json`, `stream-json` (print mode) |
 | `--input-format` | `text`, `stream-json` (print mode) |
 | `--include-partial-messages` | częściowe zdarzenia streamu (wymaga `--print` i `stream-json`) |
@@ -98,7 +100,7 @@ Na start wystarczą Ci cztery: `-p`, `-c`, `-r` i `--model`. Resztę sprawdzaj, 
 | `--add-dir` | dodatkowe katalogi robocze do odczytu i edycji |
 | `--mcp-config` | wczytaj serwery MCP z plików lub stringów JSON |
 | `--strict-mcp-config` | używaj wyłącznie serwerów z `--mcp-config` |
-| `--agents` | zdefiniuj subagentów w JSON na czas sesji |
+| `--agents` | zdefiniuj [subagentów](/claude-code/subagenci/) w JSON na czas sesji |
 | `--agent` | uruchom całą sesję jako dany subagent |
 | `--append-system-prompt` | dopisz tekst do domyślnego system promptu |
 | `--append-system-prompt-file` | dopisz zawartość pliku do system promptu |
@@ -109,13 +111,13 @@ Na start wystarczą Ci cztery: `-p`, `-c`, `-r` i `--model`. Resztę sprawdzaj, 
 | `--setting-sources` | źródła settings do wczytania: `user,project,local` |
 | `--session-id` | użyj konkretnego UUID sesji |
 | `--name`, `-n` | nazwa sesji (widoczna w `/resume`) |
-| `--worktree`, `-w` | start w izolowanym git worktree |
+| `--worktree`, `-w` | start w izolowanym git worktree (osobna kopia robocza repozytorium, patrz [lekcja o Gicie](/claude-code/git-i-github/)) |
 | `--tmux` | utwórz sesję tmux dla worktree (wymaga `--worktree`) |
 | `--bg`, `--background` | start jako background agent |
 | `--exec` | uruchom komendę shell jako background job (z `--bg`) |
 | `--ide` | połącz automatycznie z IDE przy starcie |
 | `--chrome`, `--no-chrome` | integracja Chrome (automatyzacja przeglądarki) |
-| `--bare` | tryb minimalny: pomija auto-discovery hooks, skills, pluginów, MCP i CLAUDE.md |
+| `--bare` | tryb minimalny: pomija auto-discovery hooks, skills, pluginów, MCP i CLAUDE.md - do skryptów i CI |
 | `--safe-mode` | wyłącz wszystkie Twoje dodatki (CLAUDE.md, skills, pluginy, hooks, MCP) - do szukania, co psuje konfigurację |
 | `--restricted` | tryb ograniczony - patrz niżej |
 | `--debug`, `--debug-file <path>` | tryb debug, zapis logów debug do pliku |

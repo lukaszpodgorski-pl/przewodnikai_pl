@@ -73,6 +73,39 @@ test('podmienNastepnyKrok nie rusza lekcji publikowanej', () => {
 	assert.equal(podmienNastepnyKrok(wejscie, czyWyciety), wejscie);
 });
 
+test('podmienNastepnyKrok podmienia "Zacznij tutaj" z wycietym celem i zachowuje etykiete', () => {
+	const wejscie =
+		'**Zacznij tutaj:** [Wstęp do kursu AI](/podstawy/wstep/) - poznasz strukturę przewodnika.';
+	const wynik = podmienNastepnyKrok(wejscie, czyWyciety, '/etyka/');
+	assert.match(wynik, /^\*\*Zacznij tutaj:\*\* lekcja "Wstęp do kursu AI" jest w przygotowaniu/);
+	assert.doesNotMatch(wynik, /\/podstawy\/wstep\//);
+	assert.doesNotMatch(wynik, /poznasz strukturę/);
+});
+
+test('podmienNastepnyKrok nie rusza "Zacznij tutaj" z publikowanym celem', () => {
+	const wejscie =
+		'**Zacznij tutaj:** [Etyka i prawo](/etyka/etyczne-aspekty/) - kto ponosi odpowiedzialność.';
+	assert.equal(podmienNastepnyKrok(wejscie, czyWyciety, '/etyka/'), wejscie);
+});
+
+test('podmienNastepnyKrok na stronie zbiorczej nie odsyla do niej samej', () => {
+	const wejscie =
+		'**Zacznij tutaj:** [Wstęp do kursu AI](/podstawy/wstep/) - poznasz strukturę przewodnika.';
+	const wynik = podmienNastepnyKrok(wejscie, czyWyciety, '/podstawy/');
+	assert.equal(
+		wynik,
+		'**Zacznij tutaj:** pierwsza lekcja tej sekcji jest w przygotowaniu - na [stronie głównej](/) zobaczysz, co jest gotowe dziś.',
+	);
+	assert.doesNotMatch(wynik, /\(\/podstawy\/\)/);
+});
+
+test('transformuj przekazuje adres strony do podmiany "Zacznij tutaj"', () => {
+	const wejscie = '**Zacznij tutaj:** [Wstęp do kursu AI](/podstawy/wstep/) - opis.';
+	const wynik = transformuj(wejscie, czyWyciety, { url: '/podstawy/' });
+	assert.match(wynik, /\[stronie głównej\]\(\/\)/);
+	assert.doesNotMatch(wynik, /przeglądu sekcji/);
+});
+
 test('podmienKarty zamienia LinkCard na Card i dopisuje import', () => {
 	const wejscie = [
 		"import { CardGrid, LinkCard } from '@astrojs/starlight/components';",

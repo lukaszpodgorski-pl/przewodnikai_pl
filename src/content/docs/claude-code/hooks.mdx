@@ -130,7 +130,7 @@ Hook uruchamia arbitralny kod z Twoimi uprawnieniami. Pliki projektowe wymagają
 ## Ćwiczenie: 10 minut
 
 :::note[Potrzebujesz]
-Przykłady są w składni basha. Skrypt korzysta z programu `jq`, który wyciąga dane z JSON-a - sprawdzisz go komendą `jq --version`. Zapisz skrypt jako `.claude/hooks/block-env.sh` i nadaj mu prawo uruchamiania komendą `chmod +x .claude/hooks/block-env.sh`. Konfigurację JSON wklej do `.claude/settings.json` w katalogu projektu, a potem w `/hooks` sprawdź, czy hook jest widoczny.
+Przykłady są w składni basha. Na Windowsie uruchom je w Git Bash (instaluje się razem z Git for Windows, patrz [Instalacja](/claude-code/instalacja/)) albo w WSL. Skrypt korzysta z programu `jq`, który wyciąga dane z JSON-a - sprawdzisz go komendą `jq --version`. Jeśli zgłasza błąd, pobierz `jq` z jqlang.org. Zapisz skrypt jako `.claude/hooks/block-env.sh` i nadaj mu prawo uruchamiania komendą `chmod +x .claude/hooks/block-env.sh`. Konfigurację JSON wklej do `.claude/settings.json` w katalogu projektu, a potem w `/hooks` sprawdź, czy hook jest widoczny.
 :::
 
 1. Dodaj hook `PreToolUse` blokujący `.env` według przykładu 2.

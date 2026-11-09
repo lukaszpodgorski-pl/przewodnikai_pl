@@ -22,7 +22,7 @@ mentions:
     type: Organization
 faq:
   - q: Gdzie leżą ustawienia Claude Code?
-    a: 'W trzech miejscach naraz: ~/.claude/settings.json dla użytkownika, .claude/settings.json w repozytorium dla zespołu i .claude/settings.local.json dla ustawień prywatnych, które trafiają do gitignore. Do tego managed-settings.json po stronie organizacji.'
+    a: 'W kilku plikach: ~/.claude/settings.json dla użytkownika, .claude/settings.json w repozytorium dla zespołu i .claude/settings.local.json dla ustawień prywatnych, które trafiają do gitignore. Do tego managed-settings.json po stronie organizacji i plik wskazany flagą --settings.'
   - q: Gdzie Claude trzyma pamięć?
     a: 'Pamięć, którą piszesz Ty, leży w plikach CLAUDE.md - w katalogu domowym, w repozytorium i w wersji lokalnej. Pamięć, którą Claude pisze sam, leży w ~/.claude/projects/ w podkatalogu memory, a pamięć subagentów zależnie od zakresu w ~/.claude/agent-memory/ (user), .claude/agent-memory/ (project) albo .claude/agent-memory-local/ (local).'
   - q: Które modele są dostępne w listopadzie 2026?
@@ -48,7 +48,7 @@ claude -c   /  --continue   # kontynuuj ostatnią
 claude -r "id" "prompt"     # wznów sesję
 claude --model opus         # wybór modelu
 claude -w feature           # git worktree
-claude --bg "task"          # background agent
+claude --bg "task"          # sesja w tle (lista: claude agents)
 claude remote-control       # Remote Control, skrót: claude rc
 claude update / doctor / install
 claude mcp add|list|remove|get|login|logout
@@ -89,7 +89,7 @@ Alt+P model    Alt+T thinking      Alt+O       fast mode
 .claude/settings.json                   # project settings (git)
 .claude/settings.local.json             # local (gitignore)
 managed-settings.json                   # enterprise
-~/.claude/CLAUDE.md · ./CLAUDE.md · ./CLAUDE.local.md   # pamięć
+~/.claude/CLAUDE.md · ./CLAUDE.md lub ./.claude/CLAUDE.md · ./CLAUDE.local.md   # pamięć (+ managed policy)
 .claude/rules/*.md                      # reguły (opcjonalnie paths:)
 .claude/commands/  ~/.claude/commands/  # własne komendy (starszy format, scalony ze skills)
 .claude/agents/    ~/.claude/agents/    # subagenci
@@ -108,24 +108,25 @@ Aliasy: `sonnet`, `opus`, `haiku`, `fable`, `best`, `opusplan`. W Anthropic API 
 
 ## Ćwiczenie końcowe: 30 minut
 
-Zbuduj własny starter kit. Pięć elementów, po jednym z każdej ważnej lekcji tej sekcji:
+Zbuduj własny starter kit. Sześć elementów, po jednym z każdej ważnej lekcji tej sekcji:
 
 1. `CLAUDE.md` z regułami projektu.
 2. Jedną własną komendę `/commit`.
 3. Jednego subagenta `code-reviewer` z `memory: project`.
-4. Jeden hook auto-formatujący po edycji.
+4. Jeden hook - auto-format po edycji (przykład 1 z lekcji o hookach, skrypt wywołujący Twój formater) albo blokada `.env` z ćwiczenia.
 5. Jeden serwer MCP w `.mcp.json`.
+6. Reguły w `.claude/settings.json`: `deny` na `.env` i jedna reguła `allow`.
 
 Potem przejdź pełny cykl Explore → Plan → Code → Commit i zweryfikuj wynik przez `/code-review` oraz subagenta, którego zadaniem jest szukać błędów w Twoim rozwiązaniu.
 
-**Zaliczenie:** wszystkie pięć elementów działa naraz w jednym projekcie, a cykl kończy się commitem, którego nie musiałeś poprawiać ręcznie. To jest Twoja konfiguracja startowa do każdego następnego repozytorium.
+**Zaliczenie:** wszystkie sześć elementów działa naraz w jednym projekcie, a cykl kończy się commitem, którego nie musiałeś poprawiać ręcznie. To jest Twoja konfiguracja startowa do każdego następnego repozytorium.
 
 **Jeśli nic nie zgrzyta i zostaje czas:** spakuj to wszystko jako plugin i sprawdź, czy da się zainstalować w drugim projekcie jedną komendą.
 
 ## Teraz wiesz
 
-- Cała konfiguracja Claude Code mieści się w kilkunastu ścieżkach, które warto znać na pamięć.
-- Starter kit z pięciu elementów zamyka wszystko, czego uczyła ta sekcja.
+- Cała konfiguracja Claude Code mieści się w kilkunastu ścieżkach - wystarczy wiedzieć, że są tu zebrane.
+- Starter kit z sześciu elementów zamyka wszystko, czego uczyła ta sekcja.
 - Ściągawka jest po to, żeby do niej wracać - nie żeby ją zapamiętać.
 
 **Następny krok:** [Zasoby](/zasoby/) - słownik pojęć, biblioteka materiałów i kontakt, gdy chcesz zgłosić uwagę do tego kursu.

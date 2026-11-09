@@ -19,7 +19,7 @@ faq:
     a: Nie, przynajmniej do poziomu 3. Połączenia z modelem (API) i automatyzacje da się budować w narzędziach low-code, czyli takich, w których łączysz klikane bloczki zamiast pisać kod (np. n8n, Make). Programowanie jest naprawdę potrzebne dopiero na poziomie 5, gdy celem jest budowanie własnych modeli, a nie korzystanie z gotowych.
   - q: Jaki poziom wystarczy?
     a: Dla większości pracy biurowej i nauki - 2 (współpraca w czacie) albo 3 (integracje). 4 i 5 są po to, by uczyć innych albo budować systemy, nie po to, by "nie zostać w tyle".
-  - q: Czy AI Act każe wszystkim robić kurs?
+  - q: Czy unijne rozporządzenie o AI (AI Act) każe wszystkim robić kurs?
     a: Artykuł 4 o kompetencjach w zakresie AI (AI literacy) dotyczy dostawców i podmiotów wdrażających systemy AI, nie każdego czytelnika tego przewodnika. Obowiązek stosuje się od 2 lutego 2025 r. - [FAQ Komisji](https://digital-strategy.ec.europa.eu/en/faqs/ai-literacy-questions-answers). Jeśli wdrażasz AI w firmie, to już nie jest hobbystyczna ciekawostka.
 status: gotowe
 ---
@@ -98,7 +98,7 @@ Poniżej każdy stopień w tym samym układzie: co realnie potrafisz, co musisz 
 
 **Co musisz rozumieć - trzy rzeczy, bez nich to nie jest poziom 1:**
 
-- **To nie jest baza wiedzy, tylko przewidywanie.** Model językowy generuje odpowiedź **token po tokenie** - token to kawałek tekstu, zwykle mniejszy niż słowo. Każdy kolejny token jest wybierany jako statystycznie prawdopodobna kontynuacja. Nigdzie w środku nie ma sprawdzania "czy to prawda".
+- **To nie jest baza wiedzy, tylko przewidywanie.** Model językowy generuje odpowiedź **token po tokenie** - token to kawałek tekstu, zwykle mniejszy niż słowo. Każdy kolejny token jest losowany spośród najbardziej prawdopodobnych kontynuacji. Nigdzie w środku nie ma sprawdzania "czy to prawda".
 - **<Termin id="halucynacje">Halucynacje</Termin> są cechą, nie awarią.** Skoro celem jest prawdopodobna kontynuacja, model potrafi napisać płynnie i pewnie rzecz nieistniejącą. Ryzyko rośnie tam, gdzie liczy się dokładność szczegółu: liczby, daty, ceny, przepisy i paragrafy, cytaty, przypisy, linki, nazwiska, dane kontaktowe. **Pewny ton nie jest dowodem.**
 - **Dane wychodzą z Twojego komputera.** Nie wklejasz PESEL-u, numeru karty, dokumentacji medycznej, danych klientów ani kodu objętego umową. Prosty test: _czy wkleiłbym to na otwarty czat firmowy, na którym są wszyscy?_ W zależności od planu i ustawień rozmowy z darmowych kont bywają wykorzystywane do dalszego rozwoju modeli - to jest do sprawdzenia w ustawieniach konkretnego narzędzia, nie do zgadywania.
 
@@ -118,8 +118,8 @@ Poniżej każdy stopień w tym samym układzie: co realnie potrafisz, co musisz 
 
 **Co musisz rozumieć:**
 
-- **Kontekst to wszystko, co jest w tej rozmowie.** Model nie pamięta Cię z wczoraj (o ile nie włączyłeś pamięci) i nie widzi pliku, którego nie pokazałeś. Rozmowa mieści się w **oknie kontekstowym** o skończonym rozmiarze; w bardzo długich wątkach wcześniejsze fragmenty tracą wpływ na odpowiedź. Wniosek: gdy wątek się rozjeżdża, zacznij nowy i wklej podsumowanie ustaleń.
-- **Dobry <Termin id="prompt">prompt</Termin> ma strukturę**, nie magiczne słowa: rola i cel → odbiorca → kontekst (Twój materiał!) → ograniczenia (długość, czego unikać) → format wyjścia → przykład.
+- **Kontekst to wszystko, co jest w tej rozmowie.** Model nie pamięta Cię z wczoraj (o ile nie włączyłeś pamięci) i nie widzi pliku, którego nie pokazałeś. Rozmowa mieści się w **oknie kontekstowym** o skończonym rozmiarze. Gdy się zapełni, najstarsze fragmenty przestają być widoczne albo zostają streszczone. Wniosek: gdy rozmowa się rozjeżdża, zacznij nową i wklej podsumowanie ustaleń.
+- **Dobry <Termin id="prompt">prompt</Termin> ma strukturę**, nie magiczne słowa: cztery pola - rola, zadanie, ograniczenia (tu mieszczą się odbiorca i długość), format. Do tego Twój materiał (notatka, dane) i, jeśli trzeba, jeden przykład.
 - **Przykład bije opis.** Jeden do trzech przykładów "wejście → oczekiwane wyjście" (tzw. few-shot) poprawia zgodność formatu bardziej niż dwa akapity instrukcji.
 - **Największy skok jakości daje własny materiał.** Wklejona notatka, transkrypcja, cennik, poprzedni raport. Model przestaje zgadywać Twoją rzeczywistość.
 
@@ -165,7 +165,7 @@ Poniżej każdy stopień w tym samym układzie: co realnie potrafisz, co musisz 
 - **Uczenie to przekazywanie osądu, nie listy trików.** Trik starzeje się z każdym modelem; nawyk weryfikacji nie.
 - **Zasady użycia w organizacji:** które narzędzia są dopuszczone, jakie dane wolno w nie wkleić, kto odpowiada za treść, czy oznaczamy materiały tworzone z pomocą AI.
 - **Uprzedzenia w danych.** Model uczy się z tekstów napisanych przez ludzi, razem z ich stereotypami. Przy decyzjach dotyczących osób (rekrutacja, ocena, obsługa reklamacji) to nie jest ciekawostka, tylko ryzyko prawne i etyczne. **Odpowiedzialność za decyzję zostaje po stronie człowieka.**
-- **Kontekst regulacyjny w UE.** [Kompetencje w zakresie AI z art. 4 AI Act](https://digital-strategy.ec.europa.eu/en/faqs/ai-literacy-questions-answers) obowiązują dostawców i podmioty stosujące systemy AI od 2 lutego 2025 r. To obowiązek **organizacji wobec swojego personelu** - nie argument, że każdy obywatel musi zrobić bootcamp. Pozostały kalendarz AI Actu bywał zmieniany, więc szczegółowe terminy sprawdzaj u źródła.
+- **Kontekst regulacyjny w UE.** [Kompetencje w zakresie AI z art. 4 AI Act](https://digital-strategy.ec.europa.eu/en/faqs/ai-literacy-questions-answers) (unijnego rozporządzenia o sztucznej inteligencji) obowiązują dostawców i podmioty stosujące systemy AI od 2 lutego 2025 r. To obowiązek **organizacji wobec swojego personelu** - nie argument, że każdy obywatel musi zrobić bootcamp. Pozostały kalendarz AI Actu bywał zmieniany, więc szczegółowe terminy sprawdzaj u źródła.
 
 **Sprawdzian:** ktoś po Twoim krótkim szkoleniu wykonał zadanie samodzielnie **i** poprawnie wskazał, co w wyniku wymagało sprawdzenia.
 
@@ -220,7 +220,7 @@ Do tego rachunek uczciwy wobec kalendarza: jeśli masz **trzy godziny tygodniowo
 
 ## FOMO nie jest ścieżką nauki
 
-Umiejętności, które przenoszą się między modelami i latami, są nudne: precyzyjne formułowanie zadania, dostarczanie kontekstu, weryfikacja wyniku i ocena, czy zadanie w ogóle nadaje się dla modelu. Lista trików do konkretnej wersji narzędzia szybko się zestarzeje, a o tym, jak bronić się przed zalewem nowości (i czym jest FOMO), piszę w [Nie dajmy się zwariować](/podstawy/nie-dajmy-sie-zwariowac/).
+FOMO (ang. fear of missing out) to lęk, że coś ważnego Cię omija. Umiejętności, które przenoszą się między modelami i latami, są nudne: precyzyjne formułowanie zadania, dostarczanie kontekstu, weryfikacja wyniku i ocena, czy zadanie w ogóle nadaje się dla modelu. Lista trików do konkretnej wersji narzędzia szybko się zestarzeje, a o tym, jak bronić się przed zalewem nowości (i czym jest FOMO), piszę w [Nie dajmy się zwariować](/podstawy/nie-dajmy-sie-zwariowac/).
 
 Jeden autor nie wystarczy na zawsze - stąd biblioteka w [Zasobach](/zasoby/biblioteka/). Na dziś wystarczy ten kurs plus jeden chatbot.
 

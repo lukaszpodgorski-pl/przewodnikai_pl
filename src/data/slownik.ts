@@ -70,7 +70,7 @@ export const SLOWNIK: Record<string, Pojecie> = {
 		termin: 'Okno kontekstowe',
 		anchor: 'okno-kontekstowe',
 		krotka:
-			'Maksymalna ilość tekstu, którą model AI "widzi" jednocześnie - gdy rozmowa ją przekroczy, najstarsze fragmenty wypadają z pola widzenia.',
+			'Maksymalna ilość tekstu, którą model AI "widzi" naraz - gdy rozmowa ją przekroczy, najstarsze fragmenty przestają być widoczne albo zostają streszczone.',
 	},
 	rag: {
 		termin: 'RAG',
@@ -94,13 +94,13 @@ export const SLOWNIK: Record<string, Pojecie> = {
 		termin: 'Token',
 		anchor: 'token',
 		krotka:
-			'Podstawowa jednostka tekstu, na jaką model dzieli to, co czyta i pisze - zwykle fragment słowa; w tokenach mierzy się okno kontekstowe i koszty API.',
+			'Kawałek tekstu, na jaki model dzieli to, co czyta i pisze - zwykle część słowa; w tokenach mierzy się okno kontekstowe i koszty API.',
 	},
 	temperatura: {
 		termin: 'Temperatura',
 		anchor: 'temperatura-temperature',
 		krotka:
-			'Parametr sterujący losowością odpowiedzi modelu - niska wartość daje wyniki powtarzalne i zachowawcze, wysoka bardziej kreatywne, ale mniej przewidywalne.',
+			'Ustawienie losowania - niska wartość daje odpowiedzi powtarzalne i zachowawcze, wysoka bardziej kreatywne, ale mniej przewidywalne.',
 	},
 	'zero-shot': {
 		termin: 'Zero-shot',

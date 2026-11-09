@@ -70,7 +70,7 @@ Od wersji 2.1.277 Claude Code czyta AGENTS.md sam, jeśli w projekcie ani w kata
 
 ## Reguły w `.claude/rules/`
 
-Do katalogu `.claude/rules/` możesz wrzucić kilka mniejszych plików z regułami - Claude wczytuje je razem z CLAUDE.md. Na górze takiego pliku możesz dodać pole `paths:` (we frontmatterze, czyli bloku ustawień między liniami `---`) ze wzorcem ścieżek. Wzorzec `src/api/**/*.ts` oznacza "każdy plik .ts w katalogu src/api i jego podkatalogach". Taka reguła wczytuje się dopiero wtedy, gdy Claude pracuje z pasującym plikiem.
+Do katalogu `.claude/rules/` możesz wrzucić kilka mniejszych plików z regułami - Claude wczytuje je razem z CLAUDE.md. Na górze takiego pliku możesz dodać pole `paths:` (we frontmatterze, czyli bloku ustawień na górze pliku - patrz [Własne komendy](/claude-code/wlasne-komendy/#frontmatter)) ze wzorcem ścieżek. Wzorzec `src/api/**/*.ts` oznacza "każdy plik .ts w katalogu src/api i jego podkatalogach". Taka reguła wczytuje się dopiero wtedy, gdy Claude pracuje z pasującym plikiem.
 
 ```markdown
 ---

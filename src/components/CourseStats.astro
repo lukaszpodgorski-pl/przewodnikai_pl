@@ -30,11 +30,15 @@ const pathCount = entries.filter(
 
 const sectionCount = SECTIONS.length;
 
+// Czesc z liczba 0 znika z paska. W wersji publicznej sciezki bywaja
+// wyciete w calosci, a "0 sciezek nauki" pod hero obiecuje cos, czego nie ma.
 const parts = [
-	count(sectionCount, 'sekcja', 'sekcje', 'sekcji'),
-	count(articleCount, 'artykuł', 'artykuły', 'artykułów'),
-	count(pathCount, 'ścieżka nauki', 'ścieżki nauki', 'ścieżek nauki'),
-];
+	{ n: sectionCount, forms: ['sekcja', 'sekcje', 'sekcji'] },
+	{ n: articleCount, forms: ['artykuł', 'artykuły', 'artykułów'] },
+	{ n: pathCount, forms: ['ścieżka nauki', 'ścieżki nauki', 'ścieżek nauki'] },
+]
+	.filter(({ n }) => n > 0)
+	.map(({ n, forms: [one, few, many] }) => count(n, one, few, many));
 ---
 
 <p class="stats">{parts.join(' · ')}</p>

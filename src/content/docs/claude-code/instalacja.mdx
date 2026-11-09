@@ -42,6 +42,10 @@ import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 **Wcześniej:** wiesz, co robi to narzędzie. Tu: postawisz je u siebie.
 :::
 
+:::tip[Jeśli zaczynasz]
+Wystarczy Ci Metoda 1 i sekcja "Weryfikacja, diagnostyka, aktualizacja". Pozostałe metody, migracja i lista błędów są na wypadek problemów - wrócisz do nich, gdy będą potrzebne.
+:::
+
 ## Wymagania
 
 macOS 13.0+, Windows 10 1809+ albo Server 2019+, Ubuntu 20.04+, Debian 10+, Alpine 3.19+. Do tego 4 GB+ RAM, procesor x64 lub ARM64, połączenie z internetem i powłoka terminala (shell): Bash, Zsh, PowerShell albo CMD.
@@ -130,7 +134,7 @@ claude doctor              # potwierdź install type = 'native'
 
 **Typowe błędy instalacji:**
 
-- `command not found` → PATH nie odświeżony, zrestartuj terminal.
+- `command not found` → PATH (lista katalogów, w których system szuka programów) nie odświeżony, zrestartuj terminal.
 - npm `EACCES` → napraw katalog globalny npm, nie używaj `sudo`.
 - Konflikt dwóch instalacji → `which -a claude` (macOS, Linux) albo `where.exe claude` (Windows).
 - Zarządzanie przez asdf → shim może wskazywać starą wersję.

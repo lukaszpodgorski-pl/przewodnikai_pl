@@ -49,7 +49,7 @@ Wpisz `/`, żeby zobaczyć dostępne komendy. Dostępność zależy od planu i p
 - `/permissions` (alias `/allowed-tools`) - reguły, na co Claude może sobie pozwolić bez pytania.
 - `/mcp` - połączenia z serwerami MCP.
 - `/hooks` - podgląd skonfigurowanych hooks.
-- `/agents` - od v2.1.198 tylko przypomina, że subagentów tworzysz, prosząc Claude albo edytując `.claude/agents/`.
+- `/agents` - od v2.1.198 tylko przypomina, że [subagentów](/claude-code/subagenci/) tworzysz, prosząc Claude albo edytując `.claude/agents/`.
 - `/statusline` - konfiguracja paska stanu pod polem promptu.
 - `/output-style` - zmiana stylu odpowiedzi.
 - `/terminal-setup` - dodaje skrót `Shift+Enter` w edytorach, które go nie mają.
@@ -73,7 +73,7 @@ Wpisz `/`, żeby zobaczyć dostępne komendy. Dostępność zależy od planu i p
 - `/plan [opis]` - przejdź od razu do trybu planowania.
 - `/btw` - pytanie poboczne, które nie trafia do historii rozmowy.
 - `/tasks` (alias `/bashes`) - podgląd pracy w tle.
-- `/subtask <zadanie>` - zleć zadanie subagentowi, który zna całą rozmowę i odda wynik tutaj.
+- `/subtask <zadanie>` - zleć zadanie pomocnikowi, który (inaczej niż zwykły subagent z [lekcji o subagentach](/claude-code/subagenci/)) dostaje kopię całej rozmowy, pracuje w tle i oddaje wynik tutaj.
 - `/background` (alias `/bg`) - przenieś sesję do pracy w tle i zwolnij terminal.
 - `/branch` - odgałęź rozmowę, żeby spróbować innego kierunku. Do oryginału wrócisz przez `/resume`.
 - `/fork` - skopiuj rozmowę do osobnej sesji w tle i pracuj dalej tutaj.
@@ -126,7 +126,7 @@ Prompty MCP pojawiają się jako `/servername:promptname (MCP)` albo `/mcp__serv
 
 ## Ćwiczenie: 5 minut
 
-1. W nowym repozytorium uruchom `/init`.
+1. W projekcie, który nie ma jeszcze pliku `CLAUDE.md`, uruchom `/init`.
 2. Uruchom `/memory` i obejrzyj wygenerowany `CLAUDE.md`.
 3. Zakończ komendą `/context` i zobacz, ile miejsca zajął ten plik.
 

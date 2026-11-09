@@ -26,7 +26,7 @@ faq:
   - q: Który zakres serwera MCP wybrać?
     a: 'Local, gdy serwer ma być prywatny i tylko w tym projekcie. Project, gdy ma być współdzielony przez repozytorium - wtedy trafia do pliku .mcp.json i idzie do gita. User, gdy ma działać we wszystkich Twoich projektach.'
   - q: Czy dodanie wielu serwerów MCP zapcha kontekst?
-    a: 'W praktyce nie. Domyślnie włączony Tool Search odracza definicje narzędzi: na starcie ładują się tylko nazwy narzędzi i instrukcje serwerów, więc każdy kolejny serwer zajmuje niewiele miejsca.'
+    a: 'Mniej, niż się spodziewasz. Domyślnie włączony Tool Search ładuje na starcie tylko nazwy narzędzi i instrukcje serwerów. Każdy serwer dokłada jednak trochę miejsca, więc nieużywane warto wyłączać w /mcp - ile zajmują, pokaże /context (więcej w lekcji o kontekście i kosztach).'
   - q: Czy Claude Code może sam być serwerem MCP?
     a: 'Tak. Komenda claude mcp serve udostępnia jego własne narzędzia innym klientom protokołu.'
 status: gotowe

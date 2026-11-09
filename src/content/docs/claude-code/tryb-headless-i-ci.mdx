@@ -42,18 +42,18 @@ import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 **Wcześniej:** pracujesz z agentem ręcznie. Tu: wpinasz go w automat.
 :::
 
-Podstawa to `claude -p "prompt"` - uruchamia pełną pętlę <Termin id="agent-ai">agentową</Termin> (Claude sam planuje kroki, używa narzędzi i sprawdza wyniki, aż skończy), ale bez okna rozmowy: wypisuje wynik i kończy działanie. Dzięki temu możesz go wpiąć w skrypt albo w CI (ciągłą integrację, ang. _continuous integration_ - automat, który po każdej zmianie w repozytorium sam uruchamia testy i inne sprawdzenia).
+Podstawa to `claude -p "prompt"` - uruchamia pełną pętlę <Termin id="agent-ai">agentową</Termin> (Claude sam przechodzi kroki: zaplanuj → użyj narzędzia → sprawdź wynik → wybierz następny krok, aż skończy), ale bez okna rozmowy: wypisuje wynik i kończy działanie. Dzięki temu możesz go wpiąć w skrypt albo w CI (ciągłą integrację, ang. _continuous integration_ - automat, który po każdej zmianie w repozytorium sam uruchamia testy i inne sprawdzenia).
 
 Przykłady na tej stronie są w składni basha (macOS, Linux, WSL albo Git Bash na Windows).
 
 ```bash
 claude -p "przeanalizuj błędy testów" --output-format json --max-budget-usd 2.00
-cat logs.txt | claude -p "Explain these errors"
-git diff | claude -p "Review these changes"
+cat logs.txt | claude -p "wyjaśnij te błędy"
+git diff | claude -p "przejrzyj te zmiany"
 
 # łańcuch przez stream-json:
-claude -p --output-format stream-json "First task" | \
-  claude -p --input-format stream-json --output-format stream-json "Process results"
+claude -p --output-format stream-json "pierwsze zadanie" | \
+  claude -p --input-format stream-json --output-format stream-json "przetwórz wyniki"
 ```
 
 **Formaty wyjścia.** `text` domyślnie. `json` daje jeden obiekt z metadanymi: koszt, czas, liczba tur, `session_id`. `stream-json` wypisuje na bieżąco wiele obiektów JSON, po jednym w linii (format NDJSON), i wymaga `--verbose`. Flaga `--json-schema '{...}'` wymusza walidowane wyjście według schematu.
@@ -91,7 +91,7 @@ Agent SDK i `claude -p` na planach subskrypcyjnych korzystają z tych samych lim
 ## Ćwiczenie: 10 minut
 
 1. Napisz jednolinijkowiec: `git diff | claude -p "Wypisz potencjalne bugi jako listę" --output-format json`.
-2. Zainstaluj `jq` - małe narzędzie do wyciągania pól z JSON-a (do pobrania z jqlang.org).
+2. Jeśli nie masz jeszcze `jq` (lekcja o [hookach](/claude-code/hooks/)), zainstaluj je - to małe narzędzie do wyciągania pól z JSON-a, do pobrania z jqlang.org.
 3. Wyciągnij z odpowiedzi `session_id` i koszt: dopisz na końcu jednolinijkowca `| jq -r '.session_id, .total_cost_usd'`.
 
 **Zaliczenie:** masz działający potok, który przyjmuje diff i zwraca strukturę danych. To jest szkielet każdej automatyzacji, którą zbudujesz później.
