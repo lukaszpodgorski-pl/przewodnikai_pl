@@ -108,7 +108,7 @@ npm run build
 npx --yes markdownlint-cli2 "src/content/**/*.md" "*.md"
 ```
 
-`npm run build` jest pełnym sprawdzeniem treści - wykrywa złamane linki wewnętrzne, błędy frontmattera (schemat Zod) i błędy MDX. Transformacje publikacyjne mają własne testy (`npm run test:publish`, 17 przypadków).
+`npm run build` jest pełnym sprawdzeniem treści - wykrywa złamane linki wewnętrzne, błędy frontmattera (schemat Zod) i błędy MDX. Transformacje publikacyjne mają własne testy (`npm run test:publish`, 18 przypadków).
 
 Serwer deweloperski uruchamiaj w tle: `astro dev --background`; zarządzanie: `astro dev stop`, `astro dev status`, `astro dev logs`.
 
@@ -124,6 +124,16 @@ Workflow biegną w publicznym repozytorium, czyli **po** publikacji. Właściwą
 bramką jest `npm run publish`: build i `verify:geo` liczą się na zawartości
 `.publish/` przed wysyłką, więc zepsuta wersja nie opuszcza komputera. CI na
 GitHubie jest siatką bezpieczeństwa, nie pierwszą linią.
+
+**Dependabot nie działa w lustrze.** `.github/dependabot.yml` jest wykluczony
+z publikacji (`WYKLUCZONE_Z_PUBLIKACJI` w `scripts/publish.mjs`, decyzja
+2026-11-09): każda publikacja nadpisuje `package.json` i `package-lock.json`
+wersją ze źródła, więc PR-y Dependabota w lustrze byłyby cofane. Zależności
+aktualizujesz w źródle: `npm outdated`, potem `npm update` albo
+`npm install pakiet@wersja`, weryfikacja (build, `verify:geo`, testy), commit
+i publikacja. Zalecany rytm: raz w miesiącu. Alerty bezpieczeństwa GitHuba
+mogą zostać włączone w lustrze jako sygnał. Workflow `dependencies.yml`
+(audyt zależności) zostaje.
 
 Pull requesty od osób z zewnątrz nie są ścieżką wnoszenia zmian - lustro zostałoby
 nadpisane przy następnej publikacji. Traktuj taki PR jak zgłoszenie: przenieś
@@ -196,6 +206,29 @@ Jedna rzecz, która przetrwała przepięcie repozytorium i wymaga uwagi:
 i otwiera PR z aktualizacją danych. W lustrze taki PR zostanie nadpisany przy
 następnej publikacji - sync danych autora trzeba zrobić w źródle prawdy
 (`npm run profile:sync`), nie przez ten workflow.
+
+## Analityka i zgoda - świadomy wyjątek
+
+Pomiar: GTM (`src/config/analytics.ts`) → GA4, Consent Mode v2 w wariancie
+**zaawansowanym** (`src/lib/consent.ts`), baner `ConsentBanner.astro`, przycisk
+zmiany zgody w stopce. Wdrożone 2026-09-08.
+
+To jest **świadomy wyjątek** od reguły `projects_www/CLAUDE.md` sekcja 4 ("nic
+nieobowiązkowego nie ładuje się przed zgodą"). Decyzja właściciela 2026-11-09:
+
+- GTM i `gtag.js` ładują się od razu, ale z domyślnym stanem `denied` dla
+  wszystkich kategorii (`analytics_storage`, `ad_storage`, `ad_user_data`,
+  `ad_personalization`; `functionality_storage` i `security_storage` są
+  `granted` jako niezbędne). Bez zgody nie powstają ciasteczka analityczne ani
+  reklamowe, a Google dostaje wyłącznie sygnały bez identyfikatorów
+  (modelowanie brakującego ruchu).
+- Powód: przy wariancie podstawowym serwis traci obraz ruchu od osób, które nie
+  klikną w baner, a to większość czytelników bazy wiedzy.
+- **Nie przechodź na wariant podstawowy ani nie dokładaj tagów ładowanych przed
+  zgodą bez wyraźnej decyzji właściciela.** Każdy nowy tag w kontenerze musi
+  respektować stan zgody (wbudowane sprawdzanie zgody w GTM).
+- Polityka prywatności (wspólna, `aitomate.pl/polityka-prywatnosci`) musi opisywać
+  ten tryb. Zmiana trybu = zmiana polityki i `zasoby/regulamin.md` (zadanie Z11).
 
 ## Konwencje treści
 

@@ -20,6 +20,7 @@ import {
 	transformuj,
 	urlSekcji,
 	usunMartweWiecej,
+	zbierzPliki,
 } from '../publish.mjs';
 
 const WYCIETE = new Set(['/podstawy/wstep/', '/podstawy/ograniczenia/']);
@@ -159,4 +160,22 @@ test('transformuj kasuje martwe Wiecej, ale zostawia zywe', () => {
 	assert.ok(!wynik.includes('**Więcej:** Wstęp'), 'martwy wiersz powinien zniknac');
 	assert.ok(wynik.includes('**Więcej:** [Chatboty](/narzedzia/chatboty/)'), 'zywy wiersz zostaje');
 	assert.ok(wynik.includes('## Agent AI'), 'naglowek nietkniety');
+});
+
+test('zbierzPliki pomija dependabot.yml, ale zostawia workflow i reszte .github', () => {
+	const { tresc, pozostale } = zbierzPliki([
+		'.github/dependabot.yml',
+		'.github/workflows/lint.yml',
+		'.github/workflows/dependencies.yml',
+		'.github/CODEOWNERS',
+		'package.json',
+		'src/content/docs/podstawy/wstep.md',
+	]);
+	const wszystkie = [...tresc, ...pozostale];
+	assert.ok(!wszystkie.includes('.github/dependabot.yml'));
+	assert.ok(pozostale.includes('.github/workflows/lint.yml'));
+	assert.ok(pozostale.includes('.github/workflows/dependencies.yml'));
+	assert.ok(pozostale.includes('.github/CODEOWNERS'));
+	assert.ok(pozostale.includes('package.json'));
+	assert.deepEqual(tresc, ['src/content/docs/podstawy/wstep.md']);
 });

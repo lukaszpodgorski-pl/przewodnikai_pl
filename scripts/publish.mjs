@@ -70,6 +70,17 @@ const ZAWSZE_PUBLIKUJ = new Set([
 	].map((s) => `newsletter/${s}.md`),
 ]);
 
+/**
+ * Pliki ze zrodla prawdy, ktore NIE trafiaja do publicznego repozytorium.
+ * Sciezki wzgledem korzenia repo, dokladnie tak, jak wypisuje je `git ls-files`.
+ */
+const WYKLUCZONE_Z_PUBLIKACJI = new Set([
+	// Dependabot w lustrze otwieralby PR-y, ktore kolejna publikacja i tak
+	// cofa (package.json i package-lock.json zawsze przychodza ze zrodla).
+	// Zaleznosci aktualizujemy w zrodle. Decyzja wlasciciela 2026-11-09.
+	'.github/dependabot.yml',
+]);
+
 const flagi = new Set(process.argv.slice(2));
 const CZY_PUSH = flagi.has('--push');
 const CZY_BUILD = !flagi.has('--bez-buildu');
@@ -258,6 +269,8 @@ export {
 	transformuj,
 	urlSekcji,
 	usunMartweWiecej,
+	WYKLUCZONE_Z_PUBLIKACJI,
+	zbierzPliki,
 };
 
 // ---------------------------------------------------------------------------
@@ -274,12 +287,16 @@ function sprawdzCzystoscRepo() {
 	}
 }
 
-function zbierzPliki() {
-	const wszystkie = git(['ls-files']).split('\n').filter(Boolean);
+/**
+ * Dzieli pliki repo na tresc (do filtrowania po statusie) i pozostale
+ * (kopiowane 1:1). Pliki z WYKLUCZONE_Z_PUBLIKACJI wypadaja z obu list.
+ */
+function zbierzPliki(wszystkie = git(['ls-files']).split('\n').filter(Boolean)) {
 	const tresc = [];
 	const pozostale = [];
 
 	for (const sciezka of wszystkie) {
+		if (WYKLUCZONE_Z_PUBLIKACJI.has(sciezka)) continue;
 		if (sciezka.startsWith(`${KATALOG_TRESCI}/`) && /\.mdx?$/.test(sciezka)) {
 			tresc.push(sciezka);
 		} else {
