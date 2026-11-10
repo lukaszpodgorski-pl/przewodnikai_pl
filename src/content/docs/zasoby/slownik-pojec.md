@@ -16,7 +16,7 @@ faq:
   - q: Czy muszę czytać ramkę "Ujęcie techniczne" przy każdym haśle?
     a: Nie. To wersja precyzyjna, z terminologią, przydatna przy czytaniu dokumentacji albo rozmowie z kimś z branży. Wszystko, co potrzebne, jest już w definicji i przykładzie nad ramką.
   - q: Czym są halucynacje AI?
-    a: To informacja, która brzmi wiarygodnie, ale jest zmyślona. Model układa najbardziej prawdopodobny ciąg dalszy, a kiedy czegoś nie wie, "prawdopodobne" przestaje znaczyć "prawdziwe". Halucynacja brzmi tak samo pewnie jak dobra odpowiedź.
+    a: To informacja, która brzmi wiarygodnie, ale jest zmyślona. Model układa prawdopodobny ciąg dalszy, a kiedy czegoś nie wie, "prawdopodobne" przestaje znaczyć "prawdziwe". Halucynacja brzmi tak samo pewnie jak dobra odpowiedź.
   - q: Czym generatywna AI różni się od "zwykłej" AI?
     a: Generatywna AI tworzy nowe treści - tekst, obraz, dźwięk, wideo czy kod. "Zwykła" AI głównie rozpoznaje albo wybiera, na przykład filtruje spam.
 status: gotowe
@@ -36,9 +36,9 @@ System AI, który dostaje cel zamiast pojedynczego polecenia. Sam układa plan, 
 
 ## AI Act
 
-Unijne rozporządzenie o sztucznej inteligencji (rozporządzenie UE 2024/1689, oficjalnie "akt w sprawie sztucznej inteligencji"). Dzieli systemy AI według ryzyka: część praktyk zakazuje, od systemów wysokiego ryzyka wymaga nadzoru człowieka i dokumentacji, a od chatbotów - jasnej informacji, że rozmawiasz z maszyną. Obowiązki wchodzą etapami: zakazy i obowiązek zadbania o kompetencje pracowników w zakresie AI od 2 lutego 2025 r., większość pozostałych przepisów od 2 sierpnia 2026 r., a część wymagań dla systemów wysokiego ryzyka jeszcze później.
+Unijne rozporządzenie o sztucznej inteligencji (rozporządzenie UE 2024/1689, oficjalnie "akt w sprawie sztucznej inteligencji"). Dzieli systemy AI według ryzyka: część praktyk zakazuje, od systemów wysokiego ryzyka wymaga nadzoru człowieka i dokumentacji, a od chatbotów - jasnej informacji, że rozmawiasz z maszyną. Obowiązki wchodzą etapami: zakazy i obowiązek zadbania o kompetencje pracowników w zakresie AI od 2 lutego 2025 r., większość pozostałych przepisów, w tym obowiązek informowania, że rozmawiasz z AI, od 2 sierpnia 2026 r. Wymagania dla systemów wysokiego ryzyka przesunął pakiet AI Omnibus (unijne rozporządzenie upraszczające AI Act, w mocy od 27 lipca 2026 r.): dla systemów używanych np. w rekrutacji na 2 grudnia 2027 r., dla AI wbudowanej w produkty objęte osobnymi przepisami na 2 sierpnia 2028 r. ([Komisja Europejska](https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai)).
 
-**Przykład:** Sklep internetowy uruchamia na stronie czat z AI. AI Act wymaga, żeby klient wiedział, że pisze z programem, a nie z konsultantem. System, który sam odsiewa kandydatów do pracy, trafia już do grupy wysokiego ryzyka i podlega dużo ostrzejszym wymaganiom.
+**Przykład:** Sklep internetowy uruchamia na stronie czat z AI. AI Act wymaga, żeby klient wiedział, że pisze z programem, a nie z konsultantem. System, który sam odsiewa kandydatów do pracy, trafia do grupy wysokiego ryzyka i od grudnia 2027 r. będzie podlegał dużo ostrzejszym wymaganiom.
 
 ## Algorytm
 
@@ -206,7 +206,7 @@ Model wytrenowany na ogromnej ilości tekstu, którego jedyne zadanie brzmi: prz
 
 Model AI, którego wagi (czyli wyuczone parametry) producent udostępnia do pobrania - możesz uruchomić go na własnym komputerze lub serwerze, bez wysyłania danych do chmury dostawcy. Open-weight nie zawsze znaczy w pełni open source: licencje bywają różne, od bardzo liberalnej Apache 2.0 (np. Bielik, rodzina Mistral 3) po licencje z ograniczeniami komercyjnymi. Przeciwieństwem są modele zamknięte, dostępne wyłącznie przez API lub aplikację producenta.
 
-**Przykład:** Bielik i małe modele Ministral 3 (3, 8 i 14 mld parametrów) to modele open-weight - możesz pobrać je za darmo i uruchomić w aplikacji LM Studio na własnym komputerze. Mistral Large 3 (grudzień 2025 r.) też ma otwarte wagi, ale przy 675 mld parametrów potrzebuje już serwera z kilkoma kartami graficznymi.
+**Przykład:** Bielik i małe modele Ministral 3 (3, 8 i 14 mld parametrów) to modele open-weight - możesz pobrać je za darmo i uruchomić w aplikacji LM Studio na własnym komputerze. Największy model Mistrala, Large 4, też ma otwarte wagi od końca października 2026 r. ([mistral.ai](https://mistral.ai/news/mistral-large-4-oss/)), ale przy ok. bilionie parametrów to model na serwerownię, nie na laptopa. Do tego jego licencja należy do tych z ograniczeniami: firma, która sprzedaje dostęp do modelu jako usługę, potrzebuje osobnej umowy z Mistralem.
 
 ## Model rozumujący (ang. reasoning model)
 
