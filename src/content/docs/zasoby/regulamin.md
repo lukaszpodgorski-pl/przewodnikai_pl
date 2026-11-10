@@ -17,15 +17,15 @@ about:
     sameAs: https://pl.wikipedia.org/wiki/Newsletter
 faq:
   - q: Czy muszę akceptować regulamin, żeby czytać serwis?
-    a: Nie. Wszystkie treści są otwarte - bez konta, bez logowania i bez podawania danych. Regulamin akceptujesz dopiero wtedy, gdy zapisujesz się na newsletter.
+    a: Nie. Wszystkie treści są otwarte - bez konta, bez logowania i bez wypełniania formularzy. Regulamin akceptujesz dopiero wtedy, gdy zapisujesz się na newsletter. Jak serwis mierzy ruch, opisuje §7.
   - q: Jak wypisać się z newslettera?
     a: Kliknij link wypisu w stopce dowolnej otrzymanej wiadomości albo napisz na kontakt@lukaszpodgorski.pl. Nie musisz podawać przyczyny. Adres znika z listy niezwłocznie, najpóźniej w ciągu 30 dni.
   - q: Jak złożyć reklamację?
     a: Napisz na kontakt@lukaszpodgorski.pl albo wyślij list na adres aitomate Łukasz Podgórski, al. Jerozolimskie 148, 02-326 Warszawa. Podaj dane kontaktowe, opis problemu i oczekiwane rozstrzygnięcie. Odpowiedź dostaniesz w ciągu 14 dni.
-status: zastane
+status: gotowe
 ---
 
-Ostatnia aktualizacja: 09.11.2026.
+Ostatnia aktualizacja: 10.11.2026.
 
 Regulamin określa zasady korzystania z serwisu przewodnikai.pl oraz z newslettera. Do czytania serwisu nie musisz go akceptować ani zakładać konta. Zapisując się na newsletter, akceptujesz postanowienia poniższego dokumentu.
 
@@ -40,7 +40,7 @@ Regulamin określa zasady korzystania z serwisu przewodnikai.pl oraz z newslette
 
 ## §2. Zasady korzystania z serwisu
 
-1. Serwis udostępnia materiały edukacyjne o sztucznej inteligencji. Dostęp do wszystkich treści jest otwarty - bez konta, bez logowania i bez podawania jakichkolwiek danych.
+1. Serwis udostępnia materiały edukacyjne o sztucznej inteligencji. Dostęp do wszystkich treści jest otwarty - bez konta, bez logowania i bez wypełniania jakichkolwiek formularzy.
 2. Do korzystania z serwisu wystarczy urządzenie z dostępem do internetu i przeglądarką obsługującą standardy HTML5 i CSS3.
 3. Użytkownik zobowiązuje się do korzystania z serwisu zgodnie z prawem i dobrymi obyczajami, w szczególności do niedostarczania treści bezprawnych oraz do niepodejmowania działań zakłócających jego działanie.
 4. Usługodawca zastrzega sobie prawo do przerw technicznych niezbędnych do konserwacji, aktualizacji lub rozbudowy serwisu.
@@ -49,7 +49,7 @@ Regulamin określa zasady korzystania z serwisu przewodnikai.pl oraz z newslette
 
 1. Treści w serwisie mają charakter wyłącznie edukacyjny i informacyjny.
 2. Materiały nie stanowią porady prawnej, podatkowej, medycznej ani inwestycyjnej. Nie są też rekomendacją zakupu konkretnego narzędzia ani usługi.
-3. Opisy narzędzi, modeli i cen zmieniają się szybciej niż treść artykułów. Przed decyzją zweryfikuj stan faktyczny u dostawcy danego narzędzia.
+3. Opisy narzędzi, modeli i cen zmieniają się szybciej niż treść lekcji. Przed decyzją zweryfikuj stan faktyczny u dostawcy danego narzędzia.
 4. Usługodawca dokłada starań, aby materiały były rzetelne i aktualne, ale nie gwarantuje, że każdy opis odpowiada bieżącemu stanowi usług podmiotów trzecich.
 
 ## §4. Prawa własności intelektualnej
@@ -79,7 +79,8 @@ Regulamin określa zasady korzystania z serwisu przewodnikai.pl oraz z newslette
 
 1. Administratorem danych osobowych jest Łukasz Podgórski prowadzący działalność gospodarczą pod firmą aitomate Łukasz Podgórski.
 2. Szczegółowe informacje o celach i podstawach prawnych przetwarzania, okresie przechowywania, odbiorcach danych oraz o przysługujących Ci prawach zawiera [Polityka prywatności](https://aitomate.pl/polityka-prywatnosci). Zasady newslettera opisuje jej sekcja "Newsletter i powiadomienia e-mail".
-3. Podanie danych jest dobrowolne. Do czytania serwisu nie jest potrzebne w ogóle; do newslettera niezbędny jest adres e-mail.
+3. Serwis mierzy ruch dwoma narzędziami: Cloudflare Web Analytics, które nie zapisuje niczego na Twoim urządzeniu, oraz Google Analytics 4 uruchamiane przez Google Tag Manager. Pliki cookie analityczne powstają dopiero po Twojej zgodzie w banerze. Przed zgodą Google otrzymuje podstawowe informacje o wizycie, bez plików cookie i bez identyfikatora (tryb zaawansowany Google Consent Mode v2). Szczegóły opisuje §8a Polityki prywatności. Decyzję zmienisz w każdej chwili przyciskiem "Ustawienia cookies" w stopce strony.
+4. Podanie danych jest dobrowolne. Do czytania serwisu nie musisz niczego wpisywać ani zakładać konta; do newslettera niezbędny jest adres e-mail.
 
 ## §8. Reklamacje
 

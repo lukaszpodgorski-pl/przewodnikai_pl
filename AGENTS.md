@@ -27,14 +27,14 @@ ręcznie**, następna publikacja nadpisze zmiany. Cloudflare buduje z GitHuba.
 
 Serwis jest w trakcie przeglądu artykuł po artykule. Powód: duża część treści
 powstała z dużym udziałem AI i właściciel nie publikuje jej pod swoim nazwiskiem
-przed sprawdzeniem. Według `npm run status` przejrzanych jest 91 ze 105 stron,
+przed sprawdzeniem. Według `npm run status` przejrzanych jest 95 ze 105 stron,
 publicznie stoją wszystkie 105, wyciętych z produkcji nie ma.
 
 Co jest dziś przejrzane (`gotowe`):
 
 - `claude-code` - 22/22, cała sekcja (materiał autorski właściciela),
 - `podstawy` - 8 lekcji; strona zbiorcza sekcji ma status `zastane`,
-- `zasoby` - `biblioteka` i `slownik-pojec`,
+- `zasoby` - cała sekcja (biblioteka i słownik wcześniej, reszta 2026-11-10),
 - `etyka` - 4 lekcje i strona zbiorcza (2026-11-10),
 - `narzedzia` - 9 lekcji i strona zbiorcza (2026-11-10),
 - `prompt-engineering` - 10 lekcji i strona zbiorcza (2026-11-10),
@@ -44,7 +44,7 @@ Co jest dziś przejrzane (`gotowe`):
 - wszystkie 9 ścieżek (2026-11-10); strona zbiorcza `sciezki` ma status `zastane`.
 
 Publicznie stoją poza tym strona główna, strony zbiorcze pozostałych sekcji
-i ścieżek, `zasoby/kontakt`, `zasoby/o-mnie`, `zasoby/regulamin` i siedem stron
+i ścieżek oraz siedem stron
 newslettera (status `zastane`). Od 2026-11-10 żadna lekcja nie jest wycięta.
 
 Audyt merytoryczny wszystkich sekcji (przebieg 2026-10-18) został scalony
@@ -235,7 +235,7 @@ nieobowiązkowego nie ładuje się przed zgodą"). Decyzja właściciela 2026-11
   zgodą bez wyraźnej decyzji właściciela.** Każdy nowy tag w kontenerze musi
   respektować stan zgody (wbudowane sprawdzanie zgody w GTM).
 - Polityka prywatności (wspólna, `aitomate.pl/polityka-prywatnosci`) musi opisywać
-  ten tryb. Zmiana trybu = zmiana polityki i `zasoby/regulamin.md` (zadanie Z11).
+  ten tryb. Zmiana trybu = zmiana polityki i `zasoby/regulamin.md` §7 pkt 3 (opisuje tryb od 2026-11-10, Z11).
 
 ## Konwencje treści
 
