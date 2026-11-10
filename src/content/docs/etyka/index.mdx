@@ -9,15 +9,11 @@ about:
   - name: Ochrona danych osobowych
     sameAs: https://pl.wikipedia.org/wiki/Ochrona_danych_osobowych
 mentions:
-  - name: RODO
-    sameAs: https://pl.wikipedia.org/wiki/Og%C3%B3lne_rozporz%C4%85dzenie_o_ochronie_danych
-  - name: AI Act
-    sameAs: https://en.wikipedia.org/wiki/Artificial_Intelligence_Act
   - name: Sztuczna superinteligencja
     sameAs: https://pl.wikipedia.org/wiki/Superinteligencja
 faq:
   - q: Czy mogę wkleić dane klientów do chatbota AI?
-    a: Domyślnie zakładaj, że nie. Wszystko zależy od polityki danych konkretnego dostawcy, planu, z którego korzystasz, i podstawy prawnej przetwarzania po Twojej stronie. Zanim wkleisz cokolwiek, co pozwala zidentyfikować osobę, przeczytaj lekcję o prywatności i sprawdź regulamin narzędzia u źródła.
+    a: Domyślnie zakładaj, że nie. Wszystko zależy od polityki danych konkretnego dostawcy, planu, z którego korzystasz, i zasad Twojej firmy. Zanim wkleisz cokolwiek, co pozwala zidentyfikować osobę, przeczytaj lekcję o prywatności, sprawdź regulamin narzędzia u źródła i zapytaj osobę od ochrony danych w firmie.
   - q: Skąd biorą się uprzedzenia w odpowiedziach AI?
     a: Z danych, na których model był trenowany, i z decyzji podjętych przy jego dostrajaniu. Model odtwarza wzorce obecne w materiale źródłowym, łącznie z tymi, których nikt nie chciał tam umieścić. Dlatego uprzedzenia algorytmów są problemem technicznym i społecznym jednocześnie.
   - q: Od ilu lat dziecko może korzystać z chatbota?
@@ -33,9 +29,9 @@ import { CardGrid, LinkCard } from '@astrojs/starlight/components';
 
 ## Czego się tu nauczysz
 
-Ta sekcja bywa pomijana, a jest jedną z ważniejszych. Nie chodzi w niej o moralizowanie, tylko o rzeczy, które mają bezpośrednie konsekwencje: co możesz wkleić do chatbota, a czego nie; kiedy odpowiedź AI może być systematycznie stronnicza; co z AI Act już obowiązuje, a co ma późniejszy kalendarz; od jakiego wieku w ogóle wolno otworzyć konto dziecku.
+Ta sekcja bywa pomijana, a jest jedną z ważniejszych. Nie chodzi w niej o moralizowanie, tylko o rzeczy, które mają bezpośrednie konsekwencje: co możesz wkleić do chatbota, a czego nie; kiedy odpowiedź AI może być systematycznie stronnicza; kto odpowiada za decyzję podjętą z pomocą AI; od jakiego wieku dostawcy pozwalają założyć konto dziecku.
 
-Pierwsza lekcja zajmuje się etyką i prawem łącznie, bo w praktyce trudno je rozdzielić. Znajdziesz tam uprzedzenia algorytmów, przejrzystość decyzji, odpowiedzialność za błąd maszyny i zasadę uczciwości przy podpisywaniu tekstów, a także regulacje, które próbują to wszystko uporządkować.
+Pierwsza lekcja zajmuje się etyką. Znajdziesz tam uprzedzenia algorytmów, przejrzystość decyzji, odpowiedzialność za błąd maszyny i zasadę uczciwości przy podpisywaniu tekstów. Przepisy o AI tylko sygnalizuje - nie streszcza ich.
 
 Druga lekcja to prywatność i dane - najbardziej praktyczna lekcja w tej sekcji. Uczy rozróżniać czat konsumencki, plan firmowy i model uruchomiony lokalnie, pokazuje, jakich danych nigdy nie wklejać do czatu w chmurze, i tłumaczy, jak anonimizować treść przed wysłaniem. Jeśli pracujesz z danymi osobowymi, ta lekcja jest obowiązkowa.
 
@@ -53,7 +49,9 @@ Po kolei - zaczynasz od odpowiedzialności i danych, kończysz na spekulacjach o
 
 ## Czego nie ma w tej sekcji
 
-Nie ma tu porady prawnej. Przepisy dotyczące AI zmieniają się szybko i różnią się między krajami - w sprawach o realnych konsekwencjach prawnych sprawdź aktualny stan u źródła albo skonsultuj się z prawnikiem.
+Nie ma tu streszczenia przepisów.
+
+**Prawo dotyczące AI i danych zmienia się ciągle, a tę stronę aktualizuję cyklicznie, więc nie zawsze będzie z nim na bieżąco. Nie jestem prawnikiem - informacje tutaj nie są poradą prawną. Kwestie prawne najlepiej omawiać z prawnikiem - sprawdzoną osobą, którą polecam, jest [Paula Skrzypecka](https://www.linkedin.com/in/paula-skrzypecka/).**
 
 ## Lekcje w tej sekcji
 
@@ -70,7 +68,7 @@ Nie ma tu porady prawnej. Przepisy dotyczące AI zmieniają się szybko i różn
 	/>
 	<LinkCard
 		title="AI a dzieci"
-		description="Od ilu lat wolno założyć dziecku konto w chatbocie AI i jakich danych nie powinno tam wpisywać. Ćwiczenie: 5 minut."
+		description="Od ilu lat dostawcy pozwalają założyć dziecku konto w chatbocie AI i jakich danych nie powinno tam wpisywać. Ćwiczenie: 5 minut."
 		href="/etyka/ai-a-dzieci/"
 	/>
 	<LinkCard

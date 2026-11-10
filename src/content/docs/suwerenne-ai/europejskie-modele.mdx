@@ -1,6 +1,6 @@
 ---
 title: Europejskie modele i firmy AI
-description: Do jednego zadania dobierzesz europejskie narzędzie według prawa UE, modelu u siebie albo rodzaju zadania. Ćwiczenie zajmie 5 minut.
+description: Do jednego zadania dobierzesz europejskie narzędzie według siedziby firmy, modelu u siebie albo rodzaju zadania. Ćwiczenie zajmie 5 minut.
 sidebar:
   order: 2
 educationalLevel: Beginner
@@ -26,11 +26,11 @@ mentions:
     type: Organization
 faq:
   - q: Czy Mistral zastępuje ChatGPT?
-    a: 'Przy wielu tekstach - bywa wystarczający, a do tego bywa open-weight, więc uruchomisz go u siebie. To nie jest werdykt "lepszy / gorszy" w tym miesiącu. Najpierw kryterium: prawo UE, model u siebie, rodzaj zadania.'
+    a: 'Przy wielu tekstach - bywa wystarczający, a do tego bywa open-weight, więc uruchomisz go u siebie. To nie jest werdykt "lepszy / gorszy" w tym miesiącu. Najpierw kryterium: firma z UE, model u siebie, rodzaj zadania.'
   - q: W czym Europa jest mocna, skoro nie ma tu największych laboratoriów AI?
-    a: 'Często w tłumaczeniach, czasem w generowaniu obrazów, w modelach do uruchomienia u siebie i we wdrożeniach na serwerach firm i urzędów. Największe laboratoria AI działają w innej skali, ale kryterium wyboru zostaje to samo: prawo UE, model u siebie i rodzaj zadania.'
+    a: 'Często w tłumaczeniach, czasem w generowaniu obrazów, w modelach do uruchomienia u siebie i we wdrożeniach na serwerach firm i urzędów. Największe laboratoria AI działają w innej skali, ale kryterium wyboru zostaje to samo: firma z UE, model u siebie i rodzaj zadania.'
   - q: Po co europejskie narzędzie, skoro amerykańskie działa?
-    a: Dane i umowa zgodne z RODO i AI Act, mniejsza zależność od jednej decyzji za oceanem. To plan B i świadomy wybór, nie obowiązek patriotyczny.
+    a: Firma i serwery w Europie, mniejsza zależność od jednej decyzji za oceanem. To plan B i świadomy wybór, nie obowiązek patriotyczny.
 status: gotowe
 ---
 
@@ -45,7 +45,7 @@ import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 
 ## Na tej stronie przypniesz zadanie do kryterium
 
-Trzy pytania z lekcji o Bieliku (czy możesz pobrać model, gdzie trafiają dane, czyje prawo je chroni) w Europie sprowadzają się do dwóch kryteriów, a trzecim jest rodzaj zadania. Po tej lekcji dobierzesz do jednego zadania z Twojego tygodnia jedno z nich: **prawo UE** (firma i umowa podlegają europejskim przepisom), **model u siebie** (możesz pobrać model i uruchomić go na własnym komputerze) albo **rodzaj zadania** (czat, tłumaczenie, obrazy, wdrożenie na serwerach firmy).
+Trzy pytania z lekcji o Bieliku (czy możesz pobrać model, gdzie trafiają dane, kto odpowiada za usługę i gdzie ma siedzibę) w Europie sprowadzają się do dwóch kryteriów, a trzecim jest rodzaj zadania. Po tej lekcji dobierzesz do jednego zadania z Twojego tygodnia jedno z nich: **firma z UE** (dostawca ma siedzibę w Unii Europejskiej), **model u siebie** (możesz pobrać model i uruchomić go na własnym komputerze) albo **rodzaj zadania** (czat, tłumaczenie, obrazy, wdrożenie na serwerach firmy).
 
 Jedna rzecz do zapamiętania: **najpierw kryterium i rodzaj zadania. Nazwy produktów szybko się starzeją - aktualne znajdziesz w ramce z datą.**
 
@@ -53,9 +53,9 @@ Jedna rzecz do zapamiętania: **najpierw kryterium i rodzaj zadania. Nazwy produ
 
 Europa nie musi wygrywać wyścigu na największy model, żeby mieć narzędzie, które da się wybrać świadomie.
 
-**Czat i model językowy.** Firma z UE, często z otwartym modelem (<Termin id="open-weight">open-weight</Termin>) - takim, którego wagi, czyli liczby ustawione w treningu, możesz pobrać na swój dysk. Chatbot w przeglądarce bywa przemianowywany - kryterium zostaje: czy możesz pobrać model i uruchomić go poza chmurą dostawcy i czy umowa podlega europejskiemu prawu.
+**Czat i model językowy.** Firma z UE, często z otwartym modelem (<Termin id="open-weight">open-weight</Termin>) - takim, którego wagi, czyli liczby ustawione w treningu, możesz pobrać na swój dysk. Chatbot w przeglądarce bywa przemianowywany - kryterium zostaje: czy możesz pobrać model i uruchomić go poza chmurą dostawcy i czy dostawca ma siedzibę w UE.
 
-**Obraz.** Inna rodzina niż czat. Ranking generatorów obrazów zmienia się co kilka miesięcy. Zostaje: czy generator podlega tym samym pytaniom o dane i czy oznaczasz wynik, gdy trzeba ([etyka i prawo](/etyka/etyczne-aspekty/)).
+**Obraz.** Inna rodzina niż czat. Ranking generatorów obrazów zmienia się co kilka miesięcy. Zostaje: czy generator podlega tym samym pytaniom o dane i czy uczciwie oznaczasz wynik ([etyka](/etyka/etyczne-aspekty/)).
 
 **Tłumaczenie.** Do wyboru masz wyspecjalizowany tłumacz, który od lat robi tylko to (np. niemiecki DeepL), albo ogólny chatbot, któremu piszesz "przetłumacz". Kryterium: jak dobrze radzi sobie z Twoją parą języków i czy tekst wychodzi do USA.
 
@@ -66,7 +66,7 @@ Jeśli europejska firma oferuje <Termin id="agent-ai">agenta AI</Termin> (progra
 :::note[Źródła sprawdzone w listopadzie 2026 r.]
 Migawka, nie ranking.
 
-**Mistral (Paryż).** Rodzina Mistral 3, grudzień 2025 r.: duży Large 3 na licencji Apache 2.0 (pozwala na darmowe użycie, także komercyjne) i małe modele Ministral 3 (14, 8 i 3 mld parametrów, czyli liczb ustawionych w treningu) - [mistral.ai](https://mistral.ai/news/mistral-3/), [TechCrunch](https://techcrunch.com/2025/12/02/mistral-closes-in-on-big-ai-rivals-with-mistral-3-open-weight-frontier-and-small-models/). Chatbot: **Vibe** (dawniej Le Chat), plany i limity na [cenniku](https://mistral.ai/pricing) - nazwy szczebli sprawdzaj tam, nie tu. Mistral Small 4 (16 marca 2026 r.): otwarte wagi na licencji Apache 2.0 - [mistral.ai](https://mistral.ai/news/mistral-small-4). Mistral Large 4: od 6 października 2026 r. podgląd przez <Termin id="api">API</Termin> (dostęp do modelu dla programistów, bez okna czatu) - [mistral.ai](https://mistral.ai/news/mistral-large-4); pod koniec października 2026 r. wagi do pobrania na własnej licencji Mistrala (zmodyfikowana licencja MIT; firma, która sprzedaje dostęp do modelu jako usługę, potrzebuje osobnej licencji) - [mistral.ai](https://mistral.ai/news/mistral-large-4-oss/). Przy ok. bilionie parametrów to model na serwerownię, nie na laptopa.
+**Mistral (Paryż).** Rodzina Mistral 3, grudzień 2025 r.: duży Large 3 na licencji Apache 2.0 i małe modele Ministral 3 (14, 8 i 3 mld parametrów, czyli liczb ustawionych w treningu) - [mistral.ai](https://mistral.ai/news/mistral-3/), [TechCrunch](https://techcrunch.com/2025/12/02/mistral-closes-in-on-big-ai-rivals-with-mistral-3-open-weight-frontier-and-small-models/). Chatbot: **Vibe** (dawniej Le Chat), plany i limity na [cenniku](https://mistral.ai/pricing) - nazwy szczebli sprawdzaj tam, nie tu. Mistral Small 4 (16 marca 2026 r.): otwarte wagi na licencji Apache 2.0 - [mistral.ai](https://mistral.ai/news/mistral-small-4). Mistral Large 4: od 6 października 2026 r. podgląd przez <Termin id="api">API</Termin> (dostęp do modelu dla programistów, bez okna czatu) - [mistral.ai](https://mistral.ai/news/mistral-large-4); pod koniec października 2026 r. wagi do pobrania na własnej licencji Mistrala (zmodyfikowana licencja MIT) - [mistral.ai](https://mistral.ai/news/mistral-large-4-oss/). Przy ok. bilionie parametrów to model na serwerownię, nie na laptopa.
 
 **Black Forest Labs (Niemcy).** FLUX 3 (23 lipca 2026 r.): obrazy i wideo do 20 sekund z dźwiękiem, na razie we wczesnym dostępie (najpierw dla wybranych) - [bfl.ai](https://bfl.ai/blog/flux-3). Poprzednik FLUX.2: tekst na obrazie, spójność z obrazami wzorcowymi - [bfl.ai](https://bfl.ai/blog/flux-2). Runda finansowania 300 mln USD, wycena 3,25 mld USD (grudzień 2025 r.) - [bfl.ai](https://bfl.ai/blog/our-300m-series-b). Wycena nie jest lekcją "kup to".
 
@@ -80,18 +80,18 @@ Migawka, nie ranking.
 Nie zakładasz czterech kont.
 
 1. Zapisz zadanie z tygodnia w sześciu słowach.
-2. Wybierz **jedno** kryterium: prawo UE / model u siebie / rodzaj zadania (czat, tłumaczenie, obraz, wdrożenie u siebie).
+2. Wybierz **jedno** kryterium: firma z UE / model u siebie / rodzaj zadania (czat, tłumaczenie, obraz, wdrożenie u siebie).
 3. Dopisz rodzinę z listy powyżej - albo "zostaję przy amerykańskim czacie, bo wygoda", z powodem. To zaliczenie, nie zdrada.
 
 **Zaliczenie:** trzy wiersze. Zero "najlepszy model". Zero cytowania liczby parametrów jako dowodu.
 
-**Typowy wynik:** "tłumaczenie oferty - rodzaj zadania - DeepL albo czat". "notatka z danymi - model u siebie - open-weight", i tylko jeśli wolno Ci przetwarzać te dane.
+**Typowy wynik:** "tłumaczenie oferty - rodzaj zadania - DeepL albo czat". "notatka z danymi - model u siebie - open-weight", i tylko jeśli Twoja firma na to pozwala.
 
 **Jeśli nic nie zgrzyta i zostaje czas:** otwórz cennik Vibe albo DeepL i sprawdź, czy darmowy plan w ogóle istnieje.
 
 ## Teraz wiesz
 
-- Wybierasz według prawa UE, modelu u siebie i rodzaju zadania. Nazwy i liczby z ramki szybko się starzeją.
+- Wybierasz według siedziby firmy, modelu u siebie i rodzaju zadania. Nazwy i liczby z ramki szybko się starzeją.
 - Czat, obraz, tłumaczenie i wdrożenie u siebie (on-prem) to inne półki. Nie porównujesz ich jednym slajdem "Europa vs USA".
 - Plan B nie każe wyrzucać narzędzi, których używasz. Każe wiedzieć, po co jest alternatywa.
 

@@ -13,7 +13,7 @@ Dziękuję. Twoja zgoda jest zapisana i zostajesz na liście.
 
 ## Po co była ta prośba
 
-Twój adres trafił na listę dawno temu i nie miałem przy nim porządnego dowodu, że ta zgoda faktycznie pochodzi od Ciebie - a RODO wymaga, żebym umiał ją udowodnić, nie tylko twierdzić, że była. Zamiast po cichu wysyłać dalej, wolałem zapytać wprost.
+Twój adres trafił na listę dawno temu i nie miałem przy nim porządnego dowodu, że ta zgoda faktycznie pochodzi od Ciebie - a chcę umieć to udowodnić, nie tylko twierdzić. Zamiast po cichu wysyłać dalej, wolałem zapytać wprost.
 
 Teraz jest to uporządkowane: przy Twoim adresie siedzi data i potwierdzenie, że prośba wyszła od Ciebie.
 

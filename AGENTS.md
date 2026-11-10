@@ -253,6 +253,20 @@ Markdown:
 - Zmiany merytoryczne (fakty, liczby, twierdzenia) wymagają linku do źródła - to zabezpieczenie przeciw halucynacjom. Pisząc o świecie zewnętrznym (ceny, wersje modeli, regulaminy) zweryfikuj u źródła zamiast polegać na wiedzy modelu.
 - **Dane podawane jako aktualne nie mogą być starsze niż 2 lata** (licząc od daty edycji strony). Wyjątek: fakty historyczne i trwałe metody (np. SIFT z 2019). Statystyka z 2023 podana w 2026 jako "tak jest teraz" to błąd redakcyjny, nie kontekst.
 
+### Treści prawne
+
+Decyzja właściciela 2026-11-10: serwis nie interpretuje prawa. Bez numerów artykułów (RODO, AI Act), dat stosowania przepisów i okresów przejściowych, progów wieku wywodzonych z ustawy, "podstawy prawnej", "wolno Ci" w sensie prawnym, ocen praw autorskich do wyników AI, kar i opisów obowiązków prawnych firm. Linków do aktów prawnych i urzędów nie dodajemy.
+
+Co zostaje: porady praktyczne (nie wklejasz haseł ani cudzych danych, anonimizujesz, sprawdzasz zasady firmy albo szkoły) i fakty o regulaminach usług z linkiem do dostawcy (np. próg wieku w regulaminie ChatGPT). Zamiast "jeśli wolno Ci przetwarzać te dane" piszesz "jeśli Twoja firma na to pozwala". Trzecie pytanie suwerenności cyfrowej brzmi wszędzie: "kto odpowiada za usługę i gdzie ma siedzibę".
+
+Strona, na której temat prawny zostaje choćby jednym zdaniem, ma dokładnie jeden disclaimer, pogrubiony w całości, w tym brzmieniu (bez zmian, także link):
+
+```markdown
+**Prawo dotyczące AI i danych zmienia się ciągle, a tę stronę aktualizuję cyklicznie, więc nie zawsze będzie z nim na bieżąco. Nie jestem prawnikiem - informacje tutaj nie są poradą prawną. Kwestie prawne najlepiej omawiać z prawnikiem - sprawdzoną osobą, którą polecam, jest [Paula Skrzypecka](https://www.linkedin.com/in/paula-skrzypecka/).**
+```
+
+Wstawiasz go przy pierwszym miejscu z tematem prawnym albo na końcu sekcji o prawie, jako osobny akapit (w `:::caution`, jeśli strona już takiej ramki używa do tego tematu). `zasoby/regulamin.md` nie podlega tej regule.
+
 ## Stan projektu
 
 Otwarte zadania i decyzje właściciela trzymają dwa pliki:

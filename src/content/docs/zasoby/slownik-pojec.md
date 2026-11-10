@@ -38,9 +38,11 @@ System AI, który dostaje cel zamiast pojedynczego polecenia. Sam układa plan, 
 
 ## AI Act
 
-Unijne rozporządzenie o sztucznej inteligencji (rozporządzenie UE 2024/1689, oficjalnie "akt w sprawie sztucznej inteligencji"). Dzieli systemy AI według ryzyka: część praktyk zakazuje, od systemów wysokiego ryzyka wymaga nadzoru człowieka i dokumentacji, a od chatbotów - jasnej informacji, że rozmawiasz z maszyną. Obowiązki wchodzą etapami: zakazy i obowiązek zadbania o kompetencje pracowników w zakresie AI od 2 lutego 2025 r., większość pozostałych przepisów, w tym obowiązek informowania, że rozmawiasz z AI, od 2 sierpnia 2026 r. Wymagania dla systemów wysokiego ryzyka przesunął pakiet AI Omnibus (unijne rozporządzenie upraszczające AI Act, w mocy od 27 lipca 2026 r.): dla systemów używanych np. w rekrutacji na 2 grudnia 2027 r., dla AI wbudowanej w produkty objęte osobnymi przepisami na 2 sierpnia 2028 r. ([Komisja Europejska](https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai)).
+Unijne rozporządzenie o sztucznej inteligencji. Dzieli systemy AI według poziomu ryzyka i stawia im różne wymagania.
 
-**Przykład:** Sklep internetowy uruchamia na stronie czat z AI. AI Act wymaga, żeby klient wiedział, że pisze z programem, a nie z konsultantem. System, który sam odsiewa kandydatów do pracy, trafia do grupy wysokiego ryzyka i od grudnia 2027 r. będzie podlegał dużo ostrzejszym wymaganiom.
+**Przykład:** Gdy w wiadomościach pada "AI Act", chodzi o unijne przepisy o AI, a nie o regulamin konkretnego chatbota.
+
+**Prawo dotyczące AI i danych zmienia się ciągle, a tę stronę aktualizuję cyklicznie, więc nie zawsze będzie z nim na bieżąco. Nie jestem prawnikiem - informacje tutaj nie są poradą prawną. Kwestie prawne najlepiej omawiać z prawnikiem - sprawdzoną osobą, którą polecam, jest [Paula Skrzypecka](https://www.linkedin.com/in/paula-skrzypecka/).**
 
 **Więcej:** [Etyka i prawo w świecie AI](/etyka/etyczne-aspekty/)
 
@@ -120,10 +122,10 @@ Reprezentacja słów, fraz lub dokumentów w postaci wektorów liczbowych w prze
 
 Pytania o to, co wolno robić z AI, a czego nie. I o to, kto odpowiada, kiedy system zrobi komuś krzywdę. Chodzi o uczciwość, prywatność, jawność działania i wpływ na ludzką pracę. To nie są rozważania na później - takie decyzje zapadają dziś, przy budowie konkretnych narzędzi.
 
-**Przykład:** Bank odmawia Ci kredytu, bo tak zdecydował algorytm. Masz prawo wiedzieć dlaczego? Czy firma może uczyć model na cudzych zdjęciach bez pytania autora o zgodę? Czy chatbot, do którego pisze ktoś w kryzysie, powinien mieć obowiązek odesłać go do człowieka? To są pytania etyki AI.
+**Przykład:** Bank odmawia Ci kredytu, bo tak zdecydował algorytm. Należy Ci się wyjaśnienie? Czy firma może uczyć model na cudzych zdjęciach bez pytania autora o zgodę? Czy chatbot, do którego pisze ktoś w kryzysie, powinien mieć obowiązek odesłać go do człowieka? To są pytania etyki AI.
 
 :::note[Ujęcie techniczne]
-Dziedzina zajmująca się moralnymi implikacjami projektowania, tworzenia i wdrażania systemów sztucznej inteligencji. Obejmuje sprawiedliwość i niedyskryminację, przejrzystość, rozliczalność, prywatność oraz wpływ społeczny. W praktyce przekłada się na wymogi regulacyjne (ocena ryzyka, obowiązek informacyjny, nadzór człowieka) i na procedury audytu modeli przed wdrożeniem.
+Dziedzina zajmująca się moralnymi implikacjami projektowania, tworzenia i wdrażania systemów sztucznej inteligencji. Obejmuje sprawiedliwość i niedyskryminację, przejrzystość, rozliczalność, prywatność oraz wpływ społeczny. W praktyce przekłada się na procedury: ocenę ryzyka, nadzór człowieka i audyt modeli przed wdrożeniem.
 :::
 
 **Więcej:** [Etyka i prawo w świecie AI](/etyka/etyczne-aspekty/)
@@ -320,9 +322,9 @@ Metoda trenowania łącząca uczenie przez wzmacnianie z informacją zwrotną od
 
 ## RODO (ang. GDPR)
 
-Unijne ogólne rozporządzenie o ochronie danych osobowych (rozporządzenie UE 2016/679), stosowane od 25 maja 2018 r. Określa, kiedy firma może zbierać i wykorzystywać Twoje dane, jakie masz prawa (wgląd, poprawienie, usunięcie, sprzeciw) i kto odpowiada za ich bezpieczeństwo. Przy AI liczą się dwie rzeczy: gdzie trafiają dane i czy w ogóle wolno Ci je tam przekazać. Ma to znaczenie za każdym razem, gdy wklejasz do czatu dane innych ludzi albo firma wysyła dane klientów do zewnętrznego modelu.
+Unijne ogólne rozporządzenie o ochronie danych osobowych. Dotyczy tego, jak firmy i instytucje zbierają i wykorzystują dane osób.
 
-**Przykład:** Wklejasz do darmowego czatu listę klientów z nazwiskami i telefonami, żeby AI ułożyła z niej mailing. W świetle RODO to przekazanie cudzych danych osobowych kolejnej firmie - i to Ty albo Twój pracodawca odpowiadacie za to, czy była do tego podstawa prawna.
+**Przykład:** Zanim wkleisz do czatu listę klientów z nazwiskami i telefonami, pytasz osobę, która w Twojej firmie odpowiada za ochronę danych. Bez tego listy nie wklejasz.
 
 **Więcej:** [Prywatność i dane](/etyka/prywatnosc/)
 

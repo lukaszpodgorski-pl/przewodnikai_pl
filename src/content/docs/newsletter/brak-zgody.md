@@ -13,7 +13,7 @@ Twój adres **nie trafił** na listę, bo w formularzu nie było zaznaczonej zgo
 
 ## Dlaczego pytam o zgodę osobno
 
-Bo inaczej nie umiałbym udowodnić, że zgoda pochodzi od Ciebie. RODO wymaga nie tylko tego, żeby zgoda była, ale też żeby dało się ją wykazać - a pole zaznaczone z góry albo ukryte przed człowiekiem niczego nie wykazuje. Wolę mieć jedno kliknięcie więcej i czyste sumienie.
+Bo inaczej nie umiałbym udowodnić, że zgoda pochodzi od Ciebie. Pole zaznaczone z góry albo ukryte przed człowiekiem niczego nie wykazuje. Wolę mieć jedno kliknięcie więcej i czyste sumienie.
 
 ## Jeśli chcesz dostawać powiadomienia
 

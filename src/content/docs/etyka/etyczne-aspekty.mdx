@@ -8,7 +8,7 @@ educationalLevel: Intermediate
 teaches:
   - Kiedy uprzedzenie w danych staje się decyzją o osobie
   - Dlaczego brak wyjaśnienia jest problemem przy kredycie, rekrutacji i zdrowiu
-  - Jak czytać AI Act jako kalendarz obowiązków, nie jako slogan
+  - Dlaczego przy decyzji o osobie człowiek musi móc ją cofnąć
   - Na czym polega zasada uczciwości przy tekście napisanym z pomocą AI
 about:
   - name: Etyka sztucznej inteligencji
@@ -18,10 +18,10 @@ about:
 faq:
   - q: Czy AI może być stronnicza?
     a: Tak. Uczy się z danych zrobionych przez ludzi. Jeśli w danych była nierówność, wynik umie ją powtórzyć i podać jako ocenę "z algorytmu".
-  - q: Czy muszę znać cały AI Act, żeby korzystać z chatbota?
-    a: "Nie. Na co dzień wystarczy: nie udawać, że pisze człowiek, gdy pisze model, i nie zrzucać na model wyroku o osobie. Daty obowiązków znajdziesz w części o prawie na tej stronie - sprawdź źródło, zanim powołasz się na termin."
+  - q: Czy muszę znać przepisy o AI, żeby korzystać z chatbota?
+    a: "Nie. Na co dzień wystarczy: nie udawać, że pisze człowiek, gdy pisze model, i nie zrzucać na model wyroku o osobie. Przepisy zmieniają się często i ta strona ich nie streszcza - w konkretnej sprawie zapytaj prawnika."
   - q: Kto odpowiada, gdy model się pomyli?
-    a: Nie "algorytm". Osoba albo organizacja, która wdrożyła system albo podjęła decyzję. Jeśli nie umiesz wskazać kogo, nie oddawaj tej decyzji modelowi.
+    a: Nie "algorytm". Decyzję podejmuje człowiek albo organizacja, która wdrożyła system - i to ona powinna umieć ją wyjaśnić. Jeśli nie umiesz wskazać kogo, nie oddawaj tej decyzji modelowi.
 status: gotowe
 ---
 
@@ -38,13 +38,13 @@ import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 
 ## Na tej stronie oznaczysz jedną decyzję
 
-Po tej lekcji jedna decyzja z Twojego świata ma trzy etykiety: kto jest poszkodowany przy pomyłce, kto odpowiada, czy człowiek może to cofnąć. Nie zdajesz egzaminu z filozofii ani z całego rozporządzenia.
+Po tej lekcji jedna decyzja z Twojego świata ma trzy etykiety: kto jest poszkodowany przy pomyłce, kto odpowiada, czy człowiek może to cofnąć. Nie zdajesz egzaminu z filozofii ani z przepisów.
 
 Jedna rzecz do zapamiętania: **etykieta "policzyła maszyna" nie zdejmuje odpowiedzialności. Jeśli nie wiesz, kto podpisuje - nie oddajesz decyzji.**
 
 ## Trzy problemy etyczne
 
-Prywatność danych ma własną lekcję: [Prywatność i dane](/etyka/prywatnosc/). Tu nie powtarzam RODO ani listy "czego nie wklejać".
+Prywatność danych ma własną lekcję: [Prywatność i dane](/etyka/prywatnosc/). Tu nie powtarzam listy "czego nie wklejać".
 
 ### 1. Dane niosą uprzedzenie
 
@@ -54,7 +54,7 @@ To nie jest nowość z chatbota. [Analiza ProPublica z 2016](https://www.propubl
 
 ### 2. Czarna skrzynka przy stawce
 
-Model AI rzadko potrafi wiarygodnie pokazać, dlaczego doszedł do wniosku. Nawet gdy poda uzasadnienie, nie wiadomo, czy to faktyczny powód. Przy memie to nieważne. Przy odmowie kredytu, odrzuceniu CV albo sugestii klinicznej brak toku rozumowania jest problemem etycznym i często prawnym - nie da się odwołać od "tak wyszło".
+Model AI rzadko potrafi wiarygodnie pokazać, dlaczego doszedł do wniosku. Nawet gdy poda uzasadnienie, nie wiadomo, czy to faktyczny powód. Przy memie to nieważne. Przy odmowie kredytu, odrzuceniu CV albo sugestii klinicznej brak toku rozumowania jest problemem etycznym - od "tak wyszło" nie da się odwołać.
 
 Nie uczysz się tu technik wyjaśniania decyzji AI. Uczysz się pytania: **czy ktoś potrafi wyjaśnić tę decyzję osobie, której dotyczy?** Jeśli nie, system nie powinien być jedynym sędzią.
 
@@ -68,26 +68,17 @@ Autonomiczny samochód i broń to skrajne przykłady z nagłówków. Na tej stro
 
 Trzy problemy powyżej dotyczą decyzji o innych. Ta zasada dotyczy Twojego podpisu: **jeśli tekst, praca albo grafika powstały z pomocą AI, nie udajesz, że to wyłącznie Twoja praca.** Szkoła, uczelnia i pracodawca mogą mieć własne reguły - sprawdzasz je osobno.
 
-## Prawo: kompas i kalendarz, nie wróżba
+## Przepisy: tylko tyle, że istnieją
 
-[Rekomendacja UNESCO w sprawie etyki AI](https://www.unesco.org/en/artificial-intelligence/recommendation-ethics) z listopada 2021 r. to dokument 193 państw - kompas (prawa człowieka, nadzór, odpowiedzialność), nie ustawa karna.
+[Rekomendacja UNESCO w sprawie etyki AI](https://www.unesco.org/en/artificial-intelligence/recommendation-ethics) z listopada 2021 r. to dokument 193 państw - kompas etyczny (nadzór człowieka, odpowiedzialność), nie przepis.
 
-[AI Act](https://artificialintelligenceact.eu/) (rozporządzenie UE 2024/1689) dzieli systemy według ryzyka. Dla tej lekcji ważne są dwie rzeczy, nie sto artykułów:
+W Unii Europejskiej obowiązuje też rozporządzenie o sztucznej inteligencji (AI Act), a inne kraje regulują AI po swojemu. Nie streszczam tu przepisów, terminów ani obowiązków firm. To samo dotyczy pytania, kto ma prawa do tekstu albo obrazu z modelu. Praktyka na dziś: trzymasz się zasady uczciwości z tej strony - i nie prosisz modelu, żeby coś sprzedał, udając żyjącą osobę.
 
-- **Przejrzystość (art. 50)** - od 2 sierpnia 2026 r. obowiązuje w UE: osoba ma wiedzieć, że rozmawia z AI, a nie z człowiekiem, o ile to nie jest oczywiste; treści syntetyczne i deepfaki mają być oznaczane ([Reed Smith, lipiec 2026](https://www.reedsmith.com/our-insights/blogs/technology-law-dispatch/102nfi5/eu-ai-act-next-level-applies-as-of-2-august-2026/)). Dla systemów, które były na rynku przed tą datą, część znakowania treści ma okres przejściowy do 2 grudnia 2026 r.
-- **Systemy wysokiego ryzyka** (rekrutacja, biometria, część wyrobów medycznych) - terminy przesunięto pakietem AI Omnibus (unijne rozporządzenie upraszczające AI Act, w mocy od 27 lipca 2026 r.): systemy używane np. w rekrutacji czy biometrii - na 2 grudnia 2027 r., AI wbudowana w produkty objęte osobnymi przepisami (np. wyroby medyczne) - na 2 sierpnia 2028 r. ([Komisja Europejska](https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai)). Obowiązek przejrzystości z poprzedniego punktu nie został przesunięty.
-
-Inne kraje regulują AI po swojemu, często bez jednego aktu na wzór AI Act. Na tej stronie nie ma tabeli "co wolno w którym kraju w tym tygodniu".
-
-Własność intelektualna (kto, jeśli ktokolwiek, ma prawa do tekstu z modelu; czy trening zjadł cudze dzieło) jest sporna i różni się między jurysdykcjami. Praktyka na dziś: trzymasz się zasady uczciwości z tej strony - i nie prosisz modelu, żeby coś sprzedał, udając żyjącą osobę. To uczciwość, nie zastępstwo porady prawnej.
-
-:::note[Źródła sprawdzone w listopadzie 2026 r.]
-AI Act: przejrzystość art. 50 **już obowiązuje** (2 sierpnia 2026 r.), a okres przejściowy na znakowanie treści z systemów wprowadzonych wcześniej kończy się 2 grudnia 2026 r. ([Reed Smith](https://www.reedsmith.com/our-insights/blogs/technology-law-dispatch/102nfi5/eu-ai-act-next-level-applies-as-of-2-august-2026/)). Wysokie ryzyko - później, po AI Omnibus: 2 grudnia 2027 r. i 2 sierpnia 2028 r. ([Komisja Europejska](https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai)). COMPAS (2016) i UNESCO (2021) są historią i kompasem, nie obrazem "tak działają sądy dziś". Ta strona nie jest poradą prawną.
-:::
+**Prawo dotyczące AI i danych zmienia się ciągle, a tę stronę aktualizuję cyklicznie, więc nie zawsze będzie z nim na bieżąco. Nie jestem prawnikiem - informacje tutaj nie są poradą prawną. Kwestie prawne najlepiej omawiać z prawnikiem - sprawdzoną osobą, którą polecam, jest [Paula Skrzypecka](https://www.linkedin.com/in/paula-skrzypecka/).**
 
 ## Czego tu nie ma
 
-Nie rozstrzygam, czy model "ma prawa". Algorytmu nie pozwiesz - odpowiada organizacja, która go używa.
+Nie rozstrzygam, czy model "ma prawa". Nie ma tu też tabeli "co wolno w którym kraju".
 
 ## Ćwiczenie: 5 minut, jeden podpis
 
@@ -98,19 +89,19 @@ Nie piszesz polityki firmy. Bierzesz **jedną** decyzję - z ostatniego miesiąc
     - kogo boli pomyłka
     - kto odpowiada (nazwa roli, nie "AI")
     - czy da się cofnąć (tak / nie / nie wiem)
-3. Jedno zdanie: model może dać szkic / model nie wchodzi. Bez cytowania artykułu AI Act.
+3. Jedno zdanie: model może dać szkic / model nie wchodzi.
 
 **Zaliczenie:** trzy etykiety na kartce. "Nie wiem, kto odpowiada" liczy się jako sygnał, żeby nie oddawać tej decyzji - nie jako porażka.
 
 **Typowy wynik:** szkic ogłoszenia - tak; odrzucenie kandydata albo diagnoza - nie.
 
-**Jeśli nic nie zgrzyta i zostaje czas:** sprawdź, czy w Twoim narzędziu widać, że to AI. Od sierpnia 2026 r. w UE to nie jest "miły gest".
+**Jeśli nic nie zgrzyta i zostaje czas:** sprawdź, czy w Twoim narzędziu widać, że odpowiada AI. Osoba po drugiej stronie powinna to wiedzieć bez zgadywania.
 
 ## Teraz wiesz
 
 - Uprzedzenie siedzi w danych. "Obiektywne, bo liczy maszyna" nic nie czyści.
 - Przy stawce na osobę pytasz o podpis i o cofnięcie, nie o benchmark modelu.
-- AI Act ma kalendarz: przejrzystość jest, wysokie ryzyko ma inne daty. Sprawdzasz źródło, nie nagłówek.
+- Przepisy o AI zmieniają się szybko. W konkretnej sprawie pytasz prawnika, nie nagłówek ani tę stronę.
 - Zasada uczciwości: tekstu z pomocą AI nie podpisujesz jako wyłącznie swojego.
 
 **Następny krok:** [Prywatność i dane](/etyka/prywatnosc/) - co wolno wkleić, co zanonimizować, a czego nie wklejasz wcale.
