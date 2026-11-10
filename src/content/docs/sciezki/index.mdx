@@ -12,21 +12,16 @@ status: zastane
 
 import { CardGrid, LinkCard, Card } from '@astrojs/starlight/components';
 
-
-:::note[Ta sekcja jest w przebudowie]
-Przechodzę przez te teksty lekcja po lekcji i poprawiam to, co się nie broni.
-Lekcje wracają tutaj pojedynczo, w miarę jak kończę przegląd - pod tymi samymi
-adresami co wcześniej. Poniżej lista tego, co się w tej sekcji pojawi.
-:::
-
 ![Rozdroże z kilkoma ścieżkami prowadzącymi w różne strony, idą po nich ludzie](../../../assets/sciezki/rozdroze.jpg)
 
 ## Szkoła
 
 <CardGrid>
-	<Card title="Uczeń szkoły podstawowej">
-		Poznaj AI bezpiecznie i naucz się z niej korzystać z głową. 7 lekcji. (w przygotowaniu)
-	</Card>
+	<LinkCard
+		title="Uczeń szkoły podstawowej"
+		description="Poznaj AI bezpiecznie i naucz się z niej korzystać z głową. 7 lekcji."
+		href="/sciezki/uczen-podstawowka/"
+	/>
 	<Card title="Uczeń liceum">
 		Pisz lepsze wypracowania i projekty z AI - bez oszukiwania siebie. 7 lekcji. (w przygotowaniu)
 	</Card>
@@ -55,10 +50,14 @@ adresami co wcześniej. Poniżej lista tego, co się w tej sekcji pojawi.
 ## Dom
 
 <CardGrid>
-	<Card title="Rodzic">
-		Zrozum AI, żeby mądrze towarzyszyć dziecku, gdy z niej korzysta. 7 lekcji. (w przygotowaniu)
-	</Card>
-	<Card title="Senior / emeryt">
-		Oswój AI krok po kroku, we własnym tempie. Świadomie decyduj, czym się z nią dzielisz. 7 lekcji. (w przygotowaniu)
-	</Card>
+	<LinkCard
+		title="Rodzic"
+		description="Zrozum AI, żeby mądrze towarzyszyć dziecku, gdy z niej korzysta. 7 lekcji."
+		href="/sciezki/rodzic/"
+	/>
+	<LinkCard
+		title="Senior / emeryt"
+		description="Oswój AI krok po kroku, we własnym tempie. Świadomie decyduj, czym się z nią dzielisz. 7 lekcji."
+		href="/sciezki/senior/"
+	/>
 </CardGrid>

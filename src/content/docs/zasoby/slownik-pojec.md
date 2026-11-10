@@ -40,6 +40,8 @@ Unijne rozporządzenie o sztucznej inteligencji (rozporządzenie UE 2024/1689, o
 
 **Przykład:** Sklep internetowy uruchamia na stronie czat z AI. AI Act wymaga, żeby klient wiedział, że pisze z programem, a nie z konsultantem. System, który sam odsiewa kandydatów do pracy, trafia do grupy wysokiego ryzyka i od grudnia 2027 r. będzie podlegał dużo ostrzejszym wymaganiom.
 
+**Więcej:** [Etyka i prawo w świecie AI](/etyka/etyczne-aspekty/)
+
 ## Algorytm
 
 Przepis na wykonanie zadania: lista kroków, które trzeba zrobić po kolei, żeby dojść do wyniku. Komputer nie zgaduje - robi dokładnie to, co mówi algorytm. W AI algorytmy decydują, jak system przetwarza dane i na jakiej podstawie wybiera odpowiedź.
@@ -68,6 +70,8 @@ Program, z którym rozmawiasz w języku naturalnym - piszesz do niego jak do dru
 
 **Przykład:** Wpisujesz "wytłumacz mi fotosyntezę jak dziecku", a chatbot w kilka sekund pisze prostą odpowiedź. Możesz od razu dopytać "a teraz jak studentowi biologii" - i dostajesz wersję bardziej zaawansowaną, bo chatbot widzi całą dotychczasową rozmowę w [oknie kontekstowym](#okno-kontekstowe-ang-context-window).
 
+**Więcej:** [Chatboty AI](/narzedzia/chatboty/)
+
 ## Dane treningowe
 
 Materiał, na którym model się uczy: teksty, zdjęcia, nagrania, liczby. Model nie wie niczego z góry - wszystko, co potrafi, wyciągnął z tego zbioru. Dlatego to zawartość danych treningowych decyduje, w czym model jest dobry, czego nie zna i jakie uprzedzenia powtarza.
@@ -90,6 +94,8 @@ Dopilnowanie, żeby system AI robił to, o co nam naprawdę chodzi, a nie to, co
 Problem dostosowania celów i zachowań systemów AI do ludzkich wartości i intencji, badany zarówno w warstwie praktycznej (RLHF, odmowy, filtry bezpieczeństwa), jak i teoretycznej. Skrajną wersję problemu opisuje eksperyment myślowy Nicka Bostroma o maksymalizatorze spinaczy: system z jednym wąsko zdefiniowanym celem i bez ludzkich wartości dążyłby do niego kosztem wszystkiego innego. To hipoteza dotycząca systemów, które nie istnieją, nie prognoza.
 :::
 
+**Więcej:** [Przyszłość AI - oddzielasz to, co jest, od spekulacji](/etyka/przyszlosc-ai/)
+
 ## Embedding
 
 Sposób zapisania znaczenia tekstu jako zestawu liczb. Model nie rozumie słów tak jak Ty - żeby cokolwiek z nimi zrobić, zamienia każde na długi ciąg liczb, dobrany tak, że teksty o podobnym znaczeniu dostają podobne ciągi. Dzięki temu maszyna potrafi policzyć, jak blisko siebie leżą dwa pojęcia, mimo że nie wie, co one znaczą.
@@ -109,6 +115,8 @@ Pytania o to, co wolno robić z AI, a czego nie. I o to, kto odpowiada, kiedy sy
 :::note[Ujęcie techniczne]
 Dziedzina zajmująca się moralnymi implikacjami projektowania, tworzenia i wdrażania systemów sztucznej inteligencji. Obejmuje sprawiedliwość i niedyskryminację, przejrzystość, rozliczalność, prywatność oraz wpływ społeczny. W praktyce przekłada się na wymogi regulacyjne (ocena ryzyka, obowiązek informacyjny, nadzór człowieka) i na procedury audytu modeli przed wdrożeniem.
 :::
+
+**Więcej:** [Etyka i prawo w świecie AI](/etyka/etyczne-aspekty/)
 
 ## Explainable AI (XAI)
 
@@ -281,6 +289,8 @@ Metoda trenowania łącząca uczenie przez wzmacnianie z informacją zwrotną od
 Unijne ogólne rozporządzenie o ochronie danych osobowych (rozporządzenie UE 2016/679), stosowane od 25 maja 2018 r. Określa, kiedy firma może zbierać i wykorzystywać Twoje dane, jakie masz prawa (wgląd, poprawienie, usunięcie, sprzeciw) i kto odpowiada za ich bezpieczeństwo. Przy AI liczą się dwie rzeczy: gdzie trafiają dane i czy w ogóle wolno Ci je tam przekazać. Ma to znaczenie za każdym razem, gdy wklejasz do czatu dane innych ludzi albo firma wysyła dane klientów do zewnętrznego modelu.
 
 **Przykład:** Wklejasz do darmowego czatu listę klientów z nazwiskami i telefonami, żeby AI ułożyła z niej mailing. W świetle RODO to przekazanie cudzych danych osobowych kolejnej firmie - i to Ty albo Twój pracodawca odpowiadacie za to, czy była do tego podstawa prawna.
+
+**Więcej:** [Prywatność i dane](/etyka/prywatnosc/)
 
 ## Sieć neuronowa
 

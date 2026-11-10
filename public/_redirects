@@ -39,7 +39,7 @@
 /baza-promptow/ /prompt-engineering/ 302
 
 # --- Narzędzia AI ---
-/narzedzia-chatboty/ /narzedzia/ 302
+/narzedzia-chatboty/ /narzedzia/chatboty/ 301
 /narzedzia-generatory-obrazow/ /narzedzia/ 302
 /narzedzia-pisanie/ /narzedzia/ 302
 /narzedzia-specjalistyczne/ /narzedzia/ 302
@@ -52,8 +52,8 @@
 /ai-i-praca/ /praktyka/ 302
 
 # --- Etyka i bezpieczeństwo ---
-/prywatnosc/ /etyka/ 302
-/przyszlosc-ai/ /etyka/ 302
+/prywatnosc/ /etyka/prywatnosc/ 301
+/przyszlosc-ai/ /etyka/przyszlosc-ai/ 301
 
 # --- Zasoby ---
 /slownik-pojec/ /zasoby/slownik-pojec/ 301
@@ -68,10 +68,6 @@
 # 302, nie 301: te adresy wroca po przegladzie redakcyjnym. Regula
 # znika sama w dniu publikacji artykulu. Nie edytuj tej sekcji recznie -
 # steruje nia pole `status` we frontmatterze artykulu.
-/etyka/ai-a-dzieci/ /etyka/ 302
-/etyka/etyczne-aspekty/ /etyka/ 302
-/etyka/prywatnosc/ /etyka/ 302
-/etyka/przyszlosc-ai/ /etyka/ 302
 /jak-dziala-ai/agenci-ai/ /jak-dziala-ai/ 302
 /jak-dziala-ai/ai-ml-sieci-neuronowe/ /jak-dziala-ai/ 302
 /jak-dziala-ai/boom-ai/ /jak-dziala-ai/ 302
@@ -87,7 +83,6 @@
 /jak-dziala-ai/typy-ai/ /jak-dziala-ai/ 302
 /narzedzia/ai-w-codziennej-pracy/ /narzedzia/ 302
 /narzedzia/asystenci-agentowi/ /narzedzia/ 302
-/narzedzia/chatboty/ /narzedzia/ 302
 /narzedzia/generatory-obrazow/ /narzedzia/ 302
 /narzedzia/ile-kosztuje-ai/ /narzedzia/ 302
 /narzedzia/pisanie/ /narzedzia/ 302
@@ -111,11 +106,8 @@
 /sciezki/manager/ /sciezki/ 302
 /sciezki/nauczyciel/ /sciezki/ 302
 /sciezki/pracownik-biurowy/ /sciezki/ 302
-/sciezki/rodzic/ /sciezki/ 302
-/sciezki/senior/ /sciezki/ 302
 /sciezki/student/ /sciezki/ 302
 /sciezki/uczen-liceum/ /sciezki/ 302
-/sciezki/uczen-podstawowka/ /sciezki/ 302
 /sciezki/wlasciciel-firmy/ /sciezki/ 302
 /suwerenne-ai/ai-na-wlasnym-komputerze/ /suwerenne-ai/ 302
 /suwerenne-ai/bielik-i-polskie-modele/ /suwerenne-ai/ 302

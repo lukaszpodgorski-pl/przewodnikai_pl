@@ -24,17 +24,10 @@ faq:
     a: Próg ustala regulamin konkretnego dostawcy - sprawdź go dziś. Najczęściej to 13 lat (do 18 lat za zgodą rodzica), 16 lat (samodzielne konto Google w Polsce) albo 18 lat. Gemini na koncie dziecka nadzorowanym przez Family Link nie działa w EOG. Szczegóły i ćwiczenie znajdziesz w lekcji AI a dzieci.
   - q: Czy sztuczna inteligencja jest groźna?
     a: To zależy, o którym zagrożeniu mówimy. Ryzyka, które są realne dziś - dezinformacja, wycieki danych, uprzedzenia w decyzjach automatycznych - różnią się od scenariuszy dotyczących superinteligencji, które pozostają hipotezami. W tej sekcji rozdzielam jedno od drugiego zamiast wrzucać wszystko do wspólnego worka.
-status: zastane
+status: gotowe
 ---
 
-import { CardGrid, LinkCard, Card } from '@astrojs/starlight/components';
-
-
-:::note[Ta sekcja jest w przebudowie]
-Przechodzę przez te teksty lekcja po lekcji i poprawiam to, co się nie broni.
-Lekcje wracają tutaj pojedynczo, w miarę jak kończę przegląd - pod tymi samymi
-adresami co wcześniej. Poniżej lista tego, co się w tej sekcji pojawi.
-:::
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
 
 ![Waga obok tarczy i kłódki prywatności - etyka i bezpieczeństwo AI](../../../assets/etyka/przeglad.jpg)
 
@@ -42,13 +35,13 @@ adresami co wcześniej. Poniżej lista tego, co się w tej sekcji pojawi.
 
 Ta sekcja bywa pomijana, a jest jedną z ważniejszych. Nie chodzi w niej o moralizowanie, tylko o rzeczy, które mają bezpośrednie konsekwencje: co możesz wkleić do chatbota, a czego nie; kiedy odpowiedź AI może być systematycznie stronnicza; co z AI Act już obowiązuje, a co ma późniejszy kalendarz; od jakiego wieku w ogóle wolno otworzyć konto dziecku.
 
-Pierwsza lekcja zajmuje się etyką i prawem łącznie, bo w praktyce trudno je rozdzielić. Znajdziesz tam uprzedzenia algorytmów, przejrzystość decyzji, odpowiedzialność za błąd maszyny i prawa autorskie do treści generowanych, a także regulacje, które próbują to wszystko uporządkować.
+Pierwsza lekcja zajmuje się etyką i prawem łącznie, bo w praktyce trudno je rozdzielić. Znajdziesz tam uprzedzenia algorytmów, przejrzystość decyzji, odpowiedzialność za błąd maszyny i zasadę uczciwości przy podpisywaniu tekstów, a także regulacje, które próbują to wszystko uporządkować.
 
-Druga lekcja to prywatność i dane - najbardziej praktyczna lekcja w tej sekcji. Uczy rozróżniać czat konsumencki, plan firmowy i model uruchomiony lokalnie, pokazuje, jakich danych nigdy nie wklejać do publicznego czatu, i tłumaczy, jak anonimizować treść przed wysłaniem. Jeśli pracujesz z danymi osobowymi, ta lekcja jest obowiązkowa.
+Druga lekcja to prywatność i dane - najbardziej praktyczna lekcja w tej sekcji. Uczy rozróżniać czat konsumencki, plan firmowy i model uruchomiony lokalnie, pokazuje, jakich danych nigdy nie wklejać do czatu w chmurze, i tłumaczy, jak anonimizować treść przed wysłaniem. Jeśli pracujesz z danymi osobowymi, ta lekcja jest obowiązkowa.
 
 Trzecia lekcja jest dla domu, w którym dziecko korzysta z czatu AI. Pokazuje próg wieku ustalony przez poszczególnych dostawców, jakich danych dziecko nie powinno wklejać, i dlaczego Google Family Link nie pozwala obecnie założyć dziecku konta z dostępem do Gemini w Europejskim Obszarze Gospodarczym.
 
-Czwarta lekcja patrzy w przyszłość, ale nie zgaduje dat powstania ogólnej sztucznej inteligencji (AGI). Ćwiczysz w nim odróżnianie tego, co w AI już działa, od zapowiedzi producentów i od czystej spekulacji - bez paniki i bez marketingowego optymizmu.
+Czwarta lekcja patrzy w przyszłość, ale nie zgaduje dat powstania ogólnej sztucznej inteligencji (AGI). Ćwiczysz w niej odróżnianie tego, co w AI już działa, od zapowiedzi producentów i od czystej spekulacji - bez paniki i bez marketingowego optymizmu.
 
 ## Dla kogo to jest
 
@@ -65,20 +58,28 @@ Nie ma tu porady prawnej. Przepisy dotyczące AI zmieniają się szybko i różn
 ## Lekcje w tej sekcji
 
 <CardGrid>
-	<Card title="Etyka i prawo w świecie AI">
-		Kto ponosi odpowiedzialność za decyzję podjętą z pomocą AI i czy da się ją cofnąć. Ćwiczenie: 5 minut. (w przygotowaniu)
-	</Card>
-	<Card title="Prywatność i dane w AI">
-		Co możesz swobodnie wpisać do chatbota, co trzeba wcześniej zanonimizować, a czego nigdy nie wklejać. Ćwiczenie: 5 minut. (w przygotowaniu)
-	</Card>
-	<Card title="AI a dzieci">
-		Od ilu lat wolno założyć dziecku konto w chatbocie AI i jakich danych nie powinno tam wpisywać. Ćwiczenie: 5 minut. (w przygotowaniu)
-	</Card>
-	<Card title="Przyszłość AI">
-		Jak odróżnić to, co w AI już działa, od zapowiedzi na najbliższe lata i od czystej spekulacji o przyszłości. Ćwiczenie: 5 minut. (w przygotowaniu)
-	</Card>
+	<LinkCard
+		title="Etyka i prawo w świecie AI"
+		description="Kto ponosi odpowiedzialność za decyzję podjętą z pomocą AI i czy da się ją cofnąć. Ćwiczenie: 5 minut."
+		href="/etyka/etyczne-aspekty/"
+	/>
+	<LinkCard
+		title="Prywatność i dane w AI"
+		description="Co możesz swobodnie wpisać do chatbota, co trzeba wcześniej zanonimizować, a czego nigdy nie wklejać. Ćwiczenie: 5 minut."
+		href="/etyka/prywatnosc/"
+	/>
+	<LinkCard
+		title="AI a dzieci"
+		description="Od ilu lat wolno założyć dziecku konto w chatbocie AI i jakich danych nie powinno tam wpisywać. Ćwiczenie: 5 minut."
+		href="/etyka/ai-a-dzieci/"
+	/>
+	<LinkCard
+		title="Przyszłość AI"
+		description="Jak odróżnić to, co w AI już działa, od zapowiedzi na najbliższe lata i od czystej spekulacji o przyszłości. Ćwiczenie: 5 minut."
+		href="/etyka/przyszlosc-ai/"
+	/>
 </CardGrid>
 
 :::note[Następny krok]
-**Zacznij tutaj:** lekcje tej sekcji wracają po przeglądzie. Dziś możesz czytać: [Podstawy](/podstawy/) (8 lekcji, dla początkujących) i [Claude Code](/claude-code/) (21 lekcji, poziom średni, wymaga terminala). Trudne słowa wyjaśnia [słownik pojęć](/zasoby/slownik-pojec/).
+**Zacznij tutaj:** [Etyka i prawo w świecie AI](/etyka/etyczne-aspekty/) - kto ponosi odpowiedzialność za decyzję podjętą z pomocą AI i czy da się ją cofnąć.
 :::

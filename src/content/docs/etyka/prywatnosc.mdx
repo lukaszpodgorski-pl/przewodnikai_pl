@@ -1,0 +1,109 @@
+---
+title: Prywatność i dane w AI - co wklejasz, a czego nie
+description: "Pięć rzeczy z biurka oznaczysz: wolno wkleić, zanonimizować, nie wklejać. Ćwiczenie zajmie 5 minut."
+sidebar:
+  label: 'Prywatność i dane'
+  order: 2
+educationalLevel: Intermediate
+teaches:
+  - Jak odróżnić czat konsumencki, plan firmowy i model na własnym komputerze
+  - Cztery kategorie, których nie wklejasz do czatu w chmurze
+  - Jak zanonimizować zadanie, zamiast wklejać prawdziwe dane
+about:
+  - name: Ochrona danych osobowych
+    sameAs: https://pl.wikipedia.org/wiki/Ochrona_danych_osobowych
+  - name: RODO
+    sameAs: https://pl.wikipedia.org/wiki/Og%C3%B3lne_rozporz%C4%85dzenie_o_ochronie_danych
+faq:
+  - q: Czy chatbot zapisuje moje rozmowy?
+    a: Zwykle tak, na koncie, dopóki ich nie usuniesz. Osobna kwestia to trening na tych rozmowach - to zależy od dostawcy i planu. Domyślnie zakładaj, że to, co wkleisz, może trafić do danych treningowych dostawcy albo zostać zapisane w jego systemach.
+  - q: Czy mogę wkleić dane klientów, skoro "tylko ja to widzę"?
+    a: Nie. Widzi je też dostawca usługi, a często jego podwykonawcy. Bez podstawy prawnej i bez umowy powierzenia to nie jest "mój brudnopis".
+  - q: Czy wyłączenie treningu znaczy, że rozmowa znika?
+    a: Nie. Wyłączenie treningu (zakaz uczenia modelu na Twoich rozmowach) to nie to samo co brak historii i nie to samo co "dostawca nie widzi treści". Czytaj, co wyłączasz.
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+![Tarcza i kłódka chroniące karty danych osobowych - prywatność i ochrona danych](../../../assets/etyka/prywatnosc/prywatnosc.jpg)
+
+:::note[O tej stronie]
+**Czas:** ok. 8 minut czytania + 5 minut ćwiczenia.
+**Poziom:** średni, po [etyce i prawie](/etyka/etyczne-aspekty/).
+**Wcześniej:** [Etyczne aspekty](/etyka/etyczne-aspekty/) - wiesz, kto odpowiada za decyzję o osobie. **Teraz:** sprawdzasz, co w ogóle wychodzi z Twojego komputera.
+:::
+
+## Na tej stronie oznaczysz pięć karteczek
+
+Po tej lekcji pięć rzeczy z biurka albo z głowy ma etykietę: **wolno** / **zanonimizuj** / **nie wklejaj**. Nie zdajesz egzaminu z polityk czterech firm.
+
+Jedna rzecz do zapamiętania: **to, co wkleisz do czatu konsumenckiego, traktuj jak treść, która może wyciec albo pójść do treningu. Masz wątpliwość - nie wklejasz albo usuwasz dane.**
+
+## Trzy tryby, nie cztery cenniki
+
+Zamiast uczyć się nazw planów (zmieniają się co kwartał):
+
+1. **Czat konsumencki** - konto prywatne, darmowe albo "plus". Często historia zostaje. <Termin id="trenowanie">Trening</Termin> na rozmowach bywa włączony, dopóki go nie wyłączysz.
+2. **Praca / <Termin id="api">API</Termin>** - konto firmowe albo dostęp do modelu dla programistów (bez okna czatu), chmura z umową, "nie trenujemy na Twoich danych" w umowie, nie w reklamie. Nadal ktoś po drugiej stronie **przetwarza** treść, żeby odpowiedzieć.
+3. **Lokalnie** - model na Twoim dysku. Pytanie nie wychodzi z maszyny. Jak to uruchomić: AI na własnym komputerze.
+
+Plan firmowy (enterprise) nie sprawia, że wklejanie PESEL-u staje się w porządku. Zwykle wyłącza **trening** i często skraca przechowywanie danych (retencję) - jeśli umowa tak mówi. Nadal potrzebujesz podstawy prawnej, żeby w ogóle wrzucać dane osoby.
+
+Serwer w UE albo w Polsce i model na własnym komputerze zmieniają odpowiedź na pytanie, **gdzie** trafia treść (Polski ekosystem AI). Nie zmieniają tego, że do danych innej osoby potrzebujesz podstawy prawnej. Hasła i klucze nie trafiają do żadnego modelu, także lokalnego.
+
+## Cztery kategorie: nie wklejasz
+
+- **Dane osoby** - imię i nazwisko razem z kontekstem, PESEL, adres, dokumenty, zdrowie, finanse kogoś innego.
+- **Tajemnica organizacji** - strategia, niepublikowane liczby, kod bez zgody, dane klientów.
+- **Klucze** - hasła, tokeny, dane logowania do baz danych i firmowych systemów, kody z banku.
+- **To, co pod NDA** (umową o zachowaniu poufności) - umowa z danymi stron, korespondencja "poufne".
+
+To nie jest lista "jak się nie wyda". To lista **nie wklejasz**.
+
+Historyczna nuta, żeby wiedzieć, że regulator już tu był: w 2023 r. włoski urząd ochrony danych (Garante) czasowo zablokował ChatGPT m.in. za brak informacji o przetwarzaniu i za lukę przy dzieciach. OpenAI musiało zmienić praktyki. To fakt z 2023, nie opis "jak jest dziś w Settings".
+
+## Anonimizacja zamiast zwierzeń
+
+Polecenie da się zwykle sformułować bez akt.
+
+```text
+Zamiast: Jan Kowalski z ABC Sp. z o.o. (NIP ...) zamówił 1 000 sztuk X za 50 000 PLN. Napisz wezwanie.
+
+Napisz: Klient firmowy zalega z płatnością za dużą dostawę towaru. Napisz grzeczne wezwanie, 150 słów, bez wymyślania danych stron.
+```
+
+Techniki: zmyślone nazwy, "duże zamówienie" zamiast kwoty, wycięcie tego, bez czego model i tak zgadnie strukturę. Zostawiasz **problem**, nie dossier.
+
+RODO (dostęp, usunięcie, sprzeciw, przenoszenie) nie znika, bo "to tylko <Termin id="chatbot">chatbot</Termin>". Firma, która wrzuca dane klientów do narzędzia bez umowy i bez podstawy, ma problem niezależnie od tego, czy model "ładnie streszcza". Ta strona nie zastępuje DPO (inspektora ochrony danych).
+
+AI Act i oznaczanie, że rozmawiasz z AI - w [etyce](/etyka/etyczne-aspekty/). Tu nie powtarzam kalendarza.
+
+:::note[Źródła sprawdzone w listopadzie 2026 r.]
+Nie ma tu tabeli "ChatGPT / Claude / Gemini - trening tak/nie" z nazwami planów. Nazwy szczebli (Team, Business, Plus) rotują. Zasada zostaje: czat konsumencki to co innego niż umowa firmowa, a to co innego niż model na własnym dysku. Gdzie w ustawieniach wyłączasz trening, sprawdzasz u dostawcy w dniu użycia - wygląd ustawień się starzeje. Trzy przykłady, jak dostawcy opisują to dziś: OpenAI o przechowywaniu czatów ([pomoc OpenAI](https://help.openai.com/en/articles/8983778-chat-and-file-retention-policies-in-chatgpt)); Google - po wyłączeniu aktywności w Gemini rozmowy zostają na koncie do 72 godzin ([pomoc Google](https://support.google.com/gemini/answer/13278892?hl=pl)); Anthropic - w planach Free, Pro i Max to Ty wybierasz, czy rozmowy idą do treningu, a plany firmowe i API są z tego wyłączone ([Anthropic, sierpień 2025 r.](https://www.anthropic.com/news/updates-to-our-consumer-terms)).
+:::
+
+## Ćwiczenie: 5 minut, pięć etykiet
+
+Nie czytasz regulaminu od deski do deski. Bierzesz **pięć** rzeczy, które mogłyby wylądować w czacie w tym tygodniu (albo pięć z listy poniżej, jeśli tydzień był pusty).
+
+Przykłady, gdy brakuje własnych: fragment maila do klienta; własne CV; hasło do Wi-Fi "żeby model pomógł skonfigurować"; paragraf umowy bez nazw; pytanie "jak działa VAT na usługę X" bez kwot.
+
+Dla każdej: **wolno** / **zanonimizuj** / **nie wklejaj**.
+
+**Zaliczenie:** pięć wierszy, każdy z etykietą. Choć jedna "nie wklejaj" z powodem w czterech słowach. Nie potrzebujesz konta enterprise. Nie klikasz przez Settings w ćwiczeniu.
+
+**Typowy wynik:** ogólne pytanie o VAT - wolno; mail z imieniem klienta - zanonimizuj; hasło i PESEL - nie wklejaj.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** weź jeden "zanonimizuj" i zapisz wersję bez danych, gotową do wklejenia.
+
+## Teraz wiesz
+
+- Tryb narzędzia (konsument / praca / lokalnie) mówi, czy treść wychodzi i czy idzie do treningu - nie nazwa planu z reklamy.
+- Cztery kategorie nie trafiają do czatu w chmurze - konsumenckiego zawsze, firmowego bez umowy i podstawy prawnej. Hasła i klucze nie trafiają nigdzie. Anonimizacja jest domyślna, nie "jak sobie przypomnę".
+- Wyłączenie treningu nie usuwa rozmowy i nie daje zgody na wklejanie danych klientów.
+
+**Następny krok:** [AI a dzieci](/etyka/ai-a-dzieci/) - od ilu lat wolno założyć dziecku konto w chatbocie i jakich danych nie powinno tam wpisywać.
+
+<SlowniczekStrony terminy={["api", "trenowanie", "chatbot"]} />
