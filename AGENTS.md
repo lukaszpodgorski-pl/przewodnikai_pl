@@ -38,7 +38,10 @@ Jak powstał status `gotowe`:
   przygotował pakiet `docs/przeglad-<sekcja>.md` (poprawki spójności, fakty
   sprawdzone u źródła, pytania z wariantem domyślnym), właściciel zatwierdził
   sekcję decyzją "warianty domyślne, opublikuj". Twierdzenia, których agent nie
-  potwierdził u źródła, są wypisane w pakietach jako pytania.
+  potwierdził u źródła, są zebrane w `docs/do-sprawdzenia-w-przegladarce.md`
+  (23 fakty, twierdzenia bez źródła, "Typowy wynik" napisany przez agenta). Dopóki
+  ta lista nie jest odhaczona, nie traktuj statusu `gotowe` w tych sekcjach jako
+  dowodu, że fakt sprawdził człowiek.
 
 Audyt merytoryczny wszystkich sekcji (przebieg 2026-10-18) został scalony
 do `main` 2026-11-09 (commit `bb105e5`).

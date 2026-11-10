@@ -32,7 +32,7 @@ faq:
   - q: Czy te kursy i materiały są darmowe?
     a: Tak, wszystkie zasoby z tej strony są bezpłatne. Niektóre (np. kursy Anthropic) wymagają założenia darmowego konta. Płacisz najwyżej za subskrypcję samego narzędzia AI, jeśli zechcesz wyjść poza plan darmowy.
   - q: Nie znam angielskiego - czy te materiały są dla mnie?
-    a: 'Częściowo tak. Przewodniki ChatGPT dla nauczycieli, rodziców oraz nauki i medycyny mają oficjalne polskie wersje. Resztę możesz czytać z pomocą AI: wklej fragment do Claude''a lub ChatGPT i poproś o wyjaśnienie po polsku.'
+    a: 'Częściowo tak. Przewodniki ChatGPT dla studentów, nauczycieli, rodziców oraz nauki i medycyny mają oficjalne polskie wersje. Resztę możesz czytać z pomocą AI: wklej fragment do Claude''a lub ChatGPT i poproś o wyjaśnienie po polsku.'
   - q: Który model AI najlepiej radzi sobie z językiem polskim?
     a: Sprawdzisz to w rankingach społeczności SpeakLeash, np. Open PL LLM Leaderboard na Hugging Face - porównuje on, jak modele AI radzą sobie z zadaniami w języku polskim.
 status: gotowe
@@ -57,9 +57,9 @@ Sam pracuję głównie z Claude'em, więc ta część jest najobszerniejsza. Dob
 
 ## Nauka z ChatGPT (OpenAI)
 
-OpenAI poszło inną drogą: zamiast jednego kursu przygotowało przewodniki pod konkretne role. Wybierz ten, który pasuje do Twojej sytuacji. Trzy z nich mają oficjalne polskie wersje - rzadkość wśród dostawców AI.
+OpenAI poszło inną drogą: zamiast jednego kursu przygotowało przewodniki pod konkretne role. Wybierz ten, który pasuje do Twojej sytuacji. Cztery z nich mają oficjalne polskie wersje - rzadkość wśród dostawców AI.
 
-- **[Dla studentów](https://chatgpt.com/use-cases/students/)** (po angielsku) - porządkowanie notatek, streszczanie materiałów, tworzenie przewodników do nauki z plików PDF, informacja zwrotna o tekstach. Z naciskiem na naukę ze zrozumieniem, nie na drogę na skróty.
+- **[Dla studentów](https://chatgpt.com/pl-PL/use-cases/students/)** (po polsku) - 100 gotowych rozmów przygotowanych przez studentów dla studentów: od nauki i pracy z plikami po sprawy codzienne.
 - **[Dla wykładowców](https://chatgpt.com/use-cases/university-educators/)** (po angielsku) - zbiór promptów i przykładowych rozmów od wykładowców różnych kierunków: od asystentów oceniających prace po odgrywanie debat z historycznymi filozofami.
 - **[Dla nauczycieli](https://chatgpt.com/pl-PL/use-cases/teachers/)** (po polsku) - scenariusze lekcji, quizy, sprawdziany i adaptacja materiałów do poziomu ucznia.
 - **[Nauka i medycyna](https://chatgpt.com/pl-PL/use-cases/science-medicine)** (po polsku) - przykłady zastosowań w pracy naukowej i medycznej, od przeglądu literatury po analizę danych.
