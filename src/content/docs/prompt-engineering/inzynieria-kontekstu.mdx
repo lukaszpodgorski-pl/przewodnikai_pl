@@ -40,16 +40,12 @@ import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 ![Zbliżenie oka, wokół rozłożone karty ze zdjęciami połączone siatką świecących linii](../../../assets/prompt-engineering/inzynieria-kontekstu/inzynieria-kontekstu.jpg)
 
 :::note[O tej stronie]
-**Czas:** ok. 7 minut czytania + 5 minut ćwiczenia.
-**Poziom:** średni, po lekcji [Strukturyzacja danych](/prompt-engineering/schematy/).
-**Wcześniej:** [Strukturyzacja danych](/prompt-engineering/schematy/) - umiesz wymusić kształt wyniku. **Teraz:** sprawdzasz, co jeszcze leży w oknie i psuje ten kształt, gdy rozmowa się wydłuża.
+Około 7 minut czytania i 5 minut ćwiczenia, najlepiej po lekcji [Strukturyzacja danych](/prompt-engineering/schematy/).
 :::
 
-## Na tej stronie przeniesiesz ustalenia, nie całą rozmowę
+## Jak zacząć nową rozmowę i nie zgubić ustaleń?
 
-Po tej lekcji z bałaganu "kawa, potem herbata, potem obiad" zostają cztery punkty i prompt, który wkleisz w **nową** rozmowę. Nie uczysz się tu agentów ani tabeli okien konkretnych modeli.
-
-Jedna rzecz do zapamiętania: **Model odpowiada na całe okno, a nie tylko na ostatnie zdanie.**
+Streść starą rozmowę do kilku punktów i wklej je w **nową** rozmowę razem z poleceniem. Z bałaganu "kawa, potem herbata, potem obiad" zostaną cztery punkty. Długi bagaż przeszkadza, bo **model odpowiada na całe okno**, ze wszystkim, co padło wcześniej. Agentów ani tabeli okien konkretnych modeli tu nie ma.
 
 Inżynieria kontekstu (ang. _context engineering_) to dobór tego, co model ma przed oczami w chwili odpowiedzi. <Termin id="prompt">Prompt</Termin>, czyli Twoje polecenie, to tylko wierzch. Pod spodem leży historia rozmowy, wgrany plik i stała instrukcja z ustawień. Wszystko to konkuruje o miejsce w jednym <Termin id="okno-kontekstowe">oknie kontekstowym</Termin> - tak nazywa się wszystko, co model widzi naraz.
 

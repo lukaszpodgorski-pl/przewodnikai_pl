@@ -28,16 +28,12 @@ import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 ![Panel z pokrętłami i suwakami - ustawienia losowania](../../../assets/jak-dziala-ai/parametry-modeli/parametry-modeli.jpg)
 
 :::note[O tej stronie]
-**Czas:** ok. 6 minut czytania + 5 minut ćwiczenia.
-**Poziom:** średni, po lekcji [RAG - AI na Twoich dokumentach](/jak-dziala-ai/rag/).
-**Wcześniej:** [RAG - AI na Twoich dokumentach](/jak-dziala-ai/rag/) - wiesz, że model może dostać fragmenty Twoich dokumentów. **Teraz:** sprawdzasz, jak szeroko losuje kolejne słowo, gdy już pisze.
+Około 6 minut czytania i 5 minut ćwiczenia, najlepiej po lekcji [RAG - AI na Twoich dokumentach](/jak-dziala-ai/rag/).
 :::
 
-## Na tej stronie zobaczysz szerokość loterii, nie tabelę ustawień
+## Dlaczego AI na to samo pytanie za każdym razem odpowiada inaczej?
 
-Po tej lekcji trzy odpowiedzi na ten sam <Termin id="prompt">prompt</Termin> dostaną etykietę: rozstrzał albo ciasno. Nie uczysz się tu domyślnych wartości u dostawców - te liczby się rozjeżdżają między modelami i miesiącami.
-
-Jedna rzecz do zapamiętania: **kolejny token nie jest "tym jedynym". Jest wylosowany. Temperatura to szerokość tej loterii.**
+Bo każdy kolejny kawałek odpowiedzi jest losowany z listy kandydatów, a **temperatura ustala, jak szeroka jest ta loteria**. Porównasz trzy odpowiedzi na ten sam <Termin id="prompt">prompt</Termin> i ocenisz, czy wyszły rozstrzelone, czy ciasno do siebie podobne. Domyślnych wartości u dostawców tu nie podaję, bo różnią się między modelami i zmieniają co kilka miesięcy.
 
 ## Model nie wybiera słowa. Losuje je
 

@@ -34,9 +34,7 @@ import Termin from '../../../components/Termin.astro';
 import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 
 :::note[O tej stronie]
-**Czas:** ok. 10 minut czytania + 10 minut ćwiczenia.
-**Poziom:** średni, po [uprawnieniach](/claude-code/uprawnienia-i-bezpieczenstwo/).
-**Wcześniej:** [Uprawnienia i bezpieczeństwo](/claude-code/uprawnienia-i-bezpieczenstwo/) - wiesz, czego agentowi wolno. **Teraz:** nauczysz się dzielić pracę między kilku wyspecjalizowanych pomocników.
+Około 10 minut czytania i 10 minut ćwiczenia, najlepiej po [uprawnieniach](/claude-code/uprawnienia-i-bezpieczenstwo/).
 :::
 
 <Termin id="subagent">Subagent</Termin> to wyspecjalizowany asystent, który pracuje w **osobnym <Termin id="okno-kontekstowe">oknie kontekstowym</Termin>** (czyli we własnej rozmowie, niezależnej od Twojej - nie widzi tego, co pisaliście wcześniej). Ma własny system prompt (stałą instrukcję, kim jest i jak ma działać), zestaw narzędzi, uprawnienia i opcjonalnie własny model. Do Ciebie wraca tylko jego podsumowanie, więc Twoja rozmowa się nie zapycha. Wyjątkiem jest `/subtask`, który przekazuje pomocnikowi całą rozmowę ([lista komend](https://code.claude.com/docs/en/commands)).

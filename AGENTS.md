@@ -253,6 +253,15 @@ Markdown:
 - Zmiany merytoryczne (fakty, liczby, twierdzenia) wymagają linku do źródła - to zabezpieczenie przeciw halucynacjom. Pisząc o świecie zewnętrznym (ceny, wersje modeli, regulaminy) zweryfikuj u źródła zamiast polegać na wiedzy modelu.
 - **Dane podawane jako aktualne nie mogą być starsze niż 2 lata** (licząc od daty edycji strony). Wyjątek: fakty historyczne i trwałe metody (np. SIFT z 2019). Statystyka z 2023 podana w 2026 jako "tak jest teraz" to błąd redakcyjny, nie kontekst.
 
+### Brzmienie i początek lekcji
+
+Decyzja właściciela 2026-11-10: tekst ma brzmieć jak pisany przez człowieka po polsku.
+
+- Bez kalek z angielskiego ("to ma sens, żeby", "być w stanie", "upewnij się", "dedykowany", "kluczowy" do wszystkiego, konstrukcje rzeczownikowe typu "dokonanie weryfikacji") i bez wzorców tekstu AI ("nie X, tylko Y", jednozdaniowe puenty, zapowiedzi "Oto", "Spójrzmy").
+- Lekcja sekcji 1-7 zaczyna się po ramce "O tej stronie" nagłówkiem H2 z pytaniem, które zadałby czytelnik, i 2-4 zdaniami odpowiedzi wprost (pierwsze zdanie odpowiada na pytanie). Najważniejsza myśl może być pogrubiona w zdaniu.
+- Nie używaj formułek "Na tej stronie zrobisz X", "Po tej lekcji...", "Nie uczysz się tu..." ani etykiety "Jedna rzecz do zapamiętania" - zastąpiły je pytanie i odpowiedź.
+- Ramka `:::note[O tej stronie]` ma jedno zdanie: czas i lekcja, po której najlepiej czytać, np. "Około 7 minut czytania i 5 minut ćwiczenia, najlepiej po lekcji [Embedding](/jak-dziala-ai/embedding/)." Bez pól "Poziom", "Wcześniej", "Teraz".
+
 ### Treści prawne
 
 Decyzja właściciela 2026-11-10: serwis nie interpretuje prawa. Bez numerów artykułów (RODO, AI Act), dat stosowania przepisów i okresów przejściowych, progów wieku wywodzonych z ustawy, "podstawy prawnej", "wolno Ci" w sensie prawnym, ocen praw autorskich do wyników AI, kar i opisów obowiązków prawnych firm. Linków do aktów prawnych i urzędów nie dodajemy.
