@@ -27,8 +27,8 @@ ręcznie**, następna publikacja nadpisze zmiany. Cloudflare buduje z GitHuba.
 
 Serwis jest w trakcie przeglądu artykuł po artykule. Powód: duża część treści
 powstała z dużym udziałem AI i właściciel nie publikuje jej pod swoim nazwiskiem
-przed sprawdzeniem. Według `npm run status` przejrzanych jest 61 ze 105 stron,
-publicznie stoi 78, wyciętych z produkcji jest 27.
+przed sprawdzeniem. Według `npm run status` przejrzanych jest 64 ze 105 stron,
+publicznie stoi 81, wyciętych z produkcji jest 24.
 
 Co jest dziś przejrzane (`gotowe`):
 
@@ -38,7 +38,7 @@ Co jest dziś przejrzane (`gotowe`):
 - `etyka` - 4 lekcje i strona zbiorcza (2026-11-10),
 - `narzedzia` - 9 lekcji i strona zbiorcza (2026-11-10),
 - `prompt-engineering` - 10 lekcji i strona zbiorcza (2026-11-10),
-- ścieżki `uczen-podstawowka`, `rodzic`, `senior` (2026-11-10).
+- ścieżki `uczen-podstawowka`, `rodzic`, `senior`, `nauczyciel`, `uczen-liceum`, `student` (2026-11-10).
 
 Publicznie stoją poza tym strona główna, strony zbiorcze pozostałych sekcji
 i ścieżek, `zasoby/kontakt`, `zasoby/o-mnie`, `zasoby/regulamin` i siedem stron
