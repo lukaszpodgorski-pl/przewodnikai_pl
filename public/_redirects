@@ -18,15 +18,15 @@
 /weryfikacja-informacji/ /podstawy/weryfikacja-informacji/ 301
 
 # --- Jak działa AI ---
-/jak-ucza-sie-modele/ /jak-dziala-ai/ 302
-/typy-ai/ /jak-dziala-ai/ 302
-/modele-jezykowe/ /jak-dziala-ai/ 302
-/tokeny-i-kontekst/ /jak-dziala-ai/ 302
-/embedding/ /jak-dziala-ai/ 302
-/parametry-modeli/ /jak-dziala-ai/ 302
-/dane-dla-poczatkujacych/ /jak-dziala-ai/ 302
-/boom-ai/ /jak-dziala-ai/ 302
-/mapa-ai/ /jak-dziala-ai/ 302
+/jak-ucza-sie-modele/ /jak-dziala-ai/jak-ucza-sie-modele/ 301
+/typy-ai/ /jak-dziala-ai/typy-ai/ 301
+/modele-jezykowe/ /jak-dziala-ai/modele-jezykowe/ 301
+/tokeny-i-kontekst/ /jak-dziala-ai/tokeny-i-kontekst/ 301
+/embedding/ /jak-dziala-ai/embedding/ 301
+/parametry-modeli/ /jak-dziala-ai/parametry-modeli/ 301
+/dane-dla-poczatkujacych/ /jak-dziala-ai/dane-dla-poczatkujacych/ 301
+/boom-ai/ /jak-dziala-ai/boom-ai/ 301
+/mapa-ai/ /jak-dziala-ai/mapa-ai/ 301
 
 # --- Prompt Engineering ---
 /prompt-podstawy/ /prompt-engineering/podstawy/ 301
@@ -63,21 +63,3 @@
 /o-mnie/ /zasoby/o-mnie/ 301
 /kontakt/ /zasoby/kontakt/ 301
 /regulamin/ /zasoby/regulamin/ 301
-
-# --- Strony w przebudowie redakcyjnej (generowane automatycznie) ---
-# 302, nie 301: te adresy wroca po przegladzie redakcyjnym. Regula
-# znika sama w dniu publikacji artykulu. Nie edytuj tej sekcji recznie -
-# steruje nia pole `status` we frontmatterze artykulu.
-/jak-dziala-ai/agenci-ai/ /jak-dziala-ai/ 302
-/jak-dziala-ai/ai-ml-sieci-neuronowe/ /jak-dziala-ai/ 302
-/jak-dziala-ai/boom-ai/ /jak-dziala-ai/ 302
-/jak-dziala-ai/dane-dla-poczatkujacych/ /jak-dziala-ai/ 302
-/jak-dziala-ai/embedding/ /jak-dziala-ai/ 302
-/jak-dziala-ai/jak-ucza-sie-modele/ /jak-dziala-ai/ 302
-/jak-dziala-ai/mapa-ai/ /jak-dziala-ai/ 302
-/jak-dziala-ai/modele-jezykowe/ /jak-dziala-ai/ 302
-/jak-dziala-ai/modele-rozumujace/ /jak-dziala-ai/ 302
-/jak-dziala-ai/parametry-modeli/ /jak-dziala-ai/ 302
-/jak-dziala-ai/rag/ /jak-dziala-ai/ 302
-/jak-dziala-ai/tokeny-i-kontekst/ /jak-dziala-ai/ 302
-/jak-dziala-ai/typy-ai/ /jak-dziala-ai/ 302

@@ -34,6 +34,8 @@ System AI, który dostaje cel zamiast pojedynczego polecenia. Sam układa plan, 
 
 **Przykład:** Prosisz agenta o "znalezienie trzech połączeń do Rzymu na przyszły weekend i porównanie cen". Zwykły chatbot opisałby, jak to zrobić samodzielnie - agent sam otwiera wyszukiwarkę, przegląda wyniki i wraca z gotowym zestawieniem.
 
+**Więcej:** [Agenci AI](/jak-dziala-ai/agenci-ai/)
+
 ## AI Act
 
 Unijne rozporządzenie o sztucznej inteligencji (rozporządzenie UE 2024/1689, oficjalnie "akt w sprawie sztucznej inteligencji"). Dzieli systemy AI według ryzyka: część praktyk zakazuje, od systemów wysokiego ryzyka wymaga nadzoru człowieka i dokumentacji, a od chatbotów - jasnej informacji, że rozmawiasz z maszyną. Obowiązki wchodzą etapami: zakazy i obowiązek zadbania o kompetencje pracowników w zakresie AI od 2 lutego 2025 r., większość pozostałych przepisów, w tym obowiązek informowania, że rozmawiasz z AI, od 2 sierpnia 2026 r. Wymagania dla systemów wysokiego ryzyka przesunął pakiet AI Omnibus (unijne rozporządzenie upraszczające AI Act, w mocy od 27 lipca 2026 r.): dla systemów używanych np. w rekrutacji na 2 grudnia 2027 r., dla AI wbudowanej w produkty objęte osobnymi przepisami na 2 sierpnia 2028 r. ([Komisja Europejska](https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai)).
@@ -80,6 +82,8 @@ Materiał, na którym model się uczy: teksty, zdjęcia, nagrania, liczby. Model
 
 **Przykład:** Aby nauczyć system rozpoznawania kotów na zdjęciach, podaje się mu tysiące obrazów oznaczonych jako "kot" i "nie kot". Te oznaczone obrazy stanowią dane treningowe.
 
+**Więcej:** [Jak uczą się modele](/jak-dziala-ai/jak-ucza-sie-modele/)
+
 ## Deep research
 
 Tryb pracy chatbota, w którym zamiast szybkiej odpowiedzi dostajesz raport z przypisami. Model przez kilka albo kilkanaście minut sam planuje kolejne wyszukiwania, czyta dziesiątki stron, porównuje je i składa wynik - działa przy tym jak [agent AI](#agent-ai). Nazwa pochodzi z angielskiego (dosłownie "dogłębne badanie"), a każdy dostawca nazywa ten tryb trochę inaczej.
@@ -109,6 +113,8 @@ Sposób zapisania znaczenia tekstu jako zestawu liczb. Model nie rozumie słów 
 :::note[Ujęcie techniczne]
 Reprezentacja słów, fraz lub dokumentów w postaci wektorów liczbowych w przestrzeni wielowymiarowej. Podobieństwo znaczeń odpowiada bliskości wektorów, mierzonej najczęściej podobieństwem kosinusowym. Relacje semantyczne bywają zachowane jako kierunki w tej przestrzeni: wektor przejścia od "król" do "królowa" jest zbliżony do wektora przejścia od "mężczyzna" do "kobieta". To nadal geometria, nie rozumienie.
 :::
+
+**Więcej:** [Embedding - jak AI porównuje znaczenie tekstu](/jak-dziala-ai/embedding/)
 
 ## Etyka AI
 
@@ -166,6 +172,8 @@ Uczenie maszynowe, w którym model ma wiele warstw ułożonych jedna nad drugą,
 Podkategoria uczenia maszynowego wykorzystująca wielowarstwowe sieci neuronowe do modelowania złożonych wzorców w danych. Kluczowa własność to automatyczne wyodrębnianie cech (feature learning) z surowych danych, które eliminuje ręczne projektowanie cech wymagane w starszych metodach. Kolejne warstwy budują reprezentacje o rosnącym poziomie abstrakcji.
 :::
 
+**Więcej:** [AI, ML, sieci neuronowe](/jak-dziala-ai/ai-ml-sieci-neuronowe/)
+
 ## GPU (Graphics Processing Unit)
 
 Procesor graficzny - układ, który powstał do rysowania grafiki w grach, a okazał się idealny do trenowania AI. Powód jest prosty: karta graficzna nie wykonuje jednego trudnego działania szybko, tylko tysiące prostych naraz, a trening modelu to właśnie miliardy prostych mnożeń. Dlatego dziś karty graficzne, a nie zwykłe procesory, są najdroższą częścią sprzętu do AI.
@@ -218,6 +226,8 @@ Model wytrenowany na ogromnej ilości tekstu, którego jedyne zadanie brzmi: prz
 
 **Przykład:** Modele w ChatGPT, Claude i Gemini to popularne duże modele językowe: prowadzą rozmowę, piszą teksty i pomagają w rozwiązywaniu problemów.
 
+**Więcej:** [Modele językowe](/jak-dziala-ai/modele-jezykowe/)
+
 ## Model open-weight
 
 Model AI, którego wagi (czyli wyuczone parametry) producent udostępnia do pobrania - możesz uruchomić go na własnym komputerze lub serwerze, bez wysyłania danych do chmury dostawcy. Open-weight nie zawsze znaczy w pełni open source: licencje bywają różne, od bardzo liberalnej Apache 2.0 (np. Bielik, rodzina Mistral 3) po licencje z ograniczeniami komercyjnymi. Przeciwieństwem są modele zamknięte, dostępne wyłącznie przez API lub aplikację producenta.
@@ -232,17 +242,23 @@ Model, który zanim odpowie, pisze tekst roboczy: rozpisuje kroki, sprawdza śle
 
 **Przykład:** Pytasz, jak rozplanować przeprowadzkę, gdy ekipa może przyjechać tylko we wtorek, a stare mieszkanie oddajesz w piątek. Zwykły czat odpowie od razu i może pominąć któryś warunek. Model rozumujący "myśli" kilkanaście sekund, rozpisuje terminy i częściej oddaje plan, który spina wszystkie warunki.
 
+**Więcej:** [Modele rozumujące](/jak-dziala-ai/modele-rozumujace/)
+
 ## Ogólna AI (AGI)
 
 Hipotetyczny system AI dorównujący człowiekowi w dowolnej dziedzinie intelektualnej: przenoszący umiejętności między zupełnie różnymi zadaniami, uczący się w trakcie działania i mający spójny model świata. AGI (Artificial General Intelligence) dziś nie istnieje, a badacze nie są zgodni ani co do terminu jej powstania, ani co do tego, jak ją rozpoznać. Przeciwieństwem jest wąska AI - wszystko, z czego korzystasz dzisiaj.
 
 **Przykład:** ChatGPT napisze wiersz i kod, ale nie nauczy się w trakcie rozmowy niczego nowego ani nie przeniesie doświadczenia z jednego zadania na zupełnie inne. To wciąż wąska AI, tyle że bardzo szeroko zakrojona.
 
+**Więcej:** [Typy AI](/jak-dziala-ai/typy-ai/)
+
 ## Okno kontekstowe (ang. context window)
 
 Maksymalna ilość tekstu (liczona w tokenach), którą model AI może jednocześnie "widzieć" - obejmuje Twoje pytania, wcześniejsze odpowiedzi i załączone dokumenty. Gdy rozmowa przekroczy ten limit, najstarsze fragmenty przestają być widoczne albo zostają streszczone - zależnie od aplikacji. Spotkasz też nazwę "okno kontekstu" - chodzi o to samo. Okno to nie pamięć: w nowej rozmowie zaczyna się od zera, a trwałe zapisy między rozmowami (np. funkcja pamięci w czacie) to osobny mechanizm.
 
 **Przykład:** Wklejasz do chatbota długi raport i zadajesz pytania. Jeśli raport mieści się w oknie kontekstowym, model odpowiada z uwzględnieniem całości; jeśli nie - odpowiedzi dotyczą tylko tej części, którą model wciąż "widzi".
+
+**Więcej:** [Tokeny i kontekst](/jak-dziala-ai/tokeny-i-kontekst/)
 
 ## Prompt
 
@@ -288,6 +304,8 @@ Technika, w której model przed odpowiedzią najpierw zagląda do wskazanych dok
 Retrieval-Augmented Generation: metoda łącząca wyszukiwanie informacji z generowaniem. Dokumenty dzieli się na fragmenty, zamienia na embeddingi i trzyma w bazie wektorowej; zapytanie użytkownika przechodzi tę samą zamianę, po czym system dobiera najbliższe fragmenty i wstawia je do promptu jako kontekst. Podnosi to dokładność i aktualność bez dotrenowywania modelu.
 :::
 
+**Więcej:** [RAG - jak AI korzysta z Twoich dokumentów](/jak-dziala-ai/rag/)
+
 ## RLHF (Reinforcement Learning from Human Feedback)
 
 Metoda douczania modelu na ocenach wystawianych przez ludzi. Sam trening na tekstach uczy model, co jest prawdopodobne, ale nie co jest pomocne, uprzejme i bezpieczne. Pokazuje się więc ludziom po kilka odpowiedzi modelu na to samo pytanie, oni układają je od najlepszej do najgorszej, a model jest dostrajany tak, żeby coraz częściej trafiać w to, co ludzie wybierali. Skrót rozwija się jako Reinforcement Learning from Human Feedback.
@@ -297,6 +315,8 @@ Metoda douczania modelu na ocenach wystawianych przez ludzi. Sam trening na teks
 :::note[Ujęcie techniczne]
 Metoda trenowania łącząca uczenie przez wzmacnianie z informacją zwrotną od ludzi. Na rankingach odpowiedzi trenuje się model nagrody (reward model), który następnie steruje dostrajaniem modelu bazowego algorytmem uczenia przez wzmacnianie. W ten sposób dostrojono ChatGPT - opis metody: Ouyang i in., 2022.
 :::
+
+**Więcej:** [Dlaczego AI teraz?](/jak-dziala-ai/boom-ai/)
 
 ## RODO (ang. GDPR)
 
@@ -311,6 +331,8 @@ Unijne ogólne rozporządzenie o ochronie danych osobowych (rozporządzenie UE 2
 Program zbudowany z tysięcy prostych elementów ("neuronów") połączonych w warstwy. Każdy z nich robi coś banalnego: dostaje liczby, mnoży je przez własne ustawienia i przekazuje wynik dalej. Umiejętność nie siedzi w żadnym z nich z osobna, tylko w sile połączeń między nimi - i to je właśnie dostraja trening. Nazwa pochodzi z luźnej inspiracji mózgiem i na tej inspiracji podobieństwo się kończy.
 
 **Przykład:** Wyobraź sobie sieć neuronową analizującą zdjęcie: pierwsza warstwa może wykrywać proste krawędzie i linie, kolejne warstwy rozpoznają kształty i struktury, a ostatnie warstwy identyfikują złożone obiekty, jak "kot", "samochód" czy "dom".
+
+**Więcej:** [AI, ML, sieci neuronowe](/jak-dziala-ai/ai-ml-sieci-neuronowe/)
 
 ## SIFT
 
@@ -358,6 +380,8 @@ Ustawienie losowania, które steruje tym, jak przewidywalne są odpowiedzi model
 Temperatura skaluje rozkład prawdopodobieństwa przed losowaniem kolejnego tokena: wartości bliskie zeru wyostrzają rozkład ku najbardziej prawdopodobnemu kandydatowi, wyższe go spłaszczają. Konkretnych liczb nie da się przenosić między dostawcami, bo skale są różne - w API Anthropic zakres to 0-1, w API OpenAI 0-2, w obu z wartością domyślną 1,0. Część nowszych modeli w ogóle nie przyjmuje ustawionej temperatury: Anthropic oznacza ten parametr jako wycofywany dla modeli wydanych po Claude Opus 4.6.
 :::
 
+**Więcej:** [Ustawienia losowania](/jak-dziala-ai/parametry-modeli/)
+
 ## Token
 
 Podstawowa jednostka tekstu - kawałek, na jaki model dzieli to, co czyta i co pisze: zwykle kawałek słowa, całe krótkie słowo albo znak interpunkcyjny. Tokeny są walutą modeli językowych: w nich mierzy się okno kontekstowe i w nich naliczane są opłaty za korzystanie z API. Polszczyzna dzieli się na tokeny mniej ekonomicznie niż angielski - ten sam tekst po polsku zajmuje ich zauważalnie więcej. Ile dokładnie, zależy od modelu i najlepiej to zmierzyć, zamiast przyjmować z pamięci.
@@ -366,15 +390,21 @@ Samo dzielenie tekstu na tokeny nazywa się tokenizacją - np. "Lubię jeść ja
 
 **Przykład:** Wklejasz do chatbota dokument, który ma 10 tysięcy słów. Dla modelu to kilkanaście do dwudziestu kilku tysięcy tokenów - i to ta liczba, a nie liczba stron, decyduje, czy tekst zmieści się w oknie kontekstowym i ile zapłacisz za jego przetworzenie.
 
+**Więcej:** [Tokeny i kontekst](/jak-dziala-ai/tokeny-i-kontekst/)
+
 ## Tokenizacja
 
 Dzielenie tekstu na tokeny, czyli kawałki, w których model czyta i pisze - opis i przykład znajdziesz w haśle [Token](#token).
+
+**Więcej:** [Tokeny i kontekst](/jak-dziala-ai/tokeny-i-kontekst/)
 
 ## Transfer learning
 
 Metoda uczenia maszynowego, w której wiedza zdobyta podczas rozwiązywania jednego problemu jest wykorzystywana do rozwiązania innego, powiązanego problemu. Pozwala to zaoszczędzić czas i zasoby potrzebne do trenowania modeli od zera.
 
 **Przykład:** Model wytrenowany do rozpoznawania psów różnych ras może wykorzystać tę wiedzę do szybszego nauczenia się rozpoznawania kotów. Podstawowe cechy, jak kształt oczu, uszu czy tekstura futra, są przydatne w obu zadaniach.
+
+**Więcej:** [Jak uczą się modele](/jak-dziala-ai/jak-ucza-sie-modele/)
 
 ## Transformery (ang. transformers)
 
@@ -386,11 +416,15 @@ Sposób budowy sieci neuronowej, wymyślony w 2017 roku, na którym opierają si
 Architektura sieci neuronowej przedstawiona w pracy "Attention Is All You Need" (Vaswani i in., 2017), która zastąpiła sieci rekurencyjne w przetwarzaniu języka naturalnego. Opiera się na mechanizmie samouwagi (self-attention): dla każdej pozycji w sekwencji model wylicza wagi względem wszystkich pozostałych pozycji, co pozwala przetwarzać całą sekwencję równolegle zamiast krok po kroku. Źródło: [arxiv.org/abs/1706.03762](https://arxiv.org/abs/1706.03762)
 :::
 
+**Więcej:** [Modele językowe](/jak-dziala-ai/modele-jezykowe/)
+
 ## Trenowanie (ang. training)
 
 Trenowanie, krócej trening, to odrębny, kosztowny proces przed udostępnieniem modelu, w którym model przetwarza ogromne zbiory danych i dopasowuje swoje parametry (wagi). Po treningu wagi zostają zamrożone: model używany w rozmowie już się nie uczy, a jego wiedza kończy się na dacie odcięcia danych treningowych. Trening trwa tygodnie, samo używanie modelu (wnioskowanie) - ułamki sekundy.
 
 **Przykład:** Model nie zapamięta Twojej dzisiejszej rozmowy na jutro. Żeby nauczył się czegoś nowego, producent musi przeprowadzić kolejny trening albo dotrenowanie (fine-tuning).
+
+**Więcej:** [Jak uczą się modele](/jak-dziala-ai/jak-ucza-sie-modele/)
 
 ## Uczenie maszynowe (ang. machine learning)
 
@@ -402,6 +436,8 @@ Sposób tworzenia programów, w którym nie pisze się reguł, tylko pokazuje pr
 Poddziedzina AI zajmująca się systemami, które wyprowadzają regułę z danych zamiast otrzymywać ją zaprogramowaną wprost. Skuteczność rośnie wraz z liczbą i jakością przykładów, ale poprawa następuje w kolejnym cyklu treningu, a nie w trakcie zwykłego używania modelu - wagi wytrenowanego modelu pozostają zamrożone.
 :::
 
+**Więcej:** [AI, ML, sieci neuronowe](/jak-dziala-ai/ai-ml-sieci-neuronowe/)
+
 ## Uczenie nadzorowane
 
 Uczenie na przykładach z gotową odpowiedzią. Każdy przykład ma dołączoną poprawną odpowiedź (nazywa się ją etykietą), a model tak długo poprawia swoje typowanie, aż zaczyna trafiać. Potem stosuje tę samą umiejętność do przypadków, których nigdy nie widział. To najczęstsza odmiana uczenia maszynowego, a jej największym kosztem jest to, że ktoś musi wcześniej ręcznie oznaczyć tysiące przykładów.
@@ -412,11 +448,15 @@ Uczenie na przykładach z gotową odpowiedzią. Każdy przykład ma dołączoną
 Metoda uczenia maszynowego trenowana na danych oznaczonych etykietami. Model uczy się odwzorowania wejścia na znane wyjście, minimalizując funkcję straty na zbiorze treningowym, i jest oceniany na odłożonym zbiorze testowym. Dwa podstawowe zadania to klasyfikacja (etykieta z listy kategorii) i regresja (wartość liczbowa).
 :::
 
+**Więcej:** [Jak uczą się modele](/jak-dziala-ai/jak-ucza-sie-modele/)
+
 ## Uczenie nienadzorowane
 
 Metoda uczenia maszynowego, w której model trenowany jest na danych bez etykiet. System sam odkrywa struktury, wzorce i powiązania w danych.
 
 **Przykład:** System analizujący zachowania klientów sklepu internetowego może samodzielnie grupować ich według podobnych nawyków zakupowych, nawet jeśli nie ma z góry zdefiniowanych kategorii klientów.
+
+**Więcej:** [Jak uczą się modele](/jak-dziala-ai/jak-ucza-sie-modele/)
 
 ## Uczenie przez wzmacnianie
 
@@ -427,6 +467,8 @@ Uczenie metodą prób i błędów: model coś robi, obserwuje skutek i dostaje p
 :::note[Ujęcie techniczne]
 Metoda, w której agent uczy się polityki działania przez interakcję ze środowiskiem, maksymalizując skumulowaną nagrodę. Nie dostaje poprawnych odpowiedzi, tylko sygnał nagrody, i musi wyważyć eksplorację nowych działań wobec eksploatacji już znanych. AlphaGo startował z sieci wytrenowanej na partiach ludzi, a następnie dostrajał ją na ponad 30 mln pozycji z gry przeciwko sobie (Silver i in., Nature 2016); jego następca AlphaGo Zero przeszedł tę drogę bez ani jednej ludzkiej partii.
 :::
+
+**Więcej:** [Jak uczą się modele](/jak-dziala-ai/jak-ucza-sie-modele/)
 
 ## Uprzedzenie (ang. bias)
 
@@ -441,6 +483,8 @@ Stałe przechylenie odpowiedzi AI w jedną stronę. Model powtarza uprzedzenia, 
 System AI wyspecjalizowany w jednym zadaniu lub wąskiej grupie zadań - bardzo dobry w tym, do czego został wytrenowany, i bezradny poza tym obszarem. Cała AI dostępna dzisiaj, łącznie z chatbotami, jest wąska: nie ma rozumienia świata w ludzkim sensie. ANI to Artificial Narrow Intelligence.
 
 **Przykład:** Model wykrywający zmiany nowotworowe na zdjęciach RTG bywa dokładniejszy od lekarza, ale nie odpowie na najprostsze pytanie o pogodę. Poza swoim zadaniem nie "wie" nic.
+
+**Więcej:** [Typy AI](/jak-dziala-ai/typy-ai/)
 
 ## Zero-shot
 

@@ -1,0 +1,125 @@
+---
+title: Rozumienie danych dla nieprogramistów
+description: Na jednej tabeli zadajesz trzy pytania o dane - źródło, lukę i czy korelacja to przyczyna. Ćwiczenie zajmie 5 minut.
+sidebar:
+  label: 'Rozumienie danych'
+  order: 10
+educationalLevel: Beginner
+teaches:
+  - Jakie trzy pytania zadać danym, zanim zaufasz analizie AI
+  - Czym różnią się dane ustrukturyzowane od nieustrukturyzowanych
+  - Dlaczego korelacja w wyniku modelu nie jest przyczyną
+about:
+  - name: Dane
+    sameAs: https://pl.wikipedia.org/wiki/Dane
+  - name: Uczenie maszynowe
+    sameAs: https://pl.wikipedia.org/wiki/Uczenie_maszynowe
+faq:
+  - q: Czy muszę umieć programować, żeby pracować z danymi i AI?
+    a: Nie. Potrzebujesz pytań o źródło, kompletność i to, czy dwie rzeczy, które rosną razem, naprawdę się powodują. Kod zostawiasz osobom, które go utrzymują. Tu ćwiczysz ocenę wejścia, nie budowę modelu.
+  - q: Czy model językowy "naprawi" złe dane?
+    a: Nie. Zasada jest stara i nadal działa - śmieci na wejściu, śmieci na wyjściu. Gładki ton odpowiedzi nie podnosi jakości tabeli, której brakuje miesięcy albo kontekstu.
+  - q: Skąd mam wiedzieć, że AI pokazało przyczynę, a nie zbieg?
+    a: Szukasz mechanizmu ("A robi B, bo...") i trzeciej zmiennej (pora roku, kampania, zmiana cennika). Jeśli zostaje tylko "obie kreski idą w górę", to korelacja. Nie wdrażasz decyzji na tej podstawie.
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+![Wiersze i kolumny prostej tabeli z danymi - dane dla początkujących](../../../assets/jak-dziala-ai/dane-dla-poczatkujacych/dane-dla-poczatkujacych.jpg)
+
+:::note[O tej stronie]
+**Czas:** ok. 7 minut czytania + 5 minut ćwiczenia.
+**Poziom:** początkujący, po lekcji [Ustawienia losowania](/jak-dziala-ai/parametry-modeli/). Możesz ją przeczytać zaraz po [Podstawach](/podstawy/) - nie korzysta z poprzednich lekcji tej sekcji.
+**Wcześniej:** [Ustawienia losowania](/jak-dziala-ai/parametry-modeli/) - wiesz, jak model losuje odpowiedź. **Teraz:** sprawdzasz, co wchodzi do modelu, zanim cokolwiek policzy.
+:::
+
+## Na tej stronie zatrzymasz analizę trzema pytaniami
+
+Po tej lekcji weźmiesz jedną tabelę albo jeden raport i zapiszesz: skąd to jest, czego brakuje, i czy "wzrosło razem" znaczy "spowodowało". Nie uczysz się tu Pythona ani budowy modelu.
+
+Jedna rzecz do zapamiętania: **AI powtórzy błąd w danych spokojnym tonem. Najpierw pytasz o wejście, potem czytasz wynik.**
+
+## Nie musisz być mechanikiem. Musisz wiedzieć, co leje się do baku
+
+Rozumienie danych to nie kod. To odruch: zanim poprosisz model o wniosek, wiesz, skąd wzięły się liczby, kto je zbierał i czego w zbiorze nie ma.
+
+Analogia na jeden oddech: prowadzisz auto bez warsztatu w garażu. Nie składasz silnika. Wiesz jednak, że bez paliwa nie jedziesz, a czerwone światło nie jest "sugestią". Z danymi jest tak samo - narzędzie jedzie na tym, co wlejesz.
+
+## Dwa typy danych: tabela i sterta tekstu
+
+**Ustrukturyzowane** - tabela: wiersz, kolumna, Excel, CSV, baza. Łatwo je zsumować i porównać.
+
+**Nieustrukturyzowane** - mail, dokument, nagranie, zdjęcie. Nie mają jednej siatki. Modele językowe właśnie tu zmieniły codzienną pracę: da się _przeczytać_ stos tekstu, którego nikt nie wklei do arkusza.
+
+Na tej lekcji wystarczy to rozróżnienie. Od niego zależy, _co_ wklejasz do modelu i _czego_ po nim oczekiwać.
+
+## Śmieci na wejściu, śmieci na wyjściu
+
+Jakość wyniku idzie za jakością wejścia. Nieprecyzyjny <Termin id="prompt">prompt</Termin> bez kontekstu daje ogólnik. Stary wycinek daje starą radę. Luka w miesiącach daje dziurę we wniosku - tylko ładnie napisaną.
+
+```text
+Słabe wejście:
+"Przeanalizuj sprzedaż."
+
+Lepsze wejście:
+"W załączonej tabeli są miesiące i kwoty z 2024 i 2025.
+Porównaj te same miesiące rok do roku.
+Wskaż 3 pozycje ze wzrostem i 3 ze spadkiem.
+Jeśli jakiegoś miesiąca brakuje, napisz to wprost
+i nie zgaduj."
+```
+
+Trzy grupy pytań, w tej kolejności:
+
+1. **Źródło** - kto zbierał, po co, na kiedy jest ten stan?
+2. **Reprezentatywność** - całość czy wycinek? Czy w tym okresie zdarzyło się coś nietypowego (pandemia, nowy produkt, brak kilku miesięcy), co zaburza obraz?
+3. **Kontekst** - czy porównujesz jabłka do jabłek? Jaka trzecia rzecz mogła pchnąć obie kreski?
+
+## Korelacja to nie przyczyna
+
+Model znajdzie zbiegi. Nie ma w środku mechanizmu świata, który oddziela "razem" od "dlatego".
+
+Klasyczny obrazek, nie anegdota z firmy: sprzedaż lodów i utonięcia rosną razem latem. Lody nie topią ludzi. Lato pcha obie kreski.
+
+Gdy wynik mówi "trend" albo "wpływ", pytasz:
+
+1. Jaki jest mechanizm ("A robi B, bo...")?
+2. Jaka trzecia zmienna pcha obie strony?
+3. Czy kolejność w czasie ma sens (przyczyna wcześniej niż skutek)?
+
+Wykres kłamie ciszej niż zdanie. Gdy pionowa oś wykresu nie zaczyna się od zera, drobna różnica wygląda na przepaść. Średnia potrafi ukryć, że jedna grupa rośnie, a druga spada. Koło z dziesięcioma kawałkami jest nieczytelne. Poproś o surową tabelę obok obrazka i o jedno zdanie, _dlaczego_ taki typ wykresu.
+
+## Ćwiczenie: 5 minut, trzy pytania
+
+Nie robisz audytu działu. Zatrzymujesz **jedną** mini-analizę, zanim ktoś wklei ją do decyzji.
+
+Poniższa tabelka jest **wymyślona na potrzeby tej strony**. Nie szukaj jej w raporcie firmy.
+
+| Miesiąc | Sprzedaż (szt.) |
+| --- | --- |
+| styczeń | 12 |
+| luty | 40 |
+
+Zdanie, które "wypadło" z modelu: "Sprzedaż wzrosła o 233%. Zwiększ produkcję. To trend."
+
+1. Zapisz trzy pytania, po jednym na grupę: źródło, luka / reprezentatywność, korelacja kontra przyczyna.
+2. Dopisz etykietę do zdania modelu: **luka w danych**, **korelacja bez przyczyny**, albo **za mało kontekstu** (wolno więcej niż jedną).
+3. Jednym zdaniem: czego _nie_ zrobisz na podstawie tej tabeli.
+
+**Zaliczenie:** w ciągu 5 minut masz na kartce trzy pytania, etykietę i jedno zdanie "tego nie wdrażam, bo...". Nie liczysz istotności statystycznej. Nie otwierasz Pythona.
+
+**Typowy wynik:** dwa miesiące to nie trend, brak roku, kategorii i sezonu, a "233%" brzmi jak wyrok.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** wklej tę tabelę i to zdanie do chatbota z [pierwszej rozmowy](/podstawy/pierwsza-rozmowa-z-ai/) i dopisz: "Czego w tych danych brakuje? Nie zgaduj przyczyny." Porównaj z własną trójką pytań.
+
+## Teraz wiesz
+
+- Rozumienie danych to trzy pytania o wejście, nie umiejętność kodowania.
+- Śmieci na wejściu dają śmieci na wyjściu - spokojny ton tego nie zmienia.
+- Dwie kreski w górę to jeszcze nie przyczyna. Najpierw mechanizm albo trzecia zmienna.
+
+**Następny krok:** [Dlaczego AI teraz?](/jak-dziala-ai/boom-ai/) - trzy filary, które zbiegły się w czasie: moc, dane i algorytm.
+
+<SlowniczekStrony terminy={["prompt"]} />

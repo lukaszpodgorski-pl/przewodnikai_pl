@@ -1,0 +1,120 @@
+---
+title: 'Modele rozumujące - co naprawdę robi tryb "myślenia" w AI'
+description: Zdecydujesz, czy do tego zadania włączyć tryb myślenia, zanim klikniesz. Ćwiczenie zajmie 5 minut.
+sidebar:
+  label: 'Modele rozumujące'
+  order: 5
+educationalLevel: Beginner
+teaches:
+  - Że tryb myślenia to dodatkowe obliczenia przed odpowiedzią
+  - Kiedy włączać myślenie, a kiedy tylko wydłuża czekanie
+  - Że łańcuch "myśli" na ekranie nie jest protokołem prawdy
+about:
+  - name: Model rozumujący
+    sameAs: https://en.wikipedia.org/wiki/Reasoning_language_model
+  - name: Duży model językowy
+    sameAs: https://pl.wikipedia.org/wiki/Du%C5%BCy_model_j%C4%99zykowy
+mentions:
+  - name: ChatGPT
+    sameAs: https://en.wikipedia.org/wiki/ChatGPT
+    type: SoftwareApplication
+  - name: Claude
+    sameAs: https://en.wikipedia.org/wiki/Claude_(language_model)
+    type: SoftwareApplication
+  - name: Gemini
+    sameAs: https://en.wikipedia.org/wiki/Gemini_(language_model)
+    type: SoftwareApplication
+faq:
+  - q: Czy fraza "pomyśl krok po kroku" zastępuje przycisk myślenia?
+    a: Nie. W trybie szybkim to stary trik na łańcuch myśli (chain-of-thought) w samym poleceniu. Przycisk albo automatyczne "pomyślę dłużej" dokładają osobny budżet obliczeń, często ukryty. Przy modelu, który i tak myśli w środku, rozpisywanie mu kroków bywa zbędne albo szkodzi.
+  - q: Czy w darmowym czacie myślenie jest "za darmo"?
+    a: Nie płacisz kartą, płacisz czasem i limitami. Tokeny robocze i tak się liczą po stronie serwisu. Przy API (dostęp do modelu dla programistów, bez okna czatu) myślenie widać na fakturze. Proste zadanie z włączonym myśleniem to dłuższe czekanie bez zysku.
+  - q: Czy mogę oddać wypisane kroki jako dowód, że wynik jest prawdziwy?
+    a: Nie. Pokazane "myślenie" bywa streszczeniem, nie zapisem tego, co zdecydowało o odpowiedzi. Fakt i tak sprawdzasz jak przy zwykłym czacie. Procedura jest w [Weryfikacji](/podstawy/weryfikacja-informacji/), nie na tej stronie.
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+![Twarz w przezroczystym hełmie, wokół głowy punkty świetlne i cienkie linie połączeń](../../../assets/jak-dziala-ai/modele-rozumujace/modele-rozumujace.jpg)
+
+:::note[O tej stronie]
+**Czas:** ok. 7 minut czytania + 5 minut ćwiczenia.
+**Poziom:** początkujący, po lekcji [Modele językowe LLM](/jak-dziala-ai/modele-jezykowe/).
+**Wcześniej:** [Modele językowe LLM](/jak-dziala-ai/modele-jezykowe/) - wiesz, że czat zgaduje kolejny token. **Teraz:** sprawdzasz, co się zmienia, gdy model dostaje czas na brudnopis, zanim napisze wynik.
+:::
+
+## Na tej stronie włączysz albo wyłączysz myślenie
+
+Po tej lekcji każde z trzech zadań w ćwiczeniu dostanie od Ciebie etykietę: włączam myślenie albo nie. Nie zbierasz nazw przełączników z aplikacji - te się zmieniają. Zostaje reguła.
+
+Jedna rzecz do zapamiętania: **tryb myślenia to więcej obliczeń przed odpowiedzią, nie pieczątka "sprawdzone".**
+
+## Zwyczajny czat pisze od razu. Ten najpierw ma brudnopis
+
+Zwykły <Termin id="chatbot">chatbot</Termin> sypie tokeny na ekran. Jeśli pierwszy trop był zły, rzadko wraca - już pisze.
+
+Model rozumujący (reasoning) zanim odda Ci zdanie, generuje tekst roboczy: kroki, ślepe uliczki, poprawki. Potem składa odpowiedź. Czasem widać "główkowanie", czasem tylko dłuższe milczenie.
+
+Analogia na jeden oddech: zwykły tryb to odpowiedź z marszu. Ten dostaje kartkę na obliczenia. Kartki możesz nie zobaczyć w całości.
+
+Ta umiejętność nie wzięła się z samego powiększenia sieci. OpenAI przy premierze o1 (wrzesień 2024 r.) opisało, jak go trenowano: model dostawał nagrodę, gdy jego tok rozumowania kończył się dobrym wynikiem ([OpenAI, 2024](https://openai.com/index/learning-to-reason-with-llms/)). DeepSeek pokazał w otwartej pracy, że podobny efekt da się dostać inną, tańszą ścieżką treningu ([DeepSeek-R1, 2025](https://arxiv.org/abs/2501.12948)).
+
+W lekcji [Techniki promptowania](/prompt-engineering/techniki/) z sekcji Prompt Engineering poznasz trik <Termin id="chain-of-thought">chain-of-thought</Termin> - dopisanie w <Termin id="prompt">prompcie</Termin> "myśl krok po kroku". Model rozumujący ma to wbudowane w trening.
+
+Jakość bywa lepsza, bo model dostaje więcej obliczeń w momencie odpowiedzi (test-time compute), nie dlatego, że "zrozumiał świat". Cena: czas i tokeny robocze. Trzy zdania na ekranie mogły kosztować tysiące tokenów w brudnopisie. Jak liczyć tokeny - [następna lekcja](/jak-dziala-ai/tokeny-i-kontekst/).
+
+Nazw przycisków nie podaję, bo zmieniają się z każdą aktualizacją. Szukaj przełącznika myślenia albo listy wyboru modelu: zwykle przy polu, w którym piszesz, albo u góry okna czatu. Deep research (długie szukanie z przypisami) to rozumowanie plus narzędzia - szczegóły w [trybach pracy](/narzedzia/tryby-pracy-chatbotow/).
+
+## Kiedy włączasz, a kiedy tylko czekasz
+
+Reguła: **włącz, gdy do zadania potrzebujesz kartki.**
+
+Pomaga: matematyka i logika, plan z kilkoma ograniczeniami, porównanie opcji, "dlaczego ten kod nie działa", pytanie z haczykiem.
+
+Nie pomaga (spowalnia): proste fakty, tłumaczenie, redakcja, burza mózgów, rutyna, którą zwykły tryb już umie.
+
+Halucynacje nie znikają. Pewny ton po minucie myślenia to nadal pewny ton. Sprawdzanie faktów zostaw na [Weryfikacji](/podstawy/weryfikacja-informacji/).
+
+Pokazane kroki to nie protokół. Chen i in. (2025) pokazali, że łańcuch na ekranie nie zawsze wiernie oddaje to, co zdecydowało o odpowiedzi ([arxiv:2505.05410](https://arxiv.org/abs/2505.05410)). Traktuj go jak streszczenie, nie jak dowód.
+
+Przy banalnym zadaniu długie myślenie potrafi pogorszyć wynik - model przekombinuje.
+
+:::note[Źródła sprawdzone w listopadzie 2026 r.]
+o1 (wrzesień 2024 r.), DeepSeek-R1 (2025) i Chen i in. (2025) to źródła opisujące sam mechanizm, a nie porównanie aplikacji. Dokumentacji przycisków z konkretnych czatów tu nie ma - starzeje się z aktualizacją UI.
+:::
+
+## Ćwiczenie: 5 minut, włącz albo wyłącz
+
+Najpierw bez odpalania czatu. Przy każdym zadaniu etykieta **włącz** albo **wyłącz**.
+
+1. "Przetłumacz ten akapit na angielski."
+2. "Rozwiąż zadanie o liliach" (prompt w ramce poniżej).
+3. "Popraw literówki w mailu."
+
+Potem porównaj: 1 wyłącz, 2 włącz, 3 wyłącz.
+
+Jeśli zostaje czas, wklej prompt z ramki dwa razy: raz ze zwykłym trybem, raz z myśleniem.
+
+```text
+Na stawie rosną lilie. Każdego dnia powierzchnia się podwaja. Po 48 dniach staw jest cały pokryty. Którego dnia był pokryty w połowie? Napisz tylko liczbę, potem jedno zdanie uzasadnienia. Nie korzystaj z wyszukiwania.
+```
+
+Odpowiedź: dzień 47. (W połowie dzień wcześniej, bo podwajanie. Nie 24.)
+
+**Zaliczenie:** trzy etykiety włącz/wyłącz na kartce. Dwie trafne etykiety na trzy to zaliczenie. Jeśli odpalasz czat: liczba z lilii i adnotacja, czy tryb zmienił wynik.
+
+**Typowy wynik:** przy liliach oba tryby często podają 47, bo to znana zagadka. Różnicę łatwiej zobaczyć na własnym zadaniu z haczykiem niż na szkolnej łamigłówce.
+
+**Jeśli nic nie zgrzyta:** weź zadanie, przy którym zwykły tryb już się pomylił, i powtórz z myśleniem. Brak różnicy znaczy, że do Twojej rutyny wystarcza tryb szybki.
+
+## Teraz wiesz
+
+- Tryb myślenia to więcej obliczeń przed odpowiedzią, nie gwarancja prawdy.
+- Włączasz przy kartce (liczby, plan, haczyk). Wyłączasz przy tłumaczeniu, redakcji i drobnicy.
+- Kroki na ekranie to streszczenie. Fakt sprawdzasz tak samo jak przy zwykłym czacie.
+
+**Następny krok:** [Tokeny i kontekst](/jak-dziala-ai/tokeny-i-kontekst/) - czym jest token, czemu w długiej rozmowie początek przestaje być widoczny i skąd się biorą limity.
+
+<SlowniczekStrony terminy={["chatbot", "chain-of-thought", "prompt"]} />

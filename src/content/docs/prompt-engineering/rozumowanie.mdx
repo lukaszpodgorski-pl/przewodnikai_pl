@@ -16,7 +16,7 @@ faq:
   - q: Czy to to samo co chain-of-thought?
     a: Nie. W [technikach](/prompt-engineering/techniki/) kroki są w jednej odpowiedzi. Tu wysyłasz dwie osobne wiadomości - najpierw same ograniczenia, potem decyzja na ich podstawie. Błąd widać między krokami, nie w środku eseju.
   - q: Czy muszę znać Tree of Thoughts albo ReAct?
-    a: Nie. To nazwy z prac naukowych o przeszukiwaniu ścieżek i pętli "myśl, narzędzie, obserwacja". W czacie wystarcza plan, potem wykonanie. Narzędzia i dokumenty są w agentach i w RAG.
+    a: Nie. To nazwy z prac naukowych o przeszukiwaniu ścieżek i pętli "myśl, narzędzie, obserwacja". W czacie wystarcza plan, potem wykonanie. Narzędzia i dokumenty są w [agentach](/jak-dziala-ai/agenci-ai/) i w [RAG](/jak-dziala-ai/rag/).
   - q: Kiedy jeden prompt wystarczy?
     a: Gdy zadanie ma jeden ruch - streszczenie, tłumaczenie, lista z jasnym formatem. Dwie osobne wiadomości, gdy mieszają się ograniczenia, wyjątki i decyzja, której nie da się odkręcić jednym zdaniem.
 status: gotowe
@@ -45,7 +45,7 @@ Jeden ruch: **oddzielasz spis warunków od decyzji.** Kiedy: zadanie ma co najmn
 
 W oknie <Termin id="chatbot">chatbota</Termin> dzielisz pracę tak, żeby dało się przerwać po pierwszym kroku i powiedzieć "tu już jest błąd".
 
-Gdy model nie ma potrzebnych faktów, bo są w Twoich dokumentach, to <Termin id="rag">RAG</Termin> (wyszukiwanie w dokumentach przed odpowiedzią, lekcja o dokumentach). Gdy model ma sam sięgać po narzędzia, krok po kroku, to agenci. Gdy wystarczy, że model wykona więcej obliczeń przed jedną odpowiedzią, to tryb myślenia. Ta lekcja zostaje przy dwóch <Termin id="prompt">promptach</Termin> w czacie.
+Gdy model nie ma potrzebnych faktów, bo są w Twoich dokumentach, to <Termin id="rag">RAG</Termin> (wyszukiwanie w dokumentach przed odpowiedzią, [lekcja o dokumentach](/jak-dziala-ai/rag/)). Gdy model ma sam sięgać po narzędzia, krok po kroku, to [agenci](/jak-dziala-ai/agenci-ai/). Gdy wystarczy, że model wykona więcej obliczeń przed jedną odpowiedzią, to [tryb myślenia](/jak-dziala-ai/modele-rozumujace/). Ta lekcja zostaje przy dwóch <Termin id="prompt">promptach</Termin> w czacie.
 
 Łańcuch, który chcesz powtarzać co tydzień na nowych danych, jest w [automatyzacji](/prompt-engineering/automatyzacja/). Tu chodzi o jedną zagadkę z haczykiem, nie o linię produkcyjną.
 

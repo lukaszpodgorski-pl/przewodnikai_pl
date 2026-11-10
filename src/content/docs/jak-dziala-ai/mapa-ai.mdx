@@ -1,0 +1,118 @@
+---
+title: Mapa systemów AI
+description: Ułożysz trzy systemy, których używasz, na czterech warstwach mapy AI. Ćwiczenie zajmie 5 minut.
+sidebar:
+  label: 'Mapa systemów AI'
+  order: 13
+educationalLevel: Intermediate
+teaches:
+  - Cztery warstwy krajobrazu AI - fundament, autonomia, protokoły, nadzór
+  - Gdzie na mapie siedzą LLM, RAG, agent, MCP i guardrails
+  - Jak nie mylić nazwy produktu z warstwą
+about:
+  - name: Sztuczna inteligencja
+    sameAs: https://pl.wikipedia.org/wiki/Sztuczna_inteligencja
+mentions:
+  - name: OpenAI
+    sameAs: https://en.wikipedia.org/wiki/OpenAI
+    type: Organization
+  - name: Google
+    sameAs: https://en.wikipedia.org/wiki/Google
+    type: Organization
+  - name: Anthropic
+    sameAs: https://en.wikipedia.org/wiki/Anthropic
+    type: Organization
+faq:
+  - q: Po co mi mapa, skoro i tak używam jednego chatbota?
+    a: Żeby nagłówek o "agentach", "RAG" albo "MCP" wylądował na warstwie, a nie w jednym worku. Ten sam produkt bywa modelem, agentem albo wyszukiwarką po Twoich plikach - zależnie od trybu.
+  - q: Czym RAG różni się od agenta?
+    a: RAG dokłada modelowi fragmenty dokumentów, zanim ten odpowie. Agent dostaje cel i sam wykonuje kroki narzędziami. Możesz mieć RAG bez autonomii i agenta bez Twojej bazy plików.
+  - q: Czy MCP i A2A to to samo?
+    a: Nie. MCP (Anthropic, listopad 2024) to standard "model podłącza narzędzie albo dane". A2A (Google, kwiecień 2025) to standard "agent rozmawia z innym agentem". Inna warstwa, inny problem.
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+![Mapa węzłów z typami systemów AI połączonych liniami](../../../assets/jak-dziala-ai/mapa-ai/mapa-ai.jpg)
+
+:::note[O tej stronie]
+**Czas:** ok. 7 minut czytania + 5 minut ćwiczenia.
+**Poziom:** średni, po lekcji [Agenci AI](/jak-dziala-ai/agenci-ai/).
+**Wcześniej:** [Agenci AI](/jak-dziala-ai/agenci-ai/) - znasz cel i pętlę agenta. **Teraz:** układasz cały krajobraz na czterech warstwach, żeby każdy skrót miał swoje miejsce.
+:::
+
+## Na tej stronie przypniesz trzy pinezki
+
+Po tej lekcji trzy systemy - z Twojego tygodnia albo z listy na dole - mają warstwę: fundament, autonomia, protokół albo nadzór. Listy niżej to **legenda do ćwiczenia**, nie katalog do wkuwania.
+
+Jedna rzecz do zapamiętania: **nazwa na pudełku to nie warstwa. Warstwa mówi, co system robi.**
+
+## Cztery piętra zamiast worka skrótów
+
+Jeśli od tygodni zbierasz LLM, RAG, MCP, A2A i guardrails, mapa jest po to, żeby wracać, nie żeby wkuwać. Tu zostają cztery piętra.
+
+### 1. Fundament - model i wiedza
+
+Tu siedzi sam model i dwa sposoby, które podsuwają mu coś więcej niż to, co zostało po treningu.
+
+- **LLM** - duży model językowy przewiduje kolejne tokeny. Zwykły <Termin id="chatbot">chatbot</Termin> bez plików. [Modele językowe](/jak-dziala-ai/modele-jezykowe/).
+- **<Termin id="rag">RAG</Termin>** - zanim odpowie, wyszukuje fragmenty Twoich dokumentów. [RAG](/jak-dziala-ai/rag/).
+- **Pamięć między rozmowami** - notatki o Tobie, które aplikacja zapisuje i dokleja do nowej rozmowy. Wagi modelu się przy tym nie zmieniają. To nie RAG: RAG przeszukuje dokumenty, które dajesz, a pamięć przechowuje to, co aplikacja zanotowała z Twoich wcześniejszych rozmów.
+
+### 2. Autonomia - kto wybiera następny krok
+
+- **<Termin id="agent-ai">Agent</Termin>** - cel zamiast pojedynczego promptu. Plan, narzędzia, pętla. [Agenci AI](/jak-dziala-ai/agenci-ai/).
+- **Wiele agentów** - role się dzielą albo wzajemnie sprawdzają. Ma sens, gdy jeden model nie ogarnie wszystkich ról naraz - nie jako ozdoba slajdu.
+
+### 3. Protokoły - jak model w ogóle "sięga ręką"
+
+Sam model pisze tekst. Ta warstwa podłącza do niego bazę danych, plik albo inną usługę przez <Termin id="api">API</Termin> (dostęp dla programistów, bez okna czatu).
+
+- **<Termin id="mcp">MCP</Termin>** - Model Context Protocol, standard "jak model woła narzędzie albo dane". Anthropic ogłosiło go [25 listopada 2024 r.](https://www.anthropic.com/news/model-context-protocol). Praktyka: [serwery MCP](/narzedzia/serwery-mcp/).
+- **A2A** - Agent-to-Agent, rozmowa między agentami, także od różnych dostawców. Google ogłosiło protokół [9 kwietnia 2025 r.](https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/).
+- **Tool calling** (wywoływanie narzędzi) - model pisze prośbę, program ją wykonuje i oddaje wynik; opis w [Agentach AI](/jak-dziala-ai/agenci-ai/). Pętla agenta to coś więcej: po każdym wyniku model sam decyduje, czy wołać kolejne narzędzie i które.
+
+Programy, które pilnują kolejności kroków wielu modeli i narzędzi (orkiestracja, "frameworki agentów"), też należą do tej warstwy.
+
+### 4. Nadzór - kto zatrzymuje szkodę
+
+- **Guardrails** - twarde filtry, których model nie przegada. Moderacja treści, ochrona danych osobowych, blokada płatności bez zgody.
+- **Człowiek w pętli** - system czeka na Twoje tak. Tam, gdzie pomyłka jest droga albo nieodwracalna.
+
+:::note[Źródła sprawdzone w listopadzie 2026 r.]
+Daty MCP i A2A to ogłoszenia standardów, nie obietnica, że "każdy produkt już to ma". Warstwa zostaje, nawet gdy nazwa na przycisku w chatbocie się zmieni.
+:::
+
+## Ćwiczenie: 5 minut, trzy pinezki
+
+Nie rysujesz plakatu. Przypinasz **trzy** systemy do warstw.
+
+Weź trzy rzeczy, których naprawdę używasz w tym tygodniu. Jeśli używasz tylko jednego czatu, dobierz dwie pozycje z lewej kolumny - to nadal ćwiczenie mapy, nie inwentaryzacja sprzętu.
+
+| Przykład (albo własny) | Warstwa (Ty, zanim zerkniesz) |
+| --- | --- |
+| Zwykły czat w ChatGPT / Claude, bez plików | |
+| Gemini Notebook albo projekt z wieloma wgranymi PDF-ami | |
+| Deep research albo asystent, który sam klika po krokach | |
+
+Klucz: pierwszy wiersz to fundament (LLM), drugi to fundament (RAG - wyszukiwanie włącza się m.in. w projektach, gdy plików jest więcej, niż model mieści naraz, i w notatnikach na własnych źródłach), trzeci to autonomia (agent).
+
+Dopisz czwartą, jeśli zostaje minuta: zatwierdzanie wysyłki albo filtr treści → **nadzór**. MCP włączany w ustawieniach aplikacji czatu → **protokół**.
+
+**Zaliczenie:** trzy pary "nazwa → warstwa" na kartce. 2/3 trafień z kluczem zalicza. Nie musisz umieć wdrożyć MCP.
+
+**Typowy wynik:** projekt z PDF-ami oznaczony jako agent, bo "sam szuka". Szukanie w Twoich plikach przed odpowiedzią to RAG, czyli fundament.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** jeden nagłówek z "agentic AI". Jedno zdanie: która warstwa jest w środku, a które słowo jest ozdobą.
+
+## Teraz wiesz
+
+- Cztery warstwy: fundament (LLM, RAG, pamięć między rozmowami), autonomia, protokoły, nadzór.
+- RAG podsuwa dokumenty. Agent dobiera kroki. MCP podłącza narzędzie. Guardrails i człowiek w pętli łapią szkodę.
+- Produkt bywa na kilku warstwach naraz - zależy od trybu, nie od logo.
+
+**Następny krok:** [Wprowadzenie do inżynierii promptów](/prompt-engineering/wprowadzenie/) - pierwsza lekcja sekcji Prompt Engineering. Skoro mapa jest w głowie, czas pisać polecenia, które dają powtarzalny wynik, a nie loterię.
+
+<SlowniczekStrony terminy={["agent-ai", "chatbot", "rag", "api", "mcp"]} />

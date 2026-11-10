@@ -1,0 +1,145 @@
+---
+title: Agenci AI - kiedy chatbot przestaje tylko odpowiadać
+description: Oddzielisz sztywny proces od agenta i zapiszesz, które działanie zostawiasz do zatwierdzenia. Ćwiczenie zajmie 5 minut.
+sidebar:
+  label: 'Agenci AI'
+  order: 12
+educationalLevel: Intermediate
+teaches:
+  - Czym agent AI różni się od chatbota
+  - Kiedy sztywny proces jest lepszy od agenta
+  - Jakie granice zaufania ustawić, zanim system kliknie za Ciebie
+about:
+  - name: Agent programowy
+    sameAs: https://pl.wikipedia.org/wiki/Agent_programowy
+  - name: Sztuczna inteligencja
+    sameAs: https://pl.wikipedia.org/wiki/Sztuczna_inteligencja
+mentions:
+  - name: ChatGPT
+    sameAs: https://en.wikipedia.org/wiki/ChatGPT
+    type: SoftwareApplication
+  - name: Claude
+    sameAs: https://en.wikipedia.org/wiki/Claude_(language_model)
+    type: SoftwareApplication
+  - name: Perplexity AI
+    sameAs: https://en.wikipedia.org/wiki/Perplexity_AI
+    type: SoftwareApplication
+  - name: OpenAI
+    sameAs: https://en.wikipedia.org/wiki/OpenAI
+    type: Organization
+  - name: Anthropic
+    sameAs: https://en.wikipedia.org/wiki/Anthropic
+    type: Organization
+faq:
+  - q: Czym różni się agent AI od chatbota?
+    a: Chatbot odpowiada na pojedyncze polecenia - każdy krok inicjujesz Ty. Agent dostaje cel, sam rozbija go na kroki, korzysta z narzędzi (przeglądarki, plików, aplikacji), sprawdza wyniki i poprawia się po drodze. Chatbot powie, jak coś zrobić; agent spróbuje to zrobić.
+  - q: Czy agenci AI są godni zaufania?
+    a: Warunkowo. Błąd w kroku trzecim psuje czwarty i piąty. Zaczynasz od zadań o niskiej stawce i zostawiasz sobie zatwierdzanie działań nieodwracalnych - płatności, wysyłki, kasowania plików.
+  - q: Gdzie zwykła osoba spotka agenta AI?
+    a: "W trybie, w którym czat sam planuje kilka kroków, w przeglądarce, która klika za Ciebie, w deep research i w asystencie, który edytuje pliki. Nazwy przycisków się zmieniają. Zostaje definicja: cel, własny plan, narzędzia."
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+![Postać AI z kilkoma ramionami obsługująca kilka narzędzi naraz - agent AI](../../../assets/jak-dziala-ai/agenci-ai/agenci-ai.jpg)
+
+:::note[O tej stronie]
+**Czas:** ok. 8 minut czytania + 5 minut ćwiczenia.
+**Poziom:** średni, po lekcji [Dlaczego AI teraz?](/jak-dziala-ai/boom-ai/).
+**Wcześniej:** [Dlaczego AI teraz?](/jak-dziala-ai/boom-ai/) - znasz trzy filary boomu: moc, dane i algorytm. **Teraz:** sprawdzasz, co się dzieje, gdy system przestaje tylko odpowiadać i zaczyna działać.
+:::
+
+## Na tej stronie oddzielisz agenta od sztywnego procesu
+
+Po tej lekcji weźmiesz jedno zadanie z tygodnia i powiesz: to sztywny proces, czy agent. Dopiszesz, które kliknięcie zostaje przy Tobie. Nie budujesz tu agenta od zera.
+
+Jedna rzecz do zapamiętania: **agent dostaje cel i sam dobiera kroki. Błędy mnożą się przez liczbę kroków.**
+
+## "Powiedz, jak" kontra "zrób to"
+
+Poproś <Termin id="chatbot">chatbota</Termin> o trzy połączenia do Rzymu na weekend. Dostaniesz uprzejmą instrukcję, jak szukać, ale klikać musisz sam.
+
+<Termin id="agent-ai">Agent AI</Termin> na to samo polecenie otwiera wyszukiwarkę, porównuje godziny i ceny, wraca z zestawieniem. Nie jest "mądrzejszy". **Działa**, zamiast tylko odpowiadać.
+
+Dlatego wykonawcy patrzysz na ręce inaczej niż doradcy.
+
+## Z czego składa się agent: model, narzędzia, zapis kroków, pętla
+
+Pod spodem, od czatu z trybem wielokrokowym po system firmowy, powtarza się ten sam zestaw:
+
+1. **Model** - planuje; często [model rozumujący](/jak-dziala-ai/modele-rozumujace/), bo kroków jest więcej niż jedno zdanie
+2. **Narzędzia** - wyszukiwarka, pliki, kalendarz. Model sam nie klika: pisze prośbę w rodzaju "wyszukaj loty do Rzymu na 14 marca", program obok ją wykonuje i oddaje wynik. To wywoływanie narzędzi (tool calling) - wraca na [mapie systemów](/jak-dziala-ai/mapa-ai/)
+3. **Zapis kroków** - notatka o tym, co już zrobiono w tym zadaniu; bez niej dziesiąty krok nie wie nic o pierwszym
+4. **Pętla** - zaplanuj → użyj narzędzia → sprawdź wynik → wybierz następny krok. W badaniach ten rytm opisano jako ReAct ([Yao i in., 2022](https://arxiv.org/abs/2210.03629))
+
+```text
+CEL: "Znajdź 3 połączenia do Rzymu i porównaj ceny"
+
+Myśl:   Potrzebuję dat weekendu.
+Akcja:  wyszukaj [loty tam]
+Wynik:  lista z cenami
+Myśl:   Teraz powroty.
+Akcja:  wyszukaj [loty z powrotem]
+Wynik:  lista
+Myśl:   Zestawiam 3 pary i piszę podsumowanie.
+```
+
+## Sztywny proces to nie agent
+
+W materiałach marketingowych "agentem" nazywa się dziś wszystko. Anthropic w tekście ["Building effective agents"](https://www.anthropic.com/engineering/building-effective-agents) rozdziela dwie rzeczy:
+
+- **Proces** - kolejność kroków ustala człowiek. Model wykonuje kawałki. Przewidywalne, tańsze, łatwiejsze do sprawdzenia. To w duchu [łańcucha promptów](/prompt-engineering/automatyzacja/).
+- **Agent** - kolejność wybiera model w biegu. Elastyczne, droższe, mniej pewne.
+
+Jeśli zadanie da się opisać sztywną procedurą, **wygrywa proces**. Agent ma sens, gdy z góry nie wiadomo, ile kroków i jakich.
+
+## Gdzie spotkasz agenta
+
+- **Czat z trybem wielokrokowym** - dłuższe zadanie, dokument, arkusz; pyta o zgodę przy ważniejszych decyzjach
+- **Przeglądarka, która sama klika** - agent w pasku adresu, nie tylko w oknie czatu
+- **Deep research** - wiele wyszukiwań, raport; tryby są w [narzędziach](/narzedzia/tryby-pracy-chatbotow/)
+- **Asystenci programowania** - edycja plików, testy, gotowa zmiana do przeglądu
+- **Firmy** - obsługa zgłoszeń klientów, systemy z danymi klientów (CRM); zwykle z człowiekiem na nieodwracalnych krokach
+
+Słowo "agent" bywa gumą: dla jednych to dopiero klikanie po zalogowanej stronie, dla innych każdy czat z narzędziami. Tu liczy się definicja z początku: cel, własny plan, narzędzia.
+
+:::note[Źródła sprawdzone w listopadzie 2026 r.]
+Nazwy produktów zmieniają się co kilka miesięcy. W listopadzie 2026 r. OpenAI kieruje dłuższe zadania na ChatGPT Work ([Help Center](https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex); [opis Work](https://openai.com/index/chatgpt-for-your-most-ambitious-work/)). Perplexity pokazuje przeglądarkę agentową Comet ([perplexity.ai/comet](https://www.perplexity.ai/comet)). Jutro przycisk może mieć inną etykietę. Mechanika zostaje: ReAct ([Yao i in., 2022](https://arxiv.org/abs/2210.03629)) i rozróżnienie proces / agent z ["Building effective agents"](https://www.anthropic.com/engineering/building-effective-agents) (Anthropic).
+:::
+
+## Dlaczego błądzi mocniej niż czat
+
+Słabości modelu, które znasz z [ograniczeń](/podstawy/ograniczenia/), u agenta idą w łańcuch:
+
+- **Kumulacja** - to zwykłe mnożenie prawdopodobieństw. Jeśli każdy krok ma 95% szans, że się powiedzie, to przy 10 krokach na sukces całego zadania zostaje około 60%, a przy 20 - około 36% (0,95 do potęgi 10 i 20). To rachunek dla agenta, który nie wyłapie błędu po drodze - sprawdzanie wyników pomaga, ale go nie zeruje. Długi łańcuch ugrzęźnie częściej niż krótki.
+- **Halucynacja w działaniu** - zmyślony tekst staje się zmyślonym kliknięciem
+- **<Termin id="prompt-injection">Prompt injection</Termin>** (wstrzyknięcie polecenia) - ukryte na stronie albo w mailu polecenie, które agent może wziąć za Twoje i wykonać, np. wysłać dane albo kliknąć w link; więcej w lekcji [Cudzy tekst w prompcie](/prompt-engineering/najlepsze-praktyki/)
+- **Koszt** - dziesiątki wywołań modelu zamiast jednego
+
+## Ćwiczenie: 5 minut, jedno zadanie
+
+Nie konfigurujesz produktu. Klasyfikujesz **jedno** zadanie, które naprawdę masz w tym tygodniu (albo to z listy poniżej, jeśli tydzień jest pusty).
+
+Przykłady na wypadek pustego tygodnia: "porównaj trzy oferty słuchawek w trzech sklepach"; "z każdego maila z fakturą wyciągnij kwotę do arkusza"; "wyślij klientom informację o zmianie cennika".
+
+1. Zapisz zadanie jednym zdaniem-celem.
+2. Etykieta: **proces** (kroki znasz z góry) albo **agent** (nie wiesz, ile pętli będzie).
+3. Wypisz jedno działanie **nieodwracalne** (płatność, wysyłka, skasowanie, publikacja) albo napisz "brak - tylko research". Dopisz: **tylko za moją zgodą**.
+
+**Zaliczenie:** w ciągu 5 minut masz cel, etykietę i jedną granicę zatwierdzenia. Nie odpalasz agenta na płatności. Nie musisz czytać logu kroków - ćwiczysz decyzję, nie wdrożenie.
+
+**Typowy wynik:** "porównaj ceny" to agent albo deep research; "z maila do arkusza" to proces; "wyślij klientom" to też proces, a sama wysyłka zostaje przy Tobie.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** to samo zadanie rozpisz jako trzy sztywne kroki. Jeśli idzie gładko, proces wystarczy - nie dokładasz autonomii dla sportu.
+
+## Teraz wiesz
+
+- Agent dostaje cel i sam dobiera narzędzia. Chatbot czeka na Twój kolejny prompt.
+- Sztywna procedura jest tańsza i łatwiejsza do sprawdzenia niż agent.
+- Błędy się mnożą. Niska stawka na start, wąski cel, człowiek na nieodwracalnym kroku.
+
+**Następny krok:** [Mapa systemów AI](/jak-dziala-ai/mapa-ai/) - ułożysz LLM, RAG, agentów i zabezpieczenia na czterech warstwach, zamiast w jednym worku skrótów.
+
+<SlowniczekStrony terminy={["agent-ai", "chatbot", "halucynacje", "prompt-injection"]} />

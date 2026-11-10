@@ -1,0 +1,127 @@
+---
+title: RAG - jak AI korzysta z Twoich dokumentów
+description: Sprawdzisz, czy chatbot odpowiada z Twojego tekstu, czy z treningu. Poprosisz go też o cytat. Ćwiczenie zajmie 5 minut.
+sidebar:
+  label: 'RAG - AI na Twoich dokumentach'
+  order: 8
+educationalLevel: Intermediate
+teaches:
+  - Czym jest RAG jako egzamin z otwartą książką
+  - Że wyszukiwanie po znaczeniu poprzedza generowanie
+  - Kiedy RAG ogranicza halucynacje, a kiedy nie
+about:
+  - name: Retrieval-augmented generation
+    sameAs: https://en.wikipedia.org/wiki/Retrieval-augmented_generation
+  - name: Duży model językowy
+    sameAs: https://pl.wikipedia.org/wiki/Du%C5%BCy_model_j%C4%99zykowy
+mentions:
+  - name: ChatGPT
+    sameAs: https://en.wikipedia.org/wiki/ChatGPT
+    type: SoftwareApplication
+  - name: Claude
+    sameAs: https://en.wikipedia.org/wiki/Claude_(language_model)
+    type: SoftwareApplication
+faq:
+  - q: Czym jest RAG w prostych słowach?
+    a: RAG to technika, w której model najpierw wyszukuje pasujące fragmenty w dokumentach, a dopiero potem pisze odpowiedź na ich podstawie. Zamiast zgadywać z treningu, dostaje otwartą książkę w momencie pytania.
+  - q: Czy RAG eliminuje halucynacje?
+    a: Ogranicza je, nie likwiduje. Model dostaje prawdziwe fragmenty, więc rzadziej zmyśla fakty spoza bazy - ale nadal może źle odczytać tabelę, skleić dwa akapity w błędny wniosek albo dostać zły fragment z wyszukiwania.
+  - q: Kiedy wkleić dokument, a kiedy potrzebny jest RAG?
+    a: Jeden krótki dokument często wystarczy wkleić w całości do rozmowy. Biblioteka plików, regulamin plus procedury plus archiwum - wtedy wyszukiwanie. Ogromne wklejenie zapełnia okno i chowa środek.
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+![Kulista postać AI wyjmuje dokumenty z szafki na akta - RAG](../../../assets/jak-dziala-ai/rag/rag.jpg)
+
+:::note[O tej stronie]
+**Czas:** ok. 7 minut czytania + 5 minut ćwiczenia.
+**Poziom:** średni, po lekcji [Embedding](/jak-dziala-ai/embedding/).
+**Wcześniej:** [Embedding](/jak-dziala-ai/embedding/) - znasz mapę znaczenia. **Teraz:** widzisz, jak ta mapa podsuwa modelowi Twoje pliki, zanim zacznie pisać.
+:::
+
+## Na tej stronie oddzielisz trening modelu od Twojej książki
+
+Po tej lekcji jedna odpowiedź chatbota dostanie etykietę: z wgranego tekstu albo z treningu. Nie uczysz się tu wdrażać firmowej bazy wiedzy.
+
+Jedna rzecz do zapamiętania: **najpierw znajdź fragment, potem pisz. RAG to otwarta książka, nie nowa wiedza w modelu.**
+
+## Skąd chatbot zna raport, którego nie było w treningu?
+
+Z [modeli językowych](/jak-dziala-ai/modele-jezykowe/) wiesz, że model zna to, co było w treningu - a trening ma datę końca. Twojego raportu w nim nie było.
+
+A jednak: wklejasz tekst do <Termin id="chatbot">chatbota</Termin> i dostajesz odpowiedź o jego treści. To nie jest wspomnienie. Gdy wklejasz tekst, model po prostu go czyta razem z pytaniem. Gdy dokumentów jest za dużo, system najpierw wyszukuje pasujące fragmenty i podsuwa modelowi tylko je. To <Termin id="rag">RAG</Termin> (Retrieval Augmented Generation) - generowanie wspomagane wyszukiwaniem. Nazwę zaproponował w 2020 roku zespół Facebook AI Research (dziś Meta) z badaczami z University College London i New York University: zamiast liczyć, że model "pamięta", podsuńmy mu właściwy fragment w momencie pytania ([Lewis i in., 2020](https://arxiv.org/abs/2005.11401)).
+
+Zwykła rozmowa to egzamin z pamięci. RAG to egzamin z otwartą książką. Student nadal może źle przeczytać rozdział. Rzadziej zmyśla rozdziały, których nie ma - ale nie przestaje całkiem.
+
+## Trzy ruchy, nie magia
+
+```text
+1. INDEKSOWANIE (raz, przy dodaniu plików):
+   tekst → fragmenty → wektory na mapie znaczenia
+
+2. WYSZUKIWANIE (przy każdym pytaniu):
+   pytanie → znajdź fragmenty blisko na mapie
+
+3. GENEROWANIE:
+   znalezione fragmenty + pytanie → odpowiedź
+```
+
+Krok drugi idzie po **znaczeniu**, nie po identycznych słowach. "Ile mamy urlopu?" może trafić w "wymiar corocznego płatnego wypoczynku". Tę mapę zrobił embedding z [poprzedniej lekcji](/jak-dziala-ai/embedding/).
+
+Wyszukiwanie włącza się m.in. w projektach chatbota, gdy plików jest więcej, niż mieści się naraz (mniejszy zestaw model czyta w całości), w notatnikach na własnych źródłach i wtedy, gdy model najpierw szuka w internecie. Nie zbierasz tu katalogu przycisków. Zostaje kolejność: **znajdź, potem pisz.**
+
+## Co się zmienia, a co nie
+
+Zmienia się podstawa. Model dostaje fakty z Twojej książki, więc rzadziej zmyśla rzeczy, których w treningu nie było. Bazę da się podmienić bez trenowania modelu od nowa. Dobre narzędzie pokazuje cytat - wtedy sprawdzasz minutę, nie od zera. Zasady z [weryfikacji](/podstawy/weryfikacja-informacji/) zostają.
+
+Nie znika <Termin id="halucynacje">halucynacja</Termin>. Jeśli wyszukiwanie poda **zły** fragment, odpowiedź będzie pewna i fałszywa. Jeśli fragment jest dobry, model i tak może źle odczytać tabelę albo skleić dwa akapity. Śmieci w bazie dają śmieci na wyjściu.
+
+Skoro <Termin id="okno-kontekstowe">okno kontekstowe</Termin> bywa ogromne, po co wyszukiwanie? Jeden dokument często lepiej wkleić w całości - model widzi całość, nic nie umyka w selekcji. Biblioteka plików już nie: nie mieści się, płacisz za każdy token, a środek długiego wklejenia bywa gorzej widoczny niż brzegi ([Liu i in., 2023](https://arxiv.org/abs/2307.03172) - kotwica z badań, nie ranking dzisiejszych okien).
+
+Praktyczna reguła: **jeden dokument - wklej. Biblioteka - RAG.**
+
+:::note[Źródła sprawdzone w listopadzie 2026 r.]
+Nazwa RAG: Lewis i in., 2020. Długi kontekst i środek sekwencji: Liu i in., 2023. Nie ma tu listy produktów ani wersji notatników - nazwy się zmieniają, kolejność "znajdź, potem pisz" zostaje.
+:::
+
+## Ćwiczenie: 5 minut, jeden wymyślony paragraf
+
+Paragraf poniżej jest **wymyślony na potrzeby tej strony**. Nie szukaj go w firmowym regulaminie. Tu nie ma wyszukiwania: wklejasz cały dokument, więc ćwiczysz krok 3, czyli odpowiedź tylko na podstawie podanego tekstu.
+
+1. Otwórz [chatbota](/podstawy/pierwsza-rozmowa-z-ai/). Nowa rozmowa.
+2. Wklej:
+
+    ```text
+    Oto jedyny dokument, z którego wolno Ci korzystać. Odpowiadaj wyłącznie na jego podstawie. Jeśli czegoś nie ma, napisz "nie ma w dokumencie". Na końcu wklej dosłowny cytat.
+
+    §3. Pracownikowi przysługuje 26 dni urlopu wypoczynkowego oznaczonego kodem ŻABA-17.
+    ```
+
+3. W tej samej rozmowie zapytaj:
+
+    ```text
+    Ile dni urlopu i jaki kod? Potem: ile wynosi dodatek za pracę w niedzielę?
+    ```
+
+4. Zapisz dwie etykiety:
+    - pierwsze pytanie: **z dokumentu** (jest ŻABA-17 i cytat) / **z treningu** (brzmi pewnie, kod inny albo brak cytatu)
+    - drugie pytanie: **odmowa** ("nie ma w dokumencie") / **zmyślenie** (jakaś kwota)
+
+**Zaliczenie:** w ciągu 5 minut masz obie etykiety na kartce. Sukces to rozpoznanie źródła, nie "model nigdy nie zmyśla".
+
+**Typowy wynik:** pierwsze z dokumentu, drugie bywa zmyśleniem. Jeśli oba są czyste - zostaw to. Nie dopytuj "no ale spróbuj zgadnąć".
+
+**Jeśli nic nie zgrzyta i zostaje czas:** to samo bez zdania "odpowiadaj wyłącznie na podstawie". Porównaj, czy model nadal trzyma się paragrafu.
+
+## Teraz wiesz
+
+- RAG to otwarta książka: najpierw wyszukaj fragment, potem pisz.
+- Mniej zmyśleń spoza bazy. Nadal można źle przeczytać albo dostać zły fragment.
+- Jeden dokument często wklejasz. Bibliotekę przeszukujesz.
+
+**Następny krok:** [Ustawienia losowania](/jak-dziala-ai/parametry-modeli/) - jak szeroko model losuje kolejny token, gdy już ma (albo nie ma) tę książkę.
+
+<SlowniczekStrony terminy={["rag", "okno-kontekstowe", "chatbot", "halucynacje"]} />

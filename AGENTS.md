@@ -27,8 +27,8 @@ ręcznie**, następna publikacja nadpisze zmiany. Cloudflare buduje z GitHuba.
 
 Serwis jest w trakcie przeglądu artykuł po artykule. Powód: duża część treści
 powstała z dużym udziałem AI i właściciel nie publikuje jej pod swoim nazwiskiem
-przed sprawdzeniem. Według `npm run status` przejrzanych jest 77 ze 105 stron,
-publicznie stoi 92, wyciętych z produkcji jest 13.
+przed sprawdzeniem. Według `npm run status` przejrzanych jest 91 ze 105 stron,
+publicznie stoją wszystkie 105, wyciętych z produkcji nie ma.
 
 Co jest dziś przejrzane (`gotowe`):
 
@@ -38,13 +38,14 @@ Co jest dziś przejrzane (`gotowe`):
 - `etyka` - 4 lekcje i strona zbiorcza (2026-11-10),
 - `narzedzia` - 9 lekcji i strona zbiorcza (2026-11-10),
 - `prompt-engineering` - 10 lekcji i strona zbiorcza (2026-11-10),
+- `jak-dziala-ai` - 13 lekcji i strona zbiorcza (2026-11-10),
 - `suwerenne-ai` - 4 lekcje i strona zbiorcza (2026-11-10),
 - `praktyka` - 4 lekcje i strona zbiorcza (2026-11-10),
 - wszystkie 9 ścieżek (2026-11-10); strona zbiorcza `sciezki` ma status `zastane`.
 
 Publicznie stoją poza tym strona główna, strony zbiorcze pozostałych sekcji
 i ścieżek, `zasoby/kontakt`, `zasoby/o-mnie`, `zasoby/regulamin` i siedem stron
-newslettera (status `zastane`). Lekcje pozostałych sekcji są wycięte.
+newslettera (status `zastane`). Od 2026-11-10 żadna lekcja nie jest wycięta.
 
 Audyt merytoryczny wszystkich sekcji (przebieg 2026-10-18) został scalony
 do `main` 2026-11-09 (commit `bb105e5`).

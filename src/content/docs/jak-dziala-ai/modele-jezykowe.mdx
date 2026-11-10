@@ -1,0 +1,119 @@
+---
+title: Modele językowe (LLM)
+description: Rozpoznasz, że czat przewiduje kolejny token i dobierzesz narzędzie kryteriami, nie rankingiem. Ćwiczenie zajmie 5 minut.
+sidebar:
+  label: 'Modele językowe LLM'
+  order: 4
+educationalLevel: Beginner
+teaches:
+  - Że duży model językowy przewiduje kolejny token
+  - Po co był Transformer i RLHF, bez tabeli wersji
+  - Trwałe kryteria wyboru narzędzia zamiast rankingu marek
+about:
+  - name: Duży model językowy
+    sameAs: https://pl.wikipedia.org/wiki/Du%C5%BCy_model_j%C4%99zykowy
+  - name: Transformer
+    sameAs: https://en.wikipedia.org/wiki/Transformer_(deep_learning_architecture)
+mentions:
+  - name: ChatGPT
+    sameAs: https://en.wikipedia.org/wiki/ChatGPT
+    type: SoftwareApplication
+  - name: Claude
+    sameAs: https://en.wikipedia.org/wiki/Claude_(language_model)
+    type: SoftwareApplication
+  - name: Gemini
+    sameAs: https://en.wikipedia.org/wiki/Gemini_(language_model)
+    type: SoftwareApplication
+faq:
+  - q: Który model językowy jest najlepszy?
+    a: Żaden "w ogóle". Najpierw zadanie, prywatność, długość tekstu i budżet. Ranking nazw z tygodnia nic nie mówi o Twoim pliku. Rodziny (ChatGPT, Claude, Gemini i inne) różnią się ekosystemem i zasadami, nie magią.
+  - q: Czy "otwarte wagi" znaczy, że wolno wszystko?
+    a: Nie. Znaczy, że da się pobrać parametry i odpalić u siebie - w granicach licencji. Apache i MIT są szerokie. Część "otwartych" wag ma licencję społecznościową, której OSI nie uznaje za open source. Czytaj licencję, zanim zbudujesz na tym produkt.
+  - q: Czy większe okno kontekstowe znaczy, że model równo "widzi" cały plik?
+    a: Nie. Górny limit to nie równa uwaga. Środek długiego tekstu bywa gorzej wykorzystany niż początek i koniec. Szczegóły w [Tokenach i kontekście](/jak-dziala-ai/tokeny-i-kontekst/).
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+![Wielka kula ułożona z tysięcy liter, wokół niej linie i węzły sieci](../../../assets/jak-dziala-ai/modele-jezykowe/modele-jezykowe.jpg)
+
+:::note[O tej stronie]
+**Czas:** ok. 8 minut czytania + 5 minut ćwiczenia.
+**Poziom:** początkujący, po lekcji [Typy AI](/jak-dziala-ai/typy-ai/).
+**Wcześniej:** [Typy AI](/jak-dziala-ai/typy-ai/) - wiesz, że czat to wąska AI. **Teraz:** widzisz, jak ze zgadywania kolejnego kawałka tekstu powstaje rozmowa.
+:::
+
+## Na tej stronie nazwiesz silnik, nie pudełko
+
+Po tej lekcji jedno zdanie z czatu da się podpisać: "to kolejny token, nie wiedza". Potem własne zadanie dostaje cztery kryteria wyboru narzędzia - bez nazwy wersji z reklamy.
+
+Jedna rzecz do zapamiętania: **LLM przewiduje kolejny token. Esej, kod i plan to skutek tego zgadywania.**
+
+## Zgaduje następne słowo. Reszta jest skutkiem
+
+"Pada deszcz, więc biorę..." - w głowie ląduje "parasol" albo "kurtka". Duży model językowy (LLM, Large Language Model) robi to samo: liczy, który następny <Termin id="token">token</Termin> (kawałek tekstu, często mniejszy niż słowo) najlepiej pasuje do tego, co już jest. Ze skali i danych wychodzi złudzenie rozmowy.
+
+W środku nie ma biblioteki sprawdzonych faktów. Jest sieć wag, która nauczyła się dokańczać wzorce. Dlatego pewny ton nic nie gwarantuje - to [ściana rozumienia](/podstawy/ograniczenia/), nie wada jednej marki.
+
+<Termin id="chatbot">Chatbot</Termin> to okno na taki model. <Termin id="genai">Generatywna AI</Termin> w tekście prawie zawsze znaczy właśnie LLM.
+
+## Dwa kroki, które zrobiły z modelu czat
+
+**Transformer (2017).** Praca [Vaswani i in., "Attention Is All You Need"](https://arxiv.org/abs/1706.03762) dała architekturę, na której stoją dzisiejsze czaty: model przy każdym słowie bierze pod uwagę wszystkie pozostałe słowa tekstu, a trening da się rozłożyć na wiele procesorów jednocześnie. To data narodzin mechanizmu, nie "najlepszy model 2026".
+
+**Od uzupełniania do asystenta.** Sam trening na internecie uczy dokańczać tekst, także toksyczny albo bez sensu. Potem ludzie (albo inne modele) oceniają odpowiedzi, a model dostraja się tak, żeby raczej pomagać, niż tylko zgadywać słowo - to RLHF (Reinforcement Learning from Human Feedback). Dlatego czat brzmi jak ktoś z działu obsługi, a nie jak generator losowych stron wiki.
+
+Nazw wersji, liczby parametrów i "okna na dziś" nie wpisuję. Producenci je zmieniają i często i tak nie publikują pełnych liczb. Zostaje: **duży** = dużo wag i dużo tekstu w treningu, nie "mądrzejszy od Ciebie".
+
+## Kryteria, które przeżywają kolejną premierę
+
+Nie zaczynaj od nazwy na pudełku. Zacznij od czterech pytań:
+
+1. **Zadanie** - redakcja maila, długi PDF, obraz, kod, liczenie z haczykiem. Do haczyka jest [tryb myślenia](/jak-dziala-ai/modele-rozumujace/).
+2. **Prywatność** - chmura dostawcy kontra model, którego wagi odpalasz u siebie.
+3. **Długość** - czy wklejasz akapit, czy książkę. Limit, ile tekstu model widzi naraz, to <Termin id="okno-kontekstowe">okno kontekstowe</Termin>, mierzone w tokenach. Szczegóły: [Tokeny i kontekst](/jak-dziala-ai/tokeny-i-kontekst/).
+4. **Budżet** - czas czekania i, przy API, pieniądze. Tryb "myślenia" też zużywa tokeny.
+
+<Termin id="open-weight">Otwarte wagi</Termin> znaczą: da się pobrać parametry. Nie zawsze znaczą wolną licencję jak MIT. Etykieta "otwarty" bywa marketingiem. Polskie modele (Bielik, PLLuM) opisuję w lekcji [Bielik i polskie modele AI](/suwerenne-ai/bielik-i-polskie-modele/).
+
+Model nie zna wydarzeń po swoim treningu - to [druga ściana z Ograniczeń](/podstawy/ograniczenia/). Świeże informacje dostanie tylko wtedy, gdy czat przeszuka internet albo gdy dasz mu własne dokumenty ([RAG](/jak-dziala-ai/rag/)). Bez tego nie traktuj odpowiedzi jako stanu na dziś.
+
+:::note[Źródła sprawdzone w listopadzie 2026 r.]
+Transformer (2017) to fakt historyczny. Nie ma tu tabeli marek, okien kontekstu ani rankingów modeli - to się starzeje z kwartału. Kryteria 1-4 zostają.
+:::
+
+## Ćwiczenie: 5 minut, zgadywanie i cztery kryteria
+
+Najpierw bez czatu. Dokończ jednym słowem: "Herbata jest za gorąca, więc dmucham na...". To jest LLM w Twojej głowie.
+
+Potem otwórz chatbota i wklej:
+
+```text
+Dokończ dokładnie jednym słowem, bez kropki i bez wyjaśnienia: "Herbata jest za gorąca, więc dmucham na"
+```
+
+Zapisz, czy padło coś w stylu "spodek" / "nią" / inny token. Potem jedno zdanie na kartce: "to zgadywanie kolejnego kawałka, nie wiedza o herbacie".
+
+Na koniec Twoje prawdziwe zadanie z pracy albo domu. **Nie wpisuj nazwy modelu.** Wypisz cztery kryteria z listy powyżej (zadanie, prywatność, długość i budżet).
+
+**Zaliczenie:** w 5 minut masz (1) słowo-dokończenie, (2) zdanie o tokenie, (3) cztery kryteria bez marki. Ranking z internetu nie zalicza.
+
+**Typowy wynik:** model dokańcza tak samo jak Ty albo bardzo podobnie, a przy kryteriach kusi, żeby jednak wpisać nazwę modelu. Nazwa nie jest kryterium.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** wklej poniższy prompt do czatu, w miejsce "[jedno zdanie]" wpisując swoje zadanie. Porównaj odpowiedź z kartką.
+
+```text
+Mam zadanie: [jedno zdanie]. Nie podawaj nazwy modelu ani wersji. Wypisz cztery kryteria wyboru narzędzia z listy: zadanie, prywatność, długość tekstu, budżet. Na końcu jedna etykieta: "wystarczy zwykły czat" albo "chcę wyszukiwanie / tryb myślenia / własne wagi".
+```
+
+## Teraz wiesz
+
+- LLM przewiduje kolejny token. Reszta umiejętności jest skutkiem ubocznym.
+- Transformer (2017) i dostrajanie na ocenach ludzi tłumaczą _skąd_ czat, nie _która_ naklejka jest dziś na szczycie.
+- Wybierasz kryteriami: zadanie, prywatność, długość, budżet. Nie tabelą z wtorku.
+
+**Następny krok:** [Modele rozumujące](/jak-dziala-ai/modele-rozumujace/) - co robi przycisk "myślenia" i kiedy tylko spowalnia.
+
+<SlowniczekStrony terminy={["token", "chatbot", "genai", "okno-kontekstowe", "open-weight"]} />

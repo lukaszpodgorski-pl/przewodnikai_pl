@@ -24,17 +24,10 @@ faq:
     a: Nie ma wzorów. Pojęcia takie jak embedding czy funkcja straty tłumaczę przez analogie i przykłady, nie przez notację. Jeśli chcesz wejść głębiej w matematykę, w sekcji Zasoby znajdziesz odesłania do materiałów, które to robią.
   - q: Po co mi wiedza o tokenach i oknie kontekstowym?
     a: "Bo od tokenów zależy, ile tekstu model bierze pod uwagę naraz i ile kosztuje korzystanie z modelu przez API (dostęp do modelu dla programistów, bez okna czatu). To też najczęstsza przyczyna, dla której AI gubi początek długiej rozmowy. Cennik otwierasz u dostawcy - zestawienie planów jest w [Ile kosztuje AI](/narzedzia/ile-kosztuje-ai/)."
-status: zastane
+status: gotowe
 ---
 
-import { CardGrid, LinkCard, Card } from '@astrojs/starlight/components';
-
-
-:::note[Ta sekcja jest w przebudowie]
-Przechodzę przez te teksty lekcja po lekcji i poprawiam to, co się nie broni.
-Lekcje wracają tutaj pojedynczo, w miarę jak kończę przegląd - pod tymi samymi
-adresami co wcześniej. Poniżej lista tego, co się w tej sekcji pojawi.
-:::
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
 
 ![Przezroczysty mózg-maszyna z trybikami i węzłami sieci - jak działa AI](../../../assets/jak-dziala-ai/przeglad.jpg)
 
@@ -61,47 +54,73 @@ Nie ma tu instrukcji obsługi konkretnych narzędzi ani technik pisania promptó
 ## Lekcje w tej sekcji
 
 <CardGrid>
-	<Card title="AI, ML, sieci neuronowe">
-		Ułożysz pięć przykładów z życia na pięciu piętrach matrioszki: AI, uczenie maszynowe, sieci neuronowe, uczenie głębokie i generatywna AI. Ćwiczenie: 5 minut. (w przygotowaniu)
-	</Card>
-	<Card title="Jak uczą się modele AI">
-		Przypiszesz trzy przykłady z życia do uczenia nadzorowanego, nienadzorowanego i przez wzmacnianie. Ćwiczenie: 5 minut. (w przygotowaniu)
-	</Card>
-	<Card title="Typy AI">
-		Dowiesz się, że cała dzisiejsza AI to wąska AI, a AGI (ogólna) i ASI (superinteligencja) na razie nie istnieją. Ćwiczenie: 5 minut. (w przygotowaniu)
-	</Card>
-	<Card title="Modele językowe LLM">
-		Rozpoznasz, że czat tylko przewiduje kolejne słowo, i dobierzesz narzędzie według zadania, nie rankingu z internetu. Ćwiczenie: 5 minut. (w przygotowaniu)
-	</Card>
-	<Card title="Modele rozumujące">
-		Kiedy włączyć tryb myślenia, a kiedy nie. Ćwiczenie: 5 minut. (w przygotowaniu)
-	</Card>
-	<Card title="Tokeny i okno kontekstowe">
-		Policzysz tokeny (kawałki tekstu) na własnym zdaniu i zrozumiesz, dlaczego długa rozmowa z AI zaczyna gubić początek. Ćwiczenie: 5 minut. (w przygotowaniu)
-	</Card>
-	<Card title="Embedding">
-		Zobaczysz, że AI łączy zdania o tym samym problemie, nawet bez wspólnych słów, i nie daje się zwieść zdaniu, które tylko brzmi podobnie. Ćwiczenie: 5 minut. (w przygotowaniu)
-	</Card>
-	<Card title="RAG - AI na Twoich dokumentach">
-		Najpierw cytat z Twojego tekstu, potem odpowiedź. Ćwiczenie: 5 minut. (w przygotowaniu)
-	</Card>
-	<Card title="Ustawienia losowania: temperatura i top-p">
-		Na trzech próbach zobaczysz, jak szeroko model losuje kolejne słowa, i nauczysz się zawężać ten wybór, gdy zależy Ci na jednej, przewidywalnej odpowiedzi. Ćwiczenie: 5 minut. (w przygotowaniu)
-	</Card>
-	<Card title="Rozumienie danych dla nieprogramistów">
-		Trzy pytania do zbioru danych, zanim uwierzysz wykresowi. Ćwiczenie: 5 minut. (w przygotowaniu)
-	</Card>
-	<Card title="Dlaczego AI teraz?">
-		Przypiszesz nagłówek o AI do jednego z trzech filarów boomu: mocy obliczeniowej, danych albo algorytmu. Ćwiczenie: 5 minut. (w przygotowaniu)
-	</Card>
-	<Card title="Agenci AI">
-		Odróżnisz agenta, który sam wykonuje zadanie, od chatbota, który tylko podpowiada, i wskażesz, które działanie zostawiasz do własnej zgody. Ćwiczenie: 5 minut. (w przygotowaniu)
-	</Card>
-	<Card title="Mapa systemów AI">
-		Ułożysz trzy systemy, których używasz na co dzień, na czterech warstwach mapy AI: fundament, autonomia, protokoły i nadzór. Ćwiczenie: 5 minut. (w przygotowaniu)
-	</Card>
+	<LinkCard
+		title="AI, ML, sieci neuronowe"
+		description="Ułożysz pięć przykładów z życia na pięciu piętrach matrioszki: AI, uczenie maszynowe, sieci neuronowe, uczenie głębokie i generatywna AI. Ćwiczenie: 5 minut."
+		href="/jak-dziala-ai/ai-ml-sieci-neuronowe/"
+	/>
+	<LinkCard
+		title="Jak uczą się modele AI"
+		description="Przypiszesz trzy przykłady z życia do uczenia nadzorowanego, nienadzorowanego i przez wzmacnianie. Ćwiczenie: 5 minut."
+		href="/jak-dziala-ai/jak-ucza-sie-modele/"
+	/>
+	<LinkCard
+		title="Typy AI"
+		description="Dowiesz się, że cała dzisiejsza AI to wąska AI, a AGI (ogólna) i ASI (superinteligencja) na razie nie istnieją. Ćwiczenie: 5 minut."
+		href="/jak-dziala-ai/typy-ai/"
+	/>
+	<LinkCard
+		title="Modele językowe LLM"
+		description="Rozpoznasz, że czat tylko przewiduje kolejne słowo, i dobierzesz narzędzie według zadania, nie rankingu z internetu. Ćwiczenie: 5 minut."
+		href="/jak-dziala-ai/modele-jezykowe/"
+	/>
+	<LinkCard
+		title="Modele rozumujące"
+		description="Kiedy włączyć tryb myślenia, a kiedy nie. Ćwiczenie: 5 minut."
+		href="/jak-dziala-ai/modele-rozumujace/"
+	/>
+	<LinkCard
+		title="Tokeny i okno kontekstowe"
+		description="Policzysz tokeny (kawałki tekstu) na własnym zdaniu i zrozumiesz, dlaczego długa rozmowa z AI zaczyna gubić początek. Ćwiczenie: 5 minut."
+		href="/jak-dziala-ai/tokeny-i-kontekst/"
+	/>
+	<LinkCard
+		title="Embedding"
+		description="Zobaczysz, że AI łączy zdania o tym samym problemie, nawet bez wspólnych słów, i nie daje się zwieść zdaniu, które tylko brzmi podobnie. Ćwiczenie: 5 minut."
+		href="/jak-dziala-ai/embedding/"
+	/>
+	<LinkCard
+		title="RAG - AI na Twoich dokumentach"
+		description="Najpierw cytat z Twojego tekstu, potem odpowiedź. Ćwiczenie: 5 minut."
+		href="/jak-dziala-ai/rag/"
+	/>
+	<LinkCard
+		title="Ustawienia losowania: temperatura i top-p"
+		description="Na trzech próbach zobaczysz, jak szeroko model losuje kolejne słowa, i nauczysz się zawężać ten wybór, gdy zależy Ci na jednej, przewidywalnej odpowiedzi. Ćwiczenie: 5 minut."
+		href="/jak-dziala-ai/parametry-modeli/"
+	/>
+	<LinkCard
+		title="Rozumienie danych dla nieprogramistów"
+		description="Trzy pytania do zbioru danych, zanim uwierzysz wykresowi. Ćwiczenie: 5 minut."
+		href="/jak-dziala-ai/dane-dla-poczatkujacych/"
+	/>
+	<LinkCard
+		title="Dlaczego AI teraz?"
+		description="Przypiszesz nagłówek o AI do jednego z trzech filarów boomu: mocy obliczeniowej, danych albo algorytmu. Ćwiczenie: 5 minut."
+		href="/jak-dziala-ai/boom-ai/"
+	/>
+	<LinkCard
+		title="Agenci AI"
+		description="Odróżnisz agenta, który sam wykonuje zadanie, od chatbota, który tylko podpowiada, i wskażesz, które działanie zostawiasz do własnej zgody. Ćwiczenie: 5 minut."
+		href="/jak-dziala-ai/agenci-ai/"
+	/>
+	<LinkCard
+		title="Mapa systemów AI"
+		description="Ułożysz trzy systemy, których używasz na co dzień, na czterech warstwach mapy AI: fundament, autonomia, protokoły i nadzór. Ćwiczenie: 5 minut."
+		href="/jak-dziala-ai/mapa-ai/"
+	/>
 </CardGrid>
 
 :::note[Następny krok]
-**Zacznij tutaj:** lekcje tej sekcji wracają po przeglądzie. Dziś możesz czytać: [Podstawy](/podstawy/) (8 lekcji, dla początkujących), [Prompt Engineering](/prompt-engineering/) (10 lekcji), [Narzędzia AI](/narzedzia/) (9 lekcji), [Suwerenne AI](/suwerenne-ai/) (4 lekcje), [AI w praktyce](/praktyka/) (4 lekcje), [Etyka i bezpieczeństwo](/etyka/) (4 lekcje) i [Claude Code](/claude-code/) (21 lekcji, poziom średni, wymaga terminala). Trudne słowa wyjaśnia [słownik pojęć](/zasoby/slownik-pojec/).
+**Zacznij tutaj:** [AI, ML, sieci neuronowe](/jak-dziala-ai/ai-ml-sieci-neuronowe/) - rozłożysz sieć neuronową, piętro matrioszki, które w Podstawach tylko padło.
 :::

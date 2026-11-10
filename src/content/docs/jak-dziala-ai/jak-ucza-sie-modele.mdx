@@ -1,0 +1,120 @@
+---
+title: Jak uczą się modele AI
+description: Przypiszesz trzy systemy do uczenia nadzorowanego, nienadzorowanego albo przez wzmacnianie. Ćwiczenie zajmie 5 minut.
+sidebar:
+  label: 'Jak uczą się modele'
+  order: 2
+educationalLevel: Beginner
+teaches:
+  - Że typ uczenia wynika z danych, nie z życzenia
+  - Różnica między uczeniem nadzorowanym, nienadzorowanym i przez wzmacnianie
+  - Czemu zła etykieta albo "nauka na pamięć" psuje wynik na nowych przypadkach
+about:
+  - name: Uczenie maszynowe
+    sameAs: https://pl.wikipedia.org/wiki/Uczenie_maszynowe
+  - name: Uczenie nadzorowane
+    sameAs: https://pl.wikipedia.org/wiki/Uczenie_nadzorowane
+  - name: Uczenie nienadzorowane
+    sameAs: https://pl.wikipedia.org/wiki/Uczenie_nienadzorowane
+  - name: Uczenie przez wzmacnianie
+    sameAs: https://pl.wikipedia.org/wiki/Uczenie_przez_wzmacnianie
+faq:
+  - q: Czy chatbot uczy się z tej rozmowy, którą teraz piszę?
+    a: Nie w tej rozmowie. Odpowiedź wychodzi z wag - liczb w modelu ustawionych wcześniej, w treningu. Twoja rozmowa może trafić do logów albo do przyszłego treningu u dostawcy - to decyzja firmy i ustawień konta, nie "nauka na żywo". Żeby model na stałe zmienił zachowanie, ktoś musi go wytrenować albo dostroić osobno.
+  - q: Czy więcej danych zawsze pomaga?
+    a: Nie, gdy dane są złe albo gdy model wykuł zbiór na pamięć i pada na nowym przypadku. Ilość bez jakości powiela błąd. Przy uczeniu nadzorowanym liczy się też, czy etykiety są prawdziwe.
+  - q: Skąd w filtrze spamu bierze się uprzedzenie, skoro nikt nie wpisał reguły?
+    a: Reguły wyszły z przykładów. Jeśli w etykietach "spam" częściej lądowały maile w jednym języku albo z jednej dzielnicy, model powtórzy ten wzorzec. Nikt nie musiał pisać "dyskryminuj" - wystarczyły krzywe dane. Ścianę danych rozpisują [Ograniczenia](/podstawy/ograniczenia/).
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+![Osoba przy tablicy z przypiętymi kartami przykładów, pośrodku robot otoczony strzałkami](../../../assets/jak-dziala-ai/jak-ucza-sie-modele/jak-ucza-sie-modele.jpg)
+
+:::note[O tej stronie]
+**Czas:** ok. 7 minut czytania + 5 minut ćwiczenia.
+**Poziom:** początkujący, po lekcji [AI, ML, sieci neuronowe](/jak-dziala-ai/ai-ml-sieci-neuronowe/).
+**Wcześniej:** [AI, ML, sieci neuronowe](/jak-dziala-ai/ai-ml-sieci-neuronowe/) - wiesz, że uczenie maszynowe wyciąga reguły z danych. **Teraz:** sprawdzasz, _z jakich_ danych, bo od nich zależy typ nauki.
+:::
+
+## Na tej stronie nadasz etykietę trzem sposobom nauki
+
+Po tej lekcji trzy sytuacje z tabeli (albo z własnego dnia) mają jedną etykietę: nadzorowane, nienadzorowane albo przez wzmacnianie. Nie liczysz tu warstw sieci - to była [poprzednia strona](/jak-dziala-ai/ai-ml-sieci-neuronowe/).
+
+Jedna rzecz do zapamiętania: **typ uczenia wynika z danych. Z etykietą - nadzorowane. Bez - nienadzorowane. Z nagrodą - wzmacnianie.**
+
+## Nikt nie wpisał "rozpoznawaj twarz". Poszły przykłady
+
+Otwierasz galerię. Telefon pyta: "to ta sama osoba?". Ktoś nie napisał listy cech (odległość oczu, kształt ucha). System dostał stos zdjęć z podpisem i dopasował wagi (liczby w modelu ustawione w treningu) tak, żeby na nowym zdjęciu też trafić.
+
+To jest <Termin id="uczenie-maszynowe">uczenie maszynowe</Termin>: zamiast instrukcji "jeśli-to" model ogląda dane i sam wyciąga wzorzec. Poprzednia lekcja powiedziała, _że_ ML się uczy. Ta mówi, _z czego_.
+
+Poniżej są trzy źródła sygnału, z którego model się uczy - a nie trzy coraz lepsze metody.
+
+## Trzy sygnały, nie trzy ligi
+
+### Nadzorowane (supervised) - jest poprawna odpowiedź
+
+Model dostaje przykład i poprawną odpowiedź do niego (etykietę). Mail + "spam". Zdjęcie + "kot". Opis mieszkania (metraż, dzielnica, piętro) + cena, za jaką się sprzedało.
+
+Po treningu zgaduje etykietę dla nowego przypadku. Filtr spamu z ręcznie oznaczonych wiadomości. Twarz z podpisanych zdjęć.
+
+Haczyk: jeśli etykiety są błędne, model nauczy się błędu. Model nie "wie", że ktoś klikał spam na oślep.
+
+### Nienadzorowane (unsupervised) - nikt nie podpisał
+
+Dostaje stertę bez karteczek. Sam szuka grup. Klienci o podobnych zakupach. Transakcje, które nie pasują do reszty.
+
+Nie przewiduje gotowej etykiety, bo jej nie było. Wiąże to, co w danych siedzi obok siebie. Nazwę grupy i tak potem nadaje człowiek.
+
+### Przez wzmacnianie (reinforcement learning) - punkt za ruch
+
+Nie dostaje pary "wejście - etykieta". Dostaje środowisko i wynik: plus za wygraną, minus za wpadnięcie do rowu. Próbuje, dostaje sygnał, zmienia strategię.
+
+Gry (historycznie AlphaGo w Go, [Silver i in., Nature 2016](https://www.nature.com/articles/nature16961)), robot, który uczy się nie przewracać, a później - dostrajanie asystenta, żeby ludzie woleli jedną odpowiedź od drugiej. Szczegół "jak z surowego uzupełniacza zdań zrobić pomocnego chatbota" wraca przy [modelach językowych](/jak-dziala-ai/modele-jezykowe/).
+
+Nie musisz pamiętać angielskich skrótów. Pytanie brzmi: **skąd model wiedział, że trafił?**
+
+## Jedna wpadka, którą widać z zewnątrz
+
+Model może wykuć zbiór treningowy na pamięć i zawieść przy pierwszym nowym przypadku (przeuczenie). Z Twojej strony to wygląda tak: "w demo działało, na moim pliku nie". Często winny nie jest "głupi model". Twoje dane wyglądają inaczej niż te, na których model się uczył. Bywa też, że prawdziwych przykładów było za mało, a powtórzeń za dużo.
+
+Jakość wejścia wygrywa z elegancją metody. Śmieci na wejściu, śmieci na wyjściu. Uprzedzenie w etykietach nie jest osobnym typem uczenia - to ta sama ściana danych, co w [Ograniczeniach](/podstawy/ograniczenia/).
+
+Sieci i deep learning były na [poprzedniej stronie](/jak-dziala-ai/ai-ml-sieci-neuronowe/). Tu zostawiasz jedno pytanie: **jaki sygnał dostał?**
+
+## Ćwiczenie: 5 minut, trzy etykiety
+
+Najpierw zapisz własną etykietę w tabeli, dopiero potem czytaj dalej.
+
+| Sytuacja | Twoja etykieta |
+| --- | --- |
+| Tysiąc maili ręcznie oznaczonych "spam / nie spam" | |
+| Sklep ma historię zakupów bez gotowych grup i wiąże podobnych klientów | |
+| Program gra w szachy i dostaje punkt za wygraną | |
+
+Potem porównaj: 1 nadzorowane, 2 nienadzorowane, 3 wzmacnianie.
+
+**Zaliczenie:** trzy własne etykiety na kartce i liczba trafień. 2/3 zalicza.
+
+**Typowy wynik:** "grupowanie klientów" wrzucone do nadzorowanego, bo "przecież to inteligentne". Nikt jednak nie podpisał grup z góry - dlatego to nienadzorowane.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** wymyśl czwartą sytuację z własnego dnia i wklej do <Termin id="chatbot">chatbota</Termin>:
+
+```text
+Sytuacja: [wklej jedno zdanie]. Odpowiedz tylko etykietą: nadzorowane, nienadzorowane albo wzmacnianie. Jedno zdanie: jaki sygnał dostał model. Jeśli z opisu nie wynika, jakich danych użyto, napisz "za mało danych".
+```
+
+Twoja etykieta jest punktem odniesienia. Model może się pomylić - i to też jest lekcja.
+
+## Teraz wiesz
+
+- Typ uczenia bierze się z danych: etykieta, brak etykiety, albo nagroda za ruch.
+- Chatbot nie "uczy się Ciebie" w trakcie bieżącej rozmowy. Wagi są z wcześniejszego treningu.
+- Gdy demo działa, a Twój przypadek nie, najpierw pytaj o dane i przeuczenie, nie o "czy AI jest zła".
+
+**Następny krok:** [Typy AI](/jak-dziala-ai/typy-ai/) - wąska, ogólna, superinteligencja. Która z nich w ogóle istnieje.
+
+<SlowniczekStrony terminy={["uczenie-maszynowe", "chatbot"]} />

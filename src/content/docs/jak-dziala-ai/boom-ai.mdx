@@ -1,0 +1,135 @@
+---
+title: Dlaczego AI teraz? - Historia boomu sztucznej inteligencji
+description: Przypiszesz nagłówek o AI do jednego z trzech filarów boomu - moc, dane albo algorytm. Ćwiczenie zajmie 5 minut.
+sidebar:
+  label: 'Dlaczego AI teraz?'
+  order: 11
+educationalLevel: Beginner
+teaches:
+  - Dlaczego boom AI przyszedł po zbiegu mocy, danych i architektury Transformer
+  - Które daty są kotwicami historii, a które nie są stanem na dziś
+  - Czym ChatGPT różnił się od wcześniejszych modeli poza samą skalą
+about:
+  - name: Sztuczna inteligencja
+    sameAs: https://pl.wikipedia.org/wiki/Sztuczna_inteligencja
+  - name: Transformer
+    sameAs: https://en.wikipedia.org/wiki/Transformer_(deep_learning_architecture)
+mentions:
+  - name: OpenAI
+    sameAs: https://en.wikipedia.org/wiki/OpenAI
+    type: Organization
+  - name: Google
+    sameAs: https://en.wikipedia.org/wiki/Google
+    type: Organization
+  - name: Microsoft
+    sameAs: https://en.wikipedia.org/wiki/Microsoft
+    type: Organization
+faq:
+  - q: Dlaczego boom AI nastąpił dopiero teraz, skoro sieci neuronowe znano od dekad?
+    a: Same sieci nie wystarczyły. Zbiegły się trzy rzeczy - tania na żądanie moc obliczeniowa (GPU i chmura), ogrom tekstu i obrazów w internecie oraz architektura Transformer z 2017 roku. Żaden filar sam nie zrobił ChatGPT.
+  - q: Czy ChatGPT był pierwszym dużym modelem językowym?
+    a: Nie. GPT-3 był publicznie opisany już w 2020. Przełom masowy to interfejs czatu, darmowy dostęp na start i trening z oceną ludzi (RLHF), nie sam fakt, że model umie dokańczać zdania.
+  - q: Czy większy model zawsze znaczy lepszy?
+    a: Przez kilka lat skalowanie (więcej parametrów, danych i obliczeń) dawało przewidywalny skok. To odkrycie historyczne, nie prawo fizyki na zawsze. Później weszły mniejsze modele i tańsze treningi - mapa graczy się poszerza, filary zostają.
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+![Rosnąca krzywa nad osią czasu - boom sztucznej inteligencji](../../../assets/jak-dziala-ai/boom-ai/boom-ai.jpg)
+
+:::note[O tej stronie]
+**Czas:** ok. 8 minut czytania + 5 minut ćwiczenia.
+**Poziom:** początkujący, po lekcji [Rozumienie danych](/jak-dziala-ai/dane-dla-poczatkujacych/). Możesz ją przeczytać zaraz po [Modelach językowych LLM](/jak-dziala-ai/modele-jezykowe/) - to z nich bierze Transformer i dostrajanie na ocenach ludzi.
+**Wcześniej:** [Rozumienie danych](/jak-dziala-ai/dane-dla-poczatkujacych/) - wiesz, że dane niosą luki. **Teraz:** sprawdzasz, dlaczego te modele weszły do przeglądarki akurat teraz.
+:::
+
+## Na tej stronie nazwiesz filar, nie dekadę
+
+Po tej lekcji weźmiesz jeden nagłówek o AI i powiesz, którego filaru dotyczy: mocy obliczeniowej, danych albo algorytmu. Oś czasu przeglądasz wzrokiem. Nie zdajesz egzaminu z lat.
+
+Jedna rzecz do zapamiętania: **boom to zbieg trzech rzeczy. Nie "nagle ktoś wymyślił inteligencję".**
+
+## Sieci były. Brakowało zbiegu
+
+Sztuczna inteligencja jako dziedzina rodzi się w latach 50. XX wieku. Sieci neuronowe znano od dekad. Potem przyszły "zimy" - za mało mocy, za mało danych, za duże obietnice.
+
+Nie uczysz się tu listy dat. Kotwice, do których wracasz, są dwie: **2017** (Transformer) i **2022** (ChatGPT w przeglądarce). Reszta to droga.
+
+Skrót, bez wkuwania:
+
+- 1950-1956 - Turing, Dartmouth, narodziny dziedziny
+- 1958 - perceptron Franka Rosenblatta, jedna z pierwszych sieci neuronowych
+- lata 70-80. - zimy finansowania
+- 1997 - Deep Blue wygrywa w szachy z Kasparowem
+- 2012 - sieć AlexNet wyraźnie wygrywa konkurs rozpoznawania obrazów ImageNet
+- 2016 - program AlphaGo pokonuje mistrza w go
+- 2017 - [Vaswani i in., "Attention Is All You Need"](https://arxiv.org/abs/1706.03762)
+- 2020 - GPT-3 (OpenAI opisuje model ze 175 miliardami parametrów w [preprincie](https://arxiv.org/abs/2005.14165))
+- listopad 2022 - ChatGPT
+- 2024-2026 - tryby "myślenia" i agenci w produktach codziennych; w styczniu 2025 r. DeepSeek pokazuje w [otwartej publikacji](https://arxiv.org/abs/2501.12948), że rozumowania da się uczyć taniej
+
+To kotwice, nie ranking "kto wygrywa w tym tygodniu".
+
+## Trzy filary. Żaden nie wystarczył sam
+
+**1. Moc.** Karty graficzne (GPU) okazały się dobre do treningu sieci. Chmura (AWS, Google Cloud, Azure) dała tę moc na godziny, bez własnej serwerowni. Filar zostaje: bez taniej mocy do miliardów prostych obliczeń naraz nie ma dzisiejszych <Termin id="chatbot">chatbotów</Termin>.
+
+**2. Dane.** Internet już leżał. Wikipedia, fora, kod, książki - materiał, którego nikt nie musiał tworzyć "pod AI". Z [Rozumienia danych](/jak-dziala-ai/dane-dla-poczatkujacych/) i [Ograniczeń](/podstawy/ograniczenia/) wiesz, że ten materiał niesie luki i uprzedzenia. Boom nie czyści danych. Boom je zjada.
+
+**3. Algorytm.** Transformer (2017) - opisany w [Modelach językowych LLM](/jak-dziala-ai/modele-jezykowe/) - pozwolił modelom brać pod uwagę daleki kontekst w tekście. Tu wystarczy tyle: bez tej cegły skalowanie utknęłoby na wcześniejszym stylu sieci.
+
+Prawo skalowania (scaling laws) to historyczne odkrycie z około 2020: przy większym modelu, większym zbiorze i większym budżecie obliczeń jakość rosła w przewidywalny sposób ([Kaplan i in.](https://arxiv.org/abs/2001.08361)). Stąd wyścig na skalę. Nie wstawiam tu tabeli "GPT-4 ma X bilionów parametrów" - OpenAI tego oficjalnie nie podało, a przecieki nie są lekcją.
+
+## ChatGPT zmienił wejście, nie fizykę modelu
+
+GPT-3 istniał od 2020 i nie wszedł do kolejek w sklepie. ChatGPT wszedł.
+
+Trzy różnice, które da się nazwać bez magii:
+
+1. **Czat** - piszesz jak do kogoś, nie przez <Termin id="api">API</Termin> (dostęp do modelu dla programistów, bez okna czatu).
+2. **Próg zero na start** - darmowy dostęp obniżył barierę (plany płatne doszły później).
+3. **RLHF** - dostrajanie na ocenach ludzi, które znasz z [Modeli językowych LLM](/jak-dziala-ai/modele-jezykowe/) ([Ouyang i in., 2022](https://arxiv.org/abs/2203.02155)). Efekt dla Ciebie: model częściej brzmi pomocnie. Nadal dobiera słowa.
+
+W styczniu 2023 r., dwa miesiące po publicznym starcie, analitycy UBS szacowali około 100 milionów aktywnych użytkowników miesięcznie - Reuters cytował tę notę [1 lutego 2023 r.](https://www.reuters.com/technology/chatgpt-sets-record-fastest-growing-user-base-analyst-note-2023-02-01/). To fakt startu, nie liczba "na dziś".
+
+## Wyścig, bez cennika z plotek
+
+Sukces ChatGPT pociągnął odpowiedzi innych firm: Gemini (wcześniej Bard) w Google, Claude w Anthropic, Llama w Meta, inwestycje chmur. Europejski wątek (Mistral) i polski - w [Suwerennym AI](/suwerenne-ai/).
+
+Za wyścigiem poszły pieniądze. Najgłośniejszy przykład to partnerstwo Microsoftu z OpenAI: jego historię opisało [CNBC w sierpniu 2024 r.](https://www.cnbc.com/2024/08/10/rise-of-openai-microsofts-13-billion-artificial-intelligence-bet.html), a kolejny rozdział firmy ogłosiły [w październiku 2025 r.](https://blogs.microsoft.com/blog/2025/10/28/the-next-chapter-of-the-microsoft-openai-partnership/). Kwot tu nie podaję - zmieniają się z każdą rundą finansowania, a lekcja ich nie potrzebuje. Szczegóły własności się zmieniają, filary nie.
+
+:::note[Źródła sprawdzone w listopadzie 2026 r.]
+100 milionów użytkowników to szacunek UBS z zimy 2023, nie stan konta OpenAI w tym tygodniu. Kwot inwestycji i nieoficjalnych rozmiarów GPT-4 tu nie ma.
+:::
+
+## Ćwiczenie: 5 minut, trzy filary
+
+Nie recytujesz osi. Przypinasz **trzy** zdania do filarów.
+
+W drugiej kolumnie zapisz własną etykietę: **moc**, **dane** albo **algorytm**. Jedno zdanie - jeden filar (ten, który ciągnie news, nawet jeśli w tle są dwa pozostałe).
+
+| Zdanie | Twój filar |
+| --- | --- |
+| "Nowa generacja GPU skraca trening wielkich modeli." | |
+| "Model uczył się na publicznym internecie, forach i kodzie." | |
+| "Dzisiejsze chatboty stoją na architekturze Transformer z 2017 roku." | |
+
+Potem porównaj: moc / dane / algorytm.
+
+**Zaliczenie:** trzy własne etykiety na kartce, potem liczba trafień (2/3 zalicza). Nie googlasz kapitalizacji firm. Nie podajesz liczby parametrów.
+
+**Typowy wynik:** pomyłka przy zdaniu o Transformerze, które łatwo wziąć za "moc", bo mowa w nim o chatbotach. Architektura to algorytm.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** jeden prawdziwy nagłówek z tego tygodnia. Jedno zdanie: który filar naprawdę opisuje, a które słowo w tytule jest ozdobą.
+
+## Teraz wiesz
+
+- Trzy filary: moc (GPU i chmura), dane (internet), algorytm (Transformer). Zbieg, nie cud.
+- ChatGPT wygrał wejściem i RLHF, nie tym, że "pierwszy umiał język".
+- Daty i liczby z tej strony to kotwice ze źródłem. Plotka o rozmiarze GPT-4 nie jest lekcją.
+
+**Następny krok:** [Agenci AI](/jak-dziala-ai/agenci-ai/) - kiedy system dostaje cel i sam wykonuje kroki, zamiast tylko odpowiadać.
+
+<SlowniczekStrony terminy={["chatbot", "api"]} />

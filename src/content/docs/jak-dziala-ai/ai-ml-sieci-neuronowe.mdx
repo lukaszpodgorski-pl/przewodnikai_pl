@@ -1,0 +1,109 @@
+---
+title: AI, ML, sieci neuronowe
+description: Przypiszesz pięć codziennych systemów do pięciu pięter matrioszki AI - od reguły po generatywną AI. Ćwiczenie zajmie 5 minut.
+sidebar:
+  order: 1
+educationalLevel: Beginner
+teaches:
+  - Pięć pięter AI - uczenie maszynowe, sieci neuronowe, uczenie głębokie, generatywna AI
+  - Czym jest sieć neuronowa i dlaczego wiele warstw dało skok w języku i obrazie
+  - Że nie każda "AI" uczy się z danych
+about:
+  - name: Sztuczna inteligencja
+    sameAs: https://pl.wikipedia.org/wiki/Sztuczna_inteligencja
+  - name: Uczenie maszynowe
+    sameAs: https://pl.wikipedia.org/wiki/Uczenie_maszynowe
+  - name: Sztuczna sieć neuronowa
+    sameAs: https://pl.wikipedia.org/wiki/Sztuczna_sie%C4%87_neuronowa
+faq:
+  - q: Czy GPS to uczenie maszynowe?
+    a: Wyznaczanie najkrótszej trasy to algorytm, czyli AI w szerokim sensie, nie ML. Szacowanie czasu przejazdu z danych o ruchu to już ML - dlatego nowoczesna nawigacja łączy oba piętra.
+  - q: Czy ChatGPT to "całe AI"?
+    a: Nie. ChatGPT to generatywna AI zbudowana na uczeniu głębokim - najgłębsze piętra tej matrioszki. Nad nimi są sieci neuronowe, uczenie maszynowe i całe AI. Filtr spamu z ręczną listą słów też jest AI i nie ma w sobie sieci neuronowej.
+  - q: Po co mi to rozróżnienie przy czacie?
+    a: Żeby nie oczekiwać od chatbota tego, co umie reguła, i odwrotnie. "AI zrobiła X" w newsie może znaczyć cokolwiek z tej matrioszki.
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+![Trzy koncentryczne pierścienie z klastrem węzłów sieci - zagnieżdżenie AI, uczenia maszynowego i sieci neuronowych](../../../assets/jak-dziala-ai/ai-ml-sieci-neuronowe/ai-ml-sieci-neuronowe.jpg)
+
+:::note[O tej stronie]
+**Czas:** ok. 7 minut czytania + 5 minut ćwiczenia.
+**Poziom:** początkujący, po [Podstawach](/podstawy/).
+**Wcześniej:** [Weryfikacja informacji](/podstawy/weryfikacja-informacji/) - umiesz sprawdzić wynik AI. **Teraz:** zaglądasz, skąd ten wynik się bierze, i zaczynasz od sieci neuronowej - piętra matrioszki z [Czym jest AI?](/podstawy/czym-jest-ai/), które tam tylko padło.
+:::
+
+## Na tej stronie ułożysz matrioszkę
+
+Po tej lekcji pięć przykładów z tabeli (albo z własnego dnia) dostanie etykietę z jednego z pięciu pięter: AI bez uczenia, uczenie maszynowe, sieć neuronowa, uczenie głębokie albo generatywna AI. Nie uczysz się tu, jak liczy się warstwa.
+
+Jedna rzecz do zapamiętania: **każda sieć neuronowa to uczenie maszynowe, każde uczenie maszynowe to AI. Nie każda AI się uczy.**
+
+## Matrioszkę już znasz. Tu rozkładamy jedno piętro
+
+Z lekcji [Czym jest AI?](/podstawy/czym-jest-ai/) znasz podział "reguła albo dane" i zagnieżdżone zbiory: AI, uczenie maszynowe, uczenie głębokie, generatywna AI. Padło tam też, że sieci neuronowe są budulcem uczenia głębokiego. Tu robię z nich osobne piętro, bo na nim stoi reszta tej sekcji. Pełna matrioszka ma pięć pięter:
+
+1. **AI** - najszersze: program robi zadanie kojarzone z inteligencją (rozpoznać, wybrać, zaplanować).
+2. **<Termin id="uczenie-maszynowe">Uczenie maszynowe</Termin> (ML)** - reguły wychodzą z danych, nie z ręcznej listy "jeśli-to".
+3. **Sieci neuronowe** - jeden ze sposobów uczenia maszynowego: układ prostych przeliczeń połączonych w warstwy.
+4. **<Termin id="uczenie-glebokie">Uczenie głębokie</Termin>** (deep learning) - sieci z wieloma warstwami.
+5. **<Termin id="genai">Generatywna AI</Termin>** - uczenie głębokie, które wytwarza nową treść. Tu siedzą ChatGPT, Claude i generatory obrazów.
+
+Każde piętro mieści się w poprzednim. Nagłówek, który mówi tylko "AI", nie mówi, o którym piętrze jest.
+
+## Sieć neuronowa: dużo prostych przeliczeń w warstwach
+
+Sieć neuronowa nie jest kawałkiem mózgu w komputerze. Nazwa wzięła się z luźnej inspiracji neuronami, a w środku są zwykłe liczby.
+
+Weź rozpoznawanie twarzy w telefonie. Zdjęcie wchodzi do sieci jako piksele, czyli liczby. Pierwsza warstwa przelicza je na proste sygnały, następna składa z nich bardziej złożone i tak dalej. Na końcu wychodzi jedna odpowiedź: "twarz" albo "nie twarz". Każde przeliczenie ma swoje wagi - liczby ustawione w treningu tak, żeby na przykładach wychodziła poprawna odpowiedź. Jak ten trening wygląda, zobaczysz w [następnej lekcji](/jak-dziala-ai/jak-ucza-sie-modele/).
+
+Uczenie głębokie to sieć z wieloma warstwami. Dzięki tej głębokości sieć sama wypracowuje, na co patrzeć, i radzi sobie z surowym obrazem, dźwiękiem albo tekstem. Stąd skok w rozpoznawaniu mowy, obrazu i w pracy z językiem.
+
+Dwie daty dla orientacji. Sztuczna inteligencja jako dziedzina rodzi się w latach 50. XX wieku. Transformer z 2017 roku ([Vaswani i in.](https://arxiv.org/abs/1706.03762)) to sposób budowy sieci, w którym model przy każdym słowie bierze pod uwagę cały tekst naraz - na nim stoją dzisiejsze chatboty. Więcej w [Modelach językowych LLM](/jak-dziala-ai/modele-jezykowe/).
+
+## Dwa piętra, które mylą najczęściej
+
+**AI bez uczenia maszynowego.** Filtr spamu z ręczną listą słów (znasz go z Podstaw) i wyznaczanie najkrótszej trasy na mapie. Oba wykonują inteligentne zadanie, ale niczego nie uczą się z przykładów. Szacowanie czasu przejazdu z danych o ruchu to już uczenie maszynowe - dlatego nowoczesna nawigacja łączy oba piętra.
+
+**Uczenie maszynowe bez sieci.** Filtr spamu może uczyć się z tysięcy oznaczonych maili drzewem decyzyjnym, czyli serią pytań typu "czy w temacie jest link?", które program sam układa z przykładów. Uczy się, ale nie ma w nim ani jednej warstwy sieci.
+
+## Ćwiczenie: 5 minut, pięć etykiet
+
+Tabela jest sprawdzianem, nie ściągą. Najpierw zapisz własne etykiety w pierwszej tabeli (AI bez uczenia, uczenie maszynowe, sieć neuronowa, uczenie głębokie albo generatywna AI), dopiero potem przewiń niżej po odpowiedzi.
+
+| Przykład | Twoja etykieta (zanim zerkniesz) |
+| --- | --- |
+| Filtr spamu z ręczną listą słów | |
+| Filtr spamu uczony na przykładach | |
+| Twarz na telefonie | |
+| ChatGPT / Claude | |
+| Wyznaczanie najkrótszej trasy na mapie | |
+
+Potem porównaj:
+
+| Przykład | Kategoria |
+| --- | --- |
+| Filtr z ręczną listą słów | AI bez uczenia maszynowego |
+| Spam z przykładów | uczenie maszynowe, niekoniecznie sieć |
+| Twarz | zwykle sieć neuronowa, często głęboka |
+| Chatbot | generatywna AI na uczeniu głębokim |
+| Najkrótsza trasa | AI bez uczenia maszynowego |
+
+**Zaliczenie:** pięć własnych etykiet na kartce, potem liczba trafień. 3/5 już zalicza.
+
+**Typowy wynik:** trasa i filtr z ręczną listą wrzucone do jednego worka z ChatGPT. To dwie najczęstsze pomyłki - oba działają bez uczenia z przykładów.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** weź jeden nagłówek z dzisiaj i napisz jedno zdanie: które piętro naprawdę opisuje, a gdzie stoi tylko słowo "AI".
+
+## Teraz wiesz
+
+- Matrioszka ma pięć pięter: AI, uczenie maszynowe, sieci neuronowe, uczenie głębokie, generatywna AI. Każde mieści się w poprzednim.
+- Sieć neuronowa to warstwy prostych przeliczeń z wagami ustawionymi w treningu. Uczenie głębokie to sieć z wieloma warstwami.
+- "AI" na etykiecie produktu może być regułą. Chatbot siedzi na najgłębszym piętrze (generatywna AI), ale to nie cała dziedzina.
+
+**Następny krok:** [Jak uczą się modele](/jak-dziala-ai/jak-ucza-sie-modele/) - skąd w danych biorą się te reguły, których nikt nie wpisał ręcznie.
+
+<SlowniczekStrony terminy={["uczenie-maszynowe", "uczenie-glebokie", "genai"]} />

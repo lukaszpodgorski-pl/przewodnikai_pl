@@ -1,0 +1,113 @@
+---
+title: Tokeny i okno kontekstowe w AI
+description: Policzysz na własnym zdaniu, że model tnie tekst na kawałki, nie na słowa. Zobaczysz też, że okno rozmowy jest skończone. Ćwiczenie zajmie 5 minut.
+sidebar:
+  label: 'Tokeny i kontekst'
+  order: 6
+educationalLevel: Intermediate
+teaches:
+  - Że model nie czyta słów, tylko tokeny
+  - Że okno kontekstowe to blat o skończonej pojemności, nie pamięć
+  - Dlaczego polski tekst zwykle "waży" więcej niż angielski
+about:
+  - name: Tokenizacja
+    sameAs: https://en.wikipedia.org/wiki/Lexical_analysis#Tokenization
+  - name: Duży model językowy
+    sameAs: https://pl.wikipedia.org/wiki/Du%C5%BCy_model_j%C4%99zykowy
+faq:
+  - q: Czym jest token w modelu językowym?
+    a: Token to kawałek tekstu, na który model tnie to, co czyta i pisze. Bywa całym słowem, bywa połową, bywa znakiem. Jednostką modelu nie jest słowo i nie jest litera.
+  - q: Czym jest okno kontekstowe?
+    a: Okno kontekstowe to maksymalna liczba tokenów, które model widzi naraz - Twoje polecenie, historia rozmowy i powstająca odpowiedź. Gdy okno jest pełne, najstarsze fragmenty przestają być widoczne albo zostają streszczone - zależy od aplikacji. Model nie "zapomina". Przestaje widzieć całość.
+  - q: Dlaczego ta sama treść po polsku bywa droższa niż po angielsku?
+    a: Bo liczy się liczba tokenów, nie liczba słów. Polski często rozpada się na więcej kawałków niż równoległy angielski. W API płacisz za kawałki. W czacie ten sam narzut szybciej zapełnia okno.
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+import Tokenizacja from '../../../components/Tokenizacja.astro';
+
+![Zdanie rozpadające się na małe tokeny-puzzle przepływające przez okno kontekstowe](../../../assets/jak-dziala-ai/tokeny-i-kontekst/tokeny-i-kontekst.jpg)
+
+:::note[O tej stronie]
+**Czas:** ok. 7 minut czytania + 5 minut ćwiczenia.
+**Poziom:** średni, po lekcji [Modele rozumujące](/jak-dziala-ai/modele-rozumujace/).
+**Wcześniej:** [Modele rozumujące](/jak-dziala-ai/modele-rozumujace/) - wiesz, że tryb myślenia też zużywa tokeny. **Teraz:** sprawdzasz, czym token jest i dlaczego długa rozmowa "gubi" początek.
+:::
+
+## Na tej stronie zobaczysz, jak model tnie tekst i ile go mieści
+
+Po tej lekcji weźmiesz jedno zdanie i powiesz: model nie czyta słów. Tnie je na kawałki. Cała rozmowa musi się w tych kawałkach zmieścić. Nie uczysz się tu stawek <Termin id="api">API</Termin> (dostępu do modelu dla programistów, bez okna czatu) ani tabeli okien konkretnych modeli - te liczby starzeją się w miesiącach.
+
+Jedna rzecz do zapamiętania: **model widzi blat o stałej pojemności, liczonej w tokenach. Gdy blat jest pełny, najstarsze fragmenty przestają być widoczne albo zostają streszczone.**
+
+## To nie są słowa. To są kawałki
+
+<Termin id="chatbot">Chatbot</Termin> nie widzi Twojego zdania tak, jak Ty. Zanim cokolwiek "przeczyta", tnie tekst na <Termin id="token">tokeny</Termin>. Potem dokłada odpowiedź token po tokenie.
+
+Jedno krótkie, częste słowo bywa jednym tokenem. Dłuższe albo rzadsze - dwoma, trzema, pięcioma. Spacja też bywa częścią kawałka, nie separatorem.
+
+<Tokenizacja
+  przyklady={[
+    { slowo: '"Sztuczna"', tokeny: ['Sztu', 'czna'] },
+    { slowo: '"inteligencja"', tokeny: [' intelig', 'encja'] },
+    { slowo: '"analizuje"', tokeny: ['anali', 'zuje'] },
+  ]}
+  zrodlo="Zwróć uwagę na spację wiodącą w tokenie ' intelig' - dla modelu jest ona częścią tokena, nie separatorem."
+/>
+
+Polski zwykle rozpada się na więcej kawałków niż angielski o tej samej treści. W analizie z 2023 roku Petrov i in. pokazali, że tokenizery traktują języki nierówno - ten sam tekst w tłumaczeniu bywa wyraźnie "cięższy", zanim model w ogóle zacznie odpowiadać ([Petrov i in., 2023](https://arxiv.org/abs/2305.15425)). To kotwica mechanizmu, nie cennik na dziś. Swój narzut zmierzysz w ćwiczeniu.
+
+## Okno to stos, nie pamięć
+
+<Termin id="okno-kontekstowe">Okno kontekstowe</Termin> (ang. context window) to maksymalna liczba tokenów, które model widzi jednocześnie. Wchodzi w nie <Termin id="prompt">prompt</Termin>, cała dotychczasowa rozmowa i to, co model właśnie pisze.
+
+To nie jest dysk. To blat roboczy. Gdy blat jest pełny, aplikacja musi zrobić miejsce: najstarsze fragmenty przestają być widoczne albo zostają zastąpione streszczeniem (tak robi np. Claude w planach płatnych, gdy ma włączone wykonywanie kodu - [pomoc Claude](https://support.claude.com/en/articles/8606394-how-large-is-the-context-window-on-paid-claude-plans)). Model nie wraca do pominiętych szczegółów "z pamięci". W tym przebiegu ich po prostu nie ma.
+
+W broszurze modelu okno bywa ogromne. W oknie czatu często dostajesz mniej - i to zależy od planu, nie od nazwy modelu. Jeśli wklejasz gruby plik i odpowiedź gubi początek, najpierw sprawdź limit aplikacji, zanim ogłosisz, że "model jest głupi".
+
+Duże okno też nie znaczy, że każdy kawałek jest tak samo widoczny. W 2023 roku Liu i in. opisali efekt "lost in the middle": modele lepiej łapały informacje z początku i z końca kontekstu niż ze środka ([Liu i in., 2023](https://arxiv.org/abs/2307.03172)). Kolejne generacje to poprawiały. Na tej stronie zostaje ostrożność, nie ranking z tamtego roku: **ważne rzeczy stawiaj na górze albo na dole, nie zakopuj w środku długiego wklejenia.**
+
+W API płacisz za tokeny. Wejście (to, co wysyłasz) i wyjście (to, co model pisze) liczą się osobno. Wyjście bywa droższe. Polski, skoro tnie się na więcej kawałków, szybciej zapełnia okno i szybciej nalicza rachunek. Aktualne stawki są u dostawców i w [Ile kosztuje AI](/narzedzia/ile-kosztuje-ai/). Tu nie ma cennika - zestarzeje się szybciej niż ta lekcja.
+
+Jak model wybiera kolejny token i jakie ustawienia losowania na to wpływają, opisuję w [Ustawieniach losowania](/jak-dziala-ai/parametry-modeli/).
+
+:::note[Źródła sprawdzone w listopadzie 2026 r.]
+Nie ma tu tabeli okien ani stawek. Oba zmieniają się kilka razy w roku. Nierówność tokenizacji między językami: Petrov i in., 2023. Długi kontekst i środek sekwencji: Liu i in., 2023 - fakt z badań, nie specyfikacja dzisiejszego czatu.
+:::
+
+## Ćwiczenie: 5 minut, dwa zdania
+
+Nie zgadujesz, "ile tokenów ma polski w ogóle". Mierzysz jedną parę zdań.
+
+1. Otwórz [Tokenizer OpenAI](https://platform.openai.com/tokenizer) (darmowy podgląd; jeśli strona wymaga logowania, zrób wariant B niżej).
+2. Wklej po kolei, każde osobno, i zapisz dwie liczby:
+
+    ```text
+    Proszę o przesunięcie spotkania na wtorek.
+    ```
+
+    ```text
+    Please move the meeting to Tuesday.
+    ```
+
+3. Na kartce: które zajęło więcej tokenów? Jednym zdaniem: dlaczego to nie jest "liczba słów"?
+
+**Wariant B** (bez tokenizera): z widgetu na tej stronie zapisz trzy pary _słowo → liczba kawałków_. To też zaliczenie - widzisz, że słowo nie jest jednostką modelu.
+
+**Zaliczenie:** w ciągu 5 minut masz albo dwie liczby z tokenizera i etykietę "polski więcej / angielski więcej / podobnie", albo trzy pary z widgetu. Nie musisz wiedzieć, jak dokładnie działa cięcie. Nie musisz otwierać cennika.
+
+**Typowy wynik:** polskie zdanie zajmuje więcej tokenów niż angielskie, choć słów ma podobnie dużo. Jeśli wyjdzie po równo, też dobrze - masz pomiar zamiast zgadywania.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** w długiej rozmowie, którą już masz, zapytaj o rzecz z pierwszych wiadomości. Jeśli model zmyśla albo prosi o przypomnienie - to granica okna (początek przestał być widoczny albo został streszczony), nie "zła pamięć".
+
+## Teraz wiesz
+
+- Model tnie tekst na tokeny. Słowo i token to nie to samo.
+- Okno kontekstowe to blat o skończonej pojemności. Gdy się zapełni, najstarsze fragmenty przestają być widoczne albo zostają streszczone.
+- Polski zwykle waży więcej kawałków niż angielski. Liczby mierzy się, nie cytuje z pamięci.
+
+**Następny krok:** [Embedding](/jak-dziala-ai/embedding/) - jak tekst zamienia się w punkt na mapie znaczenia, dzięki czemu wyszukiwanie idzie po sensie, nie po literach.
+
+<SlowniczekStrony terminy={["token", "okno-kontekstowe", "prompt", "chatbot", "api"]} />

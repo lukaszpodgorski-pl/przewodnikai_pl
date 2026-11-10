@@ -1,0 +1,101 @@
+---
+title: 'Ustawienia losowania: temperatura i top-p'
+description: Na trzech odpowiedziach zobaczysz, jak szeroko model losuje kolejne słowa. Sprawdzisz też, kiedy zwęzić instrukcję. Ćwiczenie zajmie 5 minut.
+sidebar:
+  label: 'Ustawienia losowania'
+  order: 9
+educationalLevel: Intermediate
+teaches:
+  - Że kolejny token jest losowany, nie "wybierany jako jedyny"
+  - Co robi temperatura i czym różni się od top-p
+  - Jak zwęzić albo poszerzyć losowanie, gdy w czacie nie ma suwaka
+about:
+  - name: Duży model językowy
+    sameAs: https://pl.wikipedia.org/wiki/Du%C5%BCy_model_j%C4%99zykowy
+faq:
+  - q: Co robi temperatura w modelu językowym?
+    a: Temperatura steruje tym, jak szeroko model losuje kolejny token. Niska wartość trzyma się najbardziej oczywistych kontynuacji. Wysoka dopuszcza rzadsze, bardziej zaskakujące słowa. To nie jest "inteligencja". To szerokość loterii.
+  - q: Czy kręcić temperaturą i top-p naraz?
+    a: Nie. To dwa pokrętła na tę samą losowość. Temperatura spłaszcza albo wyostrza szanse. Top-p obcina ogon mało prawdopodobnych słów. Rusz jednym. Drugie zostaw.
+  - q: Nie mam suwaka temperatury w czacie. Co wtedy?
+    a: 'W większości chatbotów suwaka nie ma. Ten sam efekt przybliżasz instrukcją: "jedna oczywista odpowiedź, bez wariantów" zwęża, "trzy różne, zaskakujące" poszerza. W API (dostęp do modelu dla programistów, bez okna czatu) część modeli przyjmuje temperaturę jako liczbę, ale wiele nowszych, np. najnowsze Claude, odrzuca zmianę ([dokumentacja Anthropic](https://platform.claude.com/docs/en/models/sonnet-5-5/migration-guide)). W czacie zostaje polecenie.'
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+![Panel z pokrętłami i suwakami - ustawienia losowania](../../../assets/jak-dziala-ai/parametry-modeli/parametry-modeli.jpg)
+
+:::note[O tej stronie]
+**Czas:** ok. 6 minut czytania + 5 minut ćwiczenia.
+**Poziom:** średni, po lekcji [RAG - AI na Twoich dokumentach](/jak-dziala-ai/rag/).
+**Wcześniej:** [RAG - AI na Twoich dokumentach](/jak-dziala-ai/rag/) - wiesz, że model może dostać fragmenty Twoich dokumentów. **Teraz:** sprawdzasz, jak szeroko losuje kolejne słowo, gdy już pisze.
+:::
+
+## Na tej stronie zobaczysz szerokość loterii, nie tabelę ustawień
+
+Po tej lekcji trzy odpowiedzi na ten sam <Termin id="prompt">prompt</Termin> dostaną etykietę: rozstrzał albo ciasno. Nie uczysz się tu domyślnych wartości u dostawców - te liczby się rozjeżdżają między modelami i miesiącami.
+
+Jedna rzecz do zapamiętania: **kolejny token nie jest "tym jedynym". Jest wylosowany. Temperatura to szerokość tej loterii.**
+
+## Model nie wybiera słowa. Losuje je
+
+Z [tokenów](/jak-dziala-ai/tokeny-i-kontekst/) wiesz, że odpowiedź składa się kawałek po kawałku. Przy każdym <Termin id="token">tokenie</Termin> model nie ma jednej pewnej kontynuacji. Ma listę kandydatów z szansami.
+
+Przykład (liczby wymyślone dla przykładu): po "Pada deszcz, więc biorę..." model widzi "parasol" z szansą 70%, "kurtkę" 20% i "kalosze" 10%.
+
+<Termin id="temperatura">Temperatura</Termin> (temperature) steruje tym, jak bardzo te szanse są wyrównane. Przy niskiej prawie zawsze wygra "parasol". Przy wysokiej szanse się wyrównują i częściej wypadnie "kurtka" albo "kalosze". Nisko: wygrywa oczywistość, odpowiedzi się powtarzają. Wysoko: wpadają rzadsze słowa, tekst bywa ciekawszy i mniej trzyma się faktu.
+
+To nie jest pokrętło "mądrości". Niska temperatura nie sprawdza źródeł. Wysoka nie "rozumie lepiej". Zmienia tylko, jak szeroko sięga losowanie.
+
+W czacie tego suwaka często nie ma. Zostaje ten sam mechanizm: **regenerujesz i dostajesz inną ścieżkę**, albo zwężasz poleceniem.
+
+W dokumentacji dla programistów te pokrętła nazywa się parametrami. W innych lekcjach parametry to wagi: liczby w modelu ustawione w treningu. Tu mówimy o ustawieniach losowania.
+
+## Drugie pokrętło: top-p. Zostaw je
+
+**Top-p** (z angielskiego nucleus sampling - losowanie z "jądra" najbardziej prawdopodobnych słów) obcina ogon. Model ustawia kandydatów od najbardziej prawdopodobnego i bierze tylu, aż ich szanse dadzą razem próg. Na przykładzie z parasolem: przy progu 0,9 "parasol" (70%) i "kurtka" (20%) dają razem 90%, więc zostają. "Kalosze" wypadają z loterii.
+
+Temperatura i top-p kręcą **tą samą** losowością od dwóch stron. Jeśli ruszasz oba, nie wiesz, które coś zmieniło. Na tej lekcji: temperatura albo instrukcja zwężająca. Top-p zostaw na domyślnym.
+
+Są też inne ustawienia: limit długości odpowiedzi (liczony w tokenach), kara za powtarzanie tych samych słów i "słowa stopu", na których model ma przerwać pisanie. W zwykłym czacie ich nie ustawisz, więc tu ich nie ćwiczymy. Instrukcja roli ("jesteś asystentem...") to nie parametr losowania - to prompt. Wraca w [prompt engineeringu](/prompt-engineering/).
+
+Nie ma tu tabeli "dla kodu 0,2, dla wiersza 0,9" ani domyślnych wartości z paneli dostawców. Te liczby się rozjeżdżają między modelami i miesiącami. Zostaje mechanizm i ćwiczenie na Twoim czacie.
+
+## Ćwiczenie: 5 minut, trzy losowania
+
+Nie szukasz "idealnej temperatury". Patrzysz, czy odpowiedź skacze, gdy dasz modelowi luz.
+
+1. Otwórz <Termin id="chatbot">chatbota</Termin> z [pierwszej rozmowy](/podstawy/pierwsza-rozmowa-z-ai/). Trzy **nowe** rozmowy (albo trzy razy ten sam prompt przez "regeneruj", jeśli masz taki przycisk). Za każdym razem wklej:
+
+    ```text
+    Wymień trzy nazwy dla małej kawiarni przy parku. Tylko nazwy, bez uzasadnienia.
+    ```
+
+2. Na kartce zapisz trzy pierwsze nazwy z każdej próby. Ile z nich się **nie** powtarza?
+3. Czwarta, nowa rozmowa:
+
+    ```text
+    Podaj jedną, najbardziej oczywistą nazwę małej kawiarni przy parku. Bez wariantów i bez ozdobników.
+    ```
+
+4. Porównaj: czy krok 3 zwęził wynik względem rozstrzału z kroku 1?
+
+Jeśli w narzędziu jest suwak kreatywności albo temperatury - możesz zamiast kroku 3 ustawić go nisko i powtórzyć prompt z kroku 1. Wtedy porównujesz szeroko / ciasno na tym samym poleceniu.
+
+**Zaliczenie:** dwie kolumny na kartce - **rozstrzał** (ile unikalnych nazw w trzech próbach) i **ciasno** (czy czwarta odpowiedź jest jedna i przewidywalna). Nie musisz znać liczby z API.
+
+**Typowy wynik:** w trzech próbach część nazw się powtarza, a część nie. Czwarta odpowiedź jest jedna i często należy do tych, które się powtarzały.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** ten sam test na fakcie ("w którym roku ogłoszono Konstytucję 3 maja?"). Jeśli przy szerokim poleceniu data skacze - to sygnał, że loteria nie jest weryfikacją. Wracasz do [weryfikacji](/podstawy/weryfikacja-informacji/).
+
+## Teraz wiesz
+
+- Kolejny token jest losowany. Temperatura to szerokość tej loterii, nie pokrętło prawdy.
+- Top-p to drugie pokrętło na to samo. Kręć jednym.
+- W czacie suwaka często nie ma. Zwężasz albo poszerzasz instrukcją i patrzysz na rozstrzał.
+
+**Następny krok:** [Rozumienie danych](/jak-dziala-ai/dane-dla-poczatkujacych/) - co wchodzi do modelu, zanim cokolwiek policzy: skąd są liczby, które mu dajesz, i czego w nich brakuje.
+
+<SlowniczekStrony terminy={["temperatura", "token", "prompt", "chatbot"]} />
