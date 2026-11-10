@@ -28,10 +28,10 @@ faq:
     a: Do nauki i większości codziennych zadań wersje bezpłatne wystarczają. Płatne plany mają sens, gdy korzystasz z AI zawodowo i codziennie - dają wyższe limity, dostęp do mocniejszych modeli i dodatkowe funkcje. Zacznij od darmowego i przejdź na płatny dopiero, gdy poczujesz konkretne ograniczenie.
   - q: Jak często ta sekcja jest aktualizowana?
     a: Rynek narzędzi AI zmienia się szybko, więc nazwy modeli i planów mogą się zdezaktualizować między jedną a drugą aktualizacją. Dlatego świadomie nie podaję w lekcjach kwot - piszę tylko, czy narzędzie ma plan darmowy, i linkuję do cennika u producenta. Przed decyzją zakupową zawsze sprawdź cenę u źródła.
-status: zastane
+status: gotowe
 ---
 
-import { CardGrid, LinkCard, Card } from '@astrojs/starlight/components';
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
 
 ![Otwarta skrzynka narzędzi z kaflami aplikacji i kursorami - narzędzia AI](../../../assets/narzedzia/przeglad.jpg)
 
@@ -56,7 +56,7 @@ Ta sekcja nie wymaga trzymania kolejności - wybierz obszar, który Cię dotyczy
 Nie ma tu rankingu "najlepszych narzędzi roku" ani ocen w gwiazdkach. Nie ma też szczegółowych instrukcji obsługi każdego interfejsu - te zmieniają się szybciej, niż da się je opisać. Zamiast tego skupiam się na kryteriach wyboru, które zostają aktualne, gdy narzędzia się zmienią.
 
 :::caution[Nie znajdziesz tu cenników]
-Rynek AI zmienia się z miesiąca na miesiąc, więc świadomie nie podaję w tych lekcjach kwot - zestarzałyby się szybciej, niż dałoby się je odświeżać. Przy każdym narzędziu piszę, czy ma plan darmowy, i linkuję wprost do cennika producenta. Jak w ogóle płaci się za AI, tłumaczę w lekcji Ile kosztuje AI.
+Rynek AI zmienia się z miesiąca na miesiąc, więc świadomie nie podaję w tych lekcjach kwot - zestarzałyby się szybciej, niż dałoby się je odświeżać. Przy każdym narzędziu piszę, czy ma plan darmowy, i linkuję wprost do cennika producenta. Jak w ogóle płaci się za AI, tłumaczę w lekcji [Ile kosztuje AI](/narzedzia/ile-kosztuje-ai/).
 :::
 
 ## Lekcje w tej sekcji
@@ -67,30 +67,46 @@ Rynek AI zmienia się z miesiąca na miesiąc, więc świadomie nie podaję w ty
     description="Dobierzesz chatbota czterema pytaniami - zadanie, ekosystem, dane, plan - zamiast rankingu z tygodnia. Ćwiczenie: 5 minut."
     href="/narzedzia/chatboty/"
   />
-  <Card title="Tryby pracy chatbotów">
-		Dobierzesz tryb do jednego pytania z tygodnia - odpowiedź z wiedzy modelu, wyszukiwanie w sieci albo projekt z zapisanymi plikami. Ćwiczenie: 5 minut. (w przygotowaniu)
-	</Card>
-  <Card title="Generatory obrazów AI">
-		Napiszesz jeden prompt w kolejności temat - miejsce - styl - światło - kadr. Ćwiczenie: 5 minut. (w przygotowaniu)
-	</Card>
-  <Card title="Narzędzia AI do pisania">
-		Oznaczysz jeden tekst trzema etykietami - szkic z czatu, osobna aplikacja do pisania albo fragment, który dopisujesz sam. Ćwiczenie: 5 minut. (w przygotowaniu)
-	</Card>
-  <Card title="Specjalistyczne narzędzia AI">
-		Jedno zadanie, jedna kategoria, jeden limit z cennika. Ćwiczenie: 5 minut. (w przygotowaniu)
-	</Card>
-  <Card title="Asystenci agentowi">
-		Dobierzesz jeden produkt z rodziny Copilot albo Claude i wskażesz działanie, które zawsze czeka na Twoją zgodę. Ćwiczenie: 5 minut. (w przygotowaniu)
-	</Card>
-  <Card title="Serwery MCP">
-		Jedna usługa, jedno uprawnienie, jedna rzecz do potwierdzenia. Ćwiczenie: 5 minut. (w przygotowaniu)
-	</Card>
-  <Card title="AI w codziennej pracy">
-		Jeden powtarzalny prompt i co sprawdzasz. Ćwiczenie: 5 minut. (w przygotowaniu)
-	</Card>
-  <Card title="Ile kosztuje AI">
-		Otworzysz cennik i zapiszesz jeden limit planu. Ćwiczenie: 5 minut. (w przygotowaniu)
-	</Card>
+  <LinkCard
+    title="Tryby pracy chatbotów"
+    description="Dobierzesz tryb do jednego pytania z tygodnia - odpowiedź z wiedzy modelu, wyszukiwanie w sieci albo projekt z zapisanymi plikami. Ćwiczenie: 5 minut."
+    href="/narzedzia/tryby-pracy-chatbotow/"
+  />
+  <LinkCard
+    title="Generatory obrazów AI"
+    description="Napiszesz jeden prompt w kolejności temat - miejsce - styl - światło - kadr. Ćwiczenie: 5 minut."
+    href="/narzedzia/generatory-obrazow/"
+  />
+  <LinkCard
+    title="Narzędzia AI do pisania"
+    description="Oznaczysz jeden tekst trzema etykietami - szkic z czatu, osobna aplikacja do pisania albo fragment, który dopisujesz sam. Ćwiczenie: 5 minut."
+    href="/narzedzia/pisanie/"
+  />
+  <LinkCard
+    title="Specjalistyczne narzędzia AI"
+    description="Jedno zadanie, jedna kategoria, jeden limit z cennika. Ćwiczenie: 5 minut."
+    href="/narzedzia/specjalistyczne/"
+  />
+  <LinkCard
+    title="Asystenci agentowi"
+    description="Dobierzesz jeden produkt z rodziny Copilot albo Claude i wskażesz działanie, które zawsze czeka na Twoją zgodę. Ćwiczenie: 5 minut."
+    href="/narzedzia/asystenci-agentowi/"
+  />
+  <LinkCard
+    title="Serwery MCP"
+    description="Jedna usługa, jedno uprawnienie, jedna rzecz do potwierdzenia. Ćwiczenie: 5 minut."
+    href="/narzedzia/serwery-mcp/"
+  />
+  <LinkCard
+    title="AI w codziennej pracy"
+    description="Jeden powtarzalny prompt i co sprawdzasz. Ćwiczenie: 5 minut."
+    href="/narzedzia/ai-w-codziennej-pracy/"
+  />
+  <LinkCard
+    title="Ile kosztuje AI"
+    description="Otworzysz cennik i zapiszesz jeden limit planu. Ćwiczenie: 5 minut."
+    href="/narzedzia/ile-kosztuje-ai/"
+  />
 </CardGrid>
 
 :::note[Następny krok]

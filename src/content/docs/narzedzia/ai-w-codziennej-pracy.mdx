@@ -1,0 +1,103 @@
+---
+title: AI w codziennej pracy - praktyczne zastosowania
+description: Weźmiesz jedno powtarzalne zadanie, wyślesz jeden prompt i zapiszesz, co jeszcze sprawdzasz. Ćwiczenie zajmie 5 minut.
+sidebar:
+  label: 'AI w codziennej pracy'
+  order: 8
+educationalLevel: Beginner
+teaches:
+  - Jak wpleść AI w jedno zadanie, które i tak wraca
+  - Gdzie kończy się szkic, a zaczyna Twoja weryfikacja
+  - Kiedy okno czatu starcza, a kiedy czas na agenta albo MCP
+about:
+  - name: Sztuczna inteligencja
+    sameAs: https://pl.wikipedia.org/wiki/Sztuczna_inteligencja
+  - name: Automatyzacja
+    sameAs: https://pl.wikipedia.org/wiki/Automatyzacja
+mentions:
+  - name: ChatGPT
+    sameAs: https://en.wikipedia.org/wiki/ChatGPT
+    type: SoftwareApplication
+faq:
+  - q: Od którego zadania w pracy zacząć?
+    a: Od powtarzalnego, z niską ceną błędu - szkic maila, konspekt, lista pytań do spotkania. Nie od "przepisania sposobu pracy działu". Zmierz czas ze sprawdzeniem, nie samą generacją.
+  - q: Czy wklejać do czatu firmowe dane?
+    a: "Nie do publicznego chatbota, jeśli nie wolno. Anonimizujesz albo używasz planu i umowy, które Twoja organizacja zaakceptowała. Szczegóły: [prywatność](/etyka/prywatnosc/)."
+  - q: Kiedy czat to za mało?
+    a: Gdy to samo zadanie wraca co tydzień i nosisz dane ręcznie. Wtedy [asystenci](/narzedzia/asystenci-agentowi/) i [serwery MCP](/narzedzia/serwery-mcp/) - nadal z zatwierdzeniem wysyłki.
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+![Biurko z dużym monitorem, stosami kartek i notatkami przypiętymi do ściany; wokół małe roboty z kreskówki](../../../assets/narzedzia/ai-w-codziennej-pracy/ai-w-codziennej-pracy.jpg)
+
+:::note[O tej stronie]
+**Czas:** ok. 6 minut czytania + 5 minut ćwiczenia.
+**Poziom:** początkujący, po lekcji [Serwery MCP](/narzedzia/serwery-mcp/). Możesz ją przeczytać zaraz po lekcji [Chatboty AI](/narzedzia/chatboty/) - wystarczy jeden czat, a nawyk warto mieć, zanim podłączysz AI do innych usług.
+**Wcześniej:** [Serwery MCP](/narzedzia/serwery-mcp/) - wiesz, jak asystent sięga po Twoje usługi i gdzie stawiasz granicę. **Teraz:** wybierasz jeden ruch w zwykłym tygodniu, bez przebudowy kalendarza.
+:::
+
+## Na tej stronie zostawisz jeden zapisany prompt, nie "dzień z AI"
+
+Po tej lekcji masz wybrane **jedno** powtarzalne zadanie, jeden <Termin id="prompt">prompt</Termin> i jedno zdanie: co w wyniku sprawdzasz, zanim wyślesz albo wkleisz dalej.
+
+Jedna rzecz do zapamiętania: **szkic z modelu plus Twoja kontrola. Nie "AI zrobiło, więc jest zrobione".**
+
+## Najpierw zadanie, które i tak wraca
+
+Mail, dokument, spotkanie, research, decyzja między dwiema opcjami - to czynności, nie branże. Branżowy katalog jest w lekcji AI w różnych branżach.
+
+Wzorce, które da się skopiować i **dostosować** pod swoje fakty:
+
+**Szkic wiadomości.** Cztery pola z Podstaw promptowania: kto pisze, co ma powstać, czego pilnować (odbiorca, co musi paść, czego nie wolno obiecać, ton) i w jakiej formie. Potem Ty: czy data i odpowiedzialność są prawdziwe.
+
+```text
+Rola: [kto pisze, np. koordynatorka projektu].
+Zadanie: napisz szkic wiadomości. Sytuacja: [jedno zdanie].
+Ograniczenia: odbiorca [rola, nie nazwisko, jeśli nie trzeba]; musi paść [punkt]; nie obiecuj [punkt]; ton rzeczowy i krótki.
+Format: wiadomość, a na końcu trzy pytania, jeśli coś jest niejasne.
+```
+
+**Redakcja.** Wklejasz własny tekst. Prosisz o błędy, skróty, niejasności - nie o "napisz od nowa i niech będzie mądrzej".
+
+**Po spotkaniu.** Transkrypt, potem streszczenie, decyzje, otwarte kwestie. Osoby i terminy **sprawdzasz**, bo model lubi uzupełnić wzorzec "ta osoba - do piątku".
+
+**Research "na dziś".** Włączasz wyszukiwanie z [trybów](/narzedzia/tryby-pracy-chatbotow/). Liczbę otwierasz w źródle.
+
+**Dwie opcje.** Kontekst, kryteria, ryzyka. Rekomendacja modelu to głos doradczy, nie uchwała.
+
+Gdy utkniesz, opisanie problemu modelowi bywa cenniejsze niż odpowiedź - samo ułożenie myśli pokazuje luki w rozumowaniu.
+
+## Sprawdzanie i zapisywanie poleceń
+
+Jak sprawdzić, czy model w ogóle się opłaca przy tym zadaniu, i jak zapisać działające polecenie, pokazuję w lekcji Szkic i dwie poprawki. Tu zapamiętaj dwie rzeczy: zmyślona odpowiedź (halucynacja) brzmi tak samo pewnie jak prawdziwa - [ograniczenia](/podstawy/ograniczenia/). Poufnych danych nie wklejasz - [prywatność](/etyka/prywatnosc/).
+
+Okno czatu starcza, dopóki zadanie jest okazjonalne. Gdy wraca i nosisz kontekst ręcznie - agenci i MCP z poprzednich lekcji. Nadal nie oddajesz wysyłki.
+
+:::note[Źródła sprawdzone w listopadzie 2026 r.]
+Nie ma tu wyliczeń, ile minut oszczędzisz - tego nie zmierzyłem na Twoim biurku. Wyszukiwanie w czatach jest funkcją produktu - włączasz i sprawdzasz źródło, aktualny opis np. w [pomocy OpenAI o wyszukiwaniu w ChatGPT](https://help.openai.com/en/articles/9237897-searching-the-web-with-chatgpt).
+:::
+
+## Ćwiczenie: 5 minut, jeden wysłany szkic
+
+1. Wskaż zadanie, które w tym miesiącu zrobisz **jeszcze raz** (mail, notatka, lista).
+2. Ułóż prompt w czterech polach z Podstaw promptowania albo wklej wzorzec wiadomości wyżej i uzupełnij nawiasy.
+3. Wyślij w czacie, którego już używasz. Zapisz: co zostawiasz, **co sprawdzasz** (data, liczba, obietnica, osoba).
+
+**Zaliczenie:** prompt (albo jego szkic) i jedno zdanie kontroli. Nie musisz wysyłać maila do kogoś. Nie liczysz "minut zaoszczędzonych".
+
+**Typowy wynik:** szkic jest użyteczny, a data albo "na pewno zdążymy" jest zmyślona albo zbyt gładka. To skreślasz.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** zapisz prompt w notatce pod nazwą zadania. Drugi raz w tym miesiącu nie piszesz go od zera.
+
+## Teraz wiesz
+
+- Jeden powtarzalny ruch bije "dzień z AI" z poradnika.
+- Prompt zapisany. Wynik sprawdzony. Dane wrażliwe poza publicznym oknem.
+- Czat, potem ewentualnie agent i MCP - w tej kolejności, nie odwrotnej.
+
+**Następny krok:** [Ile kosztuje AI](/narzedzia/ile-kosztuje-ai/) - trzy portfele i czytanie cennika u dostawcy, bez tabeli kwot w tym kursie.
+
+<SlowniczekStrony terminy={["prompt", "chatbot"]} />

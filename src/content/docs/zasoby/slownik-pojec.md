@@ -84,6 +84,8 @@ Tryb pracy chatbota, w którym zamiast szybkiej odpowiedzi dostajesz raport z pr
 
 **Przykład:** Pytasz o porównanie trzech programów do księgowości dla jednoosobowej firmy. Zwykły czat odpowie od razu, ogólnikami. Deep research po kilku minutach odda tabelę z linkami do źródeł - i dopiero te linki musisz otworzyć, żeby sprawdzić, czy raport się nie myli.
 
+**Więcej:** [Tryby pracy chatbotów](/narzedzia/tryby-pracy-chatbotow/)
+
 ## Dostosowanie (ang. alignment)
 
 Dopilnowanie, żeby system AI robił to, o co nam naprawdę chodzi, a nie to, co dosłownie kazaliśmy mu robić. To rzadko jest to samo. Im bardziej samodzielny system, tym większa różnica między jednym a drugim - i tym poważniejsze skutki, gdy AI trafi w cel, ale nie w intencję.

@@ -1,0 +1,113 @@
+---
+title: Generatory obrazów AI - Midjourney, GPT Image, Stable Diffusion
+description: Napiszesz jeden prompt do obrazu w kolejności temat - miejsce - styl - światło - kadr i zobaczysz, co model dorysował sam. Ćwiczenie zajmie 5 minut.
+sidebar:
+  label: 'Generatory obrazów AI'
+  order: 3
+educationalLevel: Beginner
+teaches:
+  - Czym generator obrazów różni się od chatbota do tekstu
+  - Jak ułożyć prompt od tematu, nie od listy buzzwordów
+  - Że stare poradniki z DALL-E opisują wycofane narzędzie
+about:
+  - name: Generatywna sztuczna inteligencja
+    sameAs: https://pl.wikipedia.org/wiki/Generatywna_sztuczna_inteligencja
+  - name: Przetwarzanie obrazu
+    sameAs: https://pl.wikipedia.org/wiki/Przetwarzanie_obraz%C3%B3w_cyfrowych
+mentions:
+  - name: Midjourney
+    sameAs: https://en.wikipedia.org/wiki/Midjourney
+    type: SoftwareApplication
+  - name: DALL-E
+    sameAs: https://en.wikipedia.org/wiki/DALL-E
+    type: SoftwareApplication
+  - name: Stable Diffusion
+    sameAs: https://en.wikipedia.org/wiki/Stable_Diffusion
+    type: SoftwareApplication
+faq:
+  - q: Który generator obrazów AI jest najlepszy?
+    a: Żaden "w ogóle". Inny jest próg wejścia (czat vs osobna aplikacja), inna kontrola (lokalny model vs chmura), inny styl. Najpierw jedno zdanie, co ma być na kadrze. Potem sprawdzasz u dostawcy, czy jest plan darmowy.
+  - q: Czy DALL-E jeszcze działa?
+    a: W API OpenAI modele DALL-E 2 i DALL-E 3 wyłączono 12 maja 2026 r. W ChatGPT szukaj wbudowanego generatora obrazów, nie przycisku "DALL-E". Poradnik z "DALL-E 3" jest historyczny.
+  - q: Czy obraz z AI mogę użyć komercyjnie?
+    a: Zależy od regulaminu narzędzia i od prawa w Twojej jurysdykcji. Wiele platform zezwala, ale ochrona prawnoautorska bywa słabsza niż przy zdjęciu, które zrobił człowiek. Przed użyciem w ofercie czytasz licencję u dostawcy, nie ten akapit.
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+![Ziarno tekstu przechodzące w namalowany obraz na sztaludze - generatory obrazów AI](../../../assets/narzedzia/generatory-obrazow/generatory-obrazow.jpg)
+
+:::note[O tej stronie]
+**Czas:** ok. 7 minut czytania + 5 minut ćwiczenia.
+**Poziom:** początkujący, po lekcji [Tryby pracy chatbotów](/narzedzia/tryby-pracy-chatbotow/).
+**Wcześniej:** [Tryby pracy chatbotów](/narzedzia/tryby-pracy-chatbotow/) - umiesz dobrać tryb w czacie do pytania. **Teraz:** robisz obraz ze słów - to inny rodzaj narzędzia i inaczej pisany <Termin id="prompt">prompt</Termin>.
+:::
+
+## Na tej stronie ułożysz jeden kadr, nie ranking generatorów
+
+Po tej lekcji masz jeden prompt w kolejności temat - miejsce - styl - światło - kadr i jeden wygenerowany obraz (albo zapis, czemu narzędzie odmówiło). Wiesz, czego na kadrze nie było w tekście - to model dorysował.
+
+Jedna rzecz do zapamiętania: **najpierw opisujesz, co ma być na obrazie. Wybór generatora jest drugorzędny, a nazwa z poradnika sprzed roku mogła się już zestarzeć.**
+
+## Trzy drogi do obrazu z AI
+
+<Termin id="genai">Generatywna AI</Termin> obrazu dostaje opis i składa piksele. To nie jest wyszukiwarka zdjęć stockowych. Haczyk: model dorysuje detale, o które nie prosisz - palce, napis, markę, "klimat".
+
+Trzy trwałe drogi, bez numeru wersji:
+
+- **W czacie, który już masz.** Najniższy próg. W ChatGPT to wbudowany generator (następca wycofanego DALL-E). Gemini też składa obrazy w tym samym oknie. [Cennik ChatGPT](https://chatgpt.com/pricing/), [cennik Gemini](https://gemini.google/subscriptions/).
+- **Osobna aplikacja pod estetykę.** Midjourney jest tu od lat rozpoznawalnym przykładem. Działa w przeglądarce na swojej stronie, Discord nie jest potrzebny. Czy jest plan darmowy, sprawdzasz na [cenniku](https://www.midjourney.com/plans), nie w tym zdaniu.
+- **Model u siebie albo na wynajętej platformie.** Modele z otwartymi wagami (liczbami ustawionymi w treningu), np. Stable Diffusion czy FLUX, uruchamiasz na własnym komputerze albo na wynajętej platformie. Kontrolę dają w obu przypadkach, prywatność tylko u Ciebie. Wymagają mocnego sprzętu albo konfiguracji. Otwarte wagi nie znaczą "rób co chcesz" - obowiązuje licencja, więcej w modelach językowych. Numer wersji czytasz u producenta.
+
+Inne drogi pod niszę: tekst _na_ obrazie, Canva, Adobe, platformy z wieloma silnikami. Granica obraz-wideo się zaciera - klipy są w [narzędziach specjalistycznych](/narzedzia/specjalistyczne/).
+
+## Prompt: kolejność jest instrukcją
+
+Modele obrazu zwykle silniej trzymają się tego, co stoi na początku. Dlatego temat przed listą ozdobników.
+
+```text
+[Temat i akcja], [miejsce], [styl], [światło i kolor], [kadr]
+```
+
+Szkielet czterech pól z Podstaw promptowania jest do tekstu. Prompt do obrazu to opis kadru: rola i format nic tu nie dają.
+
+Przykład do przerobienia:
+
+```text
+Lew na skale o zachodzie słońca, cyfrowy koncept art,
+wyraźne futro, dramatyczne światło, ciepłe pomarańcze i fiolet, kadr z dołu
+```
+
+Angielski bywa posłuszniejszy w tej kategorii. Polski też zadziała w czatach, które rozumieją język - sprawdzasz na jednym kadrze, nie na forum.
+
+:::caution[Prawa i twarze]
+Zanim wrzucisz cudzą twarz albo znak towarowy: regulamin narzędzia i zdrowy rozsądek. Obraz "jak zdjęcie osoby" nie jest automatycznie Twoim utworem w każdym kraju. Jeśli chcesz użyć obrazu zarobkowo, sprawdź licencję u dostawcy narzędzia.
+:::
+
+:::note[Źródła sprawdzone w listopadzie 2026 r.]
+Wyłączenie DALL-E 2 i DALL-E 3 z API OpenAI: [deprecations](https://developers.openai.com/api/docs/deprecations) (ogłoszenie 14 listopada 2025 r., wyłączenie 12 maja 2026 r.). Następca w dokumentacji to rodzina GPT Image - konkretny identyfikator modelu sprawdzasz tam, nie w tym akapicie. Na stronie nie ma cennika kredytów ani tabeli "który silnik wygrał sierpień".
+:::
+
+## Ćwiczenie: 5 minut, jeden kadr
+
+1. Weź **jedną** rzecz, której potrzebujesz (miniatura, ilustracja do maila, nastrój do prezentacji). Napisz prompt w kolejności z wzorca wyżej - po polsku albo po angielsku, ale temat pierwszy.
+2. Wygeneruj **raz** w narzędziu, które już masz (czat z obrazem albo darmowy / trial innej strony). Nie szukaj "najlepszego silnika".
+3. Zapisz dwa zdania: co jest zgodne z tematem, co model **dodał** (napis, palce, marka, niebo, "epicki" klimat).
+
+**Zaliczenie:** tekst promptu na kartce i te dwa zdania. Nie musisz dostać kadru do publikacji. Liczy się też odmowa filtra - zapisz, na czym stanęło.
+
+**Typowy wynik:** temat jest, ale model dodał dramatyzm, o który nie prosisz. Druga generacja zmienia jedno słowo, nie cały prompt.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** odetnij z promptu wszystkie słowa o "jakości" (8k, masterpiece). Porównaj, czy kadr się posypał, czy tylko ubyło magicznego myślenia.
+
+## Teraz wiesz
+
+- Generator obrazów zgaduje piksele. To, czego nie napiszesz, i tak się pojawi.
+- Kolejność promptu: temat, potem styl. Buzzwordy na końcu albo wcale.
+- DALL-E w starych poradnikach to historia. Aktualny przycisk i cenę sprawdzasz u dostawcy.
+
+**Następny krok:** [Narzędzia AI do pisania](/narzedzia/pisanie/) - kiedy czat wystarcza do szkicu, a kiedy ktoś sprzedaje "pisanie" jako inną kategorię.
+
+<SlowniczekStrony terminy={["prompt", "genai"]} />

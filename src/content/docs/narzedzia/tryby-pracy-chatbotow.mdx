@@ -1,0 +1,97 @@
+---
+title: Tryby pracy chatbotów - wyszukiwanie, deep research, projekty
+description: 'Dobierzesz tryb do jednego pytania z tygodnia - wiedza modelu, "na dziś" albo kontekst, który zostaje. Ćwiczenie zajmie 5 minut.'
+sidebar:
+  label: 'Tryby pracy chatbotów'
+  order: 2
+educationalLevel: Beginner
+teaches:
+  - Że jeden chatbot to kilka narzędzi pod przełącznikami
+  - Kiedy włączyć wyszukiwanie albo research zamiast odpowiedzi z wiedzy modelu
+  - Kiedy folder projektu albo notatnik na plikach zastępuje trzecie wklejanie
+about:
+  - name: Chatbot
+    sameAs: https://pl.wikipedia.org/wiki/Chatbot
+  - name: Duży model językowy
+    sameAs: https://pl.wikipedia.org/wiki/Du%C5%BCy_model_j%C4%99zykowy
+mentions:
+  - name: ChatGPT
+    sameAs: https://en.wikipedia.org/wiki/ChatGPT
+    type: SoftwareApplication
+  - name: Claude
+    sameAs: https://en.wikipedia.org/wiki/Claude_(language_model)
+    type: SoftwareApplication
+  - name: Gemini
+    sameAs: https://en.wikipedia.org/wiki/Gemini_(language_model)
+    type: SoftwareApplication
+  - name: Perplexity AI
+    sameAs: https://en.wikipedia.org/wiki/Perplexity_AI
+    type: SoftwareApplication
+faq:
+  - q: Czym jest deep research w chatbocie?
+    a: Tryb, w którym model zachowuje się jak agent badawczy - planuje, szuka wielokrotnie, czyta źródła i po kilku-kilkunastu minutach oddaje raport z przypisami. Do rozpoznania tematu albo porównania ofert. Nadal streszcza strony, więc kluczowe liczby klikasz.
+  - q: Kiedy włączyć wyszukiwanie w sieci?
+    a: Gdy pytasz o rzecz, która mogła się zmienić po treningu modelu - ceny, wersje, przepisy, newsy, godziny. Bez wyszukiwania odpowiada z wiedzy z treningu, która ma datę odcięcia. Włączanie bywa ręczne - nie zakładaj, że "samo wie, że ma szukać".
+  - q: Do czego służą projekty w chatbotach?
+    a: To folder rozmów ze wspólną bazą - dokumenty i instrukcje wgrywasz raz. Każda nowa rozmowa w projekcie z nich korzysta. Sensowny, gdy trzeci raz wklejasz ten sam PDF.
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+![Kula asystenta i ikony trybów - lupa, teleskop, folder projektu - tryby pracy chatbota](../../../assets/narzedzia/tryby-pracy-chatbotow/tryby-pracy-chatbotow.jpg)
+
+:::note[O tej stronie]
+**Czas:** ok. 7 minut czytania + 5 minut ćwiczenia.
+**Poziom:** początkujący, po lekcji [Chatboty AI](/narzedzia/chatboty/).
+**Wcześniej:** [Chatboty AI](/narzedzia/chatboty/) - wiesz, które okno czatu wybrać pod zadanie. **Teraz:** wybierasz przełącznik w tym samym oknie: zwykłą rozmowę, wyszukiwanie albo projekt.
+:::
+
+## Na tej stronie oznaczysz pytanie trybem, nie marką
+
+Po tej lekcji jedno pytanie z tygodnia ma etykietę z **trzech** koszyków: wiedza modelu, "na dziś", albo kontekst, który zostaje. Wysyłasz je w tym trybie.
+
+Jedna rzecz do zapamiętania: **ten sam <Termin id="chatbot">chatbot</Termin> w innym trybie to inne narzędzie.**
+
+## Przełącznik jest ważniejszy niż okno
+
+W [poprzedniej lekcji](/narzedzia/chatboty/) porównywaliśmy rodziny czatów. Drugie porównanie daje w praktyce więcej: nazwy przycisków różnią się i giną przy aktualizacji, **zadania** zostają.
+
+## Trzy koszyki zamiast listy przycisków
+
+Do ćwiczenia wybierasz **jeden** koszyk. Nazwy w aplikacji się zmieniają. Zadania zostają.
+
+**1. Wiedza modelu (zwykła rozmowa).** Redakcja, tłumaczenie, wyjaśnienie, burza mózgów. Granica: wiedza z treningu ma datę odcięcia - opisuję to w lekcji [Ograniczenia](/podstawy/ograniczenia/). Tryb myślenia też należy tutaj, nie do "na dziś": model wykonuje więcej kroków pośrednich przed odpowiedzią, ale nie dostaje nowych informacji. Mechanika: Modele rozumujące.
+
+**2. Na dziś.** Wyszukiwanie (najpierw strony, potem odpowiedź z linkami) albo deep research (minuty pracy jak u <Termin id="agent-ai">agenta</Termin>, raport z przypisami). Czat najpierw wyszukuje strony, potem odpowiada na ich podstawie (to tzw. <Termin id="rag">RAG</Termin>). Link, którego nie otworzysz, nie istnieje - [weryfikacja](/podstawy/weryfikacja-informacji/).
+
+**3. Kontekst, który zostaje.** Projekt albo notatnik na wgranych PDF: ten sam pakiet bez trzeciego wklejania. Rozmowa głosowa i panel obok czatu (na dłuższy tekst albo kod) to inny sposób pracy z tym samym modelem - nie dodaje mu wiedzy, nadal może zmyślać.
+
+Nazw przycisków nie uczysz się na pamięć. Sprawdź przyciski i menu przy polu wiadomości i porównaj z cennikiem u producenta.
+
+:::note[Źródła sprawdzone w listopadzie 2026 r.]
+Nie ma tu tabeli "który czat ma który przycisk" ani limitów wiadomości. Dostawcy opisują deep research we własnych wpisach, m.in. [OpenAI](https://openai.com/index/introducing-deep-research/), [Google](https://blog.google/products-and-platforms/products/gemini/google-gemini-deep-research/), [Anthropic](https://claude.com/resources/articles/research). Zanim polecisz się raportowi, kliknij przypis przy liczbie, na której ma stanąć decyzja.
+:::
+
+## Ćwiczenie: 5 minut, jedna etykieta
+
+1. Weź **jedno** pytanie z tego tygodnia. Nie "przetestuj AI".
+2. Nadaj etykietę z trzech koszyków powyżej, zanim wyślesz.
+3. Wyślij w tym trybie (przy etykiecie "na dziś" włącz wyszukiwanie albo deep research). Zapisz w jednym zdaniu, co wróciło: odpowiedź z wiedzy modelu, linki, raport, odmowa.
+
+**Zaliczenie:** etykieta i jedno zdanie wyniku. Jeśli pytanie było o rzecz zmienną, a model nie podał źródła do kliknięcia - dopisz "tryb nie ten" i włącz wyszukiwanie. To też zaliczenie.
+
+**Typowy wynik:** odpowiedź na pytanie o cenę albo wersję bez wyszukiwania brzmi pewnie i jest nieaktualna. To data odcięcia wiedzy z lekcji [Ograniczenia](/podstawy/ograniczenia/), a nie "słaby chatbot".
+
+**Jeśli nic nie zgrzyta i zostaje czas:** to samo pytanie w deep research. Porównaj czas i to, czy otwarty został choć jeden przypis.
+
+## Teraz wiesz
+
+- Jeden chatbot to kilka narzędzi. Domyślne pole jest najszybsze i najgorzej nadaje się do "na dziś".
+- Wyszukiwanie i research streszczają strony. Przypis, którego nie otworzysz, nie istnieje.
+- Projekt zaczyna się w chwili trzeciego wklejenia tego samego pliku, nie od katalogu funkcji.
+
+**Następny krok:** [Generatory obrazów AI](/narzedzia/generatory-obrazow/) - osobna rodzina narzędzi i prompt, w którym temat stoi przed stylem.
+
+<SlowniczekStrony terminy={["chatbot", "agent-ai", "rag"]} />

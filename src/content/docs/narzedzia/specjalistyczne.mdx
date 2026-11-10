@@ -1,0 +1,99 @@
+---
+title: Specjalistyczne narzędzia AI - wideo, audio, kod, prezentacje
+description: Nazwiesz jedno zadanie, przypiszesz kategorię i zapiszesz jeden limit z cennika dostawcy. Ćwiczenie zajmie 5 minut.
+sidebar:
+  label: 'Specjalistyczne narzędzia AI'
+  order: 5
+educationalLevel: Intermediate
+teaches:
+  - Jak wybrać kategorię narzędzia od zadania, nie od listy logo
+  - Gdzie kończy się czat, a zaczyna wideo, dźwięk, kod i slajdy
+  - Że limit i miejsce danych czytasz u dostawcy, nie z lekcji
+about:
+  - name: Sztuczna inteligencja
+    sameAs: https://pl.wikipedia.org/wiki/Sztuczna_inteligencja
+mentions:
+  - name: Perplexity AI
+    sameAs: https://en.wikipedia.org/wiki/Perplexity_AI
+    type: SoftwareApplication
+  - name: Microsoft 365 Copilot
+    sameAs: https://en.wikipedia.org/wiki/Microsoft_Copilot
+    type: SoftwareApplication
+faq:
+  - q: Od którego narzędzia specjalistycznego zacząć?
+    a: Od zadania, które wraca w tym tygodniu. Jedna kategoria, jeden darmowy plan albo trial, jeden zapisany limit. Kolekcjonowanie kont nic nie automatyzuje.
+  - q: Czym Perplexity różni się od ChatGPT z wyszukiwaniem?
+    a: Domyślnym trybem. W wielu czatach szukanie jest dodatkiem. W wyszukiwarce AI każda odpowiedź startuje od źródeł i przypisów. I tak klikasz w źródło - [tryby](/narzedzia/tryby-pracy-chatbotow/) i [weryfikacja](/podstawy/weryfikacja-informacji/).
+  - q: Czy Microsoft 365 Copilot to "po prostu ChatGPT w Wordzie"?
+    a: Nie. Ta usługa ma sens dzięki dostępowi do firmowych plików, poczty i kalendarza w granicach uprawnień organizacji. To inny produkt niż darmowy Copilot w przeglądarce - [asystenci agentowi](/narzedzia/asystenci-agentowi/).
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+![Kafelki z symbolami: klatka filmu z nutą, fala dźwięku, nawiasy kodu i przycisk odtwarzania na tablecie](../../../assets/narzedzia/specjalistyczne/specjalistyczne.jpg)
+
+:::note[O tej stronie]
+**Czas:** ok. 8 minut czytania + 5 minut ćwiczenia.
+**Poziom:** średni, po lekcji [Narzędzia AI do pisania](/narzedzia/pisanie/).
+**Wcześniej:** [Narzędzia AI do pisania](/narzedzia/pisanie/) - wiesz, kiedy do tekstu wystarczy czat. **Teraz:** dostajesz mapę kategorii poza czatem - bez cen i limitów.
+:::
+
+## Na tej stronie wybierzesz kategorię, nie półkę z logo
+
+Po tej lekcji jedno zadanie z tygodnia ma nazwę kategorii z tabeli (research, wideo i audio, prezentacje i dane, kod i pakiet biurowy) i **jeden** limit przepisany ze strony dostawcy. Nie zakładasz pięciu kont.
+
+Jedna rzecz do zapamiętania: **najpierw problem. Narzędzie jest drugim ruchem.**
+
+## Mapa, nie lista zakupów
+
+<Termin id="chatbot">Chatbot</Termin> z poprzednich lekcji zostaje bazą. Po poniższe kategorie sięgasz, gdy wynik nie jest tekstem w oknie czatu.
+
+| Zadanie | Kategoria | Gdzie sprawdzić limit (nazwa, nie wersja) |
+| --- | --- | --- |
+| Odpowiedź ze źródłami albo praca na wgranych PDF | Research | Perplexity; notatnik na dokumentach w rodzinie Gemini. [Tryby](/narzedzia/tryby-pracy-chatbotow/). |
+| Klip, lektor, piosenka | Wideo i audio | Runway, Pika, Descript; głos: ElevenLabs, Murf; piosenka: Suno. Licencję utworu czytasz przed użyciem poza platformą. |
+| Slajdy, transkrypt, "co mówią te liczby" | Prezentacje, notatki, dane | Gamma; Otter, Fireflies - nagrywają i spisują spotkania, sprawdź, czy wolno wpuścić ich bota na spotkanie; Julius albo analiza w czacie. |
+| Podpowiedź w edytorze kodu albo Word, Excel, poczta w firmie | Kod i pakiet biurowy | GitHub Copilot, Cursor - [asystenci](/narzedzia/asystenci-agentowi/). Microsoft 365 Copilot to nie darmowy Copilot w przeglądarce. |
+
+Reszta (usuń tło, warianty UI, awatar) to ten sam ruch: kategoria, jeden cennik, jeden limit.
+
+Perplexity i notatnik na źródłach już wracały przy trybach. Tu zostaje haczyk: **zawężenie źródeł to nie brak błędu**. Model nadal pomyli stronę i liczbę. Klikasz przypis.
+
+Microsoft 365 Copilot w firmie ma dostęp do firmowych plików (SharePoint, OneDrive) i poczty - tylko tych, do których masz uprawnienia. Zwykły czat tego nie zrobi, dopóki nie podłączysz narzędzi - [serwery MCP](/narzedzia/serwery-mcp/).
+
+ElevenLabs ma polski rodowód; więcej w polskim ekosystemie.
+
+Te same cztery pytania co w lekcji [Chatboty AI](/narzedzia/chatboty/), w tej samej kolejności:
+
+1. **Zadanie** - jaki format wyniku?
+2. **Ekosystem** - czy działa w programach, których już używasz (edytor, Zoom, Canva), czy będzie kolejnym osobnym kontem?
+3. **Dane** - gdzie lądują pliki i czy idą do treningu? [Prywatność](/etyka/prywatnosc/).
+4. **Plan** - czy jest plan darmowy albo trial bez podawania karty płatniczej?
+
+:::note[Źródła sprawdzone w listopadzie 2026 r.]
+Nie ma tu liczby kredytów, minut transkrypcji ani numerów modeli wideo. To wszystko psuje się między aktualizacjami. Cenniki: [Perplexity](https://www.perplexity.ai/hub/pricing), [Runway](https://runway.com/pricing), [ElevenLabs](https://elevenlabs.io/pricing), [GitHub Copilot](https://github.com/features/copilot/plans), [Gamma](https://gamma.app/pricing) - i analogicznie u reszty z tabeli. Licencję utworu (czy wolno pobrać i użyć poza serwisem) czytasz **dziś**, nie z pamięci forum.
+:::
+
+## Ćwiczenie: 5 minut, jeden limit
+
+1. Zapisz jedno zadanie z tego tygodnia, którego **nie** załatwi sam akapit w czacie (klip, lektor, slajdy, transkrypt, tabela).
+2. Przypisz kategorię z tabeli.
+3. Otwórz **jedną** oficjalną stronę cennika z tej kategorii. Przepisz **jeden** limit słowami ze strony (np. "plan darmowy: ...", "trial: ... dni"). Dopisz datę. Nie przepisuj kwoty "na zawsze".
+
+**Zaliczenie:** zadanie, kategoria, jeden limit z datą. Konto zakładasz tylko jeśli to zadanie naprawdę leży na biurku.
+
+**Typowy wynik:** kategoria jest oczywista, a limit darmowy jest ciaśniejszy niż baner.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** to samo zadanie - czy czat z [trybów](/narzedzia/tryby-pracy-chatbotow/) jednak starczy? Jeśli tak, nie kupujesz nowej półki.
+
+## Teraz wiesz
+
+- Wybór narzędzia zaczyna się od formatu (obraz w ruchu, dźwięk, projekt z kodem, slajd), nie od strachu, że coś Cię omija.
+- Research ze źródłami i Copilot w firmie to inne kategorie niż "jeszcze jeden czat".
+- Limit, licencję i miejsce plików czytasz u dostawcy. Ta lekcja jest mapą.
+
+**Następny krok:** [Asystenci agentowi](/narzedzia/asystenci-agentowi/) - kiedy narzędzie przechodzi od podpowiedzi do działania, i które "Copilot" masz przed sobą.
+
+<SlowniczekStrony terminy={["chatbot"]} />

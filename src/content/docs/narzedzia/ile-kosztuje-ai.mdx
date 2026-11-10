@@ -1,0 +1,140 @@
+---
+title: Ile kosztuje AI - subskrypcje, API i brokerzy
+description: Odróżnisz subskrypcję od API i zapiszesz jeden limit z oficjalnego cennika. Ćwiczenie zajmie 5 minut.
+sidebar:
+  label: 'Ile kosztuje AI'
+  order: 9
+educationalLevel: Beginner
+teaches:
+  - Trzy osobne portfele - aplikacja, API dostawcy, broker
+  - Jak czytać drabinę planów bez wklejania kwot do notatek
+  - Gdzie otworzyć aktualny cennik i na co patrzeć przy kasie
+about:
+  - name: Sztuczna inteligencja
+    sameAs: https://pl.wikipedia.org/wiki/Sztuczna_inteligencja
+  - name: Interfejs programowania aplikacji
+    sameAs: https://pl.wikipedia.org/wiki/Interfejs_programowania_aplikacji
+mentions:
+  - name: ChatGPT
+    sameAs: https://en.wikipedia.org/wiki/ChatGPT
+    type: SoftwareApplication
+  - name: Claude
+    sameAs: https://en.wikipedia.org/wiki/Claude_(language_model)
+    type: SoftwareApplication
+  - name: Gemini
+    sameAs: https://en.wikipedia.org/wiki/Gemini_(language_model)
+    type: SoftwareApplication
+faq:
+  - q: Ile kosztuje AI miesięcznie?
+    a: Tyle, ile stoi dziś na stronie dostawcy, nie w tej lekcji. Każdy duży czat ma zwykle szczebel darmowy i płatne z limitami. Kwoty i nazwy planów zmieniają się kilka razy w roku - dlatego na tej stronie ich nie ma.
+  - q: Czym różni się subskrypcja od API?
+    a: Subskrypcja to stała opłata za aplikację czatu, limity w wiadomościach albo w trybach. API to płatność za zużyte tokeny, bez tego abonamentu. Płatny plan czatu (np. ChatGPT Plus) nie daje dostępu do API - to dwa produkty i dwa rachunki.
+  - q: Czy broker API taki jak OpenRouter się opłaca?
+    a: Często wygodą (jeden klucz, wiele modeli), rzadko "bo taniej na tokenie". Dane idą przez trzecią stronę. Stawki i prowizję za doładowanie czytasz na stronie brokera, nie z pamięci.
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+:::note[O tej stronie]
+**Czas:** ok. 7 minut czytania + 5 minut ćwiczenia.
+**Poziom:** początkujący, po lekcji [AI w codziennej pracy](/narzedzia/ai-w-codziennej-pracy/). Możesz ją przeczytać zaraz po lekcji [Chatboty AI](/narzedzia/chatboty/).
+**Wcześniej:** [AI w codziennej pracy](/narzedzia/ai-w-codziennej-pracy/) - masz jeden powtarzalny nawyk w tygodniu. **Teraz:** sprawdzasz, czym za niego płacisz - bez tabeli złotówek "na dziś".
+:::
+
+## Na tej stronie otworzysz cennik, nie przepiszesz go do wiki
+
+Po tej lekcji wiesz, którym z trzech portfeli płacisz, i masz z oficjalnej strony **jeden** limit konkretnego planu (wiadomości, tryby, <Termin id="token">tokeny</Termin> - tak jak napisano u dostawcy), z datą odczytu.
+
+Jedna rzecz do zapamiętania: **najdroższy plan indywidualny to przede wszystkim większy limit. U części dostawców dochodzi dostęp do najmocniejszego modelu - sprawdź w tabeli, czy go potrzebujesz.**
+
+## Trzy portfele, ten sam model
+
+Za ten sam model da się zapłacić na trzy sposoby. Nazywam je portfelami, bo każdy to osobny rachunek. Różnica w rachunku bywa ogromna. Kwot tu nie ma - jest struktura.
+
+### 1. Subskrypcja - płacisz za okno
+
+Stała opłata za ChatGPT, Claude, Gemini, Copilota w aplikacji. Limity w wiadomościach, plikach, trybach - nie w tokenach.
+
+**Dla kogo:** większość osób na tej ścieżce. Rozmowa w czacie.
+
+**Plus:** rachunek z góry. **Minus:** płacisz też w miesiącu z urlopem.
+
+### 2. API u dostawcy - płacisz za zużycie
+
+Program mówi do modelu przez <Termin id="api">API</Termin> (dostęp do modelu dla programistów, bez okna czatu). Doładowujesz konto. Płacisz osobno za tekst, który wysyłasz (wejście), i za tekst, który model odpisuje (wyjście). Odpowiedź zwykle kosztuje wyraźnie więcej za token. Jednostka: token - Tokeny i kontekst.
+
+**Dla kogo:** automatyzacja, własne narzędzie, rzadkie użycie mocnego modelu bez abonamentu czatu.
+
+**Plus:** przy małym ruchu bywa groszowo. **Minus:** pętla w skrypcie spali budżet. Pierwsza rzecz na koncie: limit wydatków.
+
+### 3. API u brokera - jeden klucz, wiele marek
+
+Broker (brama) siedzi w środku. Jedno konto i jeden klucz API (hasło, którym program loguje się do usługi), modele wielu dostawców. Znany przykład: [OpenRouter](https://openrouter.ai/). Są inni; da się też postawić bramę u siebie.
+
+**Dla kogo:** porównanie modeli, aplikacja, która ma się przełączać.
+
+**Plus:** jedna faktura, czasem awaryjne przekierowanie. **Minus:** Twoje dane przechodzą przez jeszcze jedną firmę. Czy broker dolicza się do tokena, czy do doładowania - **na jego cenniku**, nie tu.
+
+| Jak korzystasz | Portfel |
+| --- | --- |
+| Codzienny czat | Subskrypcja |
+| Rzadko, ale ten sam model co w API | API u dostawcy |
+| Skrypt / automatyzacja | API u dostawcy |
+| Porównanie albo przełączanie marek | Broker |
+| Dane nie mogą wyjść z firmy | Model lokalnie |
+
+## Drabina planów - szczebel, nie złotówka
+
+Dostawcy układają plany podobnie, jak szczeble drabiny: od darmowego do firmowego. Nazwy skaczą. Kolejność zostaje.
+
+1. **Darmowy** - węższy limit, często słabszy albo wolniejszy model w szczycie.
+2. **Lekki płatny** - bywa ten sam flagowiec co w droższych planach, ciaśniejszy limit, część trybów obcięta. Nie zgaduj - czytaj tabelę na stronie.
+3. **Standard** - codzienny tor dla kogoś, kto już uderza w limit planu darmowego.
+4. **Wysoki** - przede wszystkim mnożnik limitu. U części dostawców dochodzi dostęp do najmocniejszego modelu, którego niższe plany nie mają. Zanim zapłacisz "na zapas", zobacz, czy standard naprawdę się kończy.
+5. **Firmowy** - stanowiska, administracja, umowa o danych. Wycena nie jest "tańszym czatem na całą firmę".
+
+Praktyczna kolejność: darmowy, a gdy limit boli - standard (nie lekki "bo taniej na banerze"), wysoki dopiero po pomiarze. Lekki bywa pułapką: na banerze ten sam model co w droższym planie, ale limit kończy się w środku tygodnia.
+
+Przy kasie trzy haczyki, nadal bez kwot: cena bywa w dolarach (przewalutowanie), strona lubi pokazywać stawkę roczną, plan firmowy liczy się od stanowiska i bywa z minimum.
+
+## Gdzie otworzyć "ile dziś"
+
+| Dostawca | Aplikacja | API |
+| --- | --- | --- |
+| OpenAI | [chatgpt.com/pricing](https://chatgpt.com/pricing/) | [developers.openai.com - pricing](https://developers.openai.com/api/docs/pricing) |
+| Anthropic | [claude.com/pricing](https://claude.com/pricing) | ta sama strona, sekcja API |
+| Google | [gemini.google/subscriptions](https://gemini.google/subscriptions/) | [aistudio.google.com - pricing](https://aistudio.google.com/docs/pricing) |
+| Microsoft | [Microsoft 365](https://www.microsoft.com/pl-pl/microsoft-365/premium) | - |
+| Mistral | [mistral.ai/pricing](https://mistral.ai/pricing) | tamże |
+| DeepSeek | czat: strona produktu | [api-docs.deepseek.com](https://api-docs.deepseek.com/quick_start/pricing) |
+| OpenRouter | - | [openrouter.ai/pricing](https://openrouter.ai/pricing) |
+
+Nie kupuj trzech czatów "na wszelki wypadek". Sprawdź, czy AI nie siedzi już w pakiecie, za który płacisz. Przy API dobierz model do zadania: klasyfikacja nie potrzebuje flagowca. Polski tekst jada więcej tokenów - znów lekcja o tokenach.
+
+:::note[Źródła sprawdzone w listopadzie 2026 r.]
+Świadomie nie ma tu tabeli złotówek ani stawek planów z pamięci. Ceny zmieniają się częściej niż ta strona - liczba wpisana tu dziś za kwartał byłaby nieaktualna. Linki powyżej prowadzą do stron, które dostawca aktualizuje. Po odczycie zapisujesz limit i datę - nie wklejasz kwoty do własnego wiki jako "stan na zawsze".
+:::
+
+## Ćwiczenie: 5 minut, jedna strona producenta
+
+1. Wybierz narzędzie, którego **realnie** używasz albo użyjesz w tym miesiącu (jeden czat, nie wszystkie).
+2. Otwórz jego oficjalny cennik z tabeli.
+3. Wybierz **jeden** plan (darmowy albo ten, na który patrzysz). Zapisz: nazwę planu **jak na stronie**, co jest limitowane (jedno zdanie ze strony), czy widoczna cena jest miesięczna czy roczna. Data odczytu.
+
+**Zaliczenie:** te trzy linijki plus data. Nie musisz płacić. Nie budujesz arkusza porównawczego "na rok".
+
+**Typowy wynik:** baner krzyczy kwotą roczną, a limit wiadomości jest w przypisie. Liczy się właśnie ten przypis, nie zapamiętana złotówka.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** otwórz cennik **API** tego samego dostawcy. Jednym zdaniem: czy to ta sama kasa co czat? (Prawidłowa odpowiedź: nie.)
+
+## Teraz wiesz
+
+- Subskrypcja, API, broker - trzy portfele. Płatny plan czatu nie zawiera dostępu do API.
+- Wysoki plan to przede wszystkim większy limit. Czy dokłada najmocniejszy model, sprawdzasz w tabeli u dostawcy.
+- Jedyne aktualne "ile" jest u dostawcy. Ta lekcja uczy czytania, nie cennika.
+
+**Następny krok:** sekcja "Suwerenne AI" jest w przebudowie. Do tego czasu sprawdź [słownik pojęć](/zasoby/slownik-pojec/) albo [bibliotekę zasobów](/zasoby/biblioteka/). Dziś możesz też przejść do: [Podstawy](/podstawy/) (8 lekcji, dla początkujących), [Etyka i bezpieczeństwo](/etyka/) (4 lekcje) i [Claude Code](/claude-code/) (21 lekcji, poziom średni, wymaga terminala).
+
+<SlowniczekStrony terminy={["token", "api", "chatbot"]} />

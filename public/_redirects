@@ -40,10 +40,10 @@
 
 # --- Narzędzia AI ---
 /narzedzia-chatboty/ /narzedzia/chatboty/ 301
-/narzedzia-generatory-obrazow/ /narzedzia/ 302
-/narzedzia-pisanie/ /narzedzia/ 302
-/narzedzia-specjalistyczne/ /narzedzia/ 302
-/ai-w-codziennej-pracy/ /narzedzia/ 302
+/narzedzia-generatory-obrazow/ /narzedzia/generatory-obrazow/ 301
+/narzedzia-pisanie/ /narzedzia/pisanie/ 301
+/narzedzia-specjalistyczne/ /narzedzia/specjalistyczne/ 301
+/ai-w-codziennej-pracy/ /narzedzia/ai-w-codziennej-pracy/ 301
 
 # --- AI w praktyce ---
 /ai-w-branzach/ /praktyka/ 302
@@ -81,14 +81,6 @@
 /jak-dziala-ai/rag/ /jak-dziala-ai/ 302
 /jak-dziala-ai/tokeny-i-kontekst/ /jak-dziala-ai/ 302
 /jak-dziala-ai/typy-ai/ /jak-dziala-ai/ 302
-/narzedzia/ai-w-codziennej-pracy/ /narzedzia/ 302
-/narzedzia/asystenci-agentowi/ /narzedzia/ 302
-/narzedzia/generatory-obrazow/ /narzedzia/ 302
-/narzedzia/ile-kosztuje-ai/ /narzedzia/ 302
-/narzedzia/pisanie/ /narzedzia/ 302
-/narzedzia/serwery-mcp/ /narzedzia/ 302
-/narzedzia/specjalistyczne/ /narzedzia/ 302
-/narzedzia/tryby-pracy-chatbotow/ /narzedzia/ 302
 /praktyka/ai-i-praca/ /praktyka/ 302
 /praktyka/ai-w-branzach/ /praktyka/ 302
 /praktyka/case-studies/ /praktyka/ 302

@@ -1,0 +1,103 @@
+---
+title: Asystenci agentowi - Copilot, Claude Code i Claude Cowork
+description: Dobierzesz jeden produkt z rodziny Copilot albo Claude i zapiszesz, które kliknięcie zostaje przy Tobie. Ćwiczenie zajmie 5 minut.
+sidebar:
+  label: 'Asystenci agentowi'
+  order: 6
+educationalLevel: Intermediate
+teaches:
+  - Czym asystent agentowy różni się od okna czatu
+  - Że "Copilot" to kilka produktów, nie jeden włącznik
+  - Jak zostawić sobie zatwierdzenie działań nieodwracalnych
+about:
+  - name: Sztuczna inteligencja
+    sameAs: https://pl.wikipedia.org/wiki/Sztuczna_inteligencja
+  - name: Inteligentny agent
+    sameAs: https://en.wikipedia.org/wiki/Intelligent_agent
+mentions:
+  - name: Microsoft Copilot
+    sameAs: https://en.wikipedia.org/wiki/Microsoft_Copilot
+    type: SoftwareApplication
+  - name: GitHub Copilot
+    sameAs: https://en.wikipedia.org/wiki/GitHub_Copilot
+    type: SoftwareApplication
+  - name: Claude Code
+    sameAs: https://claude.com/product/claude-code
+    type: SoftwareApplication
+  - name: Claude Cowork
+    sameAs: https://claude.com/product/cowork
+    type: SoftwareApplication
+faq:
+  - q: Czym różni się Microsoft Copilot od Microsoft 365 Copilot?
+    a: Microsoft Copilot to asystent w przeglądarce, Windows i telefonie - próg wejścia jak przy zwykłym czacie. Microsoft 365 Copilot to usługa w Wordzie, Excelu, Outlooku i Teams z dostępem do danych organizacji. Inny cennik, inny administrator, inne pliki w zasięgu.
+  - q: Czy Claude Code jest tylko dla programistów?
+    a: Nie musisz programować, ale musisz pracować w terminalu i w folderze projektu - zwykle z kodem, choć może to być katalog z dokumentami. Od tego zaczyna [sekcja Claude Code](/claude-code/). Jeśli terminal Cię odstrasza, podobną mechanikę agenta bez terminala daje Claude Cowork, dziś łączony z czatem w aplikacji Claude. Który plan to odblokowuje, czytasz u Anthropic, nie w tym FAQ.
+  - q: Od czego zacząć, jeśli nie programuję?
+    a: Od miejsca, w którym już pracujesz. Pakiet Microsoft - najpierw rozróżnij darmowego Copilota od firmowego. Wielokrokowa praca na folderze - Cowork albo zwykły czat podłączony do narzędzi (MCP, następna lekcja). Nie musisz znać wszystkich nazw naraz.
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+:::note[O tej stronie]
+**Czas:** ok. 7 minut czytania + 5 minut ćwiczenia.
+**Poziom:** średni, po lekcji [Specjalistyczne narzędzia AI](/narzedzia/specjalistyczne/) i po lekcji Agenci AI.
+**Wcześniej:** [Specjalistyczne narzędzia AI](/narzedzia/specjalistyczne/) - umiesz dobrać kategorię narzędzia do zadania. **Teraz:** poznajesz narzędzia, które **wykonują kroki**, a nie tylko odpowiadają.
+:::
+
+## Na tej stronie wybierzesz narzędzie i jedną rzecz, której nie oddasz bez zgody
+
+Po tej lekcji Twoja sytuacja z tygodnia ma jedną etykietę z tabeli (który Copilot albo który Claude) i jedno działanie, którego **nie** oddajesz bez potwierdzenia: wysyłka, płatność, kasowanie, publikacja.
+
+Jedna rzecz do zapamiętania: **<Termin id="agent-ai">agent</Termin> dostaje cel i sam dobiera kroki. Nieodwracalne kliknięcie zostaje przy Tobie.**
+
+## Copilot - jedno słowo, trzy produkty
+
+Microsoft nazwał tak kilka produktów. Firma, która "kupuje Copilota", bywa zdziwiona zawartością pudełka.
+
+| Nazwa | Co to jest | Gdzie działa | Dla kogo |
+| --- | --- | --- | --- |
+| **Microsoft Copilot** | Czat-asystent | [copilot.microsoft.com](https://copilot.microsoft.com), Windows, telefon | Wejście bez firmowej licencji |
+| **Microsoft 365 Copilot** | AI w aplikacjach biurowych plus kontekst organizacji | Word, Excel, PowerPoint, Outlook, Teams | Firmy i szkoły z wdrożeniem |
+| **GitHub Copilot** | Asystent w edytorze kodu, coraz częściej z trybem agenta | VS Code, JetBrains i inne | Osoby piszące kod |
+
+Darmowy Copilot w przeglądarce to w praktyce krewny lekcji o [chatbotach](/narzedzia/chatboty/). Firmowy 365 widzi maile i pliki, do których już masz uprawnienia - więcej o tym w lekcji o [narzędziach specjalistycznych](/narzedzia/specjalistyczne/).
+
+"Copilot Pro" z dawnych poradników [nie jest już sprzedawany](https://support.microsoft.com/en-us/microsoft-365-copilot/about-microsoft-copilot-pro), a jego wsparcie skończyło się 1 sierpnia 2026 r. Jako następcę Microsoft wskazuje plan [Microsoft 365 Premium](https://www.microsoft.com/pl-pl/microsoft-365/premium) - AI w Wordzie, Excelu i Outlooku dla osób prywatnych.
+
+GitHub Copilot podpowiada kolejne linie kodu i odpowiada na pytania o projekt. W trybie agenta proponuje zmiany w wielu plikach naraz, a Ty je zatwierdzasz. Sensowna praca z nim: Programowanie z AI. Ceny: [plany GitHub Copilot](https://github.com/features/copilot/plans).
+
+## Claude: terminal i biurko
+
+[Claude Code](https://claude.com/product/claude-code) pracuje w projekcie: czyta pliki, poprawia je, uruchamia testy (automatyczne sprawdzenia kodu) i wraca z gotową zmianą. Polecenia piszesz zwykłym językiem, ale pracuje w folderze projektu (najczęściej z kodem) i w terminalu (oknie, w którym wpisuje się komendy). Programować nie musisz - cały kurs pracy z tym narzędziem jest w sekcji [Claude Code](/claude-code/).
+
+[Claude Cowork](https://claude.com/product/cowork) to agent pracujący na folderze, który **wskażesz**, bez terminala. Dawniej była to osobna zakładka w aplikacji desktop. Od 16 września 2026 r. Anthropic [stopniowo łączy Cowork z czatem w jedną rozmowę](https://claude.com/resources/articles/cowork-is-now-claude) - najpierw w płatnych planach indywidualnych, a zespoły i plan darmowy mają go dostać później. Co masz w swoim planie, sprawdź u Anthropic.
+
+Cennik obu: [claude.com/pricing](https://claude.com/pricing). Tu nie ma kwot.
+
+:::note[Źródła sprawdzone w listopadzie 2026 r.]
+Copilot Pro: [strona pomocy Microsoft](https://support.microsoft.com/en-us/microsoft-365-copilot/about-microsoft-copilot-pro) - sprzedaż zakończona, wsparcie do 1 sierpnia 2026 r., następca Microsoft 365 Premium. Cowork: [zapowiedź Anthropic z 16 września 2026 r.](https://claude.com/resources/articles/cowork-is-now-claude) - łączenie z czatem wdrażane stopniowo, plan po planie. Nazwy planów i ceny sprawdzasz u dostawcy.
+:::
+
+## Ćwiczenie: 5 minut, jedna granica
+
+1. Zapisz w jednym zdaniu, **gdzie** robisz zadanie z tego tygodnia: przeglądarka, Word/Excel, edytor kodu, folder z plikami.
+2. Przypisz wiersz z tabeli (albo Claude Code / Cowork). Jeśli nic nie pasuje - "zostaję przy czacie".
+3. Dopisz **jedno** działanie, które przy agencie zostaje do ręcznego "tak" (wysyłka, usunięcie, płatność, publikacja).
+
+**Zaliczenie:** zdanie sytuacji, nazwa produktu, jedna granica. Nie musisz instalować Claude Code.
+
+**Typowy wynik:** "mam Word w pracy, więc myślę o 365, ale wysyłki do klienta nie oddaję".
+
+**Jeśli nic nie zgrzyta i zostaje czas:** otwórz oficjalną stronę **tego** produktu. Zapisz, czy to czat, dodatek do pakietu, czy agent na plikach. Jedno zdanie, bez kwoty.
+
+## Teraz wiesz
+
+- "Copilot" to co najmniej trzy produkty. Pytasz, **który**, zanim ktoś "wdroży AI".
+- Agent mnoży kroki i błędy. Zatwierdzenie zostaje przy działaniu nieodwracalnym.
+- Claude Code i Cowork działają podobnie (agent wykonuje kroki). Claude Code wymaga pracy w terminalu, ale nie programowania. Cowork działa na zwykłych plikach, bez terminala.
+
+**Następny krok:** [Serwery MCP](/narzedzia/serwery-mcp/) - jak asystent w ogóle sięga po kalendarz i dysk, i jak nie dać mu jednocześnie tajemnic, internetu i przycisku "wyślij".
+
+<SlowniczekStrony terminy={["agent-ai", "chatbot"]} />
