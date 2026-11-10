@@ -1,0 +1,92 @@
+---
+title: Baza promptów - ukradnij jeden i przerób
+description: Skopiujesz jeden starter, wypełnisz cztery pola i odetniesz zdanie, które nic nie zmienia. Ćwiczenie zajmie 5 minut.
+sidebar:
+  label: 'Baza promptów'
+  order: 10
+educationalLevel: Beginner
+teaches:
+  - Jak przerobić cudzy prompt na własny, zamiast zbierać katalog
+  - Które zdania wypełnić własnymi faktami, a które wyciąć
+  - Że gotowiec to szkic, nie przepis
+about:
+  - name: Prompt engineering
+    sameAs: https://en.wikipedia.org/wiki/Prompt_engineering
+faq:
+  - q: Gdzie jest katalog gotowców do skopiowania?
+    a: Nie ma go tu celowo. Pięćdziesiąt promptów starzeje się i uczy kopiowania. Na tej stronie jest jeden starter i ruch "wypełnij pola, wytnij cudze". Szkielet czterech pól jest w [podstawach promptowania](/prompt-engineering/podstawy/).
+  - q: Czy ten sam gotowiec zadziała w każdym modelu?
+    a: Ruch zadziała. Dosłowne zdania bywają różne. Po wypełnieniu pól i tak wysyłasz i patrzysz, czy format się trzyma - nie kolekcjonujesz wariantów "na ChatGPT" i "na Claude".
+  - q: Co wyciąć z pożyczonego promptu?
+    a: Zdania o cudzej roli, cudzym budżecie, cudzej branży. Pole, którego nie umiesz wypełnić faktami, oznacz "nie dotyczy" - jak w podstawach - zamiast zostawiać cudzą treść. Cudza treść w polu to zgadywanie modelu, nie "uniwersalność".
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+![Ściana z rzędami kartek przypiętych klipsami do drewnianej tablicy](../../../assets/prompt-engineering/baza-promptow/baza-promptow.jpg)
+
+:::note[O tej stronie]
+**Czas:** ok. 5 minut czytania + 5 minut ćwiczenia.
+**Poziom:** początkujący, po lekcji [Cudzy tekst w prompcie](/prompt-engineering/najlepsze-praktyki/). Możesz tu wrócić zaraz po [Podstawach promptowania](/prompt-engineering/podstawy/) - korzystasz z tego samego szkieletu.
+**Wcześniej:** [Cudzy tekst w prompcie](/prompt-engineering/najlepsze-praktyki/) - wiesz, że cudzy tekst w ramce to dane, nie polecenie. **Teraz:** traktujesz cudzy prompt jako szkic, który staje się Twój dopiero po wypełnieniu pól.
+:::
+
+## Na tej stronie przerobisz jeden gotowiec
+
+Po tej lekcji masz własną wersję startera: cztery pola wypełnione Twoim zadaniem (albo `nie dotyczy`) i jedno zdanie mniej niż w oryginale. Nie znajdziesz tu katalogu gotowych promptów na każdą okazję.
+
+Jedna rzecz do zapamiętania: **pożyczony <Termin id="prompt">prompt</Termin> to szkic. Praca jest w polach, nie w kolekcji.**
+
+## Ukradnij, wypełnij, wytnij
+
+Jeden ruch: **traktujesz gotowiec jak szablon z [podstaw promptowania](/prompt-engineering/podstawy/), nie jak zaklęcie.** Kiedy: ktoś (albo inna strona) ma prompt, który _prawie_ pasuje. Nie kiedy szukasz pięćdziesięciu wariantów na wszelki wypadek.
+
+Kolejność:
+
+1. Skopiuj.
+2. Zaznacz pola do wypełnienia (`[nawias]`, podkreślenia, "tutaj wklej").
+3. Wypełnij tylko to, na co masz prawdziwą, aktualną informację. Resztę oznacz `nie dotyczy`.
+4. Wytnij rolę, branżę i ograniczenia, które nie są Twoje. Nie zostawiaj ich "bo mądrze brzmią".
+5. Wyślij w nowej rozmowie. Jeśli jedno zdanie nic nie zmieniło - wytnij. To ten sam test na balast co we [wprowadzeniu](/prompt-engineering/wprowadzenie/).
+
+Jeśli w gotowcu jest miejsce na wklejkę od kogoś obcego (mail, komentarz), wróć do ramki z lekcji [Cudzy tekst w prompcie](/prompt-engineering/najlepsze-praktyki/).
+
+Starter - jeden, nie katalog:
+
+```text
+Rola: [kto ma odpowiedzieć - zawód albo perspektywa]
+Zadanie: [co konkretnie zrobić]
+Ograniczenia: [długość, ton, czego nie robić, budżet, odbiorca]
+Format: [lista, tabela, liczba zdań, pola do wypełnienia]
+
+Materiał:
+[wklej tekst albo dane]
+```
+
+Zadanie zapisujesz jako czasownik i obiekt, np. "skróć maila do 5 zdań".
+
+To nie magia <Termin id="prompt-engineering">prompt engineeringu</Termin>, tylko ten sam szkielet co w [podstawach promptowania](/prompt-engineering/podstawy/), zapisany tak, żeby dało się go skopiować.
+
+## Ćwiczenie: 5 minut, cztery pola i jedno cięcie
+
+1. Skopiuj starter. Wypełnij cztery pola własnym tematem z tego tygodnia (mail, lista, poprawka). Tam, gdzie nie ma ograniczeń, wpisz `nie dotyczy`.
+2. Wklej w **Materiał** prawdziwy szkic. Wyślij w nowej rozmowie.
+3. Odetnij z wysłanej wersji jedno zdanie, które było ozdobą. Pola zostają - najwyżej z `nie dotyczy`. Nie musisz wysyłać drugi raz, jeśli na kartce widać, co spadło i dlaczego nic by nie zmieniło.
+
+**Zaliczenie:** Twoja wersja bez nawiasów `[ ]` oraz jedno skreślenie. Zostawione `[WPISZ TEMAT]` nie zalicza. Katalog "jeszcze pięć gotowców na później" nie zalicza.
+
+**Typowy wynik:** w roli ląduje słowo "ekspert", które nic nie zawęża. Wymiana na konkretną perspektywę ("osoba od reklamacji w małym sklepie") zwykle robi więcej niż trzeci akapit o pasji.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** poproś model o poprawienie Twojej wersji, potem wytnij z jego szkicu wszystko, czego nie umiesz obronić. Szkic od modelu też jest cudzy, dopóki nie przejdziesz jego pól.
+
+## Teraz wiesz
+
+- Jeden przerobiony prompt bije szufladę gotowców.
+- Pole bez faktu to zgadywanie. Cudza rola to balast.
+- Zapisujesz swoją wersję. Gotowiec możesz wziąć stąd jeszcze raz, Twojej wersji nikt za Ciebie nie odtworzy.
+
+**Następny krok:** [Chatboty AI](/narzedzia/chatboty/) - pierwsza lekcja sekcji Narzędzia AI. Prompt już umiesz złożyć, teraz wybierasz czat, w którym go wyślesz.
+
+<SlowniczekStrony terminy={["prompt", "prompt-engineering"]} />

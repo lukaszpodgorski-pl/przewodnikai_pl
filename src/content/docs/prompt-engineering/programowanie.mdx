@@ -1,0 +1,94 @@
+---
+title: Programowanie z AI - przeczytaj, zanim puścisz
+description: Poprosisz model o jedną funkcję i sprawdzisz, przez co dzieli. Ćwiczenie zajmie 5 minut.
+sidebar:
+  label: 'Programowanie z AI'
+  order: 8
+educationalLevel: Intermediate
+teaches:
+  - Jak opisać zachowanie zamiast "napisz kod"
+  - Że ładnie wyglądający kod od modelu sprawdzasz jak zmianę od nieznajomej osoby
+  - Kiedy czat o fragmencie, a kiedy asystent w projekcie
+about:
+  - name: Programowanie
+    sameAs: https://pl.wikipedia.org/wiki/Programowanie_komputerów
+  - name: Sztuczna inteligencja
+    sameAs: https://pl.wikipedia.org/wiki/Sztuczna_inteligencja
+faq:
+  - q: Czy ta lekcja jest tylko dla programistów?
+    a: Nie. Ćwiczenie da się zaliczyć bez uruchamiania czegokolwiek - wystarczy znaleźć w odpowiedzi linię z dzieleniem i policzyć przykład na kartce. Uruchomienie jest opcją, nie warunkiem.
+  - q: Czy wolno wklejać cały projekt do czatu?
+    a: Do tej lekcji nie. Wklejasz mały fragment i opis zachowania. Cały projekt i wiele plików to [asystenci agentowi](/narzedzia/asystenci-agentowi/) - tam recenzja jest jeszcze ważniejsza, bo zmiany siedzą w plikach, których nie masz otwartych.
+  - q: Czy kod od modelu można od razu puścić?
+    a: Nie. Składnia i ładne nazwy nic nie mówią o tym, czy funkcja robi to, o co chodziło. Traktujesz go jak zmianę od kogoś, kogo nie znasz - czytasz, liczysz jeden przykład, dopiero potem - jeśli trzeba - uruchamiasz.
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+![Mężczyzna w okularach przy biurku, za nim kilka monitorów z kodem](../../../assets/prompt-engineering/programowanie/programowanie.jpg)
+
+:::note[O tej stronie]
+**Czas:** ok. 6 minut czytania + 5 minut ćwiczenia.
+**Poziom:** średni, po lekcji [Automatyzacja](/prompt-engineering/automatyzacja/), także bez codziennego kodowania.
+**Wcześniej:** [Automatyzacja](/prompt-engineering/automatyzacja/) - drugi prompt dostaje tylko listę z pierwszego. **Teraz:** model dostaje opis tego, co ma robić funkcja, a Ty sprawdzasz, czy kod faktycznie to robi.
+:::
+
+## Na tej stronie sprawdzisz, przez co kod dzieli
+
+Po tej lekcji masz jeden krótki opis funkcji (krótki kawałek kodu, który dostaje dane i oddaje wynik), odpowiedź modelu i adnotację: przez ile elementów dzieli.
+
+Jedna rzecz do zapamiętania: **kod od modelu najpierw czytasz i sprawdzasz, dopiero potem uruchamiasz.**
+
+<Termin id="prompt">Prompt</Termin> opisuje zachowanie. Linia z dzieleniem mówi, czy to zachowanie siedzi w kodzie.
+
+## Opisz zachowanie, potem czytaj
+
+Cała technika to jeden ruch: **najpierw opisujesz, co kod ma robić, i dajesz przykład, potem sprawdzasz jedną linię, która może się z tym opisem nie zgadzać.** Przydaje się, gdy prosisz o mały fragment (jedną funkcję albo poprawkę), a nie o "całą aplikację".
+
+Z AI przy kodzie pracuje się na dwa sposoby: rozmawiasz o kawałku kodu wklejonym do czatu (tego dotyczy ta lekcja) albo używasz asystenta, który sam zmienia pliki w projekcie ([asystenci agentowi](/narzedzia/asystenci-agentowi/)). W drugim przypadku sprawdzanie jest jeszcze ważniejsze.
+
+Ładna nazwa i komentarz w kodzie mogą opisywać **inne** działanie niż linia, która faktycznie dzieli (znak `/`). Nie zauważysz tego, dopóki nie policzysz przykładu. Zapewnienie modelu, że "kod jest bezpieczny", sprawdzasz jak każdą inną pewną wypowiedź: [Weryfikacja](/podstawy/weryfikacja-informacji/).
+
+Nie wklejaj haseł, kluczy i danych klientów. To wraca w lekcji [Cudzy tekst w prompcie](/prompt-engineering/najlepsze-praktyki/) i w [prywatności](/etyka/prywatnosc/).
+
+Poniższy prompt prosi o funkcję w Pythonie, popularnym języku programowania. Nie musisz go znać.
+
+```text
+Napisz jedną funkcję w Pythonie.
+
+Wejście: lista liczb.
+Wyjście: średnia arytmetyczna TYLKO liczb większych od zera.
+Jeśli nie ma żadnej liczby dodatniej, zwróć 0.
+
+Przykład, który musi wyjść:
+wejście: 10, -5, -5
+wyjście: 10
+
+Bez wstępu. Tylko funkcja.
+```
+
+Haczyk jest w tym, przez co kod dzieli: przez liczbę liczb dodatnich (tu jedna), a nie przez długość całej listy (trzy). Wynik 10/3 ≈ 3,33 wygląda jak średnia, ale nie spełnia opisu z promptu. Opis w kodzie (_docstring_) może się mylić - liczysz samo dzielenie.
+
+## Ćwiczenie: 5 minut, jeden przykład na kartce
+
+1. Nowa rozmowa. Wklej prompt z opisem i przykładem 10 / -5 / -5.
+2. W odpowiedzi znajdź dzielenie, czyli znak `/`. Pomogą słowa obok niego, np. `sum` (suma) albo `len` (ile elementów ma lista).
+3. Na kartce: przez co dzieli przy tym przykładzie? `1` (tylko dodatnie) czy `3` (cała lista)? Policz, jaki numer powinien paść.
+
+**Zaliczenie:** adnotacja `mianownik: 1 albo 3` i liczba, którą dałby ten kod na `[10, -5, -5]`. Nie musisz uruchamiać Pythona. Liczy się sprawdzenie kodu, a nie to, że się uruchomił.
+
+**Typowy wynik:** funkcja wygląda czysto, a dzieli przez trzy. Albo dzieli przez jedno i zgadza się z opisem z promptu. Oba warianty zaliczają ćwiczenie, jeśli mianownik jest na kartce.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** ten sam prompt **bez** przykładu 10 / -5 / -5. Porównaj, czy mianownik się zmienia. To argument za tym, żeby w opisie zawsze dawać przykład.
+
+## Teraz wiesz
+
+- Najpierw zachowanie i przykład, potem kod - nie odwrotnie.
+- Ładny kod nie zwalnia z czytania. Linia z dzieleniem mówi więcej niż komentarz.
+- Cały projekt to praca z asystentem agentowym. Tu ćwiczysz na jednym kawałku.
+
+**Następny krok:** [Cudzy tekst w prompcie](/prompt-engineering/najlepsze-praktyki/) - co robić, gdy do polecenia wklejasz cudzy tekst: model ma go traktować jako materiał do pracy, a nie jako nowe polecenia.
+
+<SlowniczekStrony terminy={["prompt"]} />

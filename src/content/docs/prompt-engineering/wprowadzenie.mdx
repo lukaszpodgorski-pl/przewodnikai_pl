@@ -1,0 +1,103 @@
+---
+title: Prompt Engineering - wprowadzenie do inżynierii promptów
+description: Przerobisz jeden słaby prompt na konkretny i wyślesz obie wersje. Ćwiczenie zajmie 5 minut.
+sidebar:
+  label: Wprowadzenie
+  order: 1
+educationalLevel: Beginner
+teaches:
+  - Czym jest prompt engineering bez magii
+  - Że model dostaje tylko to, co jest w tekście
+  - Jak zamienić ogólnik na zadanie z rolą, ograniczeniami i formatem
+about:
+  - name: Prompt engineering
+    sameAs: https://en.wikipedia.org/wiki/Prompt_engineering
+mentions:
+  - name: ChatGPT
+    sameAs: https://en.wikipedia.org/wiki/ChatGPT
+    type: SoftwareApplication
+faq:
+  - q: Czy muszę znać API, żeby uczyć się promptów?
+    a: Nie. Całą tę sekcję przerobisz w zwykłym oknie czatu. API to dostęp do modelu dla programistów, bez okna czatu - tylko tam zmienisz ustawienia losowania (temperatura, top-p). W czacie zastępuje je zdanie o tonie i rzeczowości.
+  - q: Czy dłuższy prompt zawsze jest lepszy?
+    a: Nie. Decyduje dokładność zadania, nie objętość. Zbędne zdania rozmywają polecenie. Ćwiczysz to w [bazie promptów](/prompt-engineering/baza-promptow/).
+  - q: Czy muszę iść przez wszystkie 10 lekcji po kolei?
+    a: Pierwsze cztery (wprowadzenie, podstawy, techniki, rozumowanie) tworzą ciąg. Resztę można czytać pod zadanie - kod, JSON, łańcuchy promptów - ale bez podstaw łatwo skopiować szablon, którego się nie rozumie.
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+![Osoba trzyma na dłoni kulę z uśmiechniętą twarzą, obok zwój z tekstem - wprowadzenie do promptowania](../../../assets/prompt-engineering/wprowadzenie/wprowadzenie.jpg)
+
+:::note[O tej stronie]
+**Czas:** ok. 6 minut czytania + 5 minut ćwiczenia.
+**Poziom:** początkujący, po lekcji Mapa systemów AI. Możesz ją przeczytać zaraz po [Podstawach](/podstawy/).
+**Wcześniej:** Mapa systemów AI - wiesz, z jakich warstw składa się system AI i gdzie w nim siedzi model. **Teraz:** uczysz się mówić do modelu tak, żeby mniej zgadywał.
+:::
+
+## Na tej stronie przerobisz jeden prompt
+
+Po tej lekcji masz dwie wersje tego samego zadania: ogólnik i wersję z rolą, zadaniem, ograniczeniami i formatem. Wysyłasz obie. Porównujesz.
+
+Jedna rzecz do zapamiętania: **model nie czyta w myślach. Dostaje tylko to, co jest w tekście.**
+
+<Termin id="prompt-engineering">Prompt engineering</Termin> to umiejętność układania tego tekstu. <Termin id="prompt">Prompt</Termin> to polecenie, które wpisujesz w okno czatu. Czasem mówi się też "zapytanie" - na tej stronie to ta sama rzecz.
+
+## Ten sam temat, dwa prompty
+
+Ten sam temat:
+
+```text
+Napisz coś o marketingu.
+```
+
+```text
+Rola: osoba od marketingu cyfrowego dla małych sklepów
+Zadanie: 5 strategii dla sklepu internetowego z odzieżą vintage
+Ograniczenia: klientki 25-40 lat, budżet 3 000-5 000 zł miesięcznie,
+kanały Instagram i e-mail, bez ogólników typu "buduj społeczność"
+Format: lista numerowana; przy każdej strategii nazwa, 2-3 zdania,
+szacunek budżetu i po co to
+```
+
+Różnica nie jest "magią". W drugiej wersji model ma mniej miejsc, w których musi zgadywać. Cztery nagłówki - rola, zadanie, ograniczenia, format - to szkielet, który rozkładasz na części w następnej lekcji. Budżet w przykładzie jest wymyślony, to nie cena rynkowa.
+
+Mapa sekcji (szczegóły w lekcjach, nie tutaj):
+
+| Lekcja | Po niej umiesz |
+| --- | --- |
+| [Podstawy promptowania](/prompt-engineering/podstawy/) | Cztery pola, z których składasz prompt |
+| [Techniki promptowania](/prompt-engineering/techniki/) | Kiedy wystarczy polecenie, kiedy dodać przykład, kiedy poprosić o kroki |
+| [Rozumowanie w promptach](/prompt-engineering/rozumowanie/) | Gdy zadanie ma wiele kroków |
+| [Strukturyzacja danych](/prompt-engineering/schematy/) | JSON, tabele, powtarzalny kształt |
+| [Inżynieria kontekstu](/prompt-engineering/inzynieria-kontekstu/) | Co wkleić do nowej rozmowy, gdy stara zrobiła się za długa |
+| [Automatyzacja](/prompt-engineering/automatyzacja/) | Łańcuchy promptów |
+| [Programowanie z AI](/prompt-engineering/programowanie/) | Kod z modelem |
+| [Cudzy tekst w prompcie](/prompt-engineering/najlepsze-praktyki/) | Jak nie dać wklejonemu tekstowi przejąć zadania |
+| [Baza promptów](/prompt-engineering/baza-promptow/) | Jeden starter do przerobienia |
+
+Ustawienia losowania (temperatura, top-p) zmienisz tylko przez <Termin id="api">API</Termin> (dostęp do modelu dla programistów, bez okna czatu). W czacie podobny kierunek nadasz słowami: "trzymaj się faktów" albo "daj zaskakujące warianty". Szczegóły: Ustawienia losowania.
+
+## Ćwiczenie: 5 minut, dwa wysłania
+
+1. Weź **własne** zadanie z tego tygodnia (mail, lekcja, lista). Napisz najpierw wersję w jednym zdaniu, jak na komunikatorze w pośpiechu.
+2. Dopisz: kto ma odpowiedzieć (rola), co dokładnie zrobić (zadanie), ograniczenia (w tym dla kogo) i format.
+3. Wyślij obie wersje, każdą w **nowej** rozmowie. Nie poprawiaj pierwszej wersji w tej samej rozmowie: model widzi poprzednie wiadomości, więc druga odpowiedź byłaby poprawką pierwszej, a nie wynikiem samego lepszego promptu.
+
+**Zaliczenie:** dwa teksty promptu na kartce albo w notatniku i jedna obserwacja: co druga wersja zmieniła (długość, konkret, zmyślona liczba, format). Nie "która ładniejsza".
+
+**Typowy wynik:** druga jest dłuższa i użyteczniejsza, ale potrafi zmyślić budżet. Liczbę i tak sprawdzasz - [Weryfikacja](/podstawy/weryfikacja-informacji/).
+
+**Jeśli nic nie zgrzyta i zostaje czas:** odetnij z drugiej wersji jedno zdanie, które nic nie zmienia. Ćwiczenie na balast.
+
+## Teraz wiesz
+
+- Prompt to całe polecenie. Model nie uzupełnia intencji z powietrza.
+- Rola + zadanie + ograniczenia + format biją ogólnik. Długość sama z siebie nie.
+- Ustawienia dostępne przez API nie są potrzebne na start. Najpierw tekst, potem [podstawy promptowania](/prompt-engineering/podstawy/).
+
+**Następny krok:** [Podstawy promptowania](/prompt-engineering/podstawy/) - z czego składa się prompt, którego nie trzeba za każdym razem wymyślać od zera.
+
+<SlowniczekStrony terminy={["prompt", "prompt-engineering", "api"]} />

@@ -1,0 +1,92 @@
+---
+title: Rozumowanie w promptach - jak rozdzielić plan i decyzję
+description: Porównasz jedno polecenie, które ma zrobić wszystko naraz, z dwoma osobnymi promptami - najpierw plan, potem decyzja. Ćwiczenie zajmie 5 minut.
+sidebar:
+  label: 'Rozumowanie w promptach'
+  order: 4
+educationalLevel: Intermediate
+teaches:
+  - Kiedy jedno polecenie na wiele kroków ukrywa błąd
+  - Jak oddzielić spis ograniczeń od decyzji
+  - Gdzie kończy się ten ruch, a zaczyna RAG albo agent
+about:
+  - name: Prompt engineering
+    sameAs: https://en.wikipedia.org/wiki/Prompt_engineering
+faq:
+  - q: Czy to to samo co chain-of-thought?
+    a: Nie. W [technikach](/prompt-engineering/techniki/) kroki są w jednej odpowiedzi. Tu wysyłasz dwie osobne wiadomości - najpierw same ograniczenia, potem decyzja na ich podstawie. Błąd widać między krokami, nie w środku eseju.
+  - q: Czy muszę znać Tree of Thoughts albo ReAct?
+    a: Nie. To nazwy z prac naukowych o przeszukiwaniu ścieżek i pętli "myśl, narzędzie, obserwacja". W czacie wystarcza plan, potem wykonanie. Narzędzia i dokumenty są w agentach i w RAG.
+  - q: Kiedy jeden prompt wystarczy?
+    a: Gdy zadanie ma jeden ruch - streszczenie, tłumaczenie, lista z jasnym formatem. Dwie osobne wiadomości, gdy mieszają się ograniczenia, wyjątki i decyzja, której nie da się odkręcić jednym zdaniem.
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+![Dwoje dzieci patrzy na rozgałęzione drzewo oplecione siatką świecących połączeń - rozumowanie w promptach](../../../assets/prompt-engineering/rozumowanie/rozumowanie.jpg)
+
+:::note[O tej stronie]
+**Czas:** ok. 6 minut czytania + 5 minut ćwiczenia.
+**Poziom:** średni, po lekcji [Techniki promptowania](/prompt-engineering/techniki/).
+**Wcześniej:** [Techniki promptowania](/prompt-engineering/techniki/) - wiesz, jak poprosić o kroki w jednej odpowiedzi. **Teraz:** dzielisz pracę na dwie osobne wiadomości, bo przy kilku krokach błąd łatwo się chowa.
+:::
+
+## Na tej stronie rozdzielisz plan i decyzję
+
+Po tej lekcji rozwiążesz jedno zadanie na dwa sposoby: jednym promptem na wszystko ("zrób wszystko naraz") i parą promptów (najpierw ograniczenia, potem decyzja). Zapisujesz, czy wynik się zgadza. Nie potrzebujesz do tego nazw technik z prac naukowych.
+
+Jedna rzecz do zapamiętania: **jeden prompt na pięć kroków ukrywa, w którym miejscu się rozjechało.**
+
+## Najpierw lista, potem werdykt
+
+Jeden ruch: **oddzielasz spis warunków od decyzji.** Kiedy: zadanie ma co najmniej dwa twarde ograniczenia, które mogą się gryźć (czas, osoby, sala, budżet, "albo się nie da").
+
+W oknie <Termin id="chatbot">chatbota</Termin> dzielisz pracę tak, żeby dało się przerwać po pierwszym kroku i powiedzieć "tu już jest błąd".
+
+Gdy model nie ma potrzebnych faktów, bo są w Twoich dokumentach, to <Termin id="rag">RAG</Termin> (wyszukiwanie w dokumentach przed odpowiedzią, lekcja o dokumentach). Gdy model ma sam sięgać po narzędzia, krok po kroku, to agenci. Gdy wystarczy, że model wykona więcej obliczeń przed jedną odpowiedzią, to tryb myślenia. Ta lekcja zostaje przy dwóch <Termin id="prompt">promptach</Termin> w czacie.
+
+Łańcuch, który chcesz powtarzać co tydzień na nowych danych, jest w [automatyzacji](/prompt-engineering/automatyzacja/). Tu chodzi o jedną zagadkę z haczykiem, nie o linię produkcyjną.
+
+```text
+Wypisz TYLKO ograniczenia w punktach. Nie proponuj godziny.
+Nie zgaduj. Jeśli czegoś brakuje w tekście, napisz "brak w treści".
+
+Chcę 45-minutowe spotkanie w środę.
+Kasia jest wolna 10:00-12:00.
+Tomek jest wolny 11:00-14:00.
+Sala jest wolna tylko 9:00-11:00.
+```
+
+Drugi prompt, po tej liście:
+
+```text
+Na podstawie TYLKO listy ograniczeń powyżej:
+albo jedna godzina rozpoczęcia (45 minut musi się zmieścić),
+albo zdanie "nie da się". Bez nowych założeń.
+```
+
+Werdykt, do którego zmierzasz: nie da się. Sala kończy się o 11:00, Tomek zaczyna o 11:00, 45 minut nie wchodzi. Jeśli jeden prompt na wszystko poda 11:00, widać, które ograniczenie wypadło. Jeśli dwuetapowa wersja też je zgubi - winna jest lista ograniczeń. Sprawdź, czego w niej brakuje.
+
+## Ćwiczenie: 5 minut, jeden prompt kontra dwa
+
+1. Nowa rozmowa. Wklej całe zadanie o spotkaniu plus "zaproponuj godzinę albo napisz, że się nie da" - **jednym** promptem.
+2. Druga nowa rozmowa. Najpierw prompt z listą ograniczeń. Potem, w tej samej rozmowie, drugi prompt z tej strony. Model widzi poprzednie wiadomości tej rozmowy, więc ma przed sobą swoją listę.
+3. Zapisz obie decyzje (godzina albo "nie da się").
+
+**Zaliczenie:** dwie decyzje na kartce i jedno zdanie, czy w wersji dwuetapowej widać salę do 11:00. Nie musisz znać nazw technik. Zalicza rozpoznanie, że nie ma chwili, w której sala, Kasia i Tomek są wolni jednocześnie.
+
+**Typowy wynik:** jeden prompt na wszystko kończy się propozycją 11:00 albo 10:00 i pomija salę albo Tomka. Lista bywa nudna i przez to użyteczna.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** do jednego promptu na wszystko dopisz "pomyśl krok po kroku". Jeśli nadal pada zła godzina, problemem nie była fraza, tylko pomieszanie planu z werdyktem.
+
+## Teraz wiesz
+
+- Wiele kroków w jednym poleceniu chowa błąd. Plan i decyzja osobno go odsłaniają.
+- Nazwy z prac naukowych nie są potrzebne, żeby to zrobić w czacie.
+- Gdy potrzebne są Twoje dokumenty, sięgasz po RAG. Gdy model ma sam używać narzędzi - po agenta. Ta lekcja uczy dzielenia pracy na dwie osobne wiadomości.
+
+**Następny krok:** [Strukturyzacja danych](/prompt-engineering/schematy/) - pusty kształt wyniku, żeby dało się go wkleić w następny krok bez zgadywania, gdzie jest godzina.
+
+<SlowniczekStrony terminy={["chatbot", "prompt", "rag"]} />

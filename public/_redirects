@@ -29,14 +29,14 @@
 /mapa-ai/ /jak-dziala-ai/ 302
 
 # --- Prompt Engineering ---
-/prompt-podstawy/ /prompt-engineering/ 302
-/prompt-techniki/ /prompt-engineering/ 302
-/prompt-rozumowanie/ /prompt-engineering/ 302
-/prompt-schematy/ /prompt-engineering/ 302
-/prompt-automatyzacja/ /prompt-engineering/ 302
-/prompt-programowanie/ /prompt-engineering/ 302
-/prompt-praktyki/ /prompt-engineering/ 302
-/baza-promptow/ /prompt-engineering/ 302
+/prompt-podstawy/ /prompt-engineering/podstawy/ 301
+/prompt-techniki/ /prompt-engineering/techniki/ 301
+/prompt-rozumowanie/ /prompt-engineering/rozumowanie/ 301
+/prompt-schematy/ /prompt-engineering/schematy/ 301
+/prompt-automatyzacja/ /prompt-engineering/automatyzacja/ 301
+/prompt-programowanie/ /prompt-engineering/programowanie/ 301
+/prompt-praktyki/ /prompt-engineering/najlepsze-praktyki/ 301
+/baza-promptow/ /prompt-engineering/baza-promptow/ 301
 
 # --- Narzędzia AI ---
 /narzedzia-chatboty/ /narzedzia/chatboty/ 301
@@ -85,16 +85,6 @@
 /praktyka/ai-w-branzach/ /praktyka/ 302
 /praktyka/case-studies/ /praktyka/ 302
 /praktyka/najlepsze-praktyki/ /praktyka/ 302
-/prompt-engineering/automatyzacja/ /prompt-engineering/ 302
-/prompt-engineering/baza-promptow/ /prompt-engineering/ 302
-/prompt-engineering/inzynieria-kontekstu/ /prompt-engineering/ 302
-/prompt-engineering/najlepsze-praktyki/ /prompt-engineering/ 302
-/prompt-engineering/podstawy/ /prompt-engineering/ 302
-/prompt-engineering/programowanie/ /prompt-engineering/ 302
-/prompt-engineering/rozumowanie/ /prompt-engineering/ 302
-/prompt-engineering/schematy/ /prompt-engineering/ 302
-/prompt-engineering/techniki/ /prompt-engineering/ 302
-/prompt-engineering/wprowadzenie/ /prompt-engineering/ 302
 /sciezki/manager/ /sciezki/ 302
 /sciezki/nauczyciel/ /sciezki/ 302
 /sciezki/pracownik-biurowy/ /sciezki/ 302

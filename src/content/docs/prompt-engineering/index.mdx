@@ -24,17 +24,10 @@ faq:
     a: Modele rzeczywiście coraz lepiej radzą sobie z niedopowiedzeniami, ale to nie rozwiązuje problemu. Jeśli nie wiesz dokładnie, czego chcesz, żaden model tego nie ustali. Umiejętność precyzyjnego opisania zadania zostaje przydatna niezależnie od wersji modelu.
   - q: Czy techniki z tej sekcji działają w każdym chatbocie?
     a: Tak. Podstawy - rola, zadanie, ograniczenia, format - działają w każdym czacie. Techniki z nazwami, takie jak zero-shot (polecenie bez przykładów) czy chain-of-thought (prośba o rozpisanie kroków), też, ale nie musisz ich wkuwać. Kiedy po którą sięgnąć, pokazuję w lekcjach "Techniki promptowania" i "Rozumowanie w promptach". Ćwiczenie zawsze robisz na własnym zadaniu.
-status: zastane
+status: gotowe
 ---
 
-import { CardGrid, LinkCard, Card } from '@astrojs/starlight/components';
-
-
-:::note[Ta sekcja jest w przebudowie]
-Przechodzę przez te teksty lekcja po lekcji i poprawiam to, co się nie broni.
-Lekcje wracają tutaj pojedynczo, w miarę jak kończę przegląd - pod tymi samymi
-adresami co wcześniej. Poniżej lista tego, co się w tej sekcji pojawi.
-:::
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
 
 ![Dymki rozmowy i siatka świecących punktów połączonych liniami - prompt engineering](../../../assets/prompt-engineering/przeglad.jpg)
 
@@ -63,38 +56,58 @@ Nie ma tu przeglądu narzędzi ani porównania chatbotów - to sekcja [Narzędzi
 ## Lekcje w tej sekcji
 
 <CardGrid>
-  <Card title="Wprowadzenie do inżynierii promptów">
-		Przerabiasz jeden ogólnikowy prompt na wersję z rolą, zadaniem, ograniczeniami i formatem. Ćwiczenie: 5 minut. (w przygotowaniu)
-	</Card>
-  <Card title="Podstawy promptowania">
-		Wypełniasz cztery pola w prompcie - rolę, zadanie, ograniczenia, format - na własnym zadaniu z tego tygodnia. Ćwiczenie: 5 minut. (w przygotowaniu)
-	</Card>
-  <Card title="Techniki promptowania">
-		Wysyłasz to samo zadanie raz bez rozpisanych kroków, raz z nimi, i porównujesz wyniki. Ćwiczenie: 5 minut. (w przygotowaniu)
-	</Card>
-  <Card title="Rozumowanie w promptach">
-		Porównujesz jedno polecenie, które ma zrobić wszystko naraz, z dwoma osobnymi promptami - najpierw lista ograniczeń, potem decyzja. Ćwiczenie: 5 minut. (w przygotowaniu)
-	</Card>
-  <Card title="Strukturyzacja danych w promptach">
-		Z jednego akapitu tekstu wymuszasz cztery konkretne rubryki zamiast długiego opisu. Ćwiczenie: 5 minut. (w przygotowaniu)
-	</Card>
-  <Card title="Inżynieria kontekstu">
-		Z bałaganu długiej rozmowy wyciągasz cztery punkty ustaleń i składasz z nich prompt na nową rozmowę. Ćwiczenie: 5 minut. (w przygotowaniu)
-	</Card>
-  <Card title="Automatyzacja z AI">
-		Przepuszczasz jedną notatkę przez dwa kolejne prompty - drugi dostaje do pracy tylko wynik pierwszego, nie oryginalny tekst. Ćwiczenie: 5 minut. (w przygotowaniu)
-	</Card>
-  <Card title="Programowanie z AI">
-		Zlecasz modelowi jedną funkcję i sprawdzasz w kodzie, przez ile faktycznie dzieli wynik. Ćwiczenie: 5 minut. (w przygotowaniu)
-	</Card>
-  <Card title="Cudzy tekst w prompcie">
-		Sprawdzasz, czy wklejony cudzy tekst przejął polecenie, czy zostało tylko materiałem do tłumaczenia. Ćwiczenie: 5 minut. (w przygotowaniu)
-	</Card>
-  <Card title="Baza promptów">
-		Bierzesz gotowy szablon promptu, wypełniasz w nim cztery pola własnymi danymi i wycinasz jedno zbędne zdanie. Ćwiczenie: 5 minut. (w przygotowaniu)
-	</Card>
+  <LinkCard
+    title="Wprowadzenie do inżynierii promptów"
+    description="Przerabiasz jeden ogólnikowy prompt na wersję z rolą, zadaniem, ograniczeniami i formatem. Ćwiczenie: 5 minut."
+    href="/prompt-engineering/wprowadzenie/"
+  />
+  <LinkCard
+    title="Podstawy promptowania"
+    description="Wypełniasz cztery pola w prompcie - rolę, zadanie, ograniczenia, format - na własnym zadaniu z tego tygodnia. Ćwiczenie: 5 minut."
+    href="/prompt-engineering/podstawy/"
+  />
+  <LinkCard
+    title="Techniki promptowania"
+    description="Wysyłasz to samo zadanie raz bez rozpisanych kroków, raz z nimi, i porównujesz wyniki. Ćwiczenie: 5 minut."
+    href="/prompt-engineering/techniki/"
+  />
+  <LinkCard
+    title="Rozumowanie w promptach"
+    description="Porównujesz jedno polecenie, które ma zrobić wszystko naraz, z dwoma osobnymi promptami - najpierw lista ograniczeń, potem decyzja. Ćwiczenie: 5 minut."
+    href="/prompt-engineering/rozumowanie/"
+  />
+  <LinkCard
+    title="Strukturyzacja danych w promptach"
+    description="Z jednego akapitu tekstu wymuszasz cztery konkretne rubryki zamiast długiego opisu. Ćwiczenie: 5 minut."
+    href="/prompt-engineering/schematy/"
+  />
+  <LinkCard
+    title="Inżynieria kontekstu"
+    description="Z bałaganu długiej rozmowy wyciągasz cztery punkty ustaleń i składasz z nich prompt na nową rozmowę. Ćwiczenie: 5 minut."
+    href="/prompt-engineering/inzynieria-kontekstu/"
+  />
+  <LinkCard
+    title="Automatyzacja z AI"
+    description="Przepuszczasz jedną notatkę przez dwa kolejne prompty - drugi dostaje do pracy tylko wynik pierwszego, nie oryginalny tekst. Ćwiczenie: 5 minut."
+    href="/prompt-engineering/automatyzacja/"
+  />
+  <LinkCard
+    title="Programowanie z AI"
+    description="Zlecasz modelowi jedną funkcję i sprawdzasz w kodzie, przez ile faktycznie dzieli wynik. Ćwiczenie: 5 minut."
+    href="/prompt-engineering/programowanie/"
+  />
+  <LinkCard
+    title="Cudzy tekst w prompcie"
+    description="Sprawdzasz, czy wklejony cudzy tekst przejął polecenie, czy zostało tylko materiałem do tłumaczenia. Ćwiczenie: 5 minut."
+    href="/prompt-engineering/najlepsze-praktyki/"
+  />
+  <LinkCard
+    title="Baza promptów"
+    description="Bierzesz gotowy szablon promptu, wypełniasz w nim cztery pola własnymi danymi i wycinasz jedno zbędne zdanie. Ćwiczenie: 5 minut."
+    href="/prompt-engineering/baza-promptow/"
+  />
 </CardGrid>
 
 :::note[Następny krok]
-**Zacznij tutaj:** lekcje tej sekcji wracają po przeglądzie. Dziś możesz czytać: [Podstawy](/podstawy/) (8 lekcji, dla początkujących), [Narzędzia AI](/narzedzia/) (9 lekcji), [Etyka i bezpieczeństwo](/etyka/) (4 lekcje) i [Claude Code](/claude-code/) (21 lekcji, poziom średni, wymaga terminala). Trudne słowa wyjaśnia [słownik pojęć](/zasoby/slownik-pojec/).
+**Zacznij tutaj:** [Wprowadzenie do inżynierii promptów](/prompt-engineering/wprowadzenie/) - zobaczysz, na czym polega różnica między przeciętnym a dobrym poleceniem.
 :::

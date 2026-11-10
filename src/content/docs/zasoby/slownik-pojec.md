@@ -64,6 +64,8 @@ Technika promptowania (po polsku: łańcuch myśli), w której prosisz model, ż
 
 **Przykład:** Pytasz "mam 3 skrzynki po 24 butelki, sprzedałem 17 - ile zostało?" i dostajesz samą liczbę, czasem błędną. Dopisujesz "rozpisz obliczenia krok po kroku" - model najpierw mnoży 3 × 24, potem odejmuje 17 i podaje wynik, który możesz sprawdzić.
 
+**Więcej:** [Techniki promptowania](/prompt-engineering/techniki/)
+
 ## Chatbot
 
 Program, z którym rozmawiasz w języku naturalnym - piszesz do niego jak do drugiego człowieka, a on odpowiada tekstem. Nowoczesne chatboty AI (jak ChatGPT, Claude czy Gemini) działają na dużych modelach językowych, dzięki czemu prowadzą swobodną rozmowę, a nie tylko wybierają gotowe odpowiedzi z listy.
@@ -131,6 +133,8 @@ Podejście do tworzenia systemów AI, których decyzje można zrozumieć i wyja�
 Sposób promptowania, w którym do polecenia dokładasz kilka przykładów rozwiązanego zadania - zwykle od jednego do trzech par "wejście → oczekiwany wynik". Model podchwytuje z nich format i styl lepiej niż z najdłuższego opisu. To następny krok po [zero-shot](#zero-shot), gdy sama instrukcja nie wystarcza. Nazwa jest angielska i w tekstach o AI zostaje bez tłumaczenia (dosłownie: "kilka strzałów", czyli kilka prób z przykładem).
 
 **Przykład:** Chcesz, żeby model zamieniał notatki ze spotkań na zadania w jednym układzie. Zamiast opisywać układ, wklejasz dwie gotowe pary: notatkę i zadanie zapisane tak, jak lubisz. Trzecią notatkę model przerabia już według wzoru.
+
+**Więcej:** [Techniki promptowania](/prompt-engineering/techniki/)
 
 ## Fine-tuning
 
@@ -242,11 +246,15 @@ To, co wpisujesz modelowi: pytanie, polecenie, wklejony tekst albo wszystko nara
 
 **Przykład:** "Napisz wiersz o jesieni" to prosty prompt, który może dać różne wyniki w zależności od modelu. Bardziej rozbudowany prompt, jak "Napisz 12-wersowy wiersz o jesieni, używając metafor związanych z przemijaniem i ciepłych barw", daje bardziej ukierunkowany rezultat.
 
+**Więcej:** [Wprowadzenie do inżynierii promptów](/prompt-engineering/wprowadzenie/)
+
 ## Prompt engineering
 
 Umiejętność formułowania poleceń tak, żeby model odpowiadał tak, jak potrzebujesz. W tym przewodniku sprowadza się do czterech pól: rola (kim model ma być), zadanie (co ma zrobić), ograniczenia (czego się trzymać) i format (w jakiej formie oddać wynik). To nie jest wiedza tajemna ani osobny zawód - to głównie precyzja, a uczysz się jej na własnych rozmowach.
 
 **Przykład:** Zamiast pytać "Jak zostać programistą?", wypełniasz cztery pola. Rola: "Jesteś doradcą zawodowym, który zna branżę IT". Zadanie: "Ułóż mi 3-miesięczny plan nauki front-endu z konkretnymi materiałami i projektami do zrobienia". Ograniczenia: "Jestem 30-letnim nauczycielem, znam podstawy HTML i CSS, mam 10 godzin tygodniowo i chcę zmienić zawód w ciągu roku". Format: "Tabela: tydzień, temat, materiał, projekt".
+
+**Więcej:** [Wprowadzenie do inżynierii promptów](/prompt-engineering/wprowadzenie/)
 
 ## Prompt injection
 
@@ -435,6 +443,8 @@ System AI wyspecjalizowany w jednym zadaniu lub wąskiej grupie zadań - bardzo 
 Sposób zadania modelowi zadania bez pokazywania ani jednego przykładu (po polsku: bez przykładów) - liczy się sama instrukcja, a model radzi sobie dzięki ogólnej wiedzy z treningu. To domyślne podejście i warto od niego zaczynać: jest najprostsze i najczęściej wystarcza. Gdy zawodzi, kolejnym krokiem jest [few-shot](#few-shot), czyli dorzucenie do polecenia 2-3 przykładów rozwiązanego zadania.
 
 **Przykład:** Piszesz "oceń, czy ta opinia o produkcie jest pozytywna, negatywna czy neutralna" i wklejasz tekst - bez żadnego wzorca. Model klasyfikuje opinię poprawnie, bo z treningu wie, jak wygląda zadowolony, a jak rozczarowany klient.
+
+**Więcej:** [Techniki promptowania](/prompt-engineering/techniki/)
 
 :::tip[Wskazówka]
 Wracaj do tego słownika za każdym razem, gdy natkniesz się na nieznany termin w kursie lub w artykule o AI. Jeśli szukasz konkretnego pojęcia, skorzystaj z wyszukiwarki w górnej części strony - przeszuka nie tylko ten słownik, ale cały przewodnik, więc od razu zobaczysz, w których lekcjach dany termin się pojawia.

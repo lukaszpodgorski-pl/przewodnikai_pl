@@ -1,0 +1,97 @@
+---
+title: Techniki promptowania - instrukcja, przykład, kroki
+description: Wyślesz to samo zadanie dwa razy - bez rozpisanych kroków i z nimi - i porównasz wyniki. Ćwiczenie zajmie 5 minut.
+sidebar:
+  label: 'Techniki promptowania'
+  order: 3
+educationalLevel: Intermediate
+teaches:
+  - Kiedy wystarczy sama instrukcja (zero-shot)
+  - Kiedy dodać dwa przykłady, bo model nie trafia w format
+  - Kiedy poprosić o kroki, a kiedy tryb myślenia robi to sam
+about:
+  - name: Prompt engineering
+    sameAs: https://en.wikipedia.org/wiki/Prompt_engineering
+  - name: Few-shot learning
+    sameAs: https://en.wikipedia.org/wiki/Few-shot_learning
+faq:
+  - q: Czym jest zero-shot?
+    a: To polecenie bez ani jednego przykładu - sama instrukcja i wiedza z treningu. Na tej stronie to pierwszy szczebel, nie "gorsza wersja".
+  - q: Kiedy dodać przykłady, a kiedy kroki?
+    a: Przykłady, gdy model nie trafia w etykiety, kolejność pól albo ton. Kroki, gdy psuje się rachunek, warunek albo kolejność decyzji. Nie dokładaj obu "na wszelki wypadek".
+  - q: Czy "pomyśl krok po kroku" zastępuje tryb myślenia?
+    a: Nie. W zwykłej rozmowie (bez trybu myślenia) to prośba, żeby tok rozumowania był w odpowiedzi. Przy modelu, który i tak myśli w środku, ta fraza bywa zbędna. Szczegóły są w modelach rozumujących.
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+![Kobieta przy biurku przegląda kartki z przykładami, w tle notatki i siatka połączeń - techniki promptowania](../../../assets/prompt-engineering/techniki/techniki.jpg)
+
+:::note[O tej stronie]
+**Czas:** ok. 7 minut czytania + 5 minut ćwiczenia.
+**Poziom:** średni, po lekcji [Podstawy promptowania](/prompt-engineering/podstawy/).
+**Wcześniej:** [Podstawy promptowania](/prompt-engineering/podstawy/) - masz szkielet z czterech pól. **Teraz:** poznajesz trzy szczeble na wypadek, gdy szkielet nie wystarcza.
+:::
+
+## Na tej stronie wejdziesz o jeden szczebel
+
+Po tej lekcji to samo zadanie ma dwie wysłane wersje: samą instrukcję i wersję z rozpisanymi krokami. Zapisujesz, która dała użyteczny wynik. Nie uczysz się tu pięciu nazw z prac naukowych.
+
+Jedna rzecz do zapamiętania: **dokładasz następny szczebel dopiero wtedy, gdy poprzedni nie trafia.**
+
+## Trzy szczeble, nie katalog nazw
+
+Jeden ruch: **poprawiasz tylko to, co nie wyszło** (format albo rachunek). Decydujesz po pierwszej odpowiedzi, nie przed nią.
+
+**Szczebel 1 - sama instrukcja.** <Termin id="zero-shot">Zero-shot</Termin> znaczy: zero przykładów. Model dostaje samo polecenie. Wystarcza, gdy format jest oczywisty ("przetłumacz", "streść w trzech zdaniach", "tak/nie").
+
+**Szczebel 2 - dwa przykłady.** Przykład: chcesz, żeby model oceniał opinie klientów Twoimi słowami - "Super" albo "Beznadzieja" - a nie własnymi. Wtedy pokaż mu dwie gotowe pary w tym samym układzie:
+
+```text
+Opinia: "Paczka w dwa dni, buty jak na zdjęciu." Ocena: Super
+Opinia: "Czekałam trzy tygodnie, rozmiar się nie zgadza." Ocena: Beznadzieja
+```
+
+To samo działa, gdy pola w wyniku mają iść zawsze w tej samej kolejności. Więcej przykładów rzadko pomaga: jeśli wzorzec jest zły, model go po prostu powieli. W literaturze ten szczebel nazywa się few-shot, czyli "kilka przykładów".
+
+**Szczebel 3 - kroki widać.** <Termin id="chain-of-thought">Chain-of-thought</Termin> (łańcuch myśli) to prośba, żeby przed wynikiem pojawiły się etapy. Ma sens przy liczbach, warunkach, "jeśli A to B". Nie ma sensu przy "popraw literówki".
+
+Przy modelach rozumujących (to te z trybem "myślenia", które zastanawiają się przed odpowiedzią) kroki często dzieją się w środku, zanim cokolwiek widać na ekranie. Tam zamiast "pomyśl krok po kroku" opisz cel i to, co uznasz za dobrą odpowiedź.
+
+Wieloetapowy plan, a nie jedna zagadka, jest w [rozumowaniu](/prompt-engineering/rozumowanie/). Prośbę, żeby model sam poprawił Twój <Termin id="prompt">prompt</Termin>, znajdziesz w [bazie](/prompt-engineering/baza-promptow/).
+
+```text
+Zadanie: ile wolnych miejsc siedzących zostało?
+
+Restauracja ma 15 stolików. Każdy stolik ma 4 krzesła.
+3 stoliki są zepsute i nie można ich użyć.
+Przy 8 stolikach siedzą już goście (wszystkie krzesła zajęte).
+
+Rozpisz każdy krok. Na końcu sama liczba.
+```
+
+Liczba, do której zmierzasz: 16. (60 krzeseł, minus 12 zepsutych, minus 32 zajęte.) Jeśli wynik jest inny, widać, w którym kroku się rozjechało. Przy samej instrukcji tych kroków często nie widać.
+
+## Ćwiczenie: 5 minut, dwa wysłania
+
+1. Nowa rozmowa. Wklej to samo zadanie o restauracji **bez** zdania "rozpisz każdy krok".
+2. Druga **nowa** rozmowa. Wklej wersję ze strony, z krokami i "na końcu sama liczba".
+3. Zapisz dwie liczby i czy w drugiej widać, skąd się wzięły.
+
+**Zaliczenie:** dwie liczby na kartce i jedno zdanie, która wersja dała się sprawdzić. Nie "która ładniejsza". 16 w drugiej wersji zalicza, nawet jeśli pierwsza też trafiła.
+
+**Typowy wynik:** pierwsza zgaduje albo pomija zepsute stoliki. Druga bywa dłuższa i da się zderzyć z rachunkiem. Liczbę i tak liczysz na kartce - [Weryfikacja](/podstawy/weryfikacja-informacji/).
+
+**Jeśli nic nie zgrzyta i zostaje czas:** trzecia rozmowa z dwoma mini-przykładami (inny lokal, inna liczba stolików, pokazany tok i wynik), bez frazy o krokach. Porównaj, czy przykłady pomogły, czy tylko zjadły miejsce.
+
+## Teraz wiesz
+
+- Sama instrukcja jest pierwszym szczeblem, nie porażką.
+- Przykłady ratują kształt. Kroki ratują rachunek i warunki. Nie mieszaj obu na starcie.
+- Tryb myślenia nie potrzebuje magicznej frazy. Opisz cel.
+
+**Następny krok:** [Rozumowanie w promptach](/prompt-engineering/rozumowanie/) - gdy zadanie ma kilka kroków, najpierw plan, potem decyzja.
+
+<SlowniczekStrony terminy={["zero-shot", "chain-of-thought", "prompt"]} />

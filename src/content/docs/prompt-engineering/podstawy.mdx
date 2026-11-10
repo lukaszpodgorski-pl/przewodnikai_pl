@@ -1,0 +1,90 @@
+---
+title: Podstawy promptowania - cztery pola w poleceniu
+description: Wypełnisz cztery pola w jednym prompcie z tego tygodnia i wyślesz tę wersję. Ćwiczenie zajmie 5 minut.
+sidebar:
+  label: 'Podstawy promptowania'
+  order: 2
+educationalLevel: Beginner
+teaches:
+  - Z czego składa się prompt, którego nie trzeba wymyślać od zera
+  - Że puste pole to miejsce, w którym model zgaduje
+  - Kiedy wpisać w pole "nie dotyczy" zamiast wymyślać treść
+about:
+  - name: Prompt engineering
+    sameAs: https://en.wikipedia.org/wiki/Prompt_engineering
+mentions:
+  - name: ChatGPT
+    sameAs: https://en.wikipedia.org/wiki/ChatGPT
+    type: SoftwareApplication
+faq:
+  - q: Czy za każdym razem muszę wypełniać wszystkie cztery pola?
+    a: Nie musisz wymyślać treści do każdego. Gdy naprawdę nie ma ograniczenia albo format nie ma znaczenia, wpisujesz "nie dotyczy" i nie udajesz treści. Złe jest pole, o którym zapominasz - wtedy model zapełnia je zgadywaniem.
+  - q: Czym ta lekcja różni się od wprowadzenia?
+    a: We [wprowadzeniu](/prompt-engineering/wprowadzenie/) przerabiasz ogólnik na konkret. Tu składasz ten konkret w szkielet, który da się wypełnić przy następnym zadaniu, zamiast za każdym razem pisać od zera.
+  - q: Czy dłuższy szkielet jest lepszy?
+    a: Nie. Cztery pola to maksimum na start. Piąte pole nic nie dodaje, jeśli nie zmienia zadania. Ćwiczysz to w [bazie promptów](/prompt-engineering/baza-promptow/).
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+![Mężczyzna trzyma kartkę z listą odhaczonych pól, w tle siatka połączeń - podstawy promptów](../../../assets/prompt-engineering/podstawy/podstawy.jpg)
+
+:::note[O tej stronie]
+**Czas:** ok. 6 minut czytania + 5 minut ćwiczenia.
+**Poziom:** początkujący, po lekcji [Wprowadzenie do inżynierii promptów](/prompt-engineering/wprowadzenie/).
+**Wcześniej:** [Wprowadzenie do inżynierii promptów](/prompt-engineering/wprowadzenie/) - wiesz, jak zamienić ogólnik na konkretne polecenie. **Teraz:** zapisujesz je jako szkielet, który przyda się przy kolejnym zadaniu.
+:::
+
+## Na tej stronie złożysz jeden szkielet
+
+Po tej lekcji masz prompt z czterema polami: rola, zadanie, ograniczenia, format. Wypełniasz go własnym tematem z tego tygodnia. Wysyłasz.
+
+Jedna rzecz do zapamiętania: **puste pole to nie minimalizm. To miejsce, w którym model zgaduje.**
+
+<Termin id="prompt">Prompt</Termin> z [wprowadzenia](/prompt-engineering/wprowadzenie/) już miał treść. Brakowało stałego układu, w który da się ją włożyć. <Termin id="prompt-engineering">Prompt engineering</Termin> na tej stronie to właśnie składanie takiego układu.
+
+## Cztery pola do wypełnienia
+
+Zasada: **każde z czterech pól wypełniasz albo wpisujesz w nie "nie dotyczy".** Stosuj ją zawsze, gdy pierwsza wersja polecenia mieści się w jednym zdaniu i "jakoś zadziała".
+
+```text
+Rola: [kto ma odpowiedzieć - zawód albo perspektywa]
+Zadanie: [co konkretnie zrobić]
+Ograniczenia: [długość, ton, czego nie robić, budżet, odbiorca]
+Format: [lista, tabela, liczba zdań, pola do wypełnienia]
+
+Materiał:
+[wklej tekst albo dane]
+```
+
+Rola to nie teatr. To zawężenie: "osoba od reklamacji w małym sklepie", nie "ekspert z 20-letnim doświadczeniem i pasją". Zadanie to czasownik i obiekt: "napisz odpowiedź", "wyciągnij trzy ryzyka". Ograniczenia tną zgadywanie. Format mówi, jak ma wyglądać wynik - bez tego dostajesz esej.
+
+Tabele i stałe układy wyniku są w [schematach](/prompt-engineering/schematy/). Tu wystarczy "lista numerowana, 5 punktów" albo "maksymalnie 4 zdania".
+
+Nie dokładaj piątego pola na styl czy ton, jeśli nie zmienia zadania - ton mieści się w ograniczeniach. Cztery pola są po to, żeby było widać, którego brakuje.
+
+W kolejnych lekcjach przykłady są krótsze i nie zawsze mają wszystkie cztery nagłówki - pola nadal tam są, tylko zapisane zwykłym zdaniem.
+
+## Ćwiczenie: 5 minut, jeden szkielet
+
+1. Weź **własne** zadanie z tego tygodnia (mail, lista, poprawka tekstu). Zapisz je w jednym zdaniu, jakby na szybko.
+2. Wklej szkielet z tej strony. Wypełnij cztery pola. Gdzie nie ma czego wpisać, napisz `nie dotyczy` - nie zostawiaj pustego wiersza.
+3. Wyślij w **nowej** rozmowie. Nie dopisuj w tej samej rozmowie "a jeszcze format" - model widzi poprzednie wiadomości, więc nie sprawdzisz, co dał sam szkielet.
+
+**Zaliczenie:** na kartce cztery pola z treścią albo `nie dotyczy` oraz jedna obserwacja: co zmieniło się względem jednolinijkowca (długość, konkret, wymyślona liczba, trzymanie formatu). Nie "która wersja ładniejsza".
+
+**Typowy wynik:** wersja ze szkieletem jest użyteczniejsza, ale czasem dopisuje fakty albo liczby, których nie było w materiale. Takie rzeczy i tak sprawdzasz - [Weryfikacja](/podstawy/weryfikacja-informacji/).
+
+**Jeśli nic nie zgrzyta i zostaje czas:** odetnij z ograniczeń jedno zdanie, po którym wynik się nie zmienia. To ćwiczenie na zbędne zdania, nie na "im więcej, tym lepiej".
+
+## Teraz wiesz
+
+- Prompt da się złożyć z czterech pól: rola, zadanie, ograniczenia, format.
+- Puste pole bez `nie dotyczy` model zapełnia zgadywaniem.
+- Szkielet służy do powtórki przy następnym zadaniu.
+
+**Następny krok:** [Techniki promptowania](/prompt-engineering/techniki/) - kiedy wystarczy instrukcja, kiedy dodać przykład, a kiedy poprosić o kroki.
+
+<SlowniczekStrony terminy={["prompt", "prompt-engineering"]} />

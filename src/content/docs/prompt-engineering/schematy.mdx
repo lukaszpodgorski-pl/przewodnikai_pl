@@ -1,0 +1,92 @@
+---
+title: Strukturyzacja danych w promptach - pusty kształt
+description: Wymusisz cztery rubryki z jednego akapitu zamiast eseju. Ćwiczenie zajmie 5 minut.
+sidebar:
+  label: 'Strukturyzacja danych'
+  order: 5
+educationalLevel: Intermediate
+teaches:
+  - Że pusty kształt bije prośbę "ładnie opisz"
+  - Kiedy lista pól wystarczy, a JSON jest od powtarzalności
+  - Że w czacie nie ma magicznego przełącznika schematu
+about:
+  - name: Prompt engineering
+    sameAs: https://en.wikipedia.org/wiki/Prompt_engineering
+  - name: JSON
+    sameAs: https://pl.wikipedia.org/wiki/JSON
+faq:
+  - q: Czy JSON jest zawsze lepszy niż lista?
+    a: Nie. Lista pól wystarcza, gdy wynik czytasz oczami. JSON (zapis danych w nawiasach klamrowych, który czytają programy) albo tabela z tymi samymi kolumnami - gdy ten sam kształt ma wejść w kolejny krok albo w arkusz. Kształt jest ruchem. Format pliku jest detalem.
+  - q: Czy w oknie czatu jest tryb JSON?
+    a: Zwykle nie. W czacie rysujesz pusty kształt w poleceniu. Przełączniki "odpowiadaj schematem" są w API (dostępie do modelu dla programistów, bez okna czatu) i w konsolach deweloperskich (panelach do testowania takiego dostępu), a do tego zmieniają się co sezon. Ta lekcja działa bez nich.
+  - q: Co zrobić, gdy model dopisze komentarz obok pól?
+    a: Dopisz w poleceniu "tylko pola, bez wstępu i bez podsumowania". Jeśli i tak dokłada esej, to sygnał, że kształt nie jest twardym zadaniem - powtórz w nowej rozmowie. W starej model widzi poprzednie wiadomości, razem z esejem, który przed chwilą napisał.
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+![Tablica z kartkami ułożonymi w siatkę i połączonymi cienkimi liniami - struktura danych w promptach](../../../assets/prompt-engineering/schematy/schematy.jpg)
+
+:::note[O tej stronie]
+**Czas:** ok. 6 minut czytania + 5 minut ćwiczenia.
+**Poziom:** średni, po lekcji [Rozumowanie w promptach](/prompt-engineering/rozumowanie/).
+**Wcześniej:** [Rozumowanie w promptach](/prompt-engineering/rozumowanie/) - umiesz oddzielić plan od decyzji. **Teraz:** ustalasz, jak ma wyglądać wynik, żeby dało się go wkleić dalej bez zgadywania, gdzie jest data.
+:::
+
+## Na tej stronie wymusisz kształt, nie esej
+
+Po tej lekcji z jednego akapitu wyciągasz cztery rubryki. Esej "o reklamacji" nie zalicza. Nie uczysz się tu formatów dla programistów. Wystarczy zwykła lista pól.
+
+Jedna rzecz do zapamiętania: **najpierw pusty kształt. Potem treść. Prośba "ładnie opisz" nie jest formatem.**
+
+## Pokaż pusty formularz
+
+Jeden ruch: **wkładasz do polecenia pusty formularz i zakazujesz reszty.** Kiedy: za każdym razem, gdy potrzebujesz **tych samych** pól przy następnym tekście (reklamacja, spotkanie, pozycja z listy). Nie wtedy, gdy chcesz jeden list albo jedną metaforę.
+
+Szkielet z [podstaw promptowania](/prompt-engineering/podstawy/) mówił "format: lista". Tu ten format rysujesz.
+
+```text
+Wypełnij TYLKO te pola. Żadnego wstępu, żadnego podsumowania.
+Jeśli czegoś nie ma w tekście, wpisz "brak".
+
+imie:
+email:
+data:
+prosba:
+
+Tekst:
+Anna Nowak, anna@firma.pl, reklamacja z 12 marca:
+zagięta okładka, prosi o wymianę.
+```
+
+To wystarczy w czacie. JSON (zapis danych w nawiasach klamrowych, który czytają programy) to ta sama lista pól, np. `{"imie": "Anna Nowak"}`. Przydaje się, gdy wynik ma trafić do kolejnego kroku ([automatyzacja](/prompt-engineering/automatyzacja/)), a nie wtedy, gdy czytasz go raz. W <Termin id="api">API</Termin> (dostępie do modelu dla programistów, bez okna czatu) bywają tryby, które pilnują tego formatu. W oknie czatu pilnujesz go zdaniem "tylko te pola".
+
+Nie mieszaj w jednym poleceniu "napisz ciepło do osoby z reklamacją" i "oddaj czysty JSON". Najpierw pola, potem osobna wiadomość z tonem - albo odwrotnie, ale nie jednocześnie.
+
+Jak oddzielić od polecenia wklejony **cudzy** tekst (mail, komentarz), opisuję w lekcji [Cudzy tekst w prompcie](/prompt-engineering/najlepsze-praktyki/) - tu chodzi tylko o wygląd wyniku.
+
+## Ćwiczenie: 5 minut, cztery rubryki
+
+Akapit w prompcie jest **wymyślony na potrzeby tej strony**.
+
+1. Nowa rozmowa. Wklej prompt z pustymi polami i tekstem o Annie.
+2. Zapisz, czy wynik to cztery rubryki, czy esej.
+3. Jeśli esej: **nowa** rozmowa, to samo plus pierwsze zdanie "tylko pola, zero zdań poza nimi".
+
+**Zaliczenie:** na kartce cztery wartości (albo `brak`) pod nazwami rubryk `imie`, `email`, `data`, `prosba`. Esej bez rubryk nie zalicza, nawet jeśli treść jest "ładna".
+
+**Typowy wynik:** rubryki się wypełniają, data bywa "12 marca" bez roku. To nie błąd modelu - w tekście roku nie ma. Wpisywać "brak roku" nie trzeba, bo formularz nie ma osobnej rubryki na rok. Zalicza trzymanie kształtu.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** ten sam tekst, kształt w JSON z czterema kluczami. Porównaj, czy czat nadal dokleja wstęp. Wstęp obok JSON-a to ten sam grzech co esej obok listy.
+
+## Teraz wiesz
+
+- Pusty formularz w prompcie bije "ładnie opisz".
+- Lista pól jest od czytania. JSON od powtarzania tego samego kształtu.
+- W czacie nie ma przełącznika schematu. Jest zdanie "tylko te pola".
+
+**Następny krok:** [Inżynieria kontekstu](/prompt-engineering/inzynieria-kontekstu/) - co model widzi oprócz tego kształtu, gdy rozmowa się wydłuża.
+
+<SlowniczekStrony terminy={["prompt", "api"]} />

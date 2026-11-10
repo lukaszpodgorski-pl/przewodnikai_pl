@@ -1,0 +1,115 @@
+---
+title: Inżynieria kontekstu - nowa rozmowa z krótkim bagażem
+description: Zrobisz z długiej rozmowy cztery punkty i prompt na nową rozmowę. Ćwiczenie zajmie 5 minut.
+sidebar:
+  label: 'Inżynieria kontekstu'
+  order: 6
+educationalLevel: Intermediate
+teaches:
+  - Że model odpowiada na całe okno, nie na ostatnie zdanie
+  - Kiedy zamknąć rozmowę i przenieść tylko ustalenia
+  - Gdzie wklejać to, co ma wygrać z dygresją
+about:
+  - name: Prompt engineering
+    sameAs: https://en.wikipedia.org/wiki/Prompt_engineering
+  - name: Duży model językowy
+    sameAs: https://pl.wikipedia.org/wiki/Du%C5%BCy_model_j%C4%99zykowy
+mentions:
+  - name: ChatGPT
+    sameAs: https://en.wikipedia.org/wiki/ChatGPT
+    type: SoftwareApplication
+  - name: Claude
+    sameAs: https://en.wikipedia.org/wiki/Claude_(language_model)
+    type: SoftwareApplication
+  - name: Anthropic
+    sameAs: https://en.wikipedia.org/wiki/Anthropic
+    type: Organization
+faq:
+  - q: Czym jest inżynieria kontekstu?
+    a: To dobór tego, co model ma przed oczami w momencie odpowiedzi - historia, pliki, instrukcje stałe i ostatnie polecenie. Prompt engineering pyta "jak to sformułować". Tu pytasz "co w ogóle ma tam być".
+  - q: Dlaczego długa rozmowa głupieje?
+    a: Okno się zapełnia i najstarsze fragmenty przestają być widoczne albo zostają streszczone, środek długiego wklejenia bywa słabiej widziany, a dygresje obowiązują tak samo jak aktualne ustalenia. Ratunek to nowa rozmowa z krótkim podsumowaniem, nie "jeszcze jedna wiadomość w tej samej rozmowie".
+  - q: Czy instrukcje stałe w chatbocie zastępują tę lekcję?
+    a: Nie. Stała notatka ("piszę po polsku, konkretnie") oszczędza Ci przedstawiania się za każdym razem. Nie usuwa bałaganu z pięćdziesięciu wiadomości o innym temacie. To dwa różne miejsca w oknie.
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+![Zbliżenie oka, wokół rozłożone karty ze zdjęciami połączone siatką świecących linii](../../../assets/prompt-engineering/inzynieria-kontekstu/inzynieria-kontekstu.jpg)
+
+:::note[O tej stronie]
+**Czas:** ok. 7 minut czytania + 5 minut ćwiczenia.
+**Poziom:** średni, po lekcji [Strukturyzacja danych](/prompt-engineering/schematy/).
+**Wcześniej:** [Strukturyzacja danych](/prompt-engineering/schematy/) - umiesz wymusić kształt wyniku. **Teraz:** sprawdzasz, co jeszcze leży w oknie i psuje ten kształt, gdy rozmowa się wydłuża.
+:::
+
+## Na tej stronie przeniesiesz ustalenia, nie całą rozmowę
+
+Po tej lekcji z bałaganu "kawa, potem herbata, potem obiad" zostają cztery punkty i prompt, który wkleisz w **nową** rozmowę. Nie uczysz się tu agentów ani tabeli okien konkretnych modeli.
+
+Jedna rzecz do zapamiętania: **model nie odpowiada na ostatnie zdanie. Odpowiada na całe okno.**
+
+Inżynieria kontekstu (ang. _context engineering_) to dobór tego, co model ma przed oczami w chwili odpowiedzi. <Termin id="prompt">Prompt</Termin>, czyli Twoje polecenie, to tylko wierzch. Pod spodem leży historia rozmowy, wgrany plik i stała instrukcja z ustawień. Wszystko to konkuruje o miejsce w jednym <Termin id="okno-kontekstowe">oknie kontekstowym</Termin> - tak nazywa się wszystko, co model widzi naraz.
+
+## Nowe zadanie, nowa rozmowa
+
+Jeden ruch: **zamykasz rozmowę i przenosisz do nowej tylko to, co nadal obowiązuje.** Kiedy: temat się zmienił, model wraca do porzuconej wersji albo gubi początek rozmowy.
+
+Dlaczego długa rozmowa głupieje, bez katalogu pięciu zasad:
+
+- Okno ma ograniczoną pojemność. Gdy się zapełnia, najstarsze fragmenty przestają być widoczne albo zostają streszczone. Mechanika jest w tokenach.
+- Środek długiego wklejenia bywa słabiej widziany niż brzegi. Liu i in. (2023) nazwali to "lost in the middle" (zagubione w środku). To opis zjawiska, a nie porównanie dzisiejszych modeli ([arxiv:2307.03172](https://arxiv.org/abs/2307.03172)).
+- Dygresja o obiedzie (wiadomość 3 w ćwiczeniu niżej) obowiązuje na równi z decyzją o herbacie (wiadomość 2). Model nie wie, z czego "już zrezygnowano", dopóki tego nie ma w tekście.
+
+Anthropic opisuje kontekst jako budżet uwagi: każdy kolejny kawałek uszczupla resztę ([Effective context engineering, 2025](https://www.anthropic.com/research/effective-context-engineering-for-ai-agents)). Dlatego krótka lista czterech ustaleń działa lepiej niż cała historia rozmowy wklejona na wszelki wypadek. Jeden dokument możesz po prostu wkleić. Całą bibliotekę dokumentów trzeba przeszukiwać - do tego służy RAG.
+
+Stała notatka w ustawieniach czatu ("branża, ton, język") oszczędza Ci przedstawiania się za każdym razem. Nie usuwa z rozmowy o ofercie wcześniejszej dygresji o obiedzie. Pamięć między rozmowami bywa wygodna i bywa niewidocznym kontekstem - przegląd tego, co narzędzie "o Tobie" trzyma, jest w [prywatności](/etyka/prywatnosc/).
+
+Najważniejsze zdanie stawiaj na górze albo na dole przeniesionego promptu, nie w środku wklejonego stenogramu.
+
+```text
+Ustalenia (obowiązują, reszta rozmowy nie):
+- produkt: herbata, nie kawa
+- format: krótka oferta
+- odbiorca: sklep detaliczny
+- odrzucone: dygresja o obiedzie
+
+Zadanie: napisz ofertę według ustaleń. Nie wracaj do kawy.
+```
+
+:::note[Źródła sprawdzone w listopadzie 2026 r.]
+Liu i in., 2023 - środek sekwencji. Anthropic, 2025 - kontekst jako budżet uwagi. Nie ma tu tabeli okien ani nazw przełączników pamięci - starzeją się z planem i aktualizacją UI.
+:::
+
+## Ćwiczenie: 5 minut, cztery punkty z bałaganu
+
+Poniższa rozmowa jest **wymyślona na potrzeby tej strony**. Nie odpalasz go w czacie, chyba że zostaje czas.
+
+```text
+1. Oferta dla sklepu z kawą, trzy warianty.
+2. Jednak herbata. Kawa nie obowiązuje.
+3. Przy okazji: co na obiad?
+4. Wróć do oferty. Wersja krótka.
+```
+
+1. Na kartce zapisz **cztery** punkty: co obowiązuje, co odrzucone.
+2. Złóż z nich prompt na **nową** rozmowę (wzorzec ze strony).
+3. Sprawdź: czy w nowym prompcie obiad albo kawa stoją wśród ustaleń, które obowiązują?
+
+**Zaliczenie:** cztery punkty i prompt, w którym kawa i obiad występują najwyżej w wierszu "odrzucone", nigdy jako produkt albo zadanie.
+
+**Typowy wynik:** obiad ląduje wśród ustaleń, które obowiązują, bo był w rozmowie. Jego miejsce jest w wierszu "odrzucone" albo nigdzie.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** wklej stenogram 1-4 do czata i poproś o "krótką ofertę". Potem nowa rozmowa z Twoim promptem z punktu 2. Porównaj, czy kawa wróciła.
+
+## Teraz wiesz
+
+- Model widzi okno, nie "ostatnią intencję".
+- Nowe zadanie to nowa rozmowa i krótka lista ustaleń.
+- Brzegi okna wygrywają ze środkiem stenogramu. Dokumentów nie sypiesz "na wszelki wypadek".
+
+**Następny krok:** [Automatyzacja](/prompt-engineering/automatyzacja/) - gdy ten sam podział na kroki ma jechać na nowych danych, nie w jednym bałaganie.
+
+<SlowniczekStrony terminy={["prompt", "okno-kontekstowe"]} />
