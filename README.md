@@ -98,7 +98,7 @@ npm install
 npm run dev          # serwer deweloperski na localhost:4321
 npm run build        # build produkcyjny do ./dist/ - to jest nasz "test suite"
 npm run preview      # podgląd builda
-npm run verify:geo   # 24 asercje na zbudowanym dist/ (dane strukturalne, OG, sitemapa)
+npm run verify:geo   # 25 asercji na zbudowanym dist/ (dane strukturalne, OG, sitemapa)
 npm run test:publish # testy transformacji publikacyjnych
 ```
 

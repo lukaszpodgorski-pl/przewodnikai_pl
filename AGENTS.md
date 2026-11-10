@@ -68,7 +68,7 @@ npm run preview      # podgląd builda
 npm run status       # postęp przeglądu redakcyjnego, sekcja po sekcji
 npm run publish      # przygotuj publikację i zweryfikuj (bez wysyłki)
 npm run preview:prod # podgląd DOKŁADNIE tego, co zobaczy świat
-npm run verify:geo   # 24 asercje na zbudowanym dist/
+npm run verify:geo   # 25 asercji na zbudowanym dist/
 npm run test:publish # testy transformacji publikacyjnych
 ```
 

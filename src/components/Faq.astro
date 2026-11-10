@@ -1,5 +1,5 @@
 ---
-import type { FaqItem } from '../lib/structured-data';
+import { faqAnswerHtml, type FaqItem } from '../lib/structured-data';
 
 interface Props {
 	items?: FaqItem[];
@@ -15,7 +15,7 @@ const { items = [] } = Astro.props;
 			{items.map((item) => (
 				<details class="faq-item">
 					<summary>{item.q}</summary>
-					<p>{item.a}</p>
+					<p set:html={faqAnswerHtml(item.a)} />
 				</details>
 			))}
 		</section>

@@ -177,6 +177,21 @@ export function buildWebSite() {
 	};
 }
 
+// Odpowiedzi FAQ we frontmatterze mogą mieć linki Markdown `[tekst](adres)`.
+const MD_LINK = /\[([^\]]+)\]\(((?:\/|https:\/\/|mailto:)[^)\s]+)\)/g;
+const escapeHtml = (s: string) =>
+	s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+/** Odpowiedź FAQ jako czysty tekst (JSON-LD): link zostaje samym tekstem. */
+export function faqAnswerText(a: string): string {
+	return a.replace(MD_LINK, '$1');
+}
+
+/** Odpowiedź FAQ jako bezpieczny HTML (widoczna sekcja): linki stają się `<a>`. */
+export function faqAnswerHtml(a: string): string {
+	return escapeHtml(a).replace(MD_LINK, (_, t, u) => `<a href="${u}">${t}</a>`);
+}
+
 export function buildFaqPage(items: FaqItem[]) {
 	return {
 		'@context': 'https://schema.org',
@@ -184,7 +199,7 @@ export function buildFaqPage(items: FaqItem[]) {
 		mainEntity: items.map((item) => ({
 			'@type': 'Question',
 			name: item.q,
-			acceptedAnswer: { '@type': 'Answer', text: item.a },
+			acceptedAnswer: { '@type': 'Answer', text: faqAnswerText(item.a) },
 		})),
 	};
 }

@@ -50,11 +50,11 @@ Opinia: "Paczka w dwa dni, buty jak na zdjęciu." Ocena: Super
 Opinia: "Czekałam trzy tygodnie, rozmiar się nie zgadza." Ocena: Beznadzieja
 ```
 
-To samo działa, gdy pola w wyniku mają iść zawsze w tej samej kolejności. Więcej przykładów rzadko pomaga: jeśli wzorzec jest zły, model go po prostu powieli. W literaturze ten szczebel nazywa się few-shot, czyli "kilka przykładów".
+To samo działa, gdy pola w wyniku mają iść zawsze w tej samej kolejności. Liczy się bardziej jakość przykładów niż ich liczba: jeśli wzorzec jest zły, model go po prostu powieli. Anthropic radzi 3-5 różnych przykładów ([dokumentacja Claude](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices)). W literaturze ten szczebel nazywa się few-shot, czyli "kilka przykładów".
 
 **Szczebel 3 - kroki widać.** <Termin id="chain-of-thought">Chain-of-thought</Termin> (łańcuch myśli) to prośba, żeby przed wynikiem pojawiły się etapy. Ma sens przy liczbach, warunkach, "jeśli A to B". Nie ma sensu przy "popraw literówki".
 
-Przy [modelach rozumujących](/jak-dziala-ai/modele-rozumujace/) (to te z trybem "myślenia", które zastanawiają się przed odpowiedzią) kroki często dzieją się w środku, zanim cokolwiek widać na ekranie. Tam zamiast "pomyśl krok po kroku" opisz cel i to, co uznasz za dobrą odpowiedź.
+Przy [modelach rozumujących](/jak-dziala-ai/modele-rozumujace/) (to te z trybem "myślenia", które zastanawiają się przed odpowiedzią) kroki często dzieją się w środku, zanim cokolwiek widać na ekranie. Tam zamiast "pomyśl krok po kroku" opisz cel i to, co uznasz za dobrą odpowiedź (tak radzą [OpenAI](https://developers.openai.com/api/docs/guides/reasoning-best-practices) i [Anthropic](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices)).
 
 Wieloetapowy plan, a nie jedna zagadka, jest w [rozumowaniu](/prompt-engineering/rozumowanie/). Prośbę, żeby model sam poprawił Twój <Termin id="prompt">prompt</Termin>, znajdziesz w [bazie](/prompt-engineering/baza-promptow/).
 

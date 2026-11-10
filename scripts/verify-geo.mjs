@@ -421,6 +421,14 @@ check('każda strona ma og:image i twitter:image', () => {
 // --- Task 4: FAQ ---
 const sourceFaqCount = sourceFiles.filter((f) => hasFaqField(readFileSync(f, 'utf8'))).length;
 
+// Linki Markdown w odpowiedziach FAQ: w sekcji mają być <a>, w JSON-LD czysty tekst.
+check('odpowiedzi FAQ bez dosłownego Markdowna "[tekst](adres)"', () => {
+	const bad = pageData.filter((p) => /\]\((?:\/|https:\/\/)[^)\s]+\)/.test(p.html.split('id="czeste-pytania"')[1] ?? '')
+		|| /"text":"[^"]*\]\(/.test(p.html));
+	assert(bad.length === 0, bad.map((p) => p.url).join(', '));
+	return `${pageData.length}/${pageData.length}`;
+});
+
 check('liczba stron z blokiem FAQPage odpowiada liczbie plików z polem faq: w frontmatterze', () => {
 	const withFaq = pageData.filter((p) => typesIn(p.html).has('FAQPage'));
 	assert(

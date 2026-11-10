@@ -56,7 +56,7 @@ Szukasz, od czego zacząć? Filtr [`dobry pierwszy krok`](https://github.com/luk
 
 - Czytam każde. Zgłoszenie merytoryczne z linkiem do źródła idzie najszybciej - nie muszę wtedy sam ustalać, czy nowa informacja jest prawdziwa.
 - Poprawka trafia do źródła prawdy, a stamtąd na stronę przy najbliższej publikacji. W issue dostajesz odnośnik do opublikowanej wersji.
-- Zanim cokolwiek wyjdzie, publikacja przechodzi automatyczne kontrole: formatowanie Markdown, działanie linków, rozmiary mediów oraz build razem z danymi strukturalnymi (`npm run verify:geo`, 24 asercje). Zepsuta wersja nie opuszcza mojego komputera.
+- Zanim cokolwiek wyjdzie, publikacja przechodzi automatyczne kontrole: formatowanie Markdown, działanie linków, rozmiary mediów oraz build razem z danymi strukturalnymi (`npm run verify:geo`, 25 asercji). Zepsuta wersja nie opuszcza mojego komputera.
 - Jeśli czegoś nie przyjmę, napiszę dlaczego. Milczenie nie jest odpowiedzią.
 
 ## Licencja wkładu
