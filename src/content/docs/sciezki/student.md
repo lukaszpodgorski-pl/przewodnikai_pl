@@ -17,7 +17,7 @@ Przyspiesz naukę, research i pisanie prac z pomocą AI - świadomie i uczciwie.
 5. [Techniki promptowania](/prompt-engineering/techniki/) - dokładaj szczebel tylko gdy poprzedni nie wystarcza: najpierw instrukcja, potem dwa przykłady, potem kroki.
 6. [Narzędzia AI do pisania](/narzedzia/pisanie/) - AI przyspiesza szkic. Podpis pod pracą zaliczeniową zostaje Twój. Osobna aplikacja "do pisania" to dodatek, nie obowiązek.
 7. [Specjalistyczne narzędzia AI](/narzedzia/specjalistyczne/) - najpierw nazywasz zadanie (praca na źródłach, analiza danych, slajdy), potem dobierasz rodzaj narzędzia, a nie najmodniejszą markę.
-8. [Etyczne aspekty](/etyka/etyczne-aspekty/) - zasada uczciwości: jeśli praca powstała z pomocą AI, nie udajesz, że to wyłącznie Twoja praca. Do tego uprzedzenia modeli. Lekcja jest ogólna, więc zasady swojej uczelni sprawdź osobno.
+8. [Etyka i prawo w świecie AI](/etyka/etyczne-aspekty/) - zasada uczciwości: jeśli praca powstała z pomocą AI, nie udajesz, że to wyłącznie Twoja praca. Do tego uprzedzenia modeli. Lekcja jest ogólna, więc zasady swojej uczelni sprawdź osobno.
 
 :::note[Co dalej]
 Przewodnik jest bezpłatny. Gdy skończysz tę ścieżkę, wróć do [programu kursu](/#program-kursu) albo [zobacz inne ścieżki](/sciezki/).

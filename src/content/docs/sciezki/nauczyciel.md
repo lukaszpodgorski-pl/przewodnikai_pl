@@ -16,7 +16,7 @@ Wykorzystaj AI do przygotowania lekcji i naucz uczniów odpowiedzialnego korzyst
 4. [Podstawy promptowania](/prompt-engineering/podstawy/) - cztery pola polecenia, dzięki którym zamiast "ułóż test" dostajesz test o zadanym poziomie, formie i liczbie zadań.
 5. [Narzędzia AI do pisania](/narzedzia/pisanie/) - szkic z modelu, podpis zostaje Twój. Do materiałów lekcyjnych zwykle wystarczy zwykły czat; osobna aplikacja przydaje się dopiero później, nie jest obowiązkowa.
 6. [AI w codziennej pracy](/narzedzia/ai-w-codziennej-pracy/) - jedno powtarzalne zadanie wokół lekcji (mail, konspekt, lista), plus Twoja kontrola.
-7. [Etyczne aspekty](/etyka/etyczne-aspekty/) - lekcja jest ogólna (uprzedzenia algorytmów, odpowiedzialność za decyzję o osobie), ale zasada uczciwości - jeśli tekst, praca albo grafika powstały z pomocą AI, nie udajesz, że to wyłącznie Twoja praca - to gotowy punkt wyjścia do rozmowy z klasą.
+7. [Etyka i prawo w świecie AI](/etyka/etyczne-aspekty/) - lekcja jest ogólna (uprzedzenia algorytmów, odpowiedzialność za decyzję o osobie), ale zasada uczciwości - jeśli tekst, praca albo grafika powstały z pomocą AI, nie udajesz, że to wyłącznie Twoja praca - to gotowy punkt wyjścia do rozmowy z klasą.
 8. [AI a dzieci](/etyka/ai-a-dzieci/) - gdzie sprawdzić próg wieku u dostawcy (dla większości uczniów podstawówki konto we własnym imieniu odpada) i jakich danych uczeń nie wpisuje do czatu. Family Link, czyli kontrola rodzicielska Google, nie włącza Gemini na koncie dziecka w Polsce.
 
 :::note[Co dalej]

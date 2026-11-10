@@ -17,7 +17,7 @@ Wdrażaj AI w swoim zespole świadomie - z myślą o ludziach i o efektach ich p
 5. [AI w branżach](/praktyka/ai-w-branzach/) - przegląd branż przez zadanie i cenę błędu: marketing, HR, finanse, prawo, zdrowie.
 6. [Przykłady wdrożeń](/praktyka/case-studies/) - pięć scenariuszy ilustracyjnych. Z jednego scenariusza wyciągasz sposób działania (co robi model, co człowiek, gdzie jest hamulec), a nie cudze wyniki procentowe.
 7. [AI a rynek pracy](/praktyka/ai-i-praca/) - jak AI zmienia zadania w rolach (a nie całe zawody), co mówią prognozy Światowego Forum Ekonomicznego (WEF) i jak oznaczyć czynności z tygodnia: "szkic AI", "AI może dokończyć", "tylko człowiek".
-8. [Etyczne aspekty](/etyka/etyczne-aspekty/) - uprzedzenia algorytmów przy rekrutacji i ocenie pracowników, zasada "człowiek w pętli" (human-in-the-loop), czyli ważny krok zatwierdza człowiek i da się go cofnąć. Materiał na ustalenie zasad, zanim ustalą się same.
+8. [Etyka i prawo w świecie AI](/etyka/etyczne-aspekty/) - uprzedzenia algorytmów przy rekrutacji i ocenie pracowników, zasada "człowiek w pętli" (human-in-the-loop), czyli ważny krok zatwierdza człowiek i da się go cofnąć. Materiał na ustalenie zasad, zanim ustalą się same.
 9. [Prywatność i dane](/etyka/prywatnosc/) - trzy etykiety: wolno wkleić, zanonimizować, nie wklejać. Daje zespołowi prostą regułę na co dzień. Przerób tę lekcję przed wdrożeniem.
 
 :::note[Co dalej]

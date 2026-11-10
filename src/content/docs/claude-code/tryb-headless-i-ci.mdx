@@ -56,7 +56,7 @@ claude -p --output-format stream-json "pierwsze zadanie" | \
 
 **Formaty wyjścia.** `text` domyślnie. `json` daje jeden obiekt z metadanymi: koszt, czas, liczba tur, `session_id`. `stream-json` wypisuje na bieżąco wiele obiektów JSON, po jednym w linii (format NDJSON), i wymaga `--verbose`. Flaga `--json-schema '{...}'` wymusza walidowane wyjście według schematu.
 
-**Do CI** używaj `--allowedTools` albo `--permission-mode dontAsk`, żeby nie blokować się na promptach, oraz `--bare` dla szybkich i powtarzalnych uruchomień: Claude Code pomija wtedy automatyczne wczytywanie hooków, skilli, pluginów, serwerów MCP i CLAUDE.md (docelowo ma to być domyślne dla `-p`). Uwaga: ten tryb nie używa logowania subskrypcją. Wymaga klucza `ANTHROPIC_API_KEY` z Claude Console, czyli rozliczenia przez API (dostęp do modelu dla programistów, bez okna czatu).
+**Do CI** używaj `--allowedTools` albo `--permission-mode dontAsk`, żeby nie blokować się na promptach, oraz `--bare` dla szybkich i powtarzalnych uruchomień: Claude Code pomija wtedy automatyczne wczytywanie hooków, skilli, pluginów, serwerów MCP i CLAUDE.md (docelowo ma to być domyślne dla `-p`). Uwaga: ten tryb nie używa logowania subskrypcją. Wymaga klucza `ANTHROPIC_API_KEY` z Claude Console, czyli rozliczenia przez <Termin id="api">API</Termin> (dostęp do modelu dla programistów, bez okna czatu).
 
 Kody wyjścia: 0 to sukces, każda inna wartość to błąd. Dodatkowo sprawdzaj `is_error` w JSON - to nie jest to samo.
 
