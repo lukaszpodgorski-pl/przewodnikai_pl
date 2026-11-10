@@ -18,10 +18,10 @@ faq:
   - q: Od czego zacząć naukę AI, jeśli nie mam wykształcenia technicznego?
     a: Od tej sekcji - jest napisana z założeniem, że nie masz za sobą informatyki ani matematyki na poziomie studiów. Zacznij od "Wstępu", potem "Czym jest AI?" i "Jak uczyć się AI" - w tej ostatniej określisz swój poziom w skali od 0 do 5 i wybierzesz jedno zadanie na tydzień. Konto u chatbota przyda się już przy pierwszym ćwiczeniu; pełną rozmowę - z dopytywaniem i poprawianiem odpowiedzi - ćwiczysz w lekcji czwartej. Do mechaniki i promptów wrócisz w kolejnych sekcjach.
   - q: Ile czasu zajmuje przejście sekcji Podstawy?
-    a: Osiem lekcji, zwykle 6-8 minut czytania, dwa dłuższe (10 i 15 minut) - razem nieco ponad godzinę. Jeśli będziesz po drodze wykonywać ćwiczenia z chatbotem - a warto - licz razem około 2 godzin, rozłożonych na kilka wieczorów. Nie ma nagrody za pośpiech.
+    a: Osiem lekcji, zwykle 6-8 minut czytania, dwie dłuższe (10 i 15 minut) - razem nieco ponad godzinę. Jeśli będziesz po drodze wykonywać ćwiczenia z chatbotem - a warto - licz razem około 2 godzin, rozłożonych na kilka wieczorów. Nie ma nagrody za pośpiech.
   - q: Czy muszę za coś zapłacić, żeby przejść tę sekcję?
     a: Nie. Cały przewodnik jest darmowy, a wszystkie ćwiczenia da się wykonać na bezpłatnych planach popularnych chatbotów. Płatna wersja przyda się dopiero przy bardziej wymagających zadaniach z dalszych sekcji.
-status: zastane
+status: gotowe
 ---
 
 import { CardGrid, LinkCard } from '@astrojs/starlight/components';
@@ -40,21 +40,21 @@ Dla osób nietechnicznych. Nauczycieli, rodziców, przedsiębiorców, urzędnik�
 
 ## W jakiej kolejności czytać
 
-Po kolei, od góry do dołu - każda lekcja korzysta z tego, co ustaliliśmy wcześniej. Jeśli masz przeczytać tylko jedną - niech to będzie "Weryfikacja informacji". Jeśli dwie - dołóż "Twoja pierwsza rozmowa z AI".
+Po kolei, od góry do dołu - każda lekcja korzysta z poprzednich. Jeśli masz przeczytać tylko jedną - niech to będzie "Weryfikacja informacji". Jeśli dwie - dołóż "Pierwsza rozmowa z AI".
 
 ## Czego nie ma w tej sekcji
 
-Mechaniki (sieci neuronowe, uczenie modeli, tokeny) i technik pisania promptów - obie czekają w kolejnych sekcjach, [Jak działa AI](/jak-dziala-ai/) i [Prompt Engineering](/prompt-engineering/). Tutaj budujemy fundament pod jedno i drugie.
+Mechaniki (sieci neuronowe, uczenie modeli, tokeny) i technik pisania promptów - obie czekają w kolejnych sekcjach, [Jak działa AI](/jak-dziala-ai/) i [Prompt Engineering](/prompt-engineering/). Tutaj powstaje fundament pod jedno i drugie.
 
 :::tip[Szukasz lekcji o AI, ML i sieciach neuronowych?]
-Tekst "AI, ML, sieci neuronowe" mieszkał kiedyś pod tym adresem. Przeniósł się do sekcji [Jak działa AI](/jak-dziala-ai/) (dziś w przebudowie).
+Tekst "AI, ML, sieci neuronowe" mieszkał kiedyś pod tym adresem. Przeniósł się do sekcji Jak działa AI - to jej pierwsza lekcja, [AI, ML, sieci neuronowe](/jak-dziala-ai/ai-ml-sieci-neuronowe/).
 :::
 
 ## Lekcje w tej sekcji
 
 <CardGrid>
   <LinkCard
-    title="Wstęp do kursu AI"
+    title="Wstęp"
     description="Mapa dziewięciu sekcji i pierwszy prompt o jednym problemie z tygodnia. Ćwiczenie: 5 minut."
     href="/podstawy/wstep/"
   />
@@ -64,17 +64,17 @@ Tekst "AI, ML, sieci neuronowe" mieszkał kiedyś pod tym adresem. Przeniósł s
     href="/podstawy/czym-jest-ai/"
   />
   <LinkCard
-    title="Jak uczyć się AI? Poziomy od 0 do 5"
+    title="Jak uczyć się AI?"
     description="Określasz swój poziom w skali 0-5 i wybierasz jedno zadanie na 7 dni. Ćwiczenie: 5 minut."
     href="/podstawy/jak-uczyc-sie-ai/"
   />
   <LinkCard
-    title="Twoja pierwsza rozmowa z AI"
+    title="Pierwsza rozmowa z AI"
     description="Zakładasz konto, wysyłasz pierwszy prompt i doprecyzowujesz odpowiedź. Ćwiczenie: dwa komunikaty w jednej rozmowie."
     href="/podstawy/pierwsza-rozmowa-z-ai/"
   />
   <LinkCard
-    title="Mity vs rzeczywistość AI"
+    title="Mity vs rzeczywistość"
     description="Cztery najczęstsze mity o AI - praca, świadomość, nieomylność, przejęcie świata - i jak je odróżnić od faktów. Ćwiczenie: 5 minut."
     href="/podstawy/mity-vs-rzeczywistosc/"
   />
@@ -84,7 +84,7 @@ Tekst "AI, ML, sieci neuronowe" mieszkał kiedyś pod tym adresem. Przeniósł s
     href="/podstawy/nie-dajmy-sie-zwariowac/"
   />
   <LinkCard
-    title="Ograniczenia sztucznej inteligencji"
+    title="Ograniczenia"
     description="Trzy główne ograniczenia AI: model nie rozumie, nie zna bieżących wydarzeń i powiela uprzedzenia z danych. Ćwiczenie: 5 minut."
     href="/podstawy/ograniczenia/"
   />

@@ -6,12 +6,12 @@ noindex: true
 pagefind: false
 sidebar:
   hidden: true
-status: zastane
+status: gotowe
 ---
 
 ## Coś poszło nie tak
 
-Nie udało się dokończyć zapisu. Najczęściej znaczy to, że Twój adres **nie trafił** na listę - wtedy nic się nie stało i możesz spróbować jeszcze raz. Jeśli natomiast klikasz w link potwierdzający po raz drugi, jesteś już zapisany i nie musisz robić nic więcej.
+Nie udało się dokończyć zapisu. Najczęściej znaczy to, że Twój adres **nie trafił** na listę - wtedy nic się nie stało i możesz spróbować jeszcze raz. Jeśli natomiast klikasz w link potwierdzający po raz drugi, Twój adres jest już na liście i nie musisz robić nic więcej.
 
 ## Co najczęściej jest przyczyną
 
@@ -25,4 +25,4 @@ Formularz znajdziesz na [stronie głównej](/) oraz na dole każdej lekcji.
 
 Jeśli to już kolejna próba i nadal nie działa, napisz na [kontakt@lukaszpodgorski.pl](mailto:kontakt@lukaszpodgorski.pl) - dopiszę Cię ręcznie i przy okazji sprawdzę, co się zepsuło. To dla mnie użyteczna informacja, więc nie krępuj się.
 
-Cały kurs czytasz bez zapisywania się na cokolwiek - [wróć do lektury](/podstawy/wstep/), kiedy tylko chcesz.
+Cały przewodnik czytasz bez zapisywania się na cokolwiek - [wróć do lektury](/podstawy/wstep/), kiedy tylko chcesz.

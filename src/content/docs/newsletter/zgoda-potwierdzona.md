@@ -6,7 +6,7 @@ noindex: true
 pagefind: false
 sidebar:
   hidden: true
-status: zastane
+status: gotowe
 ---
 
 Dziękuję. Twoja zgoda jest zapisana i zostajesz na liście.

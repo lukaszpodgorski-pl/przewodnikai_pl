@@ -14,12 +14,18 @@ import { count } from '../lib/plural';
 
 const entries = await getCollection('docs');
 
-// Artykul = wpis lezacy bezposrednio w jednej z zarejestrowanych sekcji.
+// Lekcja = wpis lezacy bezposrednio w jednej z zarejestrowanych sekcji.
 // Klasyfikacja przez allowliste z src/config/sections.ts, tak samo jak
 // w src/components/Head.astro - nowa sekcja dopisana tam liczy sie tutaj sama.
+// Zasoby (slownik, biblioteka, kontakt, regulamin...) to strony, nie lekcje
+// (D09: sekcja / lekcja / strona), wiec nie wchodza do licznika.
 const articleCount = entries.filter((entry) => {
 	const segments = entry.id.split('/');
-	return segments.length === 2 && SECTION_LABELS[segments[0]] !== undefined;
+	return (
+		segments.length === 2 &&
+		segments[0] !== 'zasoby' &&
+		SECTION_LABELS[segments[0]] !== undefined
+	);
 }).length;
 
 // Sciezki nauki sa poza sidebarem i poza SECTIONS, wiec liczone osobno.
@@ -34,7 +40,7 @@ const sectionCount = SECTIONS.length;
 // wyciete w calosci, a "0 sciezek nauki" pod hero obiecuje cos, czego nie ma.
 const parts = [
 	{ n: sectionCount, forms: ['sekcja', 'sekcje', 'sekcji'] },
-	{ n: articleCount, forms: ['artykuł', 'artykuły', 'artykułów'] },
+	{ n: articleCount, forms: ['lekcja', 'lekcje', 'lekcji'] },
 	{ n: pathCount, forms: ['ścieżka nauki', 'ścieżki nauki', 'ścieżek nauki'] },
 ]
 	.filter(({ n }) => n > 0)

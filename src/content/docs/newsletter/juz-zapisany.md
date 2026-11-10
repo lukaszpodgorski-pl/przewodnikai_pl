@@ -6,7 +6,7 @@ noindex: true
 pagefind: false
 sidebar:
   hidden: true
-status: zastane
+status: gotowe
 ---
 
 ## Już się znamy

@@ -25,27 +25,20 @@ ręcznie**, następna publikacja nadpisze zmiany. Cloudflare buduje z GitHuba.
 
 ### Przegląd redakcyjny - stan na dziś
 
-Serwis jest w trakcie przeglądu artykuł po artykule. Powód: duża część treści
-powstała z dużym udziałem AI i właściciel nie publikuje jej pod swoim nazwiskiem
-przed sprawdzeniem. Według `npm run status` przejrzanych jest 95 ze 105 stron,
-publicznie stoją wszystkie 105, wyciętych z produkcji nie ma.
+Przegląd redakcyjny artykuł po artykule zakończył się 2026-11-10: według
+`npm run status` wszystkie 105 stron ma status `gotowe` i wszystkie są publiczne.
+Powód przeglądu: duża część treści powstała z dużym udziałem AI i właściciel nie
+publikuje jej pod swoim nazwiskiem przed sprawdzeniem.
 
-Co jest dziś przejrzane (`gotowe`):
+Jak powstał status `gotowe`:
 
-- `claude-code` - 22/22, cała sekcja (materiał autorski właściciela),
-- `podstawy` - 8 lekcji; strona zbiorcza sekcji ma status `zastane`,
-- `zasoby` - cała sekcja (biblioteka i słownik wcześniej, reszta 2026-11-10),
-- `etyka` - 4 lekcje i strona zbiorcza (2026-11-10),
-- `narzedzia` - 9 lekcji i strona zbiorcza (2026-11-10),
-- `prompt-engineering` - 10 lekcji i strona zbiorcza (2026-11-10),
-- `jak-dziala-ai` - 13 lekcji i strona zbiorcza (2026-11-10),
-- `suwerenne-ai` - 4 lekcje i strona zbiorcza (2026-11-10),
-- `praktyka` - 4 lekcje i strona zbiorcza (2026-11-10),
-- wszystkie 9 ścieżek (2026-11-10); strona zbiorcza `sciezki` ma status `zastane`.
-
-Publicznie stoją poza tym strona główna, strony zbiorcze pozostałych sekcji
-i ścieżek oraz siedem stron
-newslettera (status `zastane`). Od 2026-11-10 żadna lekcja nie jest wycięta.
+- `claude-code` (22) i `podstawy` (8 lekcji) - lektura właściciela,
+- `zasoby/biblioteka` i `zasoby/slownik-pojec` - lektura właściciela,
+- pozostałe sekcje, ścieżki, strona główna i newsletter (2026-11-09/10) - agent
+  przygotował pakiet `docs/przeglad-<sekcja>.md` (poprawki spójności, fakty
+  sprawdzone u źródła, pytania z wariantem domyślnym), właściciel zatwierdził
+  sekcję decyzją "warianty domyślne, opublikuj". Twierdzenia, których agent nie
+  potwierdził u źródła, są wypisane w pakietach jako pytania.
 
 Audyt merytoryczny wszystkich sekcji (przebieg 2026-10-18) został scalony
 do `main` 2026-11-09 (commit `bb105e5`).

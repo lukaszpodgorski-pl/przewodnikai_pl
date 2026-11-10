@@ -6,7 +6,7 @@ noindex: true
 pagefind: false
 sidebar:
   hidden: true
-status: zastane
+status: gotowe
 ---
 
 Twój adres **nie trafił** na listę, bo w formularzu nie było zaznaczonej zgody na otrzymywanie powiadomień. Nic się nie stało - nie wysyłam wiadomości do nikogo, kto o to nie poprosił.
