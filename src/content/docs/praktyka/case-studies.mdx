@@ -53,15 +53,15 @@ Mały zespół, dużo tekstu, wąskie gardło przy skalowaniu.
 
 **Proces:** research (osoba + model) → konspekt (model, ktoś zatwierdza) → szkic (model) → redakcja (osoba) → publikacja (zawsze osoba).
 
-**Mechanika:** model przesuwa pracę z pustej kartki na edycję. Jakość nie "rośnie przez AI" - rośnie, gdy zostaje czas na research i ostatnią poprawkę. Publikacja szkicu bez redakcji to nie ta mechanika, tylko jej najgorszy wariant.
+**Mechanika:** model przesuwa pracę z pustej kartki na edycję. Sama AI jakości nie podnosi. Jakość rośnie wtedy, gdy zostaje czas na research i ostatnią poprawkę. Publikacja szkicu bez redakcji to najgorszy wariant tej mechaniki.
 
 ### 2. Support - bot z drzwiami do człowieka
 
 Zespół tonie w powtarzalnych zgłoszeniach klientów. Ktoś stawia <Termin id="chatbot">chatbota</Termin> na FAQ.
 
-**Proces:** najpierw kategoryzacja starych zgłoszeń. Potem baza wiedzy. Potem bot obsługuje najpierw niewielką część rozmów. Potem przekazanie sprawy osobie, które jest widoczne - "rozmowa z osobą" nie chowa się w trzecim menu.
+**Proces:** najpierw kategoryzacja starych zgłoszeń. Potem baza wiedzy. Potem bot obsługuje najpierw niewielką część rozmów. Potem przekazanie sprawy osobie, które jest widoczne, więc "rozmowa z osobą" nie chowa się w trzecim menu.
 
-**Mechanika:** automat na wzorzec ma sens dopiero z wyjściem. "Bot załatwia zgłoszenia" bez ścieżki do człowieka to nie oszczędność, tylko kolejka wściekłości. Nie podaję tu procentu "załatwionych" zgłoszeń - w każdej firmie "załatwione" znaczy co innego.
+**Mechanika:** automat na wzorzec ma sens dopiero z wyjściem. Bot, który "załatwia zgłoszenia" bez ścieżki do człowieka, zamiast oszczędności daje kolejkę wściekłych klientów. Nie podaję tu procentu "załatwionych" zgłoszeń, bo w każdej firmie "załatwione" znaczy co innego.
 
 ### 3. Freelancing - sprzedajesz osąd, nie znaki
 
@@ -69,7 +69,7 @@ Klienci pytają, czy da się taniej, "bo jest AI".
 
 **Proces:** najpierw własny sposób pracy (szkic + Twoja redakcja). Potem oferta mówi wprost, co jest szkicem, a co strategią. Potem ewentualnie szkolenie klienta z narzędzia - osobna usługa, nie zniżka za znaki.
 
-**Mechanika:** jeśli cena opiera się wyłącznie na liczbie znaków, model naprawdę Cię zastępuje. Jeśli opiera się na wyborze, tonie i odpowiedzialności - wzmacnia. To ten sam ruch co w [AI a rynek pracy](/praktyka/ai-i-praca/): etykietujesz czynność, nie zawód.
+**Mechanika:** jeśli cena opiera się wyłącznie na liczbie znaków, model naprawdę Cię zastępuje. Jeśli opiera się na wyborze, tonie i odpowiedzialności, model Cię wzmacnia. To ten sam ruch co w [AI a rynek pracy](/praktyka/ai-i-praca/): etykietujesz czynność, nie zawód.
 
 ### 4. Kancelaria - wyciąg, nie wyrok
 
@@ -77,7 +77,7 @@ Sterta umów, juniorzy toną w klauzulach.
 
 **Proces:** model zaznacza klauzule i flagi. Młodsza osoba sprawdza, czy flaga jest w tekście. Starsza osoba bierze odpowiedzialność za radę. Raport dla klienta nie wychodzi z modelu "na czysto".
 
-**Mechanika:** przy prawie, zdrowiu i pieniądzach kontrola jest ściślejsza, bo model umie spokojnym tonem **dodać klauzulę, której nie było**. To [halucynacja](/podstawy/ograniczenia/), nie "rzadki błąd juniora". Sprawdzenie przez człowieka jest częścią procesu, nie dodatkiem "jak starczy czas".
+**Mechanika:** przy prawie, zdrowiu i pieniądzach kontrola jest ściślejsza, bo model umie spokojnym tonem **dodać klauzulę, której nie było**. To [halucynacja](/podstawy/ograniczenia/), a nie "rzadki błąd juniora", więc sprawdzenie przez człowieka jest stałym krokiem procesu, także wtedy, gdy brakuje czasu.
 
 ### 5. Katalog - szablon, dane produktu, kontrola wyrywkowa
 
@@ -85,7 +85,7 @@ Setki opisów, ręcznie się nie da, kopiowanie od producenta zabija unikalnoś�
 
 **Proces:** jeden szablon polecenia (korzyść, długość, zakaz żargonu) → dane z karty produktu → partia opisów → **losowo wybrane opisy do przeczytania przez człowieka**.
 
-**Mechanika:** skala bez czytania próbki to publikacja zgadywania. Szablon jest po to, żeby osoba sprawdzająca miała z czym porównać. Więcej o samym poleceniu jest w [prompt engineeringu](/prompt-engineering/) - tu liczy się kontrola po wygenerowaniu opisów.
+**Mechanika:** jeśli nikt nie czyta próbki, publikujesz setki opisów w ciemno. Szablon jest po to, żeby osoba sprawdzająca miała z czym porównać. Więcej o samym poleceniu jest w [prompt engineeringu](/prompt-engineering/), a tu liczy się kontrola po wygenerowaniu opisów.
 
 ## Czego tu nie ma
 
@@ -95,7 +95,7 @@ Nie ma listy "wdrażaj te cztery narzędzia". Marka się starzeje szybciej niż 
 
 Nie ma lekcji <Termin id="sift">SIFT</Termin> ani szkieletu promptu (cztery pola: rola, zadanie, ograniczenia, format). SIFT jest w [weryfikacji](/podstawy/weryfikacja-informacji/), szkielet - w [podstawach promptowania](/prompt-engineering/podstawy/). Tu zostaje jedno: **czy w procesie jest człowiek i czy wiesz, po czym poznasz, że działa**.
 
-Raporty branżowe o adopcji AI istnieją - na przykład [McKinsey, The State of AI 2025](https://www.mckinsey.com/~/media/mckinsey/business%20functions/quantumblack/our%20insights/the%20state%20of%20ai/november%202025/the-state-of-ai-in-2025.pdf). To ankiety firm, nie Twoje pięć historii i nie obietnica procentu.
+Raporty branżowe o adopcji AI istnieją - na przykład [McKinsey, The State of AI 2025](https://www.mckinsey.com/~/media/mckinsey/business%20functions/quantumblack/our%20insights/the%20state%20of%20ai/november%202025/the-state-of-ai-in-2025.pdf). To ankiety wśród firm. Nie opisują tych pięciu historii i nie obiecują żadnego procentu.
 
 :::note[Źródła sprawdzone w listopadzie 2026 r.]
 Na tej stronie nie ma liczb "ile oszczędzisz". Raport McKinsey z listopada 2025 r. opisuje, jak firmy korzystają z AI, a nie wyniki pięciu zmyślonych historii.
@@ -117,9 +117,9 @@ Nie przepisujesz cudzego ROI. Wyciągasz **jedno** zdanie.
 
 ## Teraz wiesz
 
-- Te historie są ilustracją. Cytujesz mechanikę, nie tabelkę.
+- Te historie są ilustracją, więc przenosisz z nich mechanikę, a nie liczby z tabelki.
 - Wracają trzy klocki: wąski problem, człowiek sprawdzający wynik, moment, w którym można zatrzymać proces (przekazanie sprawy osobie, redakcja, próbka).
-- Narzędzie jest przykładem. Proces jest lekcją.
+- Nazwa narzędzia w scenariuszu to tylko przykład. Do własnej pracy przenosisz proces.
 
 **Następny krok:** [Szkic i dwie poprawki](/praktyka/najlepsze-praktyki/) - jeden nawyk: mierzysz szkic plus poprawkę i wiesz, kiedy odłożyć model.
 

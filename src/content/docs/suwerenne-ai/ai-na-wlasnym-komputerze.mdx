@@ -42,21 +42,19 @@ import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 
 ## Na tej stronie dobierzesz model do swojego sprzętu
 
-Po tej lekcji będziesz wiedzieć, po co uruchamiać model AI na własnym komputerze, jakim programem to zrobić i jak duży model udźwignie Twój sprzęt. Chodzi o model z otwartymi wagami (<Termin id="open-weight">open-weight</Termin>) - taki, którego wagi, czyli liczby ustawione w treningu, możesz pobrać na swój dysk. Nie dostaniesz tu listy "najlepszych modeli miesiąca" - takie listy starzeją się w kilka tygodni.
+Po tej lekcji będziesz wiedzieć, po co uruchamiać model AI na własnym komputerze, jakim programem to zrobić i jak duży model udźwignie Twój sprzęt. Chodzi o model z otwartymi wagami (<Termin id="open-weight">open-weight</Termin>) - taki, którego wagi, czyli liczby ustawione w treningu, możesz pobrać na swój dysk. Listy "najlepszych modeli miesiąca" starzeją się w kilka tygodni, więc ich tu nie ma.
 
 Jedna rzecz do zapamiętania: **Model to plik na Twoim dysku. Korzystasz z niego dla prywatności, bez opłat za każde użycie i bez zależności od dostawcy. Numer wersji sprawdzasz w dniu pobrania.**
 
 ## Po co to robić
 
-- **Prywatność.** Treść nie leci na cudzy serwer. Kontekst: [prywatność](/etyka/prywatnosc/).
-- **Koszt.** Pobierasz model raz i potem korzystasz z niego bez licznika opłat za każde użycie.
-- **Niezależność.** Model działa bez internetu. Nikt nie wyłączy Ci modelu, który masz już na dysku. To <Termin id="suwerennosc-cyfrowa">suwerenność cyfrowa</Termin> w skali Twojego komputera.
+Pierwszy powód to prywatność: treść nie leci na cudzy serwer (więcej w lekcji o [prywatności](/etyka/prywatnosc/)). Drugi to koszt, bo model pobierasz raz i potem korzystasz z niego bez licznika opłat za każde użycie. Trzeci to niezależność. Model działa bez internetu i nikt nie wyłączy Ci modelu, który masz już na dysku. To <Termin id="suwerennosc-cyfrowa">suwerenność cyfrowa</Termin> w skali Twojego komputera.
 
-Do szkicu maila i korekty akapitu rzadko potrzeba "najmocniejszego na świecie". Mniejszy model na Twoim komputerze często wystarczy. Czołowy czat w chmurze zostaje, gdy potrzebujesz wyszukiwania w sieci, podłączonych narzędzi i wygody - to świadomy wybór, nie porażka.
+Do szkicu maila i korekty akapitu rzadko potrzeba "najmocniejszego na świecie". Mniejszy model na Twoim komputerze często wystarczy. Po czołowy czat w chmurze sięgasz wtedy, gdy potrzebujesz wyszukiwania w sieci, podłączonych narzędzi albo po prostu wygody.
 
 ## Dwa programy, jedna decyzja
 
-Nie potrzebujesz serwera ani oprogramowania dla firm - wystarczy jeden z dwóch programów. Oba mają okno czatu.
+Nie potrzebujesz serwera ani oprogramowania dla firm. Wystarczy jeden z dwóch programów, oba mają okno czatu.
 
 **Ollama** - [ollama.com](https://ollama.com/). Na Windowsie i macOS ma aplikację z oknem czatu, w której pobierzesz model ([ollama.com](https://ollama.com/blog/new-app)). Można jej też używać z terminala (okna, w którym wpisuje się polecenia tekstowe).
 
@@ -68,9 +66,9 @@ Jeśli chcesz pisać po polsku, wybierz model, który uczono na dużej ilości p
 
 ## Sprzęt: sufit, nie ranking
 
-Liczy się przede wszystkim **VRAM** (pamięć karty). Im większy model, tym więcej pamięci. Kwantyzacja (np. Q4) ściska plik kosztem odrobiny jakości. Bez mocnej karty model często uruchomi się na zwykłym RAM-ie komputera, licząc na procesorze zamiast na karcie graficznej - wolniej, ale się uruchomi. Cierpliwość jest częścią układu.
+Liczy się przede wszystkim **VRAM** (pamięć karty). Im większy model, tym więcej pamięci. Kwantyzacja (np. Q4) ściska plik kosztem odrobiny jakości. Bez mocnej karty model często uruchomi się na zwykłym RAM-ie komputera i będzie liczył na procesorze zamiast na karcie graficznej. Działa wtedy wolniej, więc trzeba uzbroić się w cierpliwość.
 
-Przed pobraniem otwórz stronę modelu, tzw. kartę modelu (w Ollamie, w LM Studio albo w serwisie Hugging Face, gdzie twórcy publikują modele), i sprawdź aktualny rozmiar pliku i ile pamięci model potrzebuje. Instalację sterowników karty graficznej ta lekcja zostawia Tobie - to osobny temat.
+Przed pobraniem otwórz stronę modelu, tzw. kartę modelu (w Ollamie, w LM Studio albo w serwisie Hugging Face, gdzie twórcy publikują modele), i sprawdź aktualny rozmiar pliku i ile pamięci model potrzebuje. Instalacji sterowników karty graficznej tu nie opisuję, to osobny temat.
 
 :::note[Źródła sprawdzone w listopadzie 2026 r.]
 Przykłady, nie "obecnie najlepsze".
@@ -84,7 +82,7 @@ Inne nazwy, które teraz ludzie stawiają lokalnie po polsku: PLLuM w rozmiarach
 
 ## Ćwiczenie: 5 minut, klasa albo chmura
 
-Nie musisz dowieźć działającego czatu w pięć minut - pobieranie waży gigabajty.
+Nie musisz w pięć minut dojść do działającego czatu, bo samo pobieranie to gigabajty.
 
 1. Zapisz, ile mniej więcej masz RAM i czy jest karta z VRAM (albo "nie wiem / laptop służbowy").
 2. Wybierz klasę: **mały** (ok. 7-14 mld parametrów, ok. 6-12 GB pamięci karty albo zwykły RAM i cierpliwość) / **średni** (ok. 16-24 GB VRAM) / **zostaję w chmurze** (powód w sześciu słowach).
@@ -102,6 +100,6 @@ Nie musisz dowieźć działającego czatu w pięć minut - pobieranie waży giga
 - Uruchomisz go w Ollamie albo w LM Studio - oba programy mają okno czatu.
 - O wyborze decyduje pamięć karty graficznej (VRAM) i wymagania z karty modelu. Przykładowe nazwy są w ramce z datą.
 
-**Następny krok:** [AI w branżach](/praktyka/ai-w-branzach/) - pierwsza lekcja sekcji AI w praktyce. Wskażesz w swojej branży zadania na szkic AI i to, które zostaje przy człowieku. Wybór między narzędziem w chmurze a modelem lokalnym zostaje teraz Twoją decyzją, dopasowaną do zadania.
+**Następny krok:** [AI w branżach](/praktyka/ai-w-branzach/) - pierwsza lekcja sekcji AI w praktyce. Wskażesz w swojej branży zadania na szkic AI i to, które zostaje przy człowieku. Wybór między narzędziem w chmurze a modelem lokalnym możesz już dopasować do zadania.
 
 <SlowniczekStrony terminy={["open-weight", "suwerennosc-cyfrowa"]} />

@@ -19,6 +19,6 @@ Zajrzyj do folderu ze spamem albo do zakładki "Oferty". Jeśli po kilku minutac
 
 ## Dlaczego proszę o potwierdzenie
 
-Dzięki temu mam pewność, że to naprawdę Ty, a nie ktoś, kto wpisał Twój adres bez Twojej wiedzy. Nikt nie trafi na listę cudzymi rękami.
+Dzięki temu mam pewność, że to naprawdę Ty, a nie ktoś, kto wpisał Twój adres bez Twojej wiedzy.
 
 Tymczasem możesz [wrócić do kursu](/podstawy/wstep/) albo [przejrzeć program](/).

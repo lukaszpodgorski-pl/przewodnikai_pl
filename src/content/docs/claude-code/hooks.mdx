@@ -137,7 +137,7 @@ Przykłady są w składni basha. Na Windowsie uruchom je w Git Bash (instaluje s
 2. Poproś Claude o odczyt pliku `.env`.
 3. Sprawdź, że operacja została zablokowana wraz z Twoim komunikatem. Jeśli Claude spróbuje obejść blokadę komendą w terminalu (np. `cat .env`), odmów - ten hook pilnuje tylko narzędzi Read, Edit i Write.
 
-**Zaliczenie:** Claude nie odczytał `.env`, a w terminalu widzisz tekst, który sam wpisujesz do skryptu. Masz gwarancję zamiast sugestii.
+**Zaliczenie:** Claude nie odczytał `.env`, a w terminalu widzisz tekst, który sam wpisujesz do skryptu.
 
 **Jeśli nic nie zgrzyta i zostaje czas:** porównaj to z regułą `deny` z lekcji o uprawnieniach. Obie blokują, ale hook daje Ci własny komunikat i możliwość logowania prób.
 

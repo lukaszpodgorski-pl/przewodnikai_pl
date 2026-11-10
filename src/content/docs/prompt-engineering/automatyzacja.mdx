@@ -37,13 +37,13 @@ import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 
 Po tej lekcji masz dwa <Termin id="prompt">prompty</Termin>: jeden wyciąga listę, drugi pisze checklistę **tylko** z tej listy. Sprawdzasz, czy druga stacja (tak nazywam każdy prompt w łańcuchu) widzi bałagan z notatki, czy już nie.
 
-Jedna rzecz do zapamiętania: **druga stacja dostaje wyjście pierwszej, nie oryginał.**
+Jedna rzecz do zapamiętania: **Druga stacja dostaje wyjście pierwszej, a nie oryginał.**
 
 To odróżnia tę lekcję od [rozumowania](/prompt-engineering/rozumowanie/). Tam dzielisz jedną zagadkę (plan, potem werdykt). Tu budujesz linię, na którą wpadnie **następna** notatka w tym samym kształcie. W rozumowaniu zostajesz w tej samej rozmowie, bo drugi krok ma widzieć pierwszy. Tu otwierasz nową, bo drugi krok ma **nie** widzieć oryginału.
 
 ## Dwie stacje zamiast jednego promptu na wszystko
 
-Cała technika to jeden ruch: **wynik pierwszego promptu wklejasz jako jedyny materiał do drugiego.** Przydaje się, gdy ta sama robota wraca regularnie (notatki ze spotkania, kolejka reklamacji, cotygodniowy raport), a jeden prompt próbuje naraz wyciągać informacje i je redagować.
+**Wynik pierwszego promptu wklejasz jako jedyny materiał do drugiego.** Przydaje się, gdy ta sama robota wraca regularnie (notatki ze spotkania, kolejka reklamacji, cotygodniowy raport), a jeden prompt próbuje naraz wyciągać informacje i je redagować.
 
 Stały układ odpowiedzi z lekcji o [schematach](/prompt-engineering/schematy/) bardzo tu pomaga: stacja 1 oddaje wynik zawsze w tym samym kształcie (jedno zadanie w wierszu), więc stacja 2 nie musi zgadywać, gdzie co jest.
 
@@ -88,7 +88,7 @@ Notatka jest **wymyślona na potrzeby tej strony**.
 
 ## Teraz wiesz
 
-- Łańcuch to: stacja 1, wklejenie wyniku do nowej rozmowy, stacja 2. Nie dłuższa wymiana wiadomości w jednej rozmowie.
+- Łańcuch to: stacja 1, wklejenie wyniku do nowej rozmowy, stacja 2, a nie dłuższa wymiana wiadomości w jednej rozmowie.
 - Druga stacja nie widzi oryginału. Dlatego format pierwszej ma znaczenie.
 - Ręczny łańcuch pokazuje, w którym kroku coś się psuje. Łańcuch, który działa sam według stałych kroków, to nadal proces, nie agent.
 

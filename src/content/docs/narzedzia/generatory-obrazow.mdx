@@ -53,19 +53,19 @@ Jedna rzecz do zapamiętania: **najpierw opisujesz, co ma być na obrazie. Wybó
 
 ## Trzy drogi do obrazu z AI
 
-<Termin id="genai">Generatywna AI</Termin> obrazu dostaje opis i składa piksele. To nie jest wyszukiwarka zdjęć stockowych. Haczyk: model dorysuje detale, o które nie prosisz - palce, napis, markę, "klimat".
+<Termin id="genai">Generatywna AI</Termin> obrazu dostaje opis i składa z niego piksele, zamiast szukać gotowego zdjęcia stockowego. Przy okazji dorysuje detale, o które nie prosisz - palce, napis, markę, "klimat".
 
 Trzy trwałe drogi, bez numeru wersji:
 
 - **W czacie, który już masz.** Najniższy próg. W ChatGPT to wbudowany generator (następca wycofanego DALL-E). Gemini też składa obrazy w tym samym oknie. [Cennik ChatGPT](https://chatgpt.com/pricing/), [cennik Gemini](https://gemini.google/subscriptions/).
-- **Osobna aplikacja pod estetykę.** Midjourney jest tu od lat rozpoznawalnym przykładem. Działa w przeglądarce na swojej stronie, Discord nie jest potrzebny. Czy jest plan darmowy, sprawdzasz na [porównaniu planów](https://docs.midjourney.com/hc/en-us/articles/27870484040333-Comparing-Midjourney-Plans), nie w tym zdaniu.
+- **Osobna aplikacja pod estetykę.** Midjourney jest tu od lat rozpoznawalnym przykładem. Działa w przeglądarce na swojej stronie, Discord nie jest potrzebny. Czy jest plan darmowy, sprawdzasz na [porównaniu planów](https://docs.midjourney.com/hc/en-us/articles/27870484040333-Comparing-Midjourney-Plans).
 - **Model u siebie albo na wynajętej platformie.** Modele z otwartymi wagami (liczbami ustawionymi w treningu), np. Stable Diffusion czy FLUX, uruchamiasz na własnym komputerze albo na wynajętej platformie. Kontrolę dają w obu przypadkach, prywatność tylko u Ciebie. Wymagają mocnego sprzętu albo konfiguracji. Otwarte wagi nie znaczą "rób co chcesz" - obowiązuje licencja, więcej w [modelach językowych](/jak-dziala-ai/modele-jezykowe/). Numer wersji czytasz u producenta.
 
 Inne drogi pod niszę: tekst _na_ obrazie, Canva, Adobe, platformy z wieloma silnikami. Granica obraz-wideo się zaciera - klipy są w [narzędziach specjalistycznych](/narzedzia/specjalistyczne/).
 
 ## Prompt: kolejność jest instrukcją
 
-Modele obrazu zwykle silniej trzymają się tego, co stoi na początku. Dlatego temat przed listą ozdobników.
+Modele obrazu zwykle silniej trzymają się tego, co stoi na początku. Dlatego temat stawiasz przed listą ozdobników.
 
 ```text
 [Temat i akcja], [miejsce], [styl], [światło i kolor], [kadr]
@@ -80,7 +80,7 @@ Lew na skale o zachodzie słońca, cyfrowy koncept art,
 wyraźne futro, dramatyczne światło, ciepłe pomarańcze i fiolet, kadr z dołu
 ```
 
-Angielski bywa posłuszniejszy w tej kategorii. Polski też zadziała w czatach, które rozumieją język - sprawdzasz na jednym kadrze, nie na forum.
+Angielski bywa posłuszniejszy w tej kategorii. Polski też zadziała w czatach, które rozumieją język - sprawdzisz to na jednym własnym kadrze.
 
 :::caution[Cudze twarze i znaki]
 Zanim wrzucisz cudzą twarz albo znak towarowy: regulamin narzędzia i zdrowy rozsądek. Jeśli chcesz użyć obrazu zarobkowo, sprawdź licencję u dostawcy narzędzia.
@@ -89,7 +89,7 @@ Zanim wrzucisz cudzą twarz albo znak towarowy: regulamin narzędzia i zdrowy ro
 :::
 
 :::note[Źródła sprawdzone w listopadzie 2026 r.]
-Wyłączenie DALL-E 2 i DALL-E 3 z API OpenAI: [deprecations](https://developers.openai.com/api/docs/deprecations) (ogłoszenie 14 listopada 2025 r., wyłączenie 12 maja 2026 r.). Następca w dokumentacji to rodzina GPT Image - konkretny identyfikator modelu sprawdzasz tam, nie w tym akapicie. Na stronie nie ma cennika kredytów ani tabeli "który silnik wygrał sierpień".
+Wyłączenie DALL-E 2 i DALL-E 3 z API OpenAI: [deprecations](https://developers.openai.com/api/docs/deprecations) (ogłoszenie 14 listopada 2025 r., wyłączenie 12 maja 2026 r.). Następca w dokumentacji to rodzina GPT Image - konkretny identyfikator modelu sprawdzasz tam. Na stronie nie ma cennika kredytów ani tabeli "który silnik wygrał sierpień".
 :::
 
 ## Ćwiczenie: 5 minut, jeden kadr
@@ -100,13 +100,13 @@ Wyłączenie DALL-E 2 i DALL-E 3 z API OpenAI: [deprecations](https://developers
 
 **Zaliczenie:** tekst promptu na kartce i te dwa zdania. Nie musisz dostać kadru do publikacji. Liczy się też odmowa filtra - zapisz, na czym stanęło.
 
-**Typowy wynik:** temat jest, ale model dodał dramatyzm, o który nie prosisz. Druga generacja zmienia jedno słowo, nie cały prompt.
+**Typowy wynik:** temat jest, ale model dodał dramatyzm, o który nie prosisz. W drugiej generacji zmieniasz jedno słowo, a nie cały prompt.
 
 **Jeśli nic nie zgrzyta i zostaje czas:** odetnij z promptu wszystkie słowa o "jakości" (8k, masterpiece). Porównaj, czy kadr się posypał, czy tylko ubyło magicznego myślenia.
 
 ## Teraz wiesz
 
-- Generator obrazów zgaduje piksele. To, czego nie napiszesz, i tak się pojawi.
+- Generator obrazów zgaduje piksele, więc luki w opisie wypełnia po swojemu.
 - Kolejność promptu: temat, potem styl. Buzzwordy na końcu albo wcale.
 - DALL-E w starych poradnikach to historia. Aktualny przycisk i cenę sprawdzasz u dostawcy.
 

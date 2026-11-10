@@ -43,7 +43,7 @@ import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 
 Claude Code to program Anthropic, który działa w terminalu - oknie, w którym wydajesz komputerowi polecenia tekstem zamiast klikać. Fachowo to narzędzie CLI (command-line interface, interfejs wiersza poleceń).
 
-Claude Code nie tylko odpowiada, ale też wykonuje realne działania na Twoim komputerze. Czyta i edytuje pliki, uruchamia komendy w terminalu, zapisuje zmiany w historii projektu (commity w Gicie) i otwiera prośby o włączenie zmian (pull requesty, w skrócie PR-y). Łączy się też z zewnętrznymi usługami przez MCP (Model Context Protocol - standard podłączania narzędzi do AI).
+Claude Code wykonuje działania na Twoim komputerze: czyta i edytuje pliki, uruchamia komendy w terminalu, zapisuje zmiany w historii projektu (commity w Gicie) i otwiera prośby o włączenie zmian (pull requesty, w skrócie PR-y). Łączy się też z zewnętrznymi usługami przez MCP (Model Context Protocol - standard podłączania narzędzi do AI).
 
 W skrócie: **czat proponuje, Claude Code robi.** Cała reszta tej sekcji, a zwłaszcza lekcja o uprawnieniach, wynika z tego jednego zdania.
 
@@ -52,7 +52,7 @@ W skrócie: **czat proponuje, Claude Code robi.** Cała reszta tej sekcji, a zw�
 - **Claude.ai i aplikacja mobilna** - okno czatu: Claude pisze odpowiedź, a Ty decydujesz, co z nią zrobić. Claude Code sam _działa_ w Twoim projekcie.
 - **Aplikacja desktop** - obok czatu ma zakładkę Code, w której działa Claude Code z graficznym interfejsem zamiast terminala. Cowork, dawniej osobna zakładka do dłuższych zadań, od września 2026 jest stopniowo łączony z czatem w jedną rozmowę ([zapowiedź Anthropic](https://claude.com/blog/cowork-is-now-claude)).
 - **Rozszerzenia do edytorów kodu (VS Code, JetBrains)** - nakładki na ten sam silnik Claude Code. Rdzeniem jest program terminalowy.
-- **Proste programy, które tylko wysyłają pytania do API** - Claude Code to coś więcej: pełny <Termin id="agent-ai">agent</Termin>, czyli program, który sam wybiera narzędzia i wykonuje kolejne kroki. Ma przy tym pamięć projektu i system uprawnień.
+- **Proste programy, które tylko wysyłają pytania do API** - Claude Code jest pełnym <Termin id="agent-ai">agentem</Termin>, czyli programem, który sam wybiera narzędzia i wykonuje kolejne kroki. Ma przy tym pamięć projektu i system uprawnień.
 
 ## Agentowa pętla
 
@@ -78,7 +78,7 @@ Opus 5.5 wymaga Claude Code v2.1.280 lub nowszego, Sonnet 5.5 - v2.1.284. U dost
 2. Zapytaj: "opisz strukturę tego projektu".
 3. Obserwuj, jakie narzędzia Claude wywołuje - zobaczysz nazwy takie jak Read i Bash, a na Windowsie także Grep i Glob. Na macOS, Linuksie i w WSL Claude szuka plików komendami `find` i `grep` uruchamianymi przez Bash ([lista narzędzi](https://code.claude.com/docs/en/tools-reference#glob-tool-behavior)).
 
-**Zaliczenie:** masz na kartce nazwy narzędzi, które Claude wywołał, żeby odpowiedzieć na jedno zdanie. To jest agentowa pętla w praktyce, nie metafora.
+**Zaliczenie:** masz na kartce nazwy narzędzi, które Claude wywołał, żeby odpowiedzieć na jedno zdanie. To jest agentowa pętla w praktyce.
 
 **Jeśli nic nie zgrzyta i zostaje czas:** zapytaj o coś, czego w projekcie nie ma ("gdzie jest konfiguracja płatności?"). Zobaczysz, jak Claude szuka i jak przyznaje, że czegoś nie znalazł.
 

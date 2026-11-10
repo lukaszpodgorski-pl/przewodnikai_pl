@@ -47,7 +47,7 @@ import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 
 ## Na tej stronie włączysz albo wyłączysz myślenie
 
-Po tej lekcji każde z trzech zadań w ćwiczeniu dostanie od Ciebie etykietę: włączam myślenie albo nie. Nie zbierasz nazw przełączników z aplikacji - te się zmieniają. Zostaje reguła.
+Po tej lekcji każde z trzech zadań w ćwiczeniu dostanie od Ciebie etykietę: włączam myślenie albo nie. Nazw przełączników z aplikacji nie zbierasz, bo się zmieniają. Zostaje reguła.
 
 Jedna rzecz do zapamiętania: **tryb myślenia to więcej obliczeń przed odpowiedzią, nie pieczątka "sprawdzone".**
 
@@ -55,9 +55,9 @@ Jedna rzecz do zapamiętania: **tryb myślenia to więcej obliczeń przed odpowi
 
 Zwykły <Termin id="chatbot">chatbot</Termin> sypie tokeny na ekran. Jeśli pierwszy trop był zły, rzadko wraca - już pisze.
 
-Model rozumujący (reasoning) zanim odda Ci zdanie, generuje tekst roboczy: kroki, ślepe uliczki, poprawki. Potem składa odpowiedź. Czasem widać "główkowanie", czasem tylko dłuższe milczenie.
+Model rozumujący (reasoning), zanim odda Ci zdanie, generuje tekst roboczy: kroki, ślepe uliczki, poprawki. Potem składa odpowiedź. Czasem widać "główkowanie", czasem tylko dłuższe milczenie.
 
-Analogia na jeden oddech: zwykły tryb to odpowiedź z marszu. Ten dostaje kartkę na obliczenia. Kartki możesz nie zobaczyć w całości.
+Zwykły tryb odpowiada z marszu, a model rozumujący dostaje kartkę na obliczenia. Tej kartki możesz nie zobaczyć w całości.
 
 Ta umiejętność nie wzięła się z samego powiększenia sieci. OpenAI przy premierze o1 (wrzesień 2024 r.) opisało, jak go trenowano: model dostawał nagrodę, gdy jego tok rozumowania kończył się dobrym wynikiem ([OpenAI, 2024](https://openai.com/index/learning-to-reason-with-llms/)). DeepSeek pokazał w otwartej pracy, że podobny efekt da się dostać inną, tańszą ścieżką treningu ([DeepSeek-R1, 2025](https://arxiv.org/abs/2501.12948)).
 
@@ -75,7 +75,7 @@ Pomaga: matematyka i logika, plan z kilkoma ograniczeniami, porównanie opcji, "
 
 Nie pomaga (spowalnia): proste fakty, tłumaczenie, redakcja, burza mózgów, rutyna, którą zwykły tryb już umie.
 
-Halucynacje nie znikają. Pewny ton po minucie myślenia to nadal pewny ton. Sprawdzanie faktów zostaw na [Weryfikacji](/podstawy/weryfikacja-informacji/).
+Halucynacje nie znikają: po minucie myślenia model może brzmieć równie pewnie i dalej się mylić. Sprawdzanie faktów zostaw na [Weryfikacji](/podstawy/weryfikacja-informacji/).
 
 Pokazane kroki to nie protokół. Chen i in. (2025) pokazali, że łańcuch na ekranie nie zawsze wiernie oddaje to, co zdecydowało o odpowiedzi ([arxiv:2505.05410](https://arxiv.org/abs/2505.05410)). Traktuj go jak streszczenie, nie jak dowód.
 

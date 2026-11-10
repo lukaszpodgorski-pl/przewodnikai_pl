@@ -40,15 +40,15 @@ status: gotowe
 
 ## Moja biblioteka zasobów
 
-Zebrałem tu wyłącznie materiały, które sam sprawdziłem i za które mogę ręczyć. Lista jest krótsza niż typowe "100 zasobów o AI" - i to celowo. Zamiast katalogu, w którym utoniesz, dostajesz kilkanaście pozycji z konkretną wskazówką, dla kogo są i od czego zacząć.
+Zebrałem tu wyłącznie materiały, które sam sprawdziłem i za które mogę ręczyć. Lista jest celowo krótsza niż typowe "100 zasobów o AI": kilkanaście pozycji z konkretną wskazówką, dla kogo są i od czego zacząć.
 
-:::note[Większość jest po angielsku - i to nie jest problem]
-Najlepsze kursy o AI powstają dziś po angielsku i nie ma co udawać, że jest inaczej. Ale ucząc się AI, masz pod ręką najlepszego tłumacza: wklej fragment kursu do Claude'a lub ChatGPT i poproś "wyjaśnij mi to po polsku, prostym językiem". Tak przerobisz każdy z poniższych materiałów - a przy okazji przećwiczysz pracę z AI w praktyce.
+:::note[Większość materiałów jest po angielsku]
+Najlepsze kursy o AI powstają dziś po angielsku. Ucząc się AI, masz jednak pod ręką dobrego tłumacza: wklej fragment kursu do Claude'a lub ChatGPT i poproś "wyjaśnij mi to po polsku, prostym językiem". Tak przerobisz każdy z poniższych materiałów, a przy okazji przećwiczysz pracę z AI w praktyce.
 :::
 
 ## Nauka z Claude'em (Anthropic)
 
-Sam pracuję głównie z Claude'em, więc ta część jest najobszerniejsza. Dobra wiadomość: choć materiały dotyczą jednego narzędzia, większość umiejętności - formułowanie poleceń, delegowanie zadań, ocenianie wyników - przenosi się na każdy inny model.
+Sam pracuję głównie z Claude'em, więc ta część jest najobszerniejsza. Materiały dotyczą jednego narzędzia, ale większość umiejętności (formułowanie poleceń, delegowanie zadań, ocenianie wyników) przenosi się na każdy inny model.
 
 - **[AI Fluency: Framework and foundations](https://academy.claude.com/collections/claude-for-you)** - darmowy kurs Anthropic stworzony we współpracy z wykładowcami akademickimi. Kilkanaście krótkich lekcji o tym, jak mądrze delegować zadania AI, pisać skuteczne polecenia i krytycznie oceniać odpowiedzi. Ma też warianty dla nauczycieli i studentów. Od niego radzę zacząć.
 - **[Przykłady zastosowań](https://academy.claude.com/use-cases)** - katalog konkretnych przykładów użycia Claude'a z filtrami po dziedzinie (edukacja, finanse, prawo, marketing i inne). Zaglądaj tu po inspirację, gdy zastanawiasz się "co jeszcze mogę z tym zrobić".
@@ -57,7 +57,7 @@ Sam pracuję głównie z Claude'em, więc ta część jest najobszerniejsza. Dob
 
 ## Nauka z ChatGPT (OpenAI)
 
-OpenAI poszło inną drogą: zamiast jednego kursu przygotowało przewodniki pod konkretne role. Wybierz ten, który pasuje do Twojej sytuacji. Cztery z nich mają oficjalne polskie wersje - rzadkość wśród dostawców AI.
+OpenAI poszło inną drogą: zamiast jednego kursu przygotowało przewodniki pod konkretne role. Wybierz ten, który pasuje do Twojej sytuacji. Cztery z nich mają oficjalne polskie wersje, co wśród dostawców AI zdarza się rzadko.
 
 - **[Dla studentów](https://chatgpt.com/pl-PL/use-cases/students/)** (po polsku) - 100 gotowych rozmów przygotowanych przez studentów dla studentów: od nauki i pracy z plikami po sprawy codzienne.
 - **[Dla wykładowców](https://chatgpt.com/use-cases/university-educators/)** (po angielsku) - zbiór promptów i przykładowych rozmów od wykładowców różnych kierunków: od asystentów oceniających prace po odgrywanie debat z historycznymi filozofami.
@@ -66,33 +66,33 @@ OpenAI poszło inną drogą: zamiast jednego kursu przygotowało przewodniki pod
 - **[Dla rodziców](https://chatgpt.com/pl-PL/parent-resources/)** (po polsku) - jak działa ChatGPT, jak ustawić kontrolę rodzicielską na koncie nastolatka i jak rozmawiać z dzieckiem o AI. Jeśli masz dzieci, zacznij właśnie tutaj.
 
 :::tip[Korzystasz z innego narzędzia?]
-Anthropic i OpenAI nie są wyjątkami - każdy większy dostawca prowadzi własne centrum nauki. Zanim sięgniesz po kurs z przypadkowej strony, sprawdź oficjalne materiały twórców narzędzia, którego używasz: są darmowe i zwykle najbardziej aktualne.
+Anthropic i OpenAI nie są wyjątkami: każdy większy dostawca prowadzi własne centrum nauki. Zanim sięgniesz po kurs z przypadkowej strony, sprawdź oficjalne materiały twórców narzędzia, którego używasz: są darmowe i zwykle najbardziej aktualne.
 :::
 
 ## Polska scena AI: SpeakLeash i Bielik
 
-**[SpeakLeash](https://speakleash.org/)** (znany też jako Spichlerz) to polska fundacja open-source, która buduje zbiór polskich tekstów do trenowania AI i rozwija rodzinę polskich modeli **Bielik**. To żywa społeczność - setki osób, które po godzinach rozwijają polskie AI. Na co patrzeć przy wyborze modelu? Na trzy rzeczy: kto udostępnia jego wagi (czyli wyuczone parametry), gdzie trafiają Twoje dane i jaka instytucja za nim stoi. Piszę o tym w sekcji [Suwerenne AI](/suwerenne-ai/).
+**[SpeakLeash](https://speakleash.org/)** (znany też jako Spichlerz) to polska fundacja open-source, która buduje zbiór polskich tekstów do trenowania AI i rozwija rodzinę polskich modeli **Bielik**. Społeczność tworzą setki osób, które po godzinach rozwijają polskie AI. Przy wyborze modelu patrz na trzy rzeczy: kto udostępnia jego wagi (czyli wyuczone parametry), gdzie trafiają Twoje dane i jaka instytucja za nim stoi. Piszę o tym w sekcji [Suwerenne AI](/suwerenne-ai/).
 
-- **[Discord SpeakLeash](https://discord.com/invite/ZJwCMrxwT7)** - główne miejsce spotkań społeczności. Możesz tylko czytać, a możesz też realnie pomóc w rozwoju polskiego AI - nie trzeba umieć programować.
+- **[Discord SpeakLeash](https://discord.com/invite/ZJwCMrxwT7)** - główne miejsce spotkań społeczności. Możesz tylko czytać albo pomagać w rozwoju polskiego AI, także bez umiejętności programowania.
 - **[Open PL LLM Leaderboard](https://huggingface.co/spaces/speakleash/open_pl_llm_leaderboard)** - prowadzony przez SpeakLeash ranking (leaderboard) porównujący, jak modele AI radzą sobie z zadaniami w języku polskim. Praktyczna odpowiedź na pytanie "który model najlepiej mówi po polsku".
 
 ## Newsy o AI
 
-Dwa źródła, które sam czytam - różnią się poziomem trudności:
+Dwa źródła, które sam czytam, na różnym poziomie trudności:
 
 - **[AlphaSignal](https://alphasignal.ai/)** - zwięzły przegląd nowości z branży AI, pisany z myślą o programistach i inżynierach. Dobry wybór, jeśli chcesz wejść głębiej w technikę.
-- **[Singularity Hub](https://singularityhub.com/category/artificial-intelligence/)** - popularnonaukowy serwis o technologiach przyszłości. Artykuły o przełomach w AI pisane przystępnie, bez żargonu - dobre miejsce, jeśli dopiero zaczynasz śledzić temat.
+- **[Singularity Hub](https://singularityhub.com/category/artificial-intelligence/)** - popularnonaukowy serwis o technologiach przyszłości. Artykuły o przełomach w AI pisane przystępnie, bez żargonu. Dobre miejsce, jeśli dopiero zaczynasz śledzić temat.
 
 Radzę zacząć od jednego źródła. Jeden newsletter w skrzynce to nauka, pięć to szum, który po dwóch tygodniach zaczniesz ignorować.
 
 ## Od czego zacząć
 
-Jeśli ta strona Cię przytłacza, oto kolejność, którą sam bym wybrał na start:
+Jeśli ta strona Cię przytłacza, zacznij w kolejności, którą sam bym wybrał:
 
 1. Przerób kurs [AI Fluency](https://academy.claude.com/collections/claude-for-you) - da Ci fundament niezależny od narzędzia.
 2. Przejrzyj przewodnik OpenAI dla swojej roli (student, nauczyciel, rodzic) - zobaczysz gotowe zastosowania w swoim kontekście.
 3. Dołącz do [Discorda SpeakLeash](https://discord.com/invite/ZJwCMrxwT7), jeśli chcesz być bliżej polskiej społeczności.
-4. Zapisz się na jedno źródło newsów - i na tym poprzestań.
+4. Zapisz się na jedno źródło newsów i na tym poprzestań.
 
 ## Teraz wiesz
 

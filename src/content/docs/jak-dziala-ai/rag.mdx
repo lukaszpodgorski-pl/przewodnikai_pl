@@ -52,11 +52,11 @@ Jedna rzecz do zapamiętania: **najpierw znajdź fragment, potem pisz. RAG to ot
 
 Z [modeli językowych](/jak-dziala-ai/modele-jezykowe/) wiesz, że model zna to, co było w treningu - a trening ma datę końca. Twojego raportu w nim nie było.
 
-A jednak: wklejasz tekst do <Termin id="chatbot">chatbota</Termin> i dostajesz odpowiedź o jego treści. To nie jest wspomnienie. Gdy wklejasz tekst, model po prostu go czyta razem z pytaniem. Gdy dokumentów jest za dużo, system najpierw wyszukuje pasujące fragmenty i podsuwa modelowi tylko je. To <Termin id="rag">RAG</Termin> (Retrieval Augmented Generation) - generowanie wspomagane wyszukiwaniem. Nazwę zaproponował w 2020 roku zespół Facebook AI Research (dziś Meta) z badaczami z University College London i New York University: zamiast liczyć, że model "pamięta", podsuńmy mu właściwy fragment w momencie pytania ([Lewis i in., 2020](https://arxiv.org/abs/2005.11401)).
+A jednak: wklejasz tekst do <Termin id="chatbot">chatbota</Termin> i dostajesz odpowiedź o jego treści. Model niczego sobie przy tym nie przypomina: wklejony tekst czyta razem z pytaniem. Gdy dokumentów jest za dużo, system najpierw wyszukuje pasujące fragmenty i podsuwa modelowi tylko je. To <Termin id="rag">RAG</Termin> (Retrieval Augmented Generation) - generowanie wspomagane wyszukiwaniem. Nazwę zaproponował w 2020 roku zespół Facebook AI Research (dziś Meta) z badaczami z University College London i New York University: zamiast liczyć, że model "pamięta", podsuńmy mu właściwy fragment w momencie pytania ([Lewis i in., 2020](https://arxiv.org/abs/2005.11401)).
 
 Zwykła rozmowa to egzamin z pamięci. RAG to egzamin z otwartą książką. Student nadal może źle przeczytać rozdział. Rzadziej zmyśla rozdziały, których nie ma - ale nie przestaje całkiem.
 
-## Trzy ruchy, nie magia
+## Trzy ruchy RAG
 
 ```text
 1. INDEKSOWANIE (raz, przy dodaniu plików):
@@ -71,11 +71,11 @@ Zwykła rozmowa to egzamin z pamięci. RAG to egzamin z otwartą książką. Stu
 
 Krok drugi idzie po **znaczeniu**, nie po identycznych słowach. "Ile mamy urlopu?" może trafić w "wymiar corocznego płatnego wypoczynku". Tę mapę zrobił embedding z [poprzedniej lekcji](/jak-dziala-ai/embedding/).
 
-Wyszukiwanie włącza się m.in. w projektach chatbota, gdy plików jest więcej, niż mieści się naraz (mniejszy zestaw model czyta w całości), w notatnikach na własnych źródłach i wtedy, gdy model najpierw szuka w internecie. Nie zbierasz tu katalogu przycisków. Zostaje kolejność: **znajdź, potem pisz.**
+Wyszukiwanie włącza się m.in. w projektach chatbota, gdy plików jest więcej, niż mieści się naraz (mniejszy zestaw model czyta w całości), w notatnikach na własnych źródłach i wtedy, gdy model najpierw szuka w internecie. Katalogu przycisków tu nie zbierasz. Zostaje kolejność: znajdź, potem pisz.
 
 ## Co się zmienia, a co nie
 
-Zmienia się podstawa. Model dostaje fakty z Twojej książki, więc rzadziej zmyśla rzeczy, których w treningu nie było. Bazę da się podmienić bez trenowania modelu od nowa. Dobre narzędzie pokazuje cytat - wtedy sprawdzasz minutę, nie od zera. Zasady z [weryfikacji](/podstawy/weryfikacja-informacji/) zostają.
+Zmienia się podstawa. Model dostaje fakty z Twojej książki, więc rzadziej zmyśla rzeczy, których w treningu nie było. Bazę da się podmienić bez trenowania modelu od nowa. Dobre narzędzie pokazuje cytat, więc sprawdzenie zajmuje minutę zamiast szukania od zera. Zasady z [weryfikacji](/podstawy/weryfikacja-informacji/) zostają.
 
 Nie znika <Termin id="halucynacje">halucynacja</Termin>. Jeśli wyszukiwanie poda **zły** fragment, odpowiedź będzie pewna i fałszywa. Jeśli fragment jest dobry, model i tak może źle odczytać tabelę albo skleić dwa akapity. Śmieci w bazie dają śmieci na wyjściu.
 

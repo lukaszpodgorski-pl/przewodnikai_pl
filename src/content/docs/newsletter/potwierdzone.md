@@ -13,7 +13,7 @@ status: gotowe
 
 Dziękuję. Od teraz dam Ci znać, kiedy pojawi się nowa lekcja albo gdy zaktualizuję istniejącą.
 
-Piszę tylko wtedy, gdy faktycznie mam co powiedzieć - nie ma tu cotygodniowego wysyłania na siłę. Z każdej wiadomości wypiszesz się jednym kliknięciem, a Twój adres nie trafi do nikogo poza mną.
+Piszę tylko wtedy, gdy faktycznie mam co powiedzieć, bez stałego cotygodniowego rytmu. Z każdej wiadomości wypiszesz się jednym kliknięciem, a Twój adres nie trafi do nikogo poza mną.
 
 ## Od czego zacząć
 

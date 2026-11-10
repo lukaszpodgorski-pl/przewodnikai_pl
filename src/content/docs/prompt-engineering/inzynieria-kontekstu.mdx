@@ -49,15 +49,15 @@ import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 
 Po tej lekcji z bałaganu "kawa, potem herbata, potem obiad" zostają cztery punkty i prompt, który wkleisz w **nową** rozmowę. Nie uczysz się tu agentów ani tabeli okien konkretnych modeli.
 
-Jedna rzecz do zapamiętania: **model nie odpowiada na ostatnie zdanie. Odpowiada na całe okno.**
+Jedna rzecz do zapamiętania: **Model odpowiada na całe okno, a nie tylko na ostatnie zdanie.**
 
 Inżynieria kontekstu (ang. _context engineering_) to dobór tego, co model ma przed oczami w chwili odpowiedzi. <Termin id="prompt">Prompt</Termin>, czyli Twoje polecenie, to tylko wierzch. Pod spodem leży historia rozmowy, wgrany plik i stała instrukcja z ustawień. Wszystko to konkuruje o miejsce w jednym <Termin id="okno-kontekstowe">oknie kontekstowym</Termin> - tak nazywa się wszystko, co model widzi naraz.
 
 ## Nowe zadanie, nowa rozmowa
 
-Jeden ruch: **zamykasz rozmowę i przenosisz do nowej tylko to, co nadal obowiązuje.** Kiedy: temat się zmienił, model wraca do porzuconej wersji albo gubi początek rozmowy.
+**Zamykasz rozmowę i przenosisz do nowej tylko to, co nadal obowiązuje.** Robisz to, gdy temat się zmienił, model wraca do porzuconej wersji albo gubi początek rozmowy.
 
-Dlaczego długa rozmowa głupieje, bez katalogu pięciu zasad:
+Dlaczego długa rozmowa głupieje:
 
 - Okno ma ograniczoną pojemność. Gdy się zapełnia, najstarsze fragmenty przestają być widoczne albo zostają streszczone. Mechanika jest w [tokenach](/jak-dziala-ai/tokeny-i-kontekst/).
 - Środek długiego wklejenia bywa słabiej widziany niż brzegi. Liu i in. (2023) nazwali to "lost in the middle" (zagubione w środku). To opis zjawiska, a nie porównanie dzisiejszych modeli ([arxiv:2307.03172](https://arxiv.org/abs/2307.03172)).
@@ -85,7 +85,7 @@ Liu i in., 2023 - środek sekwencji. Anthropic, 2025 - kontekst jako budżet uwa
 
 ## Ćwiczenie: 5 minut, cztery punkty z bałaganu
 
-Poniższa rozmowa jest **wymyślona na potrzeby tej strony**. Nie odpalasz go w czacie, chyba że zostaje czas.
+Poniższa rozmowa jest **wymyślona na potrzeby tej strony**. Nie odpalasz jej w czacie, chyba że zostaje czas.
 
 ```text
 1. Oferta dla sklepu z kawą, trzy warianty.

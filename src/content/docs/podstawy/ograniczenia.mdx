@@ -41,17 +41,17 @@ import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 
 ## Na tej stronie rozpoznasz ścianę, nie listę wad
 
-Po tej lekcji weźmiesz jedną odpowiedź chatbota i powiesz, w którą z trzech ścian uderzyła: brak rozumienia, data odcięcia albo dane. Nie uczysz się tu, jak fakt sprawdzić - to następna strona, [Weryfikacja informacji](/podstawy/weryfikacja-informacji/). Tu uczysz się, **dlaczego** pewny ton nic nie gwarantuje.
+Po tej lekcji weźmiesz jedną odpowiedź chatbota i powiesz, w którą z trzech ścian uderzyła: brak rozumienia, data odcięcia albo dane. Sprawdzanie faktów czeka na następnej stronie, [Weryfikacja informacji](/podstawy/weryfikacja-informacji/). Tu uczysz się, **dlaczego** pewny ton nic nie gwarantuje.
 
 Jedna rzecz do zapamiętania: **model dobiera kolejne słowa. Nie wie, nie sprawdza i nie rozumie.**
 
 ## Brzmi jak ktoś, kto wie. W środku nie ma "wiedzy"
 
-Dostajesz zdanie, które mogłoby paść na zebraniu. Nazwisko, data, wniosek. Kursor miga.
+Dostajesz zdanie, które mogłoby paść na zebraniu: nazwisko, data, wniosek.
 
-Zatrzymaj się tutaj. <Termin id="chatbot">Chatbot</Termin> nie ma obrazu świata, który porównuje z odpowiedzią. Liczy, które słowa pasują do poprzednich, i jedno z nich wybiera. Dlatego kłamstwo i prawda mogą brzmieć identycznie - oba są po prostu gładkim ciągiem słów.
+<Termin id="chatbot">Chatbot</Termin> nie ma obrazu świata, który porównuje z odpowiedzią. Liczy, które słowa pasują do poprzednich, i jedno z nich wybiera. Dlatego kłamstwo i prawda mogą brzmieć identycznie, bo oba są po prostu gładkim ciągiem słów.
 
-To nie jest wada "słabego modelu", którą naprawi aktualizacja. To sposób działania. Bez tej ściany reszta kursu wygląda jak magia albo jak zagrożenie. Z nią - jak zwykłe narzędzie, które w czymś jest świetne, a w czymś zawodzi.
+Tego nie naprawi aktualizacja "słabego modelu", bo tak model działa. Bez tej ściany reszta kursu wygląda jak magia albo jak zagrożenie. Z nią wygląda jak zwykłe narzędzie, które w czymś jest świetne, a w czymś zawodzi.
 
 ## Trzy ściany
 
@@ -61,41 +61,41 @@ Ludzkie "rozumiem" znaczy: mam model sytuacji i umiem powiedzieć, kiedy wychodz
 
 Stąd <Termin id="halucynacje">halucynacja</Termin>: informacja nieprawdziwa albo zmyślona, podana bez sygnału ostrzegawczego. Model nie mrugnie. Może z pełnym spokojem napisać, że Napoleon Bonaparte był prezydentem Stanów Zjednoczonych.
 
-Nie zbierasz tu statystyk ani metody sprawdzania faktów (SIFT - poznasz ją w następnej lekcji). Liczby i procedura są w [Weryfikacji](/podstawy/weryfikacja-informacji/). Na tej stronie wystarczy rozpoznać ścianę: **pewność nie oznacza, że w środku jest sprawdzony fakt**.
+Statystyki i metoda sprawdzania faktów (SIFT) czekają w następnej lekcji, [Weryfikacji](/podstawy/weryfikacja-informacji/). Na tej stronie wystarczy rozpoznać ścianę: **pewność nie oznacza, że w środku jest sprawdzony fakt**.
 
 ### 2. Nie pamięta teraźniejszości - chyba że ktoś mu ją doniesie
 
-Trening ma swój koniec - datę odcięcia (cutoff), czyli ostatni moment, z którego pochodzą dane. Po niej model nie "widział" świata. Pytanie o wczorajszy kurs, wczorajszą nowelizację albo wczorajszy wynik meczu bez dostępu do sieci to zgadywanie - model ułoży coś, co brzmi wiarygodnie, choć wydarzenia nie widział.
+Trening ma swój koniec - datę odcięcia (cutoff), czyli ostatni moment, z którego pochodzą dane. Po niej model nie "widział" świata. Pytanie o wczorajszy kurs, wczorajszą nowelizację albo wczorajszy wynik meczu bez dostępu do sieci to zgadywanie: model ułoży coś, co brzmi wiarygodnie, choć wydarzenia nie widział.
 
-Popularne chatboty dokładają wyszukiwarkę. Haczyk: wyszukiwanie nie odpala się przy każdym zdaniu. Sam model przypomina kogoś, kto przestał czytać gazety w dniu odcięcia: mówi z tego, co mu zostało w głowie, a nie z dzisiejszego wydania. Dopóki ktoś nie przyniesie mu gazety, odpowiada z tego, co już ma.
+Popularne chatboty dokładają wyszukiwarkę. Haczyk: wyszukiwanie nie odpala się przy każdym zdaniu. Sam model przypomina kogoś, kto przestał czytać gazety w dniu odcięcia: dopóki ktoś nie przyniesie mu dzisiejszego wydania, mówi z tego, co mu zostało w głowie.
 
-Przy cenach, przepisach, wersjach oprogramowania i newsach albo włączasz wyszukiwanie / piszesz "sprawdź w internecie", albo nie traktujesz odpowiedzi jako stanu na dziś. Potem i tak klikasz w przypis - streszczenie strony to nie strona. Do trybów pracy chatbotów wrócę w sekcji [Narzędzia AI](/narzedzia/).
+Przy cenach, przepisach, wersjach oprogramowania i newsach albo włączasz wyszukiwanie / piszesz "sprawdź w internecie", albo nie traktujesz odpowiedzi jako stanu na dziś. Potem i tak klikasz w przypis, bo streszczenie strony to jeszcze nie strona. Do trybów pracy chatbotów wrócę w sekcji [Narzędzia AI](/narzedzia/).
 
-Nie podaję tu cutoffu konkretnego modelu. Te daty się starzeją szybciej niż ta lekcja. Ściana zostaje.
+Nie podaję tu cutoffu konkretnego modelu. Te daty starzeją się szybciej niż ta lekcja, a ściana zostaje.
 
 ### 3. Wie tyle, ile było w danych - łącznie z uprzedzeniami
 
 Dane do treningu zrobił człowiek. Jeśli w danych była nierówność, wynik umie ją powtórzyć i podać jak ocenę "z algorytmu".
 
-To nie tylko chatboty. [Analiza ProPublica z 2016 roku](https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing) opisała system COMPAS, używany w USA do oceny ryzyka recydywy (czy skazany popełni kolejne przestępstwo): osoby czarnoskóre były błędnie oznaczane jako wysokie ryzyko wyraźnie częściej niż białe. Producent się nie zgodził, a naukowcy do dziś spierają się, jak w ogóle mierzyć, czy algorytm jest sprawiedliwy. Dla tej lekcji ważny jest mechanizm, nie wyrok w tamtym sporze: **etykieta "obiektywne, bo liczy maszyna" nie czyści danych**.
+Dotyczy to nie tylko chatbotów. [Analiza ProPublica z 2016 roku](https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing) opisała system COMPAS, używany w USA do oceny ryzyka recydywy (czy skazany popełni kolejne przestępstwo): osoby czarnoskóre były błędnie oznaczane jako wysokie ryzyko wyraźnie częściej niż białe. Producent się nie zgodził, a naukowcy do dziś spierają się, jak w ogóle mierzyć, czy algorytm jest sprawiedliwy. Dla tej lekcji ważny jest mechanizm, nie wyrok w tamtym sporze: **etykieta "obiektywne, bo liczy maszyna" nie czyści danych**.
 
-Przy chatbocie ta sama ściana wygląda ciszej: stereotyp w przykładzie, zawód "domyślnie" przypisany jednej płci, pominięcie kontekstu, którego nie było w danych. Historię Amazona i rekrutacji znasz już z [Mitów](/podstawy/mity-vs-rzeczywistosc/) - tu nie powtarzam tej historii.
+Przy chatbocie ta sama ściana wygląda ciszej: stereotyp w przykładzie, zawód "domyślnie" przypisany jednej płci, pominięcie kontekstu, którego nie było w danych. Historię Amazona i rekrutacji znasz już z [Mitów](/podstawy/mity-vs-rzeczywistosc/), więc tu jej nie powtarzam.
 
 Dokładny tor, którym model doszedł do zdania, zwykle zostaje nieprzejrzysty (czarna skrzynka). Przy zdrowiu, kredycie, rekrutacji i prawie to argument za tym, żeby ostateczną decyzję podejmował człowiek (tak zwany człowiek w pętli), nie za "zaufaj, bo AI". Wrócę do tego w sekcji [Etyka i bezpieczeństwo AI](/etyka/).
 
 :::note[Źródła sprawdzone w sierpniu 2026 r.]
-COMPAS jest faktem historycznym (2016), nie obrazem "tak sądy działają dziś". Na tej stronie nie ma tabeli halucynacji ani cutoffów modeli - oba się starzeją. Aktualne liczby są w następnej lekcji, przy procedurze sprawdzania.
+COMPAS jest faktem historycznym (2016), nie obrazem "tak sądy działają dziś". Na tej stronie nie ma tabeli halucynacji ani cutoffów modeli, bo oba się starzeją. Aktualne liczby są w następnej lekcji, przy procedurze sprawdzania.
 :::
 
 ## Czego tu nie ma
 
 Nieprecyzyjny <Termin id="prompt">prompt</Termin> to nie ściana modelu. To brak kontekstu, który modelowi trzeba podać. Wraca w [pierwszej rozmowie](/podstawy/pierwsza-rozmowa-z-ai/) i w [prompt engineeringu](/prompt-engineering/).
 
-SIFT, triangulacja, "czy link żyje" - następna lekcja. Jeśli teraz otworzysz pięć zakładek "na wszelki wypadek", mieszasz dwa ruchy. Najpierw nazwij ścianę.
+SIFT, triangulacja i sprawdzanie, "czy link żyje", są w następnej lekcji. Jeśli teraz otworzysz pięć zakładek "na wszelki wypadek", mieszasz dwa ruchy. Najpierw nazwij ścianę.
 
 ## Ćwiczenie: 5 minut, jedna pułapka
 
-Nie sprawdzasz, "czy AI kłamie w ogóle". Sprawdzasz, czy rozpoznasz ścianę, gdy model dostanie pytanie o rzecz, **której nie ma**.
+Sprawdzasz, czy rozpoznasz ścianę, gdy model dostanie pytanie o rzecz, **której nie ma**.
 
 Poniższa ustawa jest **wymyślona na potrzeby tej strony**. Nie szukaj jej w Dzienniku Ustaw.
 

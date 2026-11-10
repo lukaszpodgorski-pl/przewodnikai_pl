@@ -47,11 +47,11 @@ Jedna rzecz do zapamiętania: **typ uczenia wynika z danych. Z etykietą - nadzo
 
 ## Nikt nie wpisał "rozpoznawaj twarz". Poszły przykłady
 
-Otwierasz galerię. Telefon pyta: "to ta sama osoba?". Ktoś nie napisał listy cech (odległość oczu, kształt ucha). System dostał stos zdjęć z podpisem i dopasował wagi (liczby w modelu ustawione w treningu) tak, żeby na nowym zdjęciu też trafić.
+Otwierasz galerię. Telefon pyta: "to ta sama osoba?". Nikt nie napisał listy cech (odległość oczu, kształt ucha). System dostał stos zdjęć z podpisem i dopasował wagi (liczby w modelu ustawione w treningu) tak, żeby na nowym zdjęciu też trafić.
 
 To jest <Termin id="uczenie-maszynowe">uczenie maszynowe</Termin>: zamiast instrukcji "jeśli-to" model ogląda dane i sam wyciąga wzorzec. Poprzednia lekcja powiedziała, _że_ ML się uczy. Ta mówi, _z czego_.
 
-Poniżej są trzy źródła sygnału, z którego model się uczy - a nie trzy coraz lepsze metody.
+Model może się uczyć z trzech rodzajów sygnału. Żaden z nich nie jest lepszą metodą od pozostałych.
 
 ## Trzy sygnały, nie trzy ligi
 
@@ -59,13 +59,13 @@ Poniżej są trzy źródła sygnału, z którego model się uczy - a nie trzy co
 
 Model dostaje przykład i poprawną odpowiedź do niego (etykietę). Mail + "spam". Zdjęcie + "kot". Opis mieszkania (metraż, dzielnica, piętro) + cena, za jaką się sprzedało.
 
-Po treningu zgaduje etykietę dla nowego przypadku. Filtr spamu z ręcznie oznaczonych wiadomości. Twarz z podpisanych zdjęć.
+Po treningu zgaduje etykietę dla nowego przypadku. Tak uczy się filtr spamu na ręcznie oznaczonych wiadomościach i rozpoznawanie twarzy na podpisanych zdjęciach.
 
 Haczyk: jeśli etykiety są błędne, model nauczy się błędu. Model nie "wie", że ktoś klikał spam na oślep.
 
 ### Nienadzorowane (unsupervised) - nikt nie podpisał
 
-Dostaje stertę bez karteczek. Sam szuka grup. Klienci o podobnych zakupach. Transakcje, które nie pasują do reszty.
+Dostaje stertę bez karteczek i sam szuka w niej grup: klientów o podobnych zakupach albo transakcji, które nie pasują do reszty.
 
 Nie przewiduje gotowej etykiety, bo jej nie było. Wiąże to, co w danych siedzi obok siebie. Nazwę grupy i tak potem nadaje człowiek.
 
@@ -75,13 +75,13 @@ Nie dostaje pary "wejście - etykieta". Dostaje środowisko i wynik: plus za wyg
 
 Gry (historycznie AlphaGo w Go, [Silver i in., Nature 2016](https://www.nature.com/articles/nature16961)), robot, który uczy się nie przewracać, a później - dostrajanie asystenta, żeby ludzie woleli jedną odpowiedź od drugiej. Szczegół "jak z surowego uzupełniacza zdań zrobić pomocnego chatbota" wraca przy [modelach językowych](/jak-dziala-ai/modele-jezykowe/).
 
-Nie musisz pamiętać angielskich skrótów. Pytanie brzmi: **skąd model wiedział, że trafił?**
+Angielskich skrótów nie musisz pamiętać. Wystarczy zapytać: skąd model wiedział, że trafił?
 
 ## Jedna wpadka, którą widać z zewnątrz
 
 Model może wykuć zbiór treningowy na pamięć i zawieść przy pierwszym nowym przypadku (przeuczenie). Z Twojej strony to wygląda tak: "w demo działało, na moim pliku nie". Często winny nie jest "głupi model". Twoje dane wyglądają inaczej niż te, na których model się uczył. Bywa też, że prawdziwych przykładów było za mało, a powtórzeń za dużo.
 
-Jakość wejścia wygrywa z elegancją metody. Śmieci na wejściu, śmieci na wyjściu. Uprzedzenie w etykietach nie jest osobnym typem uczenia - to ta sama ściana danych, co w [Ograniczeniach](/podstawy/ograniczenia/).
+Jakość danych waży więcej niż wybór metody: śmieci na wejściu dają śmieci na wyjściu. Uprzedzenie w etykietach nie jest osobnym typem uczenia - to ta sama ściana danych, co w [Ograniczeniach](/podstawy/ograniczenia/).
 
 Sieci i deep learning były na [poprzedniej stronie](/jak-dziala-ai/ai-ml-sieci-neuronowe/). Tu zostawiasz jedno pytanie: **jaki sygnał dostał?**
 
@@ -107,7 +107,7 @@ Potem porównaj: 1 nadzorowane, 2 nienadzorowane, 3 wzmacnianie.
 Sytuacja: [wklej jedno zdanie]. Odpowiedz tylko etykietą: nadzorowane, nienadzorowane albo wzmacnianie. Jedno zdanie: jaki sygnał dostał model. Jeśli z opisu nie wynika, jakich danych użyto, napisz "za mało danych".
 ```
 
-Twoja etykieta jest punktem odniesienia. Model może się pomylić - i to też jest lekcja.
+Punktem odniesienia jest Twoja etykieta, bo model też może się pomylić.
 
 ## Teraz wiesz
 

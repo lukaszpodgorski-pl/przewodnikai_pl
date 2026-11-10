@@ -22,7 +22,7 @@ mentions:
     sameAs: https://en.wikipedia.org/wiki/Markdown
 faq:
   - q: Czym skill różni się od subagenta?
-    a: Miejscem pracy. Skill działa w głównym oknie kontekstowym i dokłada do niego wiedzę. Subagent pracuje w osobnym oknie i zwraca tylko podsumowanie. To jest właściwe kryterium wyboru między jednym a drugim.
+    a: Miejscem pracy. Skill działa w głównym oknie kontekstowym i dokłada do niego wiedzę. Subagent pracuje w osobnym oknie i zwraca tylko podsumowanie. Po tym właśnie wybierasz między jednym a drugim.
   - q: Czy skill zajmuje kontekst, nawet gdy go nie używam?
     a: 'Prawie nie. Zawsze załadowane są tylko nazwa i opis, czyli kilkadziesiąt tokenów. Pełna treść wchodzi dopiero wtedy, gdy Claude uzna skill za istotny albo gdy wywołasz go ukośnikiem.'
   - q: Co dokładnie pakuje plugin?
@@ -61,7 +61,7 @@ Skill projektu zapisujesz w `.claude/skills/<nazwa>/SKILL.md`, a skill dla siebi
 
 Skill jest jednocześnie komendą: `.claude/skills/deploy/SKILL.md` wywołasz jako `/deploy`. Dawne własne komendy z `.claude/commands/` zostały ze skillami scalone - zobacz lekcję [Własne slash commands](/claude-code/wlasne-komendy/).
 
-Skille to domyślna jednostka reużywalnej wiedzy działająca **w głównym <Termin id="okno-kontekstowe">kontekście</Termin>** - w odróżnieniu od [subagentów](/claude-code/subagenci/), którzy mają kontekst osobny. To jest właściwe kryterium wyboru między jednym a drugim.
+Skille to domyślna jednostka reużywalnej wiedzy działająca **w głównym <Termin id="okno-kontekstowe">kontekście</Termin>** - w odróżnieniu od [subagentów](/claude-code/subagenci/), którzy mają kontekst osobny. Po tym właśnie wybierasz między jednym a drugim.
 
 ## Plugins i marketplace'y
 
@@ -86,7 +86,7 @@ Ekosystem skilli i pluginów rozwija się bardzo szybko - składnia i pola front
 2. Opisz w nim styl commitów, którego używasz w swoich projektach.
 3. Sprawdź, że skill pojawia się na liście `/skills`.
 
-**Zaliczenie:** skill jest na liście, a po jego wywołaniu Claude pisze commit w Twoim stylu bez przypominania. Jeden plik zastąpił powtarzalną instrukcję.
+**Zaliczenie:** skill jest na liście, a po jego wywołaniu Claude pisze commit w Twoim stylu bez przypominania.
 
 **Jeśli nic nie zgrzyta i zostaje czas:** dodaj do skilla plik `REFERENCE.md` z przykładami i sprawdź w `/context`, że nie ładuje się, dopóki nie jest potrzebny.
 

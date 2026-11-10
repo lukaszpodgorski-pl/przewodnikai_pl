@@ -25,7 +25,7 @@ faq:
   - q: Co najbardziej poprawia jakość pracy agenta?
     a: Weryfikacja. Dokumentacja radzi - daj Claude sprawdzian, który sam uruchomi, czyli testy, build albo zrzut ekranu do porównania. To różnica między sesją, której musisz pilnować, a taką, od której możesz odejść. Bez tego kod wygląda dobrze, ale bywa błędny.
   - q: Czy przy pracy z agentem można robić TDD?
-    a: 'Tak, i warto. Napisz testy najpierw, zacommituj je, potem implementuj do zielonego. Zacommitowanie testów jest kluczowe: bez tego Claude bywa skłonny zmieniać testy zamiast kodu.'
+    a: 'Tak, i warto. Napisz testy najpierw, zacommituj je, potem implementuj do zielonego. Testy commitujesz, bo bez tego Claude bywa skłonny zmieniać testy zamiast kodu.'
   - q: Kiedy pomijać tryb planowania?
     a: Przy drobnych i oczywistych zmianach - literówce, dodaniu logu, zmianie nazwy zmiennej. Plan mode jest do eksploracji nieznanego albo dużego repozytorium, nie do każdej poprawki.
 status: gotowe
@@ -72,7 +72,7 @@ Twardy warunek: raport **nie zaczyna żadnej nowej pracy**. _(praktyka Richarda 
 
 1. Zrób pełny cykl na drobnej funkcji: plan mode → zatwierdź plan → implementacja → testy → commit.
 2. Puść na tym samym diffie adwersaryjnego subagenta.
-3. Porównaj, co znalazł, z tym, co zauważasz sam.
+3. Porównaj, co znalazł, z tym, co zauważasz Ty.
 
 **Zaliczenie:** masz przejście przez cały cykl i listę uwag od subagenta, który nie widział rozmowy. Jeśli znalazł coś, co Tobie umknęło, wiesz już, po co ten krok istnieje.
 

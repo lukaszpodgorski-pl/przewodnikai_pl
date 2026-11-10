@@ -46,13 +46,13 @@ Po tej lekcji masz na kartce: jedną usługę (kalendarz, dysk, poczta), jedno u
 
 Jedna rzecz do zapamiętania: **MCP daje modelowi ręce, czyli możliwość działania w Twoich usługach. Im więcej rąk naraz, tym więcej szkody, gdy model posłusznie wykona złe polecenie.**
 
-## USB-C do narzędzi, nie magia
+## USB-C do narzędzi
 
 <Termin id="chatbot">Chatbot</Termin> bez podłączeń pisze mądrze i nic nie może: kalendarza nie widzi, pliku nie odłoży. Wszystko nosisz kopiuj-wklejem.
 
 <Termin id="mcp">MCP</Termin> (Model Context Protocol) to otwarty standard podłączania narzędzi: sposób, w jaki asystent rozmawia z zewnętrznymi usługami. Analogia z USB-C jest celowa: jedno złącze zamiast osobnej integracji do każdej pary "aplikacja + model".
 
-[Anthropic ogłosił protokół pod koniec 2024 r.](https://www.anthropic.com/news/model-context-protocol). Od grudnia 2025 r. opiekę przejęła [Agentic AI Foundation przy Linux Foundation](https://blog.modelcontextprotocol.io/posts/2025-12-09-mcp-joins-agentic-ai-foundation/) (niezależna organizacja, która opiekuje się otwartym oprogramowaniem). MCP obsługują dziś m.in. Claude, ChatGPT, Gemini i Copilot - to nie jest standard jednej firmy.
+[Anthropic ogłosił protokół pod koniec 2024 r.](https://www.anthropic.com/news/model-context-protocol). Od grudnia 2025 r. opiekę przejęła [Agentic AI Foundation przy Linux Foundation](https://blog.modelcontextprotocol.io/posts/2025-12-09-mcp-joins-agentic-ai-foundation/) (niezależna organizacja, która opiekuje się otwartym oprogramowaniem). MCP obsługują dziś m.in. Claude, ChatGPT, Gemini i Copilot.
 
 Trzy elementy:
 
@@ -68,7 +68,7 @@ Bez MCP: kopiujesz spotkania do czatu, dostajesz streszczenie, wklejasz do maila
 
 Z MCP: "podsumuj przyszły tydzień i przygotuj szkic do zespołu" - asystent sięga po kalendarz i składa wiadomość **do akceptacji**.
 
-Ten sam wzorzec: dokumenty, CRM, notatki. Dane zostają na miejscu. Asystent dostaje kontrolowany dostęp, nie Twoje całe życie w jednym wklejeniu.
+Ten sam wzorzec działa z dokumentami, CRM i notatkami. Dane zostają na miejscu, a asystent dostaje do nich kontrolowany dostęp.
 
 Start bez kodu: konektor to gotowe połączenie czatu z usługą (np. pocztą, dyskiem), zbudowane na serwerze MCP. W Claude znajdziesz je w [katalogu konektorów](https://claude.com/docs/connectors/directory), w aplikacji pod **Customize > Connectors**. W ChatGPT ta sama funkcja kilka razy zmieniała nazwę (konektory, aplikacje, w listopadzie 2026 r. Plugins) - szukaj jej w menu Plugins ([pomoc OpenAI](https://help.openai.com/en/articles/12584461-connecting-custom-mcp-servers-in-chatgpt)).
 
@@ -76,12 +76,12 @@ Jak podłączyć serwer MCP w Claude Code krok po kroku, pokazuję w lekcji [MCP
 
 Serwer bywa lokalny (program uruchomiony na Twoim komputerze) albo zdalny (działa na serwerach dostawcy). Dla prywatności to różnica: przy zdalnym Twoje dane przechodzą przez serwery tej firmy.
 
-Mniej znaczy lepiej. Każde narzędzie to opis, który zajmuje miejsce w <Termin id="okno-kontekstowe">oknie kontekstowym</Termin> (wszystkim, co model widzi naraz - jego pojemność jest ograniczona), i kolejna okazja, żeby model wybrał niewłaściwe narzędzie.
+Im mniej podłączonych narzędzi, tym lepiej. Każde narzędzie to opis, który zajmuje miejsce w <Termin id="okno-kontekstowe">oknie kontekstowym</Termin> (wszystkim, co model widzi naraz - jego pojemność jest ograniczona), i kolejna okazja, żeby model wybrał niewłaściwe narzędzie.
 
 ## Pięć zasad, zanim dasz modelowi ręce
 
 1. **Czytaj potwierdzenie.** Nieodwracalne (wyślij, usuń, zmień) ma być pytaniem, nie tłem.
-2. **Tylko z katalogu i od autora, którego rozpoznajesz.** Serwer to program. Podróbki istnieją.
+2. **Tylko z katalogu i od autora, którego rozpoznajesz.** Serwer to program, a podróbki istnieją.
 3. **Minimum uprawnień.** Jeden folder, nie cały dysk. Odczyt kalendarza bez prawa do zaproszeń, jeśli nie są potrzebne.
 4. **Załóż, że model da się oszukać tekstem.** Instrukcja w mailu albo na stronie (<Termin id="prompt-injection">wstrzyknięcie polecenia</Termin>, ang. prompt injection - więcej w lekcji [Cudzy tekst w prompcie](/prompt-engineering/najlepsze-praktyki/)) potrafi wyprzedzić Twoje polecenie. Najgroźniej jest, gdy w jednym zadaniu asystent ma naraz dostęp do poufnych danych, czyta obce treści (maile, strony) i może coś wysłać na zewnątrz. Nie dawaj mu tych trzech rzeczy jednocześnie - np. obce maile czytaj w zadaniu bez dostępu do poufnych plików.
 5. **W firmie - z IT, nie partyzancko.** Dobra organizacja stawia na sprawdzone rozwiązania (zweryfikowane konektory), nie sam zakaz. Sam zakaz sprawia, że ludzie i tak używają AI, tylko po kryjomu i bez kontroli.

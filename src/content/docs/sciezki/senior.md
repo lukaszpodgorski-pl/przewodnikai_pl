@@ -15,7 +15,7 @@ Oswój AI krok po kroku, we własnym tempie. Ułożyłem tę ścieżkę z 7 lekc
 3. [Pierwsza rozmowa z AI](/podstawy/pierwsza-rozmowa-z-ai/) - najważniejsza lekcja w tej ścieżce. Zakładasz konto i piszesz pierwsze pytanie, wszystko rozpisane na ponumerowane kroki - łącznie z tym, co zrobić, gdy odpowiedź okaże się słaba.
 4. [Weryfikacja informacji](/podstawy/weryfikacja-informacji/) - AI potrafi podać zmyśloną datę, numer telefonu albo poradę zdrowotną tym samym pewnym tonem co prawdę. Cztery proste kroki, zanim komuś to przekażesz albo za coś zapłacisz.
 5. [Mity vs rzeczywistość](/podstawy/mity-vs-rzeczywistosc/) - cztery najczęstsze mity o AI: praca, świadomość, nieomylność, bunt maszyn. Jedna rzecz do zapamiętania, ćwiczenie na 5 minut.
-6. [Chatboty AI](/narzedzia/chatboty/) - jak wybrać jeden czat do swoich spraw - po tym, do czego go potrzebujesz, a nie po rankingu.
+6. [Chatboty AI](/narzedzia/chatboty/) - jak wybrać jeden czat do swoich spraw: po tym, do czego go potrzebujesz, a nie po rankingu.
 7. [Prywatność i dane](/etyka/prywatnosc/) - świadome dzielenie się danymi. Najważniejsza jest tu lista czterech kategorii, których nie wkleja się do czatu. Dla Ciebie liczą się dwie: dane osoby (PESEL, adres, dokumenty, zdrowie, finanse) i klucze (hasła, kody z banku). Pozostałe dwie dotyczą firm, możesz je spokojnie pominąć.
 
 :::note[Co dalej]

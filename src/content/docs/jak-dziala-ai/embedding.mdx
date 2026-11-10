@@ -45,7 +45,7 @@ Jedna rzecz do zapamiętania: **blisko na mapie znaczy "o tym samym", nie "z tym
 
 Komputer liczy na liczbach. Żeby porównać dwa teksty, musi je najpierw zamienić na listy liczb. Ta lista to **<Termin id="embedding">embedding</Termin>** (fachowo: wektor) - współrzędne tekstu na mapie znaczenia.
 
-Na mapie "kot" i "pies" siedzą blisko. "Samochód" - daleko. Nie dlatego, że dzielą litery. Dlatego, że w danych treningowych bywały w podobnych towarzystwach.
+Na mapie "kot" i "pies" siedzą blisko. "Samochód" - daleko. O bliskości nie decydują litery, tylko to, że w danych treningowych te słowa bywały w podobnym towarzystwie.
 
 ```text
 "kot"       → [0.2, -0.5, 0.8, ...]   blisko "psa"
@@ -61,7 +61,7 @@ To nadal nie jest rozumienie, tylko geometria. Model nie "wie", czym jest kot - 
 
 Bo chatbot bez mapy zgaduje z treningu. Z mapą potrafi **szukać po znaczeniu** w Twoich tekstach.
 
-Pytanie "jak naprawić samochód" trafia blisko artykułu o "serwisowaniu auta", choć żadne słowo się nie pokrywa. To jest ruch, który potem składa się w <Termin id="rag">RAG</Termin>: znajdź bliskie fragmenty, dopiero potem pisz odpowiedź. RAG jest następną lekcją. Tu zostaje sama mapa.
+Pytanie "jak naprawić samochód" trafia blisko artykułu o "serwisowaniu auta", choć żadne słowo się nie pokrywa. Na tym ruchu stoi <Termin id="rag">RAG</Termin>: znajdź bliskie fragmenty, dopiero potem pisz odpowiedź. RAG jest następną lekcją. Tu zostaje sama mapa.
 
 Gdy takich wektorów jest dużo, trzyma się je w specjalnej bazie, która szuka najbliższych punktów na mapie, a nie dokładnych wpisów jak zwykła tabela. Nazwy produktów pomijam - zmieniają się szybciej niż ta analogia.
 
@@ -71,7 +71,7 @@ Na tej stronie nie ma tabeli modeli embeddingowych ani listy baz wektorowych. Wy
 
 ## Ćwiczenie: 5 minut, trzy zdania
 
-Nie oceniasz, "czy AI rozumie". Oddzielasz sens od liter.
+Oddzielasz sens od liter. Pytanie, "czy AI rozumie", zostawiasz na boku.
 
 1. Zakryj odpowiedź. Przy każdym zdaniu napisz: naprawa pieca / polityka / nie wiem.
 
@@ -91,7 +91,7 @@ Nie oceniasz, "czy AI rozumie". Oddzielasz sens od liter.
     3. Po wyborach w sejmie było gorąco jak w piecu.
     ```
 
-**Zaliczenie:** na kartce para **1 i 2** jako ten sam sens oraz **3** jako pułapka na słowo "piec". Wyszukiwarka po słowach połączyłaby 1 i 3, bo w obu pada "piec". Mapa znaczenia łączy 1 i 2. Nie musisz znać wektora. Nie musisz nazywać modelu.
+**Zaliczenie:** na kartce para **1 i 2** jako ten sam sens oraz **3** jako pułapka na słowo "piec". Wyszukiwarka po słowach połączyłaby 1 i 3, bo w obu pada "piec". Mapa znaczenia łączy 1 i 2. Nie musisz znać wektora ani nazwy modelu.
 
 **Typowy wynik:** para 1 i 2 bez wahania, a zdanie 3 przez chwilę kusi, bo "piec" pada w nim dosłownie. To właśnie pułapka, którą mapa znaczenia omija.
 

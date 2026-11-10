@@ -8,7 +8,7 @@ status: gotowe
 
 ![Dziecko z rozłożonymi rękami na tle siatki połączonych punktów](../../../assets/sciezki/uczen-podstawowka/uczen-podstawowka.jpg)
 
-Poznaj AI bezpiecznie i naucz się z niej korzystać z głową. Wybrałem do tej ścieżki 7 lekcji i celowo zaczynam od wyjaśnienia, czym AI w ogóle jest - bo bez tego trudno ocenić, kiedy warto jej użyć, a kiedy lepiej pomyśleć samodzielnie. Nie trzeba robić wszystkiego naraz. Rytm: minimum kwadrans na jedno okienko w kalendarzu, najlepiej trzy takie okienka w tygodniu - jedna lekcja na okienko.
+Poznaj AI bezpiecznie i naucz się z niej korzystać z głową. Wybrałem do tej ścieżki 7 lekcji i celowo zaczynam od wyjaśnienia, czym AI w ogóle jest, bo bez tego trudno ocenić, kiedy warto jej użyć, a kiedy lepiej pomyśleć samodzielnie. Nie trzeba robić wszystkiego naraz. Rytm: minimum kwadrans na jedno okienko w kalendarzu, najlepiej trzy takie okienka w tygodniu - jedna lekcja na okienko.
 
 :::caution[Zanim założysz konto]
 Zanim założysz konto, sprawdź razem z rodzicem albo opiekunem próg wieku w regulaminie narzędzia, w wersji z dziś. Przy sprawdzeniu w listopadzie 2026 r.: Claude.ai jest od 18 lat. ChatGPT jest od 13 lat, a do 18 lat tylko za zgodą rodzica. Gemini wymaga konta Google, które w Polsce prowadzi się samodzielnie od 16 lat, a na koncie nadzorowanym przez Family Link Gemini w Europejskim Obszarze Gospodarczym (także w Polsce) nie działa. Jeśli masz mniej niż 13 lat, nie zakładasz konta w żadnym z tych czatów, nawet za zgodą rodzica. Szczegóły: [AI a dzieci](/etyka/ai-a-dzieci/).

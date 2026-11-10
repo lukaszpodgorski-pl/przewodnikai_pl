@@ -39,15 +39,15 @@ import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
 
 ## Na tej stronie przerobisz jeden prompt
 
-Po tej lekcji masz dwie wersje tego samego zadania: ogólnik i wersję z rolą, zadaniem, ograniczeniami i formatem. Wysyłasz obie. Porównujesz.
+Po tej lekcji masz dwie wersje tego samego zadania: ogólnik i wersję z rolą, zadaniem, ograniczeniami i formatem. Wysyłasz obie i porównujesz odpowiedzi.
 
-Jedna rzecz do zapamiętania: **model nie czyta w myślach. Dostaje tylko to, co jest w tekście.**
+Jedna rzecz do zapamiętania: **Model nie czyta w myślach: dostaje tylko to, co jest w tekście.**
 
 <Termin id="prompt-engineering">Prompt engineering</Termin> to umiejętność układania tego tekstu. <Termin id="prompt">Prompt</Termin> to polecenie, które wpisujesz w okno czatu. Czasem mówi się też "zapytanie" - na tej stronie to ta sama rzecz.
 
 ## Ten sam temat, dwa prompty
 
-Ten sam temat:
+Najpierw ogólnik, potem wersja z czterema polami:
 
 ```text
 Napisz coś o marketingu.
@@ -62,7 +62,7 @@ Format: lista numerowana; przy każdej strategii nazwa, 2-3 zdania,
 szacunek budżetu i po co to
 ```
 
-Różnica nie jest "magią". W drugiej wersji model ma mniej miejsc, w których musi zgadywać. Cztery nagłówki - rola, zadanie, ograniczenia, format - to szkielet, który rozkładasz na części w następnej lekcji. Budżet w przykładzie jest wymyślony, to nie cena rynkowa.
+W drugiej wersji model ma po prostu mniej miejsc, w których musi zgadywać. Cztery nagłówki - rola, zadanie, ograniczenia, format - to szkielet, który rozkładasz na części w następnej lekcji. Budżet w przykładzie jest wymyślony, to nie cena rynkowa.
 
 Mapa sekcji (szczegóły w lekcjach, nie tutaj):
 
@@ -90,12 +90,12 @@ Ustawienia losowania (temperatura, top-p) zmienisz tylko przez <Termin id="api">
 
 **Typowy wynik:** druga jest dłuższa i użyteczniejsza, ale potrafi zmyślić budżet. Liczbę i tak sprawdzasz - [Weryfikacja](/podstawy/weryfikacja-informacji/).
 
-**Jeśli nic nie zgrzyta i zostaje czas:** odetnij z drugiej wersji jedno zdanie, które nic nie zmienia. Ćwiczenie na balast.
+**Jeśli nic nie zgrzyta i zostaje czas:** odetnij z drugiej wersji jedno zdanie, które nic nie zmienia.
 
 ## Teraz wiesz
 
 - Prompt to całe polecenie. Model nie uzupełnia intencji z powietrza.
-- Rola + zadanie + ograniczenia + format biją ogólnik. Długość sama z siebie nie.
+- Rola + zadanie + ograniczenia + format biją ogólnik, a sama długość niczego nie poprawia.
 - Ustawienia dostępne przez API nie są potrzebne na start. Najpierw tekst, potem [podstawy promptowania](/prompt-engineering/podstawy/).
 
 **Następny krok:** [Podstawy promptowania](/prompt-engineering/podstawy/) - z czego składa się prompt, którego nie trzeba za każdym razem wymyślać od zera.

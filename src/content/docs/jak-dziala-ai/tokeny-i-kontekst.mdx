@@ -38,11 +38,11 @@ import Tokenizacja from '../../../components/Tokenizacja.astro';
 
 ## Na tej stronie zobaczysz, jak model tnie tekst i ile go mieści
 
-Po tej lekcji weźmiesz jedno zdanie i powiesz: model nie czyta słów. Tnie je na kawałki. Cała rozmowa musi się w tych kawałkach zmieścić. Nie uczysz się tu stawek <Termin id="api">API</Termin> (dostępu do modelu dla programistów, bez okna czatu) ani tabeli okien konkretnych modeli - te liczby starzeją się w miesiącach.
+Po tej lekcji weźmiesz jedno zdanie i powiesz: model nie czyta słów, tylko tnie je na kawałki, a cała rozmowa musi się w tych kawałkach zmieścić. Nie uczysz się tu stawek <Termin id="api">API</Termin> (dostępu do modelu dla programistów, bez okna czatu) ani tabeli okien konkretnych modeli - te liczby starzeją się w miesiącach.
 
 Jedna rzecz do zapamiętania: **model widzi blat o stałej pojemności, liczonej w tokenach. Gdy blat jest pełny, najstarsze fragmenty przestają być widoczne albo zostają streszczone.**
 
-## To nie są słowa. To są kawałki
+## Model tnie tekst na kawałki
 
 <Termin id="chatbot">Chatbot</Termin> nie widzi Twojego zdania tak, jak Ty. Zanim cokolwiek "przeczyta", tnie tekst na <Termin id="token">tokeny</Termin>. Potem dokłada odpowiedź token po tokenie.
 
@@ -59,17 +59,17 @@ Jedno krótkie, częste słowo bywa jednym tokenem. Dłuższe albo rzadsze - dwo
 
 Polski zwykle rozpada się na więcej kawałków niż angielski o tej samej treści. W analizie z 2023 roku Petrov i in. pokazali, że tokenizery traktują języki nierówno - ten sam tekst w tłumaczeniu bywa wyraźnie "cięższy", zanim model w ogóle zacznie odpowiadać ([Petrov i in., 2023](https://arxiv.org/abs/2305.15425)). To kotwica mechanizmu, nie cennik na dziś. Swój narzut zmierzysz w ćwiczeniu.
 
-## Okno to stos, nie pamięć
+## Okno to blat, nie pamięć
 
 <Termin id="okno-kontekstowe">Okno kontekstowe</Termin> (ang. context window) to maksymalna liczba tokenów, które model widzi jednocześnie. Wchodzi w nie <Termin id="prompt">prompt</Termin>, cała dotychczasowa rozmowa i to, co model właśnie pisze.
 
-To nie jest dysk. To blat roboczy. Gdy blat jest pełny, aplikacja musi zrobić miejsce: najstarsze fragmenty przestają być widoczne albo zostają zastąpione streszczeniem (tak robi np. Claude w planach płatnych, gdy ma włączone wykonywanie kodu - [pomoc Claude](https://support.claude.com/en/articles/8606394-how-large-is-the-context-window-on-paid-claude-plans)). Model nie wraca do pominiętych szczegółów "z pamięci". W tym przebiegu ich po prostu nie ma.
+Okno działa jak blat roboczy, nie jak dysk. Gdy blat jest pełny, aplikacja musi zrobić miejsce: najstarsze fragmenty przestają być widoczne albo zostają zastąpione streszczeniem (tak robi np. Claude w planach płatnych, gdy ma włączone wykonywanie kodu - [pomoc Claude](https://support.claude.com/en/articles/8606394-how-large-is-the-context-window-on-paid-claude-plans)). Model nie wraca do pominiętych szczegółów "z pamięci". W tym przebiegu ich po prostu nie ma.
 
-W broszurze modelu okno bywa ogromne. W oknie czatu często dostajesz mniej - i to zależy od planu, nie od nazwy modelu. Jeśli wklejasz gruby plik i odpowiedź gubi początek, najpierw sprawdź limit aplikacji, zanim ogłosisz, że "model jest głupi".
+W broszurze modelu okno bywa ogromne. W oknie czatu często dostajesz mniej, a ile, zależy od planu, nie od nazwy modelu. Jeśli wklejasz gruby plik i odpowiedź gubi początek, najpierw sprawdź limit aplikacji, zanim ogłosisz, że "model jest głupi".
 
-Duże okno też nie znaczy, że każdy kawałek jest tak samo widoczny. W 2023 roku Liu i in. opisali efekt "lost in the middle": modele lepiej łapały informacje z początku i z końca kontekstu niż ze środka ([Liu i in., 2023](https://arxiv.org/abs/2307.03172)). Kolejne generacje to poprawiały. Na tej stronie zostaje ostrożność, nie ranking z tamtego roku: **ważne rzeczy stawiaj na górze albo na dole, nie zakopuj w środku długiego wklejenia.**
+Duże okno też nie znaczy, że każdy kawałek jest tak samo widoczny. W 2023 roku Liu i in. opisali efekt "lost in the middle": modele lepiej łapały informacje z początku i z końca kontekstu niż ze środka ([Liu i in., 2023](https://arxiv.org/abs/2307.03172)). Kolejne generacje to poprawiały. Z tamtego badania biorę tylko praktyczną ostrożność: **ważne rzeczy stawiaj na górze albo na dole, nie zakopuj w środku długiego wklejenia.**
 
-W API płacisz za tokeny. Wejście (to, co wysyłasz) i wyjście (to, co model pisze) liczą się osobno. Wyjście bywa droższe. Polski, skoro tnie się na więcej kawałków, szybciej zapełnia okno i szybciej nalicza rachunek. Aktualne stawki są u dostawców i w [Ile kosztuje AI](/narzedzia/ile-kosztuje-ai/). Tu nie ma cennika - zestarzeje się szybciej niż ta lekcja.
+W API płacisz za tokeny. Wejście (to, co wysyłasz) i wyjście (to, co model pisze) liczą się osobno. Wyjście bywa droższe. Polski, skoro tnie się na więcej kawałków, szybciej zapełnia okno i szybciej nalicza rachunek. Aktualne stawki są u dostawców i w [Ile kosztuje AI](/narzedzia/ile-kosztuje-ai/). Cennika tu nie podaję, bo zestarzałby się szybciej niż ta lekcja.
 
 Jak model wybiera kolejny token i jakie ustawienia losowania na to wpływają, opisuję w [Ustawieniach losowania](/jak-dziala-ai/parametry-modeli/).
 
@@ -79,7 +79,7 @@ Nie ma tu tabeli okien ani stawek. Oba zmieniają się kilka razy w roku. Nieró
 
 ## Ćwiczenie: 5 minut, dwa zdania
 
-Nie zgadujesz, "ile tokenów ma polski w ogóle". Mierzysz jedną parę zdań.
+Zamiast zgadywać, "ile tokenów ma polski w ogóle", mierzysz jedną parę zdań.
 
 1. Otwórz [Tokenizer OpenAI](https://platform.openai.com/tokenizer) (darmowy podgląd; jeśli strona wymaga logowania, zrób wariant B niżej).
 2. Wklej po kolei, każde osobno, i zapisz dwie liczby:

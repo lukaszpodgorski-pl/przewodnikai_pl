@@ -21,7 +21,7 @@ Pisz lepsze wypracowania i projekty z AI - bez oszukiwania siebie. Wybrałem 7 l
 4. [Podstawy promptowania](/prompt-engineering/podstawy/) - cztery pola polecenia. Działa wyraźnie lepiej niż "napisz mi wypracowanie o Panu Tadeuszu".
 5. [Techniki promptowania](/prompt-engineering/techniki/) - najpierw samo polecenie, potem dwa przykłady, potem kroki. Nie wkuwasz nazw technik.
 6. [Narzędzia AI do pisania](/narzedzia/pisanie/) - AI przyspiesza szkic. Podpis pod wypracowaniem zostaje Twój. Osobna aplikacja "do pisania" to dodatek, nie obowiązek.
-7. [Etyczne aspekty](/etyka/etyczne-aspekty/) - Regulaminu Twojej szkoły tu nie ma, sprawdź go osobno. Jest za to zasada uczciwości: jeśli tekst powstał z pomocą AI, nie udajesz, że to wyłącznie Twoja praca. Reszta lekcji to uprzedzenia modeli, odpowiedzialność za decyzje o ludziach.
+7. [Etyczne aspekty](/etyka/etyczne-aspekty/) - Regulaminu Twojej szkoły tu nie ma, sprawdź go osobno. Jest za to zasada uczciwości: jeśli tekst powstał z pomocą AI, nie udajesz, że to wyłącznie Twoja praca. Reszta lekcji to uprzedzenia modeli i odpowiedzialność za decyzje o ludziach.
 
 :::note[Co dalej]
 Przewodnik jest bezpłatny. Gdy skończysz tę ścieżkę, wróć do [programu kursu](/#program-kursu) albo [zobacz inne ścieżki](/sciezki/).
