@@ -1,0 +1,107 @@
+---
+title: AI na własnym komputerze
+description: Dobierzesz klasę sprzętu do lokalnego modelu albo zapiszesz, czemu zostajesz przy chmurze. Ćwiczenie zajmie 5 minut.
+sidebar:
+  order: 4
+educationalLevel: Beginner
+teaches:
+  - Po co uruchamiać model u siebie - prywatność, koszt, niezależność
+  - Jakim programem uruchomić model u siebie - Ollama i LM Studio, oba z oknem czatu
+  - Jak czytać VRAM jako kryterium, nie tabelę "obecnie najlepszy lokalny model"
+about:
+  - name: Duży model językowy
+    sameAs: https://pl.wikipedia.org/wiki/Du%C5%BCy_model_j%C4%99zykowy
+mentions:
+  - name: Ollama
+    sameAs: https://ollama.com/
+    type: SoftwareApplication
+  - name: LM Studio
+    sameAs: https://lmstudio.ai/
+    type: SoftwareApplication
+  - name: Bielik
+    sameAs: https://pl.wikipedia.org/wiki/Bielik_(model_j%C4%99zykowy)
+    type: SoftwareApplication
+faq:
+  - q: Czy AI może działać bez internetu?
+    a: Tak. Po jednorazowym pobraniu wag wszystko liczy się na Twojej maszynie. Rozmowa nie wychodzi do chmury.
+  - q: Jaki komputer jest potrzebny?
+    a: Im więcej pamięci karty graficznej (VRAM), tym większy model uruchomisz wygodnie. Na słabszym sprzęcie też się uruchomi, tylko wolniej. Konkretne GB i nazwy modeli są w ramce z datą - przed pobraniem sprawdzasz kartę modelu.
+  - q: Od jakiego modelu zacząć po polsku?
+    a: Od modelu z otwartymi wagami, trenowanego z myślą o polszczyźnie, w rozmiarze, który Twój sprzęt uniesie. Nazwa i tag z tej strony mogą się zdezaktualizować; kryterium zostaje.
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+:::note[O tej stronie]
+**Czas:** ok. 7 minut czytania + 5 minut ćwiczenia.
+**Poziom:** początkujący, po [ekosystemie](/suwerenne-ai/polski-ekosystem-ai/).
+**Wcześniej:** [Polski ekosystem AI](/suwerenne-ai/polski-ekosystem-ai/) - wiesz, gdzie stoją serwery i czyje prawo je obejmuje. **Teraz:** tę samą ideę przenoszę na Twój komputer.
+:::
+
+## Na tej stronie dobierzesz model do swojego sprzętu
+
+Po tej lekcji będziesz wiedzieć, po co uruchamiać model AI na własnym komputerze, jakim programem to zrobić i jak duży model udźwignie Twój sprzęt. Chodzi o model z otwartymi wagami (<Termin id="open-weight">open-weight</Termin>) - taki, którego wagi, czyli liczby ustawione w treningu, możesz pobrać na swój dysk. Nie dostaniesz tu listy "najlepszych modeli miesiąca" - takie listy starzeją się w kilka tygodni.
+
+Jedna rzecz do zapamiętania: **Model to plik na Twoim dysku. Korzystasz z niego dla prywatności, bez opłat za każde użycie i bez zależności od dostawcy. Numer wersji sprawdzasz w dniu pobrania.**
+
+## Po co to robić
+
+- **Prywatność.** Treść nie leci na cudzy serwer. Kontekst: [prywatność](/etyka/prywatnosc/).
+- **Koszt.** Pobierasz model raz i potem korzystasz z niego bez licznika opłat za każde użycie.
+- **Niezależność.** Model działa bez internetu. Nikt nie wyłączy Ci modelu, który masz już na dysku. To <Termin id="suwerennosc-cyfrowa">suwerenność cyfrowa</Termin> w skali Twojego komputera.
+
+Do szkicu maila i korekty akapitu rzadko potrzeba "najmocniejszego na świecie". Mniejszy model na Twoim komputerze często wystarczy. Czołowy czat w chmurze zostaje, gdy potrzebujesz wyszukiwania w sieci, podłączonych narzędzi i wygody - to świadomy wybór, nie porażka.
+
+## Dwa programy, jedna decyzja
+
+Nie potrzebujesz serwera ani oprogramowania dla firm - wystarczy jeden z dwóch programów. Oba mają okno czatu.
+
+**Ollama** - [ollama.com](https://ollama.com/). Na Windowsie i macOS ma aplikację z oknem czatu, w której pobierzesz model ([ollama.com](https://ollama.com/blog/new-app)). Można jej też używać z terminala (okna, w którym wpisuje się polecenia tekstowe).
+
+**LM Studio** - [lmstudio.ai](https://lmstudio.ai/). Aplikacja okienkowa z wyszukiwarką modeli i czatem.
+
+Oba robią to samo: trzymają model na Twoim dysku i prowadzą rozmowę na Twoim komputerze. Przegląd narzędzi: [Hugging Face](https://huggingface.co/blog/daya-shankar/open-source-llm-models-to-run-locally).
+
+Jeśli chcesz pisać po polsku, wybierz model, który uczono na dużej ilości polskich tekstów. Ogólne modele też znają trochę polskiego, ale to nie to samo. Polskie modele, Bielika i PLLuM, opisuję w lekcji [Bielik i polskie modele AI](/suwerenne-ai/bielik-i-polskie-modele/). Mniejsze modele europejskiej firmy Mistral znajdziesz w lekcji [Europejskie modele i firmy AI](/suwerenne-ai/europejskie-modele/).
+
+## Sprzęt: sufit, nie ranking
+
+Liczy się przede wszystkim **VRAM** (pamięć karty). Im większy model, tym więcej pamięci. Kwantyzacja (np. Q4) ściska plik kosztem odrobiny jakości. Bez mocnej karty model często uruchomi się na zwykłym RAM-ie komputera, licząc na procesorze zamiast na karcie graficznej - wolniej, ale się uruchomi. Cierpliwość jest częścią układu.
+
+Przed pobraniem otwórz stronę modelu, tzw. kartę modelu (w Ollamie, w LM Studio albo w serwisie Hugging Face, gdzie twórcy publikują modele), i sprawdź aktualny rozmiar pliku i ile pamięci model potrzebuje. Instalację sterowników karty graficznej ta lekcja zostawia Tobie - to osobny temat.
+
+:::note[Źródła sprawdzone w listopadzie 2026 r.]
+Przykłady, nie "obecnie najlepsze".
+
+Aplikacja Ollama z oknem czatu i pobieraniem modeli działa na Windowsie i macOS (od lipca 2025 r.) - [ollama.com](https://ollama.com/blog/new-app). Bielik 11 mld parametrów, wersja 3.0, w wersji ściśniętej (oznaczenie Q4_K_M, plik ok. 6,7 GB): `ollama run SpeakLeash/bielik-11b-v3.0-instruct:Q4_K_M` - [ollama.com](https://ollama.com/SpeakLeash/bielik-11b-v3.0-instruct). LM Studio: wyszukaj "Bielik", format GGUF (format pliku modelu, który czyta LM Studio), profil [SpeakLeash](https://huggingface.co/speakleash).
+
+Orientacyjne VRAM przy Q4, według [localllm.in](https://localllm.in/blog/ollama-vram-requirements-for-local-llms): ok. 6-12 GB - modele rzędu 7-14 mld parametrów; 16-24 GB - średnie, rzędu 22-35 mld (w źródle m.in. Gemma 3 o 27 mld parametrów, plik ok. 16,5 GB); 48 GB i więcej - modele rzędu 70 mld parametrów. To widełki z bloga, nie gwarancja Twojej karty.
+
+Inne nazwy, które teraz ludzie stawiają lokalnie po polsku: PLLuM w rozmiarach 8 i 12 mld parametrów ([pllum.org.pl](https://pllum.org.pl/)), Ministral 3 w wariancie 3 albo 8 mld parametrów ([mistral.ai](https://mistral.ai/news/mistral-3/)). Sprawdź, czy tag jeszcze żyje, zanim wkleisz polecenie z tej ramki.
+:::
+
+## Ćwiczenie: 5 minut, klasa albo chmura
+
+Nie musisz dowieźć działającego czatu w pięć minut - pobieranie waży gigabajty.
+
+1. Zapisz, ile mniej więcej masz RAM i czy jest karta z VRAM (albo "nie wiem / laptop służbowy").
+2. Wybierz klasę: **mały** (ok. 7-14 mld parametrów, ok. 6-12 GB pamięci karty albo zwykły RAM i cierpliwość) / **średni** (ok. 16-24 GB VRAM) / **zostaję w chmurze** (powód w sześciu słowach).
+3. Jeśli możesz: zainstaluj LM Studio albo Ollama i wyślij jedno polskie zdanie **albo** rozpocznij pobieranie małego modelu. Jeśli nie możesz (polityka firmy, brak miejsca) - punkt 2 jest zaliczeniem.
+
+**Zaliczenie:** klasa + powód. Nie liczy się nazwa modelu z rankingu. Nie ma kary za "zostaję w chmurze".
+
+**Typowy wynik:** 16 GB RAM, zintegrowana grafika - mały model albo chmura; 12 GB VRAM - mały polski model (7-11 mld parametrów).
+
+**Jeśli nic nie zgrzyta i zostaje czas:** otwórz kartę modelu, który chcesz ściągnąć, i przepisz stamtąd wymagania do swojej notatki - są pewniejsze niż widełki z ramki powyżej.
+
+## Teraz wiesz
+
+- Model na Twoim dysku daje prywatność, działa bez abonamentu i bez internetu.
+- Uruchomisz go w Ollamie albo w LM Studio - oba programy mają okno czatu.
+- O wyborze decyduje pamięć karty graficznej (VRAM) i wymagania z karty modelu. Przykładowe nazwy są w ramce z datą.
+
+**Następny krok:** [AI w branżach](/praktyka/ai-w-branzach/) - pierwsza lekcja sekcji AI w praktyce. Wskażesz w swojej branży zadania na szkic AI i to, które zostaje przy człowieku. Wybór między narzędziem w chmurze a modelem lokalnym zostaje teraz Twoją decyzją, dopasowaną do zadania.
+
+<SlowniczekStrony terminy={["open-weight", "suwerennosc-cyfrowa"]} />

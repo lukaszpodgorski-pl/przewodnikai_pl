@@ -176,6 +176,8 @@ Procesor graficzny - układ, który powstał do rysowania grafiki w grach, a oka
 Specjalistyczny procesor pierwotnie zaprojektowany do renderowania grafiki, którego architektura z tysiącami rdzeni okazała się skuteczna w obliczeniach równoległych - przede wszystkim w mnożeniu macierzy, na którym opiera się trening i wnioskowanie sieci neuronowych. Przy modelach uruchamianych lokalnie kryterium doboru jest pamięć karty (VRAM), a nie sama liczba rdzeni.
 :::
 
+**Więcej:** [AI na własnym komputerze](/suwerenne-ai/ai-na-wlasnym-komputerze/)
+
 ## Halucynacje AI (ang. hallucinations)
 
 Sytuacja, w której model podaje informację brzmiącą wiarygodnie, ale zmyśloną. To nie jest kłamstwo ani awaria. Model układa prawdopodobny ciąg dalszy, a kiedy czegoś nie wie, "prawdopodobne" przestaje znaczyć "prawdziwe". Najgroźniejsze jest to, że halucynacja wygląda tak samo jak dobra odpowiedź - tym samym pewnym tonem.
@@ -221,6 +223,8 @@ Model wytrenowany na ogromnej ilości tekstu, którego jedyne zadanie brzmi: prz
 Model AI, którego wagi (czyli wyuczone parametry) producent udostępnia do pobrania - możesz uruchomić go na własnym komputerze lub serwerze, bez wysyłania danych do chmury dostawcy. Open-weight nie zawsze znaczy w pełni open source: licencje bywają różne, od bardzo liberalnej Apache 2.0 (np. Bielik, rodzina Mistral 3) po licencje z ograniczeniami komercyjnymi. Przeciwieństwem są modele zamknięte, dostępne wyłącznie przez API lub aplikację producenta.
 
 **Przykład:** Bielik i małe modele Ministral 3 (3, 8 i 14 mld parametrów) to modele open-weight - możesz pobrać je za darmo i uruchomić w aplikacji LM Studio na własnym komputerze. Największy model Mistrala, Large 4, też ma otwarte wagi od końca października 2026 r. ([mistral.ai](https://mistral.ai/news/mistral-large-4-oss/)), ale przy ok. bilionie parametrów to model na serwerownię, nie na laptopa. Do tego jego licencja należy do tych z ograniczeniami: firma, która sprzedaje dostęp do modelu jako usługę, potrzebuje osobnej umowy z Mistralem.
+
+**Więcej:** [AI na własnym komputerze](/suwerenne-ai/ai-na-wlasnym-komputerze/)
 
 ## Model rozumujący (ang. reasoning model)
 

@@ -1,0 +1,100 @@
+---
+title: Bielik i polskie modele AI
+description: Dla jednego zadania wybierzesz powód - prywatność, niezależność albo wygoda - i sprawdzisz polski model. Ćwiczenie zajmie 5 minut.
+sidebar:
+  order: 1
+educationalLevel: Beginner
+teaches:
+  - Czym różni się model społecznościowy od rządowego, gdy oba mówią po polsku
+  - Jakie trzy pytania zostają, gdy zmieni się numer wersji
+  - Jak wypróbować polski model w przeglądarce albo lokalnie
+about:
+  - name: Bielik
+    sameAs: https://pl.wikipedia.org/wiki/Bielik_(model_j%C4%99zykowy)
+mentions:
+  - name: SpeakLeash
+    sameAs: https://speakleash.org/
+    type: Organization
+  - name: Akademickie Centrum Komputerowe Cyfronet AGH
+    sameAs: https://www.cyfronet.pl/
+    type: Organization
+  - name: NASK
+    sameAs: https://www.nask.pl/
+    type: Organization
+faq:
+  - q: Czym jest Bielik?
+    a: Polski model językowy z otwartymi wagami (open-weight), tworzony przez społeczność SpeakLeash i trenowany w Cyfronecie AGH. Wagi da się pobrać i uruchomić u siebie. Numer wersji i rozmiar sprawdzasz w dacie na tej stronie, nie w nagłówku "najlepszy polski model".
+  - q: Czym Bielik różni się od PLLuM?
+    a: Bielik to projekt społecznościowy. PLLuM to rodzina modeli budowana z udziałem państwa i wdrażana w administracji. Oba mają wersje z otwartymi wagami i oba da się znaleźć na Hugging Face (serwisie, w którym twórcy publikują modele do pobrania). Inna odpowiedzialność, nie "lepszy ranking".
+  - q: Po co polski model, skoro ChatGPT zna polski?
+    a: Wielkie czaty bywają wygodniejsze. Polski model z otwartymi wagami wygrywa, gdy liczy się to, że wagi są Twoje, dane zostają na miejscu albo nie chcesz zależeć od jednej zagranicznej firmy. To powód wyboru, nie patriotyczny ranking jakości.
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+:::note[O tej stronie]
+**Czas:** ok. 8 minut czytania + 5 minut ćwiczenia.
+**Poziom:** początkujący, start sekcji [Suwerenne AI](/suwerenne-ai/), po sekcji [Narzędzia AI](/narzedzia/).
+**Wcześniej:** [Ile kosztuje AI](/narzedzia/ile-kosztuje-ai/) - wiesz, którym portfelem płacisz za AI i gdzie czytać cennik. **Teraz:** sprawdzasz, co zrobić, gdy dane albo zależność od jednej firmy mają zostać bliżej Ciebie - i wypróbowujesz polski model.
+:::
+
+## Na tej stronie wybierzesz powód, nie zwycięzcę
+
+Po tej lekcji przypiszesz jednemu zadaniu z Twojego tygodnia jeden z trzech powodów wyboru narzędzia: **prywatność** (dane nie mogą wyjść na zewnątrz), **niezależność** (nie chcesz zależeć od jednej zagranicznej firmy) albo **wygoda** (wystarczy popularny czat w chmurze). Przy prywatności i niezależności dobrze sprawdza się polski model z otwartymi wagami (<Termin id="open-weight">open-weight</Termin>) - taki, którego wagi, czyli liczby ustawione w treningu, możesz pobrać na swój dysk.
+
+Jedna rzecz do zapamiętania: **<Termin id="suwerennosc-cyfrowa">suwerenność cyfrowa</Termin> to w praktyce trzy pytania: czy możesz pobrać model, gdzie trafiają dane, czyje prawo je chroni. Numer wersji modelu się zmienia - aktualny znajdziesz w ramce ze źródłami niżej.**
+
+## Bielik, PLLuM i Spichlerz - co jest czym
+
+**Bielik** - model tworzony przez społeczność [SpeakLeash](https://speakleash.org/), trenowany na superkomputerach [Cyfronetu AGH](https://www.agh.edu.pl/aktualnosci/detail/bielik-polski-model-jezykowy-powstal-w-agh) w Krakowie. Jego wagi możesz pobrać. Wypróbujesz go w przeglądarce albo u siebie.
+
+**PLLuM** - rodzina modeli tworzona z udziałem państwa przez grupę instytucji naukowych, w tym NASK. Ma trafiać do urzędów i, w planach, do usług państwa. Inna odpowiedzialność niż fundacja wolontariuszy.
+
+**Spichlerz** - zbiór polskich tekstów, bez którego "polski model" jest tylko etykietą marketingową. Model jest tak dobry, jak dane. Więcej o danych: Dane dla początkujących.
+
+Żaden z trzech nie każe wyrzucać ChatGPT. Każe wiedzieć, **po co** sięgasz po wariant, który możesz trzymać w domu.
+
+## Jak spróbować - trzy drogi
+
+**Czat w przeglądarce.** Twórcy udostępniają czat pod adresem [chat.bielik.ai](https://chat.bielik.ai/) - przed pierwszą rozmową trzeba się zalogować kontem SpeakLeash. Jeśli strona nie działa, możesz uruchomić model u siebie (o tym niżej).
+
+**Ollama** albo **LM Studio** - oba programy mają okno czatu. Szczegóły sprzętu i instalacji: [AI na własnym komputerze](/suwerenne-ai/ai-na-wlasnym-komputerze/). Przykładowe polecenie z datą jest w ramce poniżej - tag modelu się zmienia.
+
+Osobno, jeśli chcesz spróbować modelu rządowego: PLLuM ma modele na Hugging Face (serwis, w którym twórcy publikują modele do pobrania), na koncie [CYFRAGOVPL](https://huggingface.co/CYFRAGOVPL), i czat w przeglądarce, do którego prowadzi strona projektu ([pllum.org.pl](https://pllum.org.pl/)).
+
+:::note[Źródła sprawdzone w listopadzie 2026 r.]
+To **migawka**, nie tabela "obecnie najlepszy".
+
+Bielik: historia wersji - [Wikipedia](https://pl.wikipedia.org/wiki/Bielik_%28model_j%C4%99zykowy%29). Licencja Apache 2.0 (pozwala na darmowe użycie, także komercyjne) i 32 języki europejskie z naciskiem na polski - [karta modelu Bielik 11B v3.0](https://huggingface.co/speakleash/Bielik-11B-v3.0-Instruct). Duża odsłona 3.0 (11 mld parametrów, czyli liczb ustawionych w treningu): styczeń 2026 r. Mniejsze modele (1,5 i 4,5 mld parametrów): maj 2025 r., zbudowane na modelu Qwen 2.5 firmy Alibaba. Pierwsza odsłona 1.0 (kwiecień 2024 r.) powstała na modelu Mistral 7B (7 mld parametrów). 2,8 mln pobrań i zapowiedź wersji 3.1 z 50 językami na czerwiec 2026 r.: [bank.pl](https://bank.pl/polski-model-jezykowy-bielik-ai-wkrotce-bedzie-mowic-w-50-jezykach/) - 9 listopada 2026 r. na Hugging Face jest nadal wersja 3.0, więc zapowiedź to wciąż zapowiedź. Miejsce w EuroEval (europejskim zestawie testów językowych) i integracja z aplikacją InPost (grudzień 2025 r.), patronat InPost / Beyond / EY: [rp.pl](https://cyfrowa.rp.pl/globalne-interesy/art43590861-polska-ai-lepsza-od-mety-marka-zuckerberga-bielik-w-czolowce-swiatowych-benchmarkow). Przykład Ollama: `ollama run SpeakLeash/bielik-11b-v3.0-instruct:Q4_K_M` (plik ok. 6,7 GB) - [ollama.com](https://ollama.com/SpeakLeash/bielik-11b-v3.0-instruct). Wagi: [huggingface.co/speakleash](https://huggingface.co/speakleash).
+
+PLLuM: rozmiary (największy ma 70 mld parametrów), licencje i czat - [pllum.org.pl](https://pllum.org.pl/). Modele bazowe z sierpnia 2025 r. uczone na ok. 18 mld tokenów (kawałków tekstu), głównie po polsku, z prawem do użycia komercyjnego: [NASK](https://www.nask.pl/aktualnosci/nowe-modele-jezykowe-sa-juz-dostepne-rodzina-pllum-sie-powieksza). Pilotaże w samorządach (Częstochowa, sierpień 2025 r.; Gdynia, październik 2025 r.): [gov.pl](https://www.gov.pl/web/cyfryzacja/polski-model-jezykowy-pllum-trafi-do-samorzadu), [ITwiz](https://itwiz.pl/gdynia-jako-pierwsze-miasto-w-polsce-wdrozy-polski-duzy-model-jezykowy-pllum/). Pierwsze pełne wdrożenia w Ministerstwie Cyfryzacji i KPRM zapowiedziane na czerwiec 2026 r., min. 200 mln zł na rozwój do 2029 r.: [CyberDefence24](https://cyberdefence24.pl/technologie/pierwsze-wdrozenia-pllum-minimum-200-mln-zl-na-dalszy-rozwoj). Asystent w mObywatelu: **plan**, nie działająca funkcja ([Bankier.pl](https://www.bankier.pl/wiadomosc/Polski-model-jezykowy-PLLuM-w-mObywatelu-Usprawni-zalatwianie-spraw-urzedowych-8902139.html)).
+
+Spichlerz: cel co najmniej 1 TB tekstów - [SpeakLeash](https://speakleash.org/en/about-us/). **Na koniec 2023 r. zbiór ważył 833 GB** - to fakt historyczny wzrostu zbioru, nie "tyle waży dziś" ([SpeakLeash, grudzień 2023](https://speakleash.org/en/blog/the-speakleash-dataset-of-texts-in-the-polish-language-has-expanded-by-over-470-gb-in-3-5-months-17-12-2023/)).
+:::
+
+## Ćwiczenie: 5 minut, jeden powód
+
+Nie robisz benchmarku. Bierzesz **jedno** zadanie z tygodnia (mail, streszczenie, pytanie po polsku).
+
+1. Zapisz zadanie w sześciu słowach.
+2. Etykieta: **prywatność** / **niezależność** / **wygoda** - dlaczego w czterech słowach.
+3. Jeśli etykieta to prywatność albo niezależność: wejdź na czat Bielika i wyślij jedno zdanie po polsku **albo** zapisz, że spróbujesz lokalnie w lekcji [AI na własnym komputerze](/suwerenne-ai/ai-na-wlasnym-komputerze/). Jeśli czat nie działa - zaliczeniem jest etykieta i zdanie "spróbuję lokalnie".
+4. Jeśli etykieta to wygoda: to też zaliczenie. Dopisz, przy jakim zadaniu zmieni się na prywatność.
+
+**Zaliczenie:** zadanie + etykieta. Nie porównujesz, który model jest "mądrzejszy".
+
+**Typowy wynik:** notatka z danymi klienta - prywatność (lokalnie, jeśli wolno Ci przetwarzać te dane, albo nie wklejam). Burza nagłówków na bloga - wygoda.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** jedno zdanie, czym PLLuM różni się od Bielika tym, kto za nim stoi (państwo vs społeczność).
+
+## Teraz wiesz
+
+- Wybierasz według trzech pytań: czy możesz pobrać model, gdzie trafiają dane, czyje prawo je chroni. Powód (prywatność, niezależność, wygoda) mówi, które pytanie jest dla Twojego zadania najważniejsze.
+- Bielika tworzy społeczność na superkomputerach Cyfronetu, PLLuM powstaje z udziałem państwa, a Spichlerz to zbiór polskich tekstów, na których uczą się modele.
+- Polski model wypróbujesz w przeglądarce albo na swoim komputerze. Aktualną wersję sprawdzasz w ramce z datą.
+
+**Następny krok:** [Europejskie modele i firmy AI](/suwerenne-ai/europejskie-modele/) - te same trzy pytania na szerszej mapie, plus czwarte: jaki to rodzaj zadania (czat, tłumaczenie, obraz, wdrożenie u siebie).
+
+<SlowniczekStrony terminy={["open-weight", "suwerennosc-cyfrowa"]} />

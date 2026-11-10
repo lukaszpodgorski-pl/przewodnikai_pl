@@ -1,0 +1,100 @@
+---
+title: Europejskie modele i firmy AI
+description: Do jednego zadania dobierzesz europejskie narzędzie według prawa UE, modelu u siebie albo rodzaju zadania. Ćwiczenie zajmie 5 minut.
+sidebar:
+  order: 2
+educationalLevel: Beginner
+teaches:
+  - Jakie kryteria zostają, gdy zmieni się nazwa chatbota albo numer modelu
+  - Kiedy europejski dostawca jest planem B, a kiedy po prostu pasuje do zadania
+  - Czym różni się czat, tłumaczenie, obraz i wdrożenie na własnych serwerach
+about:
+  - name: Mistral AI
+    sameAs: https://en.wikipedia.org/wiki/Mistral_AI
+mentions:
+  - name: Vibe
+    sameAs: https://mistral.ai/products/vibe/
+    type: SoftwareApplication
+  - name: DeepL
+    sameAs: https://en.wikipedia.org/wiki/DeepL_Translator
+    type: SoftwareApplication
+  - name: Black Forest Labs
+    sameAs: https://bfl.ai/
+    type: Organization
+  - name: Aleph Alpha
+    sameAs: https://en.wikipedia.org/wiki/Aleph_Alpha
+    type: Organization
+faq:
+  - q: Czy Mistral zastępuje ChatGPT?
+    a: 'Przy wielu tekstach - bywa wystarczający, a do tego bywa open-weight, więc uruchomisz go u siebie. To nie jest werdykt "lepszy / gorszy" w tym miesiącu. Najpierw kryterium: prawo UE, model u siebie, rodzaj zadania.'
+  - q: W czym Europa jest mocna, skoro nie ma tu największych laboratoriów AI?
+    a: 'Często w tłumaczeniach, czasem w generowaniu obrazów, w modelach do uruchomienia u siebie i we wdrożeniach na serwerach firm i urzędów. Największe laboratoria AI działają w innej skali, ale kryterium wyboru zostaje to samo: prawo UE, model u siebie i rodzaj zadania.'
+  - q: Po co europejskie narzędzie, skoro amerykańskie działa?
+    a: Dane i umowa zgodne z RODO i AI Act, mniejsza zależność od jednej decyzji za oceanem. To plan B i świadomy wybór, nie obowiązek patriotyczny.
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+:::note[O tej stronie]
+**Czas:** ok. 7 minut czytania + 5 minut ćwiczenia.
+**Poziom:** początkujący, po [Bieliku](/suwerenne-ai/bielik-i-polskie-modele/).
+**Wcześniej:** [Bielik i polskie modele AI](/suwerenne-ai/bielik-i-polskie-modele/) - znasz trzy pytania, od których zależy wybór, i polski model. **Teraz:** zadajesz te same pytania europejskim firmom i dokładasz czwarte: jaki to rodzaj zadania.
+:::
+
+## Na tej stronie przypniesz zadanie do kryterium
+
+Trzy pytania z lekcji o Bieliku (czy możesz pobrać model, gdzie trafiają dane, czyje prawo je chroni) w Europie sprowadzają się do dwóch kryteriów, a trzecim jest rodzaj zadania. Po tej lekcji dobierzesz do jednego zadania z Twojego tygodnia jedno z nich: **prawo UE** (firma i umowa podlegają europejskim przepisom), **model u siebie** (możesz pobrać model i uruchomić go na własnym komputerze) albo **rodzaj zadania** (czat, tłumaczenie, obrazy, wdrożenie na serwerach firmy).
+
+Jedna rzecz do zapamiętania: **najpierw kryterium i rodzaj zadania. Nazwy produktów szybko się starzeją - aktualne znajdziesz w ramce z datą.**
+
+## Cztery rodzaje zadań i europejskie narzędzia do nich
+
+Europa nie musi wygrywać wyścigu na największy model, żeby mieć narzędzie, które da się wybrać świadomie.
+
+**Czat i model językowy.** Firma z UE, często z otwartym modelem (<Termin id="open-weight">open-weight</Termin>) - takim, którego wagi, czyli liczby ustawione w treningu, możesz pobrać na swój dysk. Chatbot w przeglądarce bywa przemianowywany - kryterium zostaje: czy możesz pobrać model i uruchomić go poza chmurą dostawcy i czy umowa podlega europejskiemu prawu.
+
+**Obraz.** Inna rodzina niż czat. Ranking generatorów obrazów zmienia się co kilka miesięcy. Zostaje: czy generator podlega tym samym pytaniom o dane i czy oznaczasz wynik, gdy trzeba ([etyka i prawo](/etyka/etyczne-aspekty/)).
+
+**Tłumaczenie.** Do wyboru masz wyspecjalizowany tłumacz, który od lat robi tylko to (np. niemiecki DeepL), albo ogólny chatbot, któremu piszesz "przetłumacz". Kryterium: jak dobrze radzi sobie z Twoją parą języków i czy tekst wychodzi do USA.
+
+**Wdrożenie na własnych serwerach (on-prem, od ang. _on-premises_ - u siebie).** Gdy firma albo urząd wymaga, żeby model działał na ich serwerach i żeby dało się prześledzić, skąd wzięła się odpowiedź (to tzw. wyjaśnialność). To narzędzie dla instytucji, nie czat do codziennych pytań.
+
+Jeśli europejska firma oferuje <Termin id="agent-ai">agenta AI</Termin> (program, który sam wykonuje kolejne kroki zadania), działa on tak samo jak agenci opisani w lekcji Agenci AI.
+
+:::note[Źródła sprawdzone w listopadzie 2026 r.]
+Migawka, nie ranking.
+
+**Mistral (Paryż).** Rodzina Mistral 3, grudzień 2025 r.: duży Large 3 na licencji Apache 2.0 (pozwala na darmowe użycie, także komercyjne) i małe modele Ministral 3 (14, 8 i 3 mld parametrów, czyli liczb ustawionych w treningu) - [mistral.ai](https://mistral.ai/news/mistral-3/), [TechCrunch](https://techcrunch.com/2025/12/02/mistral-closes-in-on-big-ai-rivals-with-mistral-3-open-weight-frontier-and-small-models/). Chatbot: **Vibe** (dawniej Le Chat), plany i limity na [cenniku](https://mistral.ai/pricing) - nazwy szczebli sprawdzaj tam, nie tu. Mistral Small 4 (16 marca 2026 r.): otwarte wagi na licencji Apache 2.0 - [mistral.ai](https://mistral.ai/news/mistral-small-4). Mistral Large 4: od 6 października 2026 r. podgląd przez <Termin id="api">API</Termin> (dostęp do modelu dla programistów, bez okna czatu) - [mistral.ai](https://mistral.ai/news/mistral-large-4); pod koniec października 2026 r. wagi do pobrania na własnej licencji Mistrala (zmodyfikowana licencja MIT; firma, która sprzedaje dostęp do modelu jako usługę, potrzebuje osobnej licencji) - [mistral.ai](https://mistral.ai/news/mistral-large-4-oss/). Przy ok. bilionie parametrów to model na serwerownię, nie na laptopa.
+
+**Black Forest Labs (Niemcy).** FLUX 3 (23 lipca 2026 r.): obrazy i wideo do 20 sekund z dźwiękiem, na razie we wczesnym dostępie (najpierw dla wybranych) - [bfl.ai](https://bfl.ai/blog/flux-3). Poprzednik FLUX.2: tekst na obrazie, spójność z obrazami wzorcowymi - [bfl.ai](https://bfl.ai/blog/flux-2). Runda finansowania 300 mln USD, wycena 3,25 mld USD (grudzień 2025 r.) - [bfl.ai](https://bfl.ai/blog/our-300m-series-b). Wycena nie jest lekcją "kup to".
+
+**DeepL (Kolonia).** Tłumacz. Ostatnia ogłoszona runda finansowania to fakt historyczny: w maju 2024 r. 300 mln USD przy wycenie 2 mld USD - [The Decoder](https://the-decoder.com/deepl-translates-rising-demand-for-ai-into-a-300-million-investment/). DeepL Agent ogólnodostępny od listopada 2025 r., ok. 2 000 klientów w lutym 2026 r. - [CNBC](https://www.cnbc.com/2025/09/03/deepl-launches-ai-agent-pitting-it-against-openai-anthropic.html), [Sifted](https://sifted.eu/articles/deepl-agent-release).
+
+**Aleph Alpha (Heidelberg).** PhariaAI: wdrożenie u siebie i wyjaśnialność. Fuzja z kanadyjską firmą Cohere: zapowiedź w kwietniu 2026 r., wycena połączonej firmy ok. 20 mld USD - [CNBC](https://www.cnbc.com/2026/04/24/cohere-aleph-alpha-germany-ai-europe-expansion.html), [TechCrunch](https://techcrunch.com/2026/04/24/cohere-acquires-merges-with-german-based-startup-to-create-a-transatlantic-ai-powerhouse/). Umowa podpisana 16 września 2026 r., połączona firma ma działać pod nazwą Cohere, z siedzibami w Berlinie i Toronto. Zamknięcie transakcji czeka na zgody regulatorów - [The Next Web](https://thenextweb.com/news/cohere-aleph-alpha-definitive-agreement-transatlantic-sovereign-ai). Ta fuzja pokazuje, że to, czy firma jest "europejska", też trzeba co jakiś czas sprawdzać na nowo.
+:::
+
+## Ćwiczenie: 5 minut, para zadanie-kryterium
+
+Nie zakładasz czterech kont.
+
+1. Zapisz zadanie z tygodnia w sześciu słowach.
+2. Wybierz **jedno** kryterium: prawo UE / model u siebie / rodzaj zadania (czat, tłumaczenie, obraz, wdrożenie u siebie).
+3. Dopisz rodzinę z listy powyżej - albo "zostaję przy amerykańskim czacie, bo wygoda", z powodem. To zaliczenie, nie zdrada.
+
+**Zaliczenie:** trzy wiersze. Zero "najlepszy model". Zero cytowania liczby parametrów jako dowodu.
+
+**Typowy wynik:** "tłumaczenie oferty - rodzaj zadania - DeepL albo czat". "notatka z danymi - model u siebie - open-weight", i tylko jeśli wolno Ci przetwarzać te dane.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** otwórz cennik Vibe albo DeepL i sprawdź, czy darmowy plan w ogóle istnieje.
+
+## Teraz wiesz
+
+- Wybierasz według prawa UE, modelu u siebie i rodzaju zadania. Nazwy i liczby z ramki szybko się starzeją.
+- Czat, obraz, tłumaczenie i wdrożenie u siebie (on-prem) to inne półki. Nie porównujesz ich jednym slajdem "Europa vs USA".
+- Plan B nie każe wyrzucać narzędzi, których używasz. Każe wiedzieć, po co jest alternatywa.
+
+**Następny krok:** [Polski ekosystem AI](/suwerenne-ai/polski-ekosystem-ai/) - poznasz trzy warstwy polskiego rynku AI: firmy, fabryki AI (centra z dużą mocą obliczeniową) i superkomputery, na których trenuje się modele.
+
+<SlowniczekStrony terminy={["open-weight", "agent-ai", "api"]} />
