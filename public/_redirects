@@ -46,10 +46,10 @@
 /ai-w-codziennej-pracy/ /narzedzia/ai-w-codziennej-pracy/ 301
 
 # --- AI w praktyce ---
-/ai-w-branzach/ /praktyka/ 302
-/case-studies/ /praktyka/ 302
-/najlepsze-praktyki/ /praktyka/ 302
-/ai-i-praca/ /praktyka/ 302
+/ai-w-branzach/ /praktyka/ai-w-branzach/ 301
+/case-studies/ /praktyka/case-studies/ 301
+/najlepsze-praktyki/ /praktyka/najlepsze-praktyki/ 301
+/ai-i-praca/ /praktyka/ai-i-praca/ 301
 
 # --- Etyka i bezpieczeństwo ---
 /prywatnosc/ /etyka/prywatnosc/ 301
@@ -81,13 +81,6 @@
 /jak-dziala-ai/rag/ /jak-dziala-ai/ 302
 /jak-dziala-ai/tokeny-i-kontekst/ /jak-dziala-ai/ 302
 /jak-dziala-ai/typy-ai/ /jak-dziala-ai/ 302
-/praktyka/ai-i-praca/ /praktyka/ 302
-/praktyka/ai-w-branzach/ /praktyka/ 302
-/praktyka/case-studies/ /praktyka/ 302
-/praktyka/najlepsze-praktyki/ /praktyka/ 302
-/sciezki/manager/ /sciezki/ 302
-/sciezki/pracownik-biurowy/ /sciezki/ 302
-/sciezki/wlasciciel-firmy/ /sciezki/ 302
 /suwerenne-ai/ai-na-wlasnym-komputerze/ /suwerenne-ai/ 302
 /suwerenne-ai/bielik-i-polskie-modele/ /suwerenne-ai/ 302
 /suwerenne-ai/europejskie-modele/ /suwerenne-ai/ 302

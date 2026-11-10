@@ -17,20 +17,13 @@ faq:
   - q: Czy AI zabierze mi pracę?
     a: Zależy bardziej od tego, z czego składa się Twoja praca, niż od nazwy stanowiska. Zawody, w których dominują powtarzalne zadania na tekście i danych, zmienią się najmocniej - ale zwykle chodzi o przekształcenie roli, nie jej zniknięcie. Temu pytaniu poświęcona jest w całości lekcja "AI a rynek pracy".
   - q: Od czego zacząć wdrażanie AI w małej firmie?
-    a: Od jednego konkretnego, powtarzalnego zadania, które zajmuje dużo czasu i ma niską cenę błędu - na przykład od wstępnych wersji odpowiedzi na typowe maile. Wdrażanie AI "wszędzie naraz" kończy się zwykle porzuceniem tematu. W przykładach wdrożeń ćwiczysz rozpoznawanie powtarzalnego wzorca z przykładowych scenariuszy, nie kopiujesz cudzych wyliczeń zwrotu z inwestycji.
+    a: Od jednego konkretnego, powtarzalnego zadania, które zajmuje dużo czasu i ma niską cenę błędu - na przykład od wstępnych wersji odpowiedzi na typowe maile. Wdrażanie AI "wszędzie naraz" kończy się zwykle porzuceniem tematu. W [przykładach wdrożeń](/praktyka/case-studies/) ćwiczysz rozpoznawanie powtarzalnego wzorca z przykładowych scenariuszy, nie kopiujesz cudzych wyliczeń zwrotu z inwestycji.
   - q: Jak sprawdzić, czy AI faktycznie oszczędza czas?
     a: Zmierz czas wykonania zadania przed wprowadzeniem AI i po nim, uwzględniając czas potrzebny na weryfikację i poprawki. Ten drugi element bywa pomijany, a to on decyduje, czy oszczędność jest realna, czy pozorna.
-status: zastane
+status: gotowe
 ---
 
-import { CardGrid, LinkCard, Card } from '@astrojs/starlight/components';
-
-
-:::note[Ta sekcja jest w przebudowie]
-Przechodzę przez te teksty lekcja po lekcji i poprawiam to, co się nie broni.
-Lekcje wracają tutaj pojedynczo, w miarę jak kończę przegląd - pod tymi samymi
-adresami co wcześniej. Poniżej lista tego, co się w tej sekcji pojawi.
-:::
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
 
 ![Dwie osoby układają na stole kartki z odręcznymi notatkami i listami kontrolnymi](../../../assets/praktyka/przeglad.jpg)
 
@@ -59,20 +52,28 @@ Nie ma tu instrukcji obsługi narzędzi - te są w [Narzędziach AI](/narzedzia/
 ## Lekcje w tej sekcji
 
 <CardGrid>
-	<Card title="AI w różnych branżach">
-		Trzy zadania z Twojej branży: dwa na szkic AI, jedno przy człowieku. Ćwiczenie: 5 minut. (w przygotowaniu)
-	</Card>
-	<Card title="Przykłady wdrożeń AI">
-		Pięć przykładowych scenariuszy wdrożeń AI - uczysz się rozpoznawać powtarzalny wzorzec, nie liczby oszczędności z cudzych prezentacji. Ćwiczenie: 5 minut. (w przygotowaniu)
-	</Card>
-	<Card title="Szkic i dwie poprawki">
-		Pierwszy wynik AI traktujesz jak szkic: dwie rundy poprawek, potem porównanie czasu - model zostaje albo go odkładasz. Ćwiczenie: 5 minut. (w przygotowaniu)
-	</Card>
-	<Card title="AI a rynek pracy">
-		Jak AI zmienia pracę: oznaczysz pięć czynności z tygodnia - szkic AI, AI może dokończyć, tylko człowiek. Ćwiczenie: 5 minut. (w przygotowaniu)
-	</Card>
+	<LinkCard
+		title="AI w różnych branżach"
+		description="Trzy zadania z Twojej branży: dwa na szkic AI, jedno przy człowieku. Ćwiczenie: 5 minut."
+		href="/praktyka/ai-w-branzach/"
+	/>
+	<LinkCard
+		title="Przykłady wdrożeń AI"
+		description="Pięć przykładowych scenariuszy wdrożeń AI - uczysz się rozpoznawać powtarzalny wzorzec, nie liczby oszczędności z cudzych prezentacji. Ćwiczenie: 5 minut."
+		href="/praktyka/case-studies/"
+	/>
+	<LinkCard
+		title="Szkic i dwie poprawki"
+		description="Pierwszy wynik AI traktujesz jak szkic: dwie rundy poprawek, potem porównanie czasu - model zostaje albo go odkładasz. Ćwiczenie: 5 minut."
+		href="/praktyka/najlepsze-praktyki/"
+	/>
+	<LinkCard
+		title="AI a rynek pracy"
+		description="Jak AI zmienia pracę: oznaczysz pięć czynności z tygodnia - szkic AI, AI może dokończyć, tylko człowiek. Ćwiczenie: 5 minut."
+		href="/praktyka/ai-i-praca/"
+	/>
 </CardGrid>
 
 :::note[Następny krok]
-**Zacznij tutaj:** lekcje tej sekcji wracają po przeglądzie. Dziś możesz czytać: [Podstawy](/podstawy/) (8 lekcji, dla początkujących), [Prompt Engineering](/prompt-engineering/) (10 lekcji), [Narzędzia AI](/narzedzia/) (9 lekcji), [Etyka i bezpieczeństwo](/etyka/) (4 lekcje) i [Claude Code](/claude-code/) (21 lekcji, poziom średni, wymaga terminala). Trudne słowa wyjaśnia [słownik pojęć](/zasoby/slownik-pojec/).
+**Zacznij tutaj:** [AI w różnych branżach](/praktyka/ai-w-branzach/) - trzy zadania z Twojej branży: dwa na szkic AI, jedno przy człowieku.
 :::

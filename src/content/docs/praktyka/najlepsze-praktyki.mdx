@@ -1,0 +1,99 @@
+---
+title: Szkic i dwie poprawki - jak sprawdzić, czy AI oszczędza Ci czas
+description: Zmierzysz jedno zadanie - szkic plus poprawki - i zdecydujesz, czy dalej robisz je z AI. Ćwiczenie zajmie 5 minut.
+sidebar:
+  label: 'Szkic i dwie poprawki'
+  order: 3
+educationalLevel: Intermediate
+teaches:
+  - Jak traktować pierwszy wynik modelu jako szkic, nie gotowiec
+  - Kiedy odłożyć AI, bo poprawka trwa dłużej niż robota od zera
+  - Jak zapisać działające polecenie, żeby nie zaczynać od zera jutro
+about:
+  - name: Sztuczna inteligencja
+    sameAs: https://pl.wikipedia.org/wiki/Sztuczna_inteligencja
+faq:
+  - q: Czy to jest lekcja o promptach?
+    a: Nie. Układanie polecenia jest w [Prompt Engineering](/prompt-engineering/wprowadzenie/). Tu zostaje czas, dwie rundy poprawek i decyzja "zostaje / odkładam".
+  - q: Czy muszę robić SIFT na każdym szkicu?
+    a: Na faktach, liczbach i cytatach - tak, i to jest w [Weryfikacji](/podstawy/weryfikacja-informacji/). Ta strona nie powtarza czterech kroków. Mierzy, czy w ogóle warto było otwierać czat.
+  - q: Ile rund poprawiania to "wystarczy"?
+    a: Dwie po pierwszym szkicu. Jeśli po nich wciąż trwa to dłużej niż od zera - odkładasz model. Trzecia runda "może teraz zrozumie" zwykle jest już kosztem.
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+![Mosiężny kompas leży na otwartym notesie z odręcznymi notatkami i listą kontrolną](../../../assets/praktyka/najlepsze-praktyki/najlepsze-praktyki.jpg)
+
+:::note[O tej stronie]
+**Czas:** ok. 6 minut czytania + 5 minut ćwiczenia.
+**Poziom:** średni, po lekcji [Przykłady wdrożeń](/praktyka/case-studies/).
+**Wcześniej:** [Przykłady wdrożeń](/praktyka/case-studies/) - umiesz wyciągnąć z przykładowego scenariusza powtarzalny wzorzec. **Teraz:** budujesz jeden nawyk, dzięki któremu nie zaczynasz pracy z AI od zera za każdym razem.
+:::
+
+## Na tej stronie zmierzysz jedno zadanie
+
+Po tej lekcji jedno powtarzalne zadanie z Twojego tygodnia ma dwie liczby i decyzję: czas od zera (szacunek), czas szkicu z dwiema poprawkami i decyzję "zostaje" albo "odkładam". Nie zbierasz tu stosu narzędzi.
+
+Jedna rzecz do zapamiętania: **model zostaje, gdy po poprawce jest szybciej. Jeśli nie - odkładasz go, nie "jeszcze jedna runda".**
+
+## Czego tu nie ma
+
+Jak pisać polecenie - [wprowadzenie do promptów](/prompt-engineering/wprowadzenie/). Jak sprawdzić fakt - [SIFT, czyli cztery kroki sprawdzania informacji](/podstawy/weryfikacja-informacji/). Czego nie wklejać - [prywatność](/etyka/prywatnosc/).
+
+Tu jest tylko nawyk: **pierwszy wynik to szkic. Dwie rundy. Potem zegar.**
+
+:::caution[Tak nie]
+"Poprawiaj, aż będzie perfekcyjnie. Jak trwa dłużej niż napisanie samemu, to znaczy, że jeszcze słabo promptujesz."
+:::
+
+:::tip[Tak]
+"Dwie rundy, konkretna poprawka ('skróć o połowę', 'to nie moje zdanie'). Potem porównujesz czas. Zegar wygrywa z dumą."
+:::
+
+## Nawyk: szkic, dwie rundy, zegar, kartka
+
+Traktuj wynik jak szybki szkic, który może zawierać błędy podane pewnym tonem. Dajesz zadanie. Czytasz. Poprawiasz **konkret**: co zmienić, co wyciąć, czego brakuje. Nie "zrób lepiej".
+
+Potem stop. Dwie rundy po szkicu. Jeśli poprawianie zjada więcej czasu niż zrobienie tego od zera - odkładasz czat. To nie porażka, tylko pomiar.
+
+Jeśli zostaje zysk: **zapisujesz polecenie** jednym zdaniem na kartce albo w notatniku, przy tym zadaniu. Jutro nie zaczynasz od "napisz coś o...". Jak trzymać takie polecenia w jednym miejscu: [Baza promptów](/prompt-engineering/baza-promptow/).
+
+Trzy sytuacje, w których zegar nawet nie startuje - odkładasz od razu:
+
+- Chcesz wkleić do czatu w chmurze PESEL, umowę z danymi stron albo strategię, której nie wolno pokazać na zewnątrz. Takie dane trafiają najwyżej do modelu na Twoim komputerze albo do narzędzia firmowego z umową - i tylko wtedy, gdy wolno Ci je przetwarzać. Hasła nie wklejasz nigdzie. Szczegóły są w [prywatności](/etyka/prywatnosc/).
+- Decyzja ma być wyrokiem na osobę albo na pieniądze w trybie "model powiedział". Model może szkicować analizę. Podpis jest Twój albo specjalisty.
+- Potrzebujesz stanu na dziś (cena, przepis, wersja), a wyszukiwanie jest wyłączone. Model zna świat tylko do pewnej daty (tak zwana data odcięcia wiedzy) - więcej w [ograniczeniach](/podstawy/ograniczenia/).
+
+Nie rozpisuję tu porannej rutyny z AI ani stosu "dla studentów / biura / twórców". Stosy marek starzeją się w kwartał. Nawyk zostaje.
+
+:::note[Źródła sprawdzone w listopadzie 2026 r.]
+Nie ma tu rankingów narzędzi ani ścieżek klikania w ustawieniach. UI i nazwy planów zmieniają się szybciej niż ta lekcja.
+:::
+
+## Ćwiczenie: 5 minut, jedno zadanie
+
+Nie budujesz systemu produktywności. Mierzysz **jedno** zadanie, które i tak zrobisz w tym tygodniu.
+
+1. Zapisz zadanie w sześciu słowach (np. "odpowiedź na maila z reklamacją").
+2. Oszacuj, ile minut zajęłoby **od zera**, bez modelu.
+3. Jeśli możesz teraz: wyślij szkic, zrób **dwie** rundy poprawek, zapisz minuty łącznie. Jeśli nie - zaplanuj to na najbliższe wykonanie tego zadania i zostaw na kartce puste miejsce na wynik.
+4. Decyzja jednym słowem: **zostaje** / **odkładam**. Gdy zostaje - dopisz <Termin id="prompt">prompt</Termin> (polecenie dla modelu) w jednym zdaniu, żeby wrócił jutro.
+
+**Zaliczenie:** w ciągu 5 minut masz zadanie, szacunek "od zera" i etykietę. Czas po modelu może poczekać do pierwszego prawdziwego użycia - wtedy dopisujesz go i nie oszukujesz zegara (wliczasz czytanie i poprawki).
+
+**Typowy wynik:** mail "zostaje", bo szkic plus dwie poprawki zajmują mniej czasu niż gapienie się w pusty edytor. Opinia prawna albo ocena osoby - "odkładam" bez zegara.
+
+**Jeśli nic nie zgrzyta i zostaje czas:** skreśl z zapisanego promptu każde zdanie, bez którego model i tak by sobie poradził. Krótsze polecenie łatwiej wraca.
+
+## Teraz wiesz
+
+- Liczy się zegar, nie kolekcja zakładek. Szkic, dwie rundy, porównanie z "od zera".
+- Prompt i SIFT są w innych lekcjach. Tu nie powtarzasz ich, żeby "mieć checklistę".
+- Działające polecenie zapisujesz. Sesja od zera jutro to nie praktyka, tylko amnezja.
+
+**Następny krok:** [AI a rynek pracy](/praktyka/ai-i-praca/) - etykiety na czynnościach z tygodnia, bez listy "zagrożonych zawodów".
+
+<SlowniczekStrony terminy={["prompt", "sift"]} />

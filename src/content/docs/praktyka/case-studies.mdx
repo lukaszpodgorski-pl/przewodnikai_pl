@@ -1,0 +1,126 @@
+---
+title: Przykłady wdrożeń AI - jak wygląda proces krok po kroku
+description: Z przykładowego scenariusza wdrożenia AI wyciągniesz powtarzalny wzorzec do własnego zadania. Ćwiczenie zajmie 5 minut.
+sidebar:
+  label: 'Przykłady wdrożeń'
+  order: 2
+educationalLevel: Intermediate
+teaches:
+  - Jak czytać scenariusz wdrożenia pod mechanikę, nie pod tabelkę "przed / po"
+  - Które elementy procesu da się przenieść, a które są dekoracją
+  - Dlaczego człowiek sprawdzający wynik i możliwość przekazania sprawy osobie wracają w każdej branży
+about:
+  - name: Sztuczna inteligencja
+    sameAs: https://pl.wikipedia.org/wiki/Sztuczna_inteligencja
+faq:
+  - q: Czy te przykłady wdrożeń są prawdziwe?
+    a: Nie. To scenariusze ilustracyjne, złożone z typowych ruchów, nie reportaż z jednej firmy. Nazwy są zmyślone. Żadnej liczby z tabelki nie cytujesz jako faktu.
+  - q: Po co czytać zmyślone wdrożenia?
+    a: Żeby ćwiczyć wyciąganie mechaniki - jaki problem, kto sprawdza wynik i w którym momencie można zatrzymać proces. Tego nie dają liczby oszczędności z cudzych prezentacji.
+  - q: Czy mogę powołać się na te wyniki w ofercie albo na zebraniu?
+    a: Nie. Do cytowania potrzebujesz źródła z datą nie starszą niż dwa lata. Tu ćwiczysz czytanie procesu, nie zbierasz ROI (zwrotu z inwestycji).
+status: gotowe
+---
+
+import Termin from '../../../components/Termin.astro';
+import SlowniczekStrony from '../../../components/SlowniczekStrony.astro';
+
+![Uśmiechnięta osoba z założonymi rękami przed tablicą z rosnącym wykresem, obok puchary na półce](../../../assets/praktyka/case-studies/case-studies.jpg)
+
+:::note[O tej stronie]
+**Czas:** ok. 8 minut czytania + 5 minut ćwiczenia.
+**Poziom:** średni, po lekcji [AI w branżach](/praktyka/ai-w-branzach/).
+**Wcześniej:** [AI w branżach](/praktyka/ai-w-branzach/) - wiesz, że najpierw wybierasz zadanie i jego cenę błędu, a potem narzędzie. **Teraz:** sprawdzasz, jak może wyglądać wdrożenie krok po kroku, na zmyślonych przykładach.
+:::
+
+## Na tej stronie wyciągniesz jedną mechanikę
+
+Po tej lekcji z jednego scenariusza masz zdanie, które da się przenieść na własne zadanie. Nie uczysz się tu listy marek ani tabelki "przed / po".
+
+Jedna rzecz do zapamiętania: **przenosisz mechanikę: jaki problem rozwiązujesz, kto sprawdza wynik i w którym momencie można zatrzymać proces. Liczby oszczędności z ilustracji zostają na stronie.**
+
+:::caution[Uwaga]
+Pięć historii poniżej **nie wydarzyło się w takiej postaci**. Złożyłem je z typowych wdrożeń, żeby było na czym ćwiczyć. Nazwy firm są zmyślone. Żadna liczba z tych historii nie jest pomiarem.
+:::
+
+## Pięć ilustracji, pięć mechanik
+
+Czytaj każdy blok pod kątem pytania: _co tu jest przenośne?_ Narzędzie w nawiasie jest przykładem, nie przepisem.
+
+### 1. Agencja - szkic, nie zastępstwo redakcji
+
+Mały zespół, dużo tekstu, wąskie gardło przy skalowaniu.
+
+**Proces:** research (osoba + model) → konspekt (model, ktoś zatwierdza) → szkic (model) → redakcja (osoba) → publikacja (zawsze osoba).
+
+**Mechanika:** model przesuwa pracę z pustej kartki na edycję. Jakość nie "rośnie przez AI" - rośnie, gdy zostaje czas na research i ostatnią poprawkę. Publikacja szkicu bez redakcji to nie ta mechanika, tylko jej najgorszy wariant.
+
+### 2. Support - bot z drzwiami do człowieka
+
+Zespół tonie w powtarzalnych zgłoszeniach klientów. Ktoś stawia <Termin id="chatbot">chatbota</Termin> na FAQ.
+
+**Proces:** najpierw kategoryzacja starych zgłoszeń. Potem baza wiedzy. Potem bot obsługuje najpierw niewielką część rozmów. Potem przekazanie sprawy osobie, które jest widoczne - "rozmowa z osobą" nie chowa się w trzecim menu.
+
+**Mechanika:** automat na wzorzec ma sens dopiero z wyjściem. "Bot załatwia zgłoszenia" bez ścieżki do człowieka to nie oszczędność, tylko kolejka wściekłości. Nie podaję tu procentu "załatwionych" zgłoszeń - w każdej firmie "załatwione" znaczy co innego.
+
+### 3. Freelancing - sprzedajesz osąd, nie znaki
+
+Klienci pytają, czy da się taniej, "bo jest AI".
+
+**Proces:** najpierw własny sposób pracy (szkic + Twoja redakcja). Potem oferta mówi wprost, co jest szkicem, a co strategią. Potem ewentualnie szkolenie klienta z narzędzia - osobna usługa, nie zniżka za znaki.
+
+**Mechanika:** jeśli cena opiera się wyłącznie na liczbie znaków, model naprawdę Cię zastępuje. Jeśli opiera się na wyborze, tonie i odpowiedzialności - wzmacnia. To ten sam ruch co w [AI a rynek pracy](/praktyka/ai-i-praca/): etykietujesz czynność, nie zawód.
+
+### 4. Kancelaria - wyciąg, nie wyrok
+
+Sterta umów, juniorzy toną w klauzulach.
+
+**Proces:** model zaznacza klauzule i flagi. Młodsza osoba sprawdza, czy flaga jest w tekście. Starsza osoba bierze odpowiedzialność za radę. Raport dla klienta nie wychodzi z modelu "na czysto".
+
+**Mechanika:** przy prawie, zdrowiu i pieniądzach kontrola jest ściślejsza, bo model umie spokojnym tonem **dodać klauzulę, której nie było**. To [halucynacja](/podstawy/ograniczenia/), nie "rzadki błąd juniora". Sprawdzenie przez człowieka jest częścią procesu, nie dodatkiem "jak starczy czas".
+
+### 5. Katalog - szablon, dane produktu, kontrola wyrywkowa
+
+Setki opisów, ręcznie się nie da, kopiowanie od producenta zabija unikalność.
+
+**Proces:** jeden szablon polecenia (korzyść, długość, zakaz żargonu) → dane z karty produktu → partia opisów → **losowo wybrane opisy do przeczytania przez człowieka**.
+
+**Mechanika:** skala bez czytania próbki to publikacja zgadywania. Szablon jest po to, żeby osoba sprawdzająca miała z czym porównać. Więcej o samym poleceniu jest w [prompt engineeringu](/prompt-engineering/) - tu liczy się kontrola po wygenerowaniu opisów.
+
+## Czego tu nie ma
+
+Nie ma tabeli "przed / po" z godzinami, ocenami klientów i ruchem z wyszukiwarki. Takie liczby z ilustracji uczą kopiowania slajdu.
+
+Nie ma listy "wdrażaj te cztery narzędzia". Marka się starzeje szybciej niż mechanika.
+
+Nie ma lekcji <Termin id="sift">SIFT</Termin> ani szkieletu promptu (cztery pola: rola, zadanie, ograniczenia, format). SIFT jest w [weryfikacji](/podstawy/weryfikacja-informacji/), szkielet - w [podstawach promptowania](/prompt-engineering/podstawy/). Tu zostaje jedno: **czy w procesie jest człowiek i czy wiesz, po czym poznasz, że działa**.
+
+Raporty branżowe o adopcji AI istnieją - na przykład [McKinsey, The State of AI 2025](https://www.mckinsey.com/~/media/mckinsey/business%20functions/quantumblack/our%20insights/the%20state%20of%20ai/november%202025/the-state-of-ai-in-2025.pdf). To ankiety firm, nie Twoje pięć historii i nie obietnica procentu.
+
+:::note[Źródła sprawdzone w listopadzie 2026 r.]
+Na tej stronie nie ma liczb "ile oszczędzisz". Raport McKinsey z listopada 2025 r. opisuje, jak firmy korzystają z AI, a nie wyniki pięciu zmyślonych historii.
+:::
+
+## Ćwiczenie: 5 minut, jedna mechanika
+
+Nie przepisujesz cudzego ROI. Wyciągasz **jedno** zdanie.
+
+1. Wybierz **jeden** z pięciu scenariuszy - ten najbliższy Twojemu tygodniowi (albo najbliższy z [branż](/praktyka/ai-w-branzach/)).
+2. Zapisz mechanikę w jednym zdaniu, bez liczby. Wzór: "Model robi X. Osoba robi Y. Proces zatrzymuję, gdy Z."
+3. Dopisz własne zadanie z tego tygodnia, do którego ta mechanika pasuje - albo napisz "nie pasuje, bo ..." (to też zaliczenie).
+
+**Zaliczenie:** w ciągu 5 minut masz dwa wiersze na kartce. Zero procentów, zero nazw narzędzi jako "to kup".
+
+**Typowy wynik:** "Szkic maila / opisu. Ja redaguję. Nie wysyłam bez czytania." Albo z supportu: "FAQ na bota. Trudne do osoby. Przycisk musi być widoczny."
+
+**Jeśli nic nie zgrzyta i zostaje czas:** skreśl z wybranego scenariusza wszystko, czego nie możesz zmierzyć w przyszłym tygodniu. Zostaw tylko mechanikę.
+
+## Teraz wiesz
+
+- Te historie są ilustracją. Cytujesz mechanikę, nie tabelkę.
+- Wracają trzy klocki: wąski problem, człowiek sprawdzający wynik, moment, w którym można zatrzymać proces (przekazanie sprawy osobie, redakcja, próbka).
+- Narzędzie jest przykładem. Proces jest lekcją.
+
+**Następny krok:** [Szkic i dwie poprawki](/praktyka/najlepsze-praktyki/) - jeden nawyk: mierzysz szkic plus poprawkę i wiesz, kiedy odłożyć model.
+
+<SlowniczekStrony terminy={["chatbot", "halucynacje", "sift", "prompt"]} />

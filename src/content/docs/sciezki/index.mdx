@@ -10,7 +10,7 @@ hero:
 status: zastane
 ---
 
-import { CardGrid, LinkCard, Card } from '@astrojs/starlight/components';
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
 
 ![Rozdroże z kilkoma ścieżkami prowadzącymi w różne strony, idą po nich ludzie](../../../assets/sciezki/rozdroze.jpg)
 
@@ -42,15 +42,21 @@ import { CardGrid, LinkCard, Card } from '@astrojs/starlight/components';
 ## Praca
 
 <CardGrid>
-	<Card title="Pracownik biurowy">
-		Przyspiesz codzienne zadania biurowe i przygotuj się na zmiany na rynku pracy. 8 lekcji. (w przygotowaniu)
-	</Card>
-	<Card title="Właściciel małej firmy (JDG)">
-		Oddaj AI szkice powtarzalnych zadań (oferta, mail, notatka) i naucz się bezpiecznie korzystać z AI przy danych klientów. 10 lekcji. (w przygotowaniu)
-	</Card>
-	<Card title="Manager / kierownik zespołu">
-		Wdrażaj AI w swoim zespole świadomie - z myślą o ludziach i o efektach ich pracy. 9 lekcji. (w przygotowaniu)
-	</Card>
+	<LinkCard
+		title="Pracownik biurowy"
+		description="Przyspiesz codzienne zadania biurowe i przygotuj się na zmiany na rynku pracy. 8 lekcji."
+		href="/sciezki/pracownik-biurowy/"
+	/>
+	<LinkCard
+		title="Właściciel małej firmy (JDG)"
+		description="Oddaj AI szkice powtarzalnych zadań (oferta, mail, notatka) i naucz się bezpiecznie korzystać z AI przy danych klientów. 10 lekcji."
+		href="/sciezki/wlasciciel-firmy/"
+	/>
+	<LinkCard
+		title="Manager / kierownik zespołu"
+		description="Wdrażaj AI w swoim zespole świadomie - z myślą o ludziach i o efektach ich pracy. 9 lekcji."
+		href="/sciezki/manager/"
+	/>
 </CardGrid>
 
 ## Dom
